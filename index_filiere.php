@@ -111,8 +111,8 @@ function load_managers()
                     ?>
                             <tr>
                                 <td><?php echo $row["nom_filiere"] ?></td>
-                                <td><?php echo $row["nom_enseignant"].' '.$row["prenom_enseignant"] ?></td>
-                                <th >
+                                <td><?php echo $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] ?></td>
+                                <th>
                                     <img data-id="<?php echo $row["id_filiere"] ?>" style="cursor:pointer;" width=20 heigth=20 src="https://bit.ly/2UwQb08" class="open-confirmation" data-toggle="modal">
                                 </th>
                                 <td>
@@ -131,8 +131,11 @@ function load_managers()
                             <div class="modal-content">
                                 <form action="supprimer_filiere.php" method="POST">
                                     <div class="modal-body">
-                                        Tu va supprimier tout les etudiant dans cette filier<br><br>
-            
+                                        <p style="color:#c0392b;">Tu va supprimier tout les etudiants dans cette filiers</p>
+                                        <div class="container mb-3 mt-3 " id="affiche_etudiant">
+                                            <!-- ici j'affichie les etudiant qui va supprimie
+                                            si l'utilisateur suprimie un filiere -->
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <input type="hidden" name="confirmation" id="confirmation" value="" />
@@ -186,14 +189,26 @@ function load_managers()
         <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>
         <script>
-        $(document).ready(function () {
-            $(".open-confirmation").click(function () {
-                $('#confirmation').val($(this).data('id'));
-                $('#confermationAle').modal('show');
-                console.log($(this).data('id'));
+            $(document).ready(function() {
+                $(".open-confirmation").click(function() {
+                    var filier_id = $(this).data('id');
+                    $('#confirmation').val(filier_id);
+                    $('#confermationAle').modal('show');
+                    // pour affichie les etudiant qui va supprimie si il suprimie un filiere
+                    $.ajax({
+                        url: "fetching_students.php",
+                        method: "POST",
+                        data: {
+                            filier_id: filier_id
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $('#affiche_etudiant').html(data);
+                        }
+                    });
+                });
             });
-        });
-    </script>
+        </script>
 
 </body>
 
