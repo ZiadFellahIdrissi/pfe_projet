@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 30, 2020 at 09:07 PM
+-- Generation Time: Apr 03, 2020 at 10:52 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -21,30 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `gestion_filieres_formation`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `department`
---
-
-DROP TABLE IF EXISTS `department`;
-CREATE TABLE IF NOT EXISTS `department` (
-  `id_department` int(5) NOT NULL,
-  `nom_department` varchar(50) NOT NULL,
-  `chefDepatment_id` int(5) NOT NULL,
-  PRIMARY KEY (`id_department`),
-  KEY `chefDepatment_id` (`chefDepatment_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `department`
---
-
-INSERT INTO `department` (`id_department`, `nom_department`, `chefDepatment_id`) VALUES
-(1, 'departement physique chimique', 2),
-(2, 'departement mathematique informatique', 6),
-(3, 'department biologie ', 5);
 
 -- --------------------------------------------------------
 
@@ -73,7 +49,12 @@ INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `prenom_enseignant`
 (4, 'fouad', 'khalid', 'fouad.khalid@gmail.com', '1960-04-03'),
 (5, 'mohamed', 'shaqi', 'mohamed.shaqi@gmail.com', '1990-08-04'),
 (6, 'azize', 'mandoure', 'azizi.mandoure@gmail.com', '1988-01-04'),
-(7, 'brahim', 'maklofe', 'brahim.makloufe@gmail.com', '1996-12-15');
+(7, 'brahim', 'maklofe', 'brahim.makloufe@gmail.com', '1996-12-15'),
+(8, 'mohamed', 'daher', 'mohamed.daher@gmail.com', '1980-06-18'),
+(10, 'mohamoud', 'abghour', 'mahmoude.abghoure@gmail.com', '1980-12-12'),
+(11, 'karim', 'samoudi', 'karim.samoudi@gmail.com', '1976-04-29'),
+(12, 'marouan', 'moussaid', 'marouan.moussaid@gmail.com', '1965-01-11'),
+(13, 'aymane', 'bakire', 'aymane.bakire@gmail.com', '1990-07-07');
 
 -- --------------------------------------------------------
 
@@ -100,10 +81,14 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 --
 
 INSERT INTO `etudiant` (`code_apoge`, `cin`, `nom`, `prenom`, `date_naissance`, `email`, `id_filiere`) VALUES
-(1748242, 'bl154785', 'ziad', 'fellah', '1999-06-18', 'ziad.fe.zf@gmail.com', 6),
-(1741742, 'bl134185', 'yahya', 'khalid', '1999-12-10', 'yahya.khalid@gmail.com', 6),
-(1947000, 'bc158111', 'aymane', 'fatihe', '1999-12-12', 'aymanefatihe@gmail.com', 1),
-(1940002, 'bb702701', 'hajar', 'gouchgache', '1999-08-09', 'hajar.gouchgache@gmail.com', 6);
+(1914575, 'R131238112', 'hajarr', 'gouchgache', '1999-09-08', 'hajar.gouchgache@gmail.com', 31),
+(14574586, 'R131745200', 'oussama', 'faroq', '1998-07-06', 'oussama.farouq@gmail.com', 36),
+(16154875, 'R141519788', 'oussama', 'bouanane', '1998-04-16', 'oussama.ouss1@gmail.com', 38),
+(17148856, 'R140019714', 'ahmed', 'reda', '2000-04-15', 'ahmed.reda_01@gmail.com', 37),
+(19147554, 'R1312184785', 'ayamn', 'darof-marwan', '1998-04-16', 'darof-marwan@gmail.com', 32),
+(150013, 'R001515478', 'ayman', 'nadore', '1999-04-01', 'aymane.nadore@gmail.com', 31),
+(17006034, 'R161715199', 'ziad', 'fellah', '1999-12-06', 'ziad.fellah@gmail.com', 35),
+(1715482, 'R145821358', 'yahya', 'khalid', '1999-08-06', 'yahya.khalid@gmail.com', 35);
 
 -- --------------------------------------------------------
 
@@ -116,21 +101,21 @@ CREATE TABLE IF NOT EXISTS `filiere` (
   `id_filiere` int(5) NOT NULL AUTO_INCREMENT,
   `nom_filiere` varchar(50) NOT NULL,
   `responsable_id` int(5) NOT NULL,
-  `departement_id` int(5) NOT NULL,
   PRIMARY KEY (`id_filiere`),
-  KEY `responsable_id` (`responsable_id`),
-  KEY `departement_id` (`departement_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  KEY `responsable_id` (`responsable_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `filiere`
 --
 
-INSERT INTO `filiere` (`id_filiere`, `nom_filiere`, `responsable_id`, `departement_id`) VALUES
-(1, 'smp', 1, 1),
-(5, 'sma', 7, 2),
-(4, 'smc', 3, 1),
-(6, 'smi', 4, 2);
+INSERT INTO `filiere` (`id_filiere`, `nom_filiere`, `responsable_id`) VALUES
+(31, 'sma', 7),
+(32, 'smb', 11),
+(35, 'smi', 10),
+(36, 'smp', 12),
+(37, 'smc', 3),
+(38, 'smg', 8);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
