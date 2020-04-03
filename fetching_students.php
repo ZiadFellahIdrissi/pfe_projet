@@ -8,12 +8,12 @@
 
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);
+    if($resultatcheck>0){
 ?>
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
             <th>Code Apoge</th>
-
             <th>Nom</th>
             <th>Prenom</th>
         </tr>
@@ -32,5 +32,5 @@
         }
         echo '</tbody>';
         echo "</table>";
-
+    }
 ?>

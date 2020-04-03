@@ -8,9 +8,10 @@ if (!empty($_POST)) {
 
         // echo ' '.$nom.' '.$dept.' '.$resp;
 
-        $sqltest = "SELECT id_filiere, nom_filiere,id_department
-                FROM filiere 
-                where nom_filiere = '" . $nom;
+        $sqltest = "SELECT id_filiere, nom_filiere
+                        FROM filiere 
+                        where nom_filiere = '" . $nom."'";
+                        
         $resultatTest = mysqli_query($conn, $sqltest);
 
         if (mysqli_num_rows($resultatTest) > 0) {
