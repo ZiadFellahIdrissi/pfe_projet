@@ -92,14 +92,14 @@ function load_managers()
                     <?php
                     include 'connectionDB.php';
                     echo '<table class="table table-bordered table-striped">';
+                    echo '<thead>';
                     echo "<tr>
                                 <th>nom du filiere</th>
                                 <th>responsable</th>
                                 <th>supprimer</th>
                                 <th>Modifier</th>
                             </tr>";
-
-
+                    echo '</thead>';
                     $sqlQuery = "SELECT id_filiere, nom_filiere,nom_enseignant,prenom_enseignant 
                             FROM filiere JOIN enseignant on enseignant.id_enseignant = filiere.responsable_id";
 
@@ -113,7 +113,23 @@ function load_managers()
                                 <td><?php echo $row["nom_filiere"] ?></td>
                                 <td><?php echo $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] ?></td>
                                 <th>
+                                    <?php 
+                                        $sql1 = " SELECT * FROM etudiant
+                                                  WHERE id_filiere = '".$row["id_filiere"]."'";
+                                        $resultat=mysqli_query($conn, $sql1);
+                                        $check = mysqli_num_rows($resultat);
+                                        if($check > 0){
+                                    ?>
                                     <img data-id="<?php echo $row["id_filiere"] ?>" style="cursor:pointer;" width=20 heigth=20 src="https://bit.ly/2UwQb08" class="open-confirmation" data-toggle="modal">
+                                    <?php
+                                        }else{
+                                    ?>
+                                    <a href="supprimer_filiere.php?id=<?php echo $row["id_filiere"] ?>">
+                                        <img width=20 heigth=20 src="https://bit.ly/2UwQb08">
+                                    </a>
+                                    <?php
+                                        }
+                                    ?>
                                 </th>
                                 <td>
                                     <input type="button" value="Modifie" class="btn btn-info btn-xs">
@@ -209,9 +225,5 @@ function load_managers()
                 });
             });
         </script>
-
 </body>
-
-
-
 </html>
