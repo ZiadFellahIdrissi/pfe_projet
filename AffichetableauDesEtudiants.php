@@ -36,7 +36,8 @@ if ($resultatcheck > 0) {
                     </a>
                 </td>
                 <td>
-                    <input type="button" value="Modifie" id="<?php echo $row["code_apoge"] ?>" class="btn btn-info btn-xs edit_data">
+                    <!-- <img id="<?php echo $row["code_apoge"] ?>" class="Open_modifierUnEtudiant" data-toggle="modal" width=20 heigth=20 src="https://bit.ly/2UwQb08"> -->
+                    <input type="button" value="Modifier" id="<?php echo $row["code_apoge"] ?>" data-toggle="modal" class="btn btn-info btn-xs Open_modifierUnEtudiant">
                 </td>
             </tr>
     <?php
