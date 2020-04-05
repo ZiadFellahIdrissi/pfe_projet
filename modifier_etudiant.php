@@ -8,7 +8,16 @@
         $prenom=$_POST["prenom"];
         $date_naissance=$_POST["dateN"];
         $email=$_POST["email"];
-        $id_filiere=$_POST["filier"];
+        $id_filiere=$_POST["fil"];
+
+
+        if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM etudiant
+                                                 WHERE cin = $cin
+                                                 AND code_apoge = $code_apoge")))
+        {
+            header('location: index_etudiant.php?insert=failed');
+            exit();
+        }
 
         $sql="UPDATE `etudiant` 
               SET `code_apoge` = $code_apoge ,
@@ -22,7 +31,7 @@
 
         mysqli_query($conn , $sql);
 
-        header("location: index_etudiant?etudiant=updated");
+        header('location: index_etudiant.php?etudiant=updated');
     }else 
         echo "dore tkhra";
 
