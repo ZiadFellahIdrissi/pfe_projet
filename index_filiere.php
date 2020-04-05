@@ -5,8 +5,8 @@ function load_managers()
     include 'connectionDB.php';
     $sqlOptions = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
     FROM enseignant
-    WHERE `id_enseignant` not in (SELECT responsable_id
-                                FROM filiere )";
+    WHERE `id_enseignant` not in ( SELECT responsable_id
+                                    FROM filiere )";
     $resultat = mysqli_query($conn, $sqlOptions);
     $resultatcheck = mysqli_num_rows($resultat);
     if ($resultatcheck > 0) {
