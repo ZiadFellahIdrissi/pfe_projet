@@ -291,9 +291,6 @@ function load_managers()
                       $('#Modifier_inp').val(id_filier_modifier);
                       $('#Nom_modifier').val(nom_filier);
                       $('#modifierModal').modal('show');
-                      
-
-
                 });
             });
         </script>
