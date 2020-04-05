@@ -87,7 +87,7 @@ include 'connectionDB.php';
 
                                         <!-- les options de filier -->
                                         <div class="form-group">
-                                            <label for="filier">Filier</label>
+                                            <label for="filier">Filiere</label>
                                             <select name="filier" id="filier" class="form-control">
                                                 <?php
                                                 $sqlOptions = "SELECT * from filiere";
@@ -151,7 +151,7 @@ include 'connectionDB.php';
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <label for="codeapoge_modifier" class="col-form-label">Code apouge</label>
+                                                <label for="codeapoge_modifier" class="col-form-label">Code apogee</label>
                                                 <input type="text" class="form-control" name="codeapoge" value="" id="codeapoge_modifier">
                                             </div>
                                         </div>
@@ -171,14 +171,13 @@ include 'connectionDB.php';
 
                                     <div class="form-group">
                                         <label for="email_modifier" class="col-form-label">Email</label>
-                                        <input type="email" class="form-control" name="email"  id="email_modifier" value="ziad">
+                                        <input type="email" class="form-control" name="email"  id="email_modifier" value="">
                                     </div>
 
                                     <!-- les options de filier -->
                                     <div class="form-group">
-                                        <label for="filier">Filier</label>
-                                        <select name="filier" id="filier" class="form-control">
-                                            <option value="0"><strong>==choise un filier==</strong></option>
+                                        <label for="fil">Filiere</label>
+                                        <select name="fil" id="fil" class="form-control">
                                             <?php
                                             $sqlOptions = "SELECT * from filiere";
                                             $resultat = mysqli_query($conn, $sqlOptions);
@@ -225,10 +224,10 @@ include 'connectionDB.php';
                 <?php
                 $fullurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-                if (strpos($fullurl, "insert=faild")) {
+                if (strpos($fullurl, "insert=failed")) {
                 ?>
                     <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
-                        <strong>Invalid</strong> code apoge ou Cin :(
+                        <strong>Invalid</strong> code apogee ou Cin!
                     </div>
                 <?php
                 }
@@ -242,7 +241,7 @@ include 'connectionDB.php';
                 if (strpos($fullurl, "etudiant=deleted")) {
                 ?>
                     <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                        <strong>Etudiant</strong> supprimié avec succes :)
+                        <strong>Etudiant</strong> supprimé avec succes :)
                     </div>
                 <?php
                 }
@@ -287,6 +286,7 @@ include 'connectionDB.php';
                             $('#cin_modifier').val(data.cin);
                             $('#date_modifier').val(data.date_naissance);
                             $('#email_modifier').val(data.email);
+                            $('#fil').val(data.id_filiere);
                             $('#modifierUnEtudiant').modal('show');
                             console.log(data.email);
                         },
