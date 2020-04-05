@@ -191,7 +191,7 @@ function load_managers()
                                     ?>
                                 </th>
                                 <td>
-                                    <input type="button" data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_enseignant"] ?>" value="Modifie" class="btn btn-info btn-xs open_modifierModal">
+                                    <input type="button" data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_filiere"] ?>" value="Modifie" class="btn btn-info btn-xs open_modifierModal">
                                 </td>
                             </tr>
                     <?php
@@ -286,11 +286,12 @@ function load_managers()
                     });
                 });
                 $(".open_modifierModal").click(function() {
-                    var id_enseignant_modifier = $(this).attr("id");
+                    var id_filier_modifier = $(this).attr("id");
                     var nom_filier=$(this).data("id");
-                      $('#Modifier_inp').val(id_enseignant_modifier);
+                      $('#Modifier_inp').val(id_filier_modifier);
                       $('#Nom_modifier').val(nom_filier);
                       $('#modifierModal').modal('show');
+                      
 
 
                 });
