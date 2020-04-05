@@ -44,11 +44,12 @@ function load_managers()
         </ul>
         <!-- end bloc de menu -->
 
+
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
                 <div class="container mt-3 mb-3">
 
-                    <!-- =========================================================================================================================================================================== -->
+                    <!-- ================================================ajoute un filier================================================================================================ -->
                     <div class="col-6 col-md-4">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Ajoute un filiere</button>
                         <br>
@@ -86,8 +87,66 @@ function load_managers()
                         </div>
                         <!-- ============================================================================================================================== -->
                     </div>
-                    <!-- =========================================================================================================================================================================== -->
+                    <!-- =================================================fin ajoute un filier======================================================================================== -->
 
+
+                    <!-- ============================================modal pour la modification ============================================================================= -->
+                    <div class="modal fade" id="modifierModal" tabindex="-1" role="dialog"  aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+
+                                    <!-- =============================================== -->
+                                    <form action="modifier_filiere.php" method="POST">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="Nom" class="col-form-label">Nom du filiere</label>
+                                                    <input type="text" class="form-control" name="Nom" value="" id="Nom_modifier" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Responsable_modifier">Responsable</label>
+                                            <select name="Responsable_modifier" id="Responsable_modifier" class="form-control">
+                                                <option value="">
+                                                        <strong>choise un nouveau responsable</strong>
+                                                    </option>
+                                                <?php
+                                                $sqlOptions = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
+                                                                    FROM enseignant
+                                                                    WHERE `id_enseignant` not in (SELECT responsable_id
+                                                                                                FROM filiere )";
+                                                $resultat = mysqli_query($conn, $sqlOptions);
+                                                $resultatcheck = mysqli_num_rows($resultat);
+                                                if ($resultatcheck > 0) {
+                                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                                        echo '<option value="' . $row["id_enseignant"] . '">
+                                                                    <strong>' . $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] . '</strong>
+                                                            </option>';
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <input type="hidden" name="Modifier_inp" id="Modifier_inp" value="" />
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <input type="submit" id="Modifier" class="btn btn-primary" value="Modifier" name="Modifier">
+                                        </div>
+                                    </form>
+                                    <!-- =============================================== -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================fin la modification============================================ -->
+
+
+
+                    <!-- ============================================tableau de filieres============================================ -->
                     <br>
                     <?php
                     include 'connectionDB.php';
@@ -100,7 +159,7 @@ function load_managers()
                                 <th>Modifier</th>
                             </tr>";
                     echo '</thead>';
-                    $sqlQuery = "SELECT id_filiere, nom_filiere,nom_enseignant,prenom_enseignant 
+                    $sqlQuery = "SELECT id_filiere,id_enseignant, nom_filiere,nom_enseignant,prenom_enseignant 
                             FROM filiere JOIN enseignant on enseignant.id_enseignant = filiere.responsable_id";
 
                     $resultatOfQuery = mysqli_query($conn, $sqlQuery);
@@ -113,26 +172,26 @@ function load_managers()
                                 <td><?php echo $row["nom_filiere"] ?></td>
                                 <td><?php echo $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] ?></td>
                                 <th>
-                                    <?php 
-                                        $sql1 = " SELECT * FROM etudiant
-                                                  WHERE id_filiere = '".$row["id_filiere"]."'";
-                                        $resultat=mysqli_query($conn, $sql1);
-                                        $check = mysqli_num_rows($resultat);
-                                        if($check > 0){
-                                    ?>
-                                    <img data-id="<?php echo $row["id_filiere"] ?>" style="cursor:pointer;" width=20 heigth=20 src="https://bit.ly/2UwQb08" class="open-confirmation" data-toggle="modal">
                                     <?php
-                                        }else{
+                                    $sql1 = " SELECT * FROM etudiant
+                                                  WHERE id_filiere = '" . $row["id_filiere"] . "'";
+                                    $resultat = mysqli_query($conn, $sql1);
+                                    $check = mysqli_num_rows($resultat);
+                                    if ($check > 0) {
                                     ?>
-                                    <a href="supprimer_filiere.php?id=<?php echo $row["id_filiere"] ?>">
-                                        <img width=20 heigth=20 src="https://bit.ly/2UwQb08">
-                                    </a>
+                                        <img data-id="<?php echo $row["id_filiere"] ?>" style="cursor:pointer;" width=20 heigth=20 src="https://bit.ly/2UwQb08" class="open-confirmation" data-toggle="modal">
                                     <?php
-                                        }
+                                    } else {
+                                    ?>
+                                        <a href="supprimer_filiere.php?id=<?php echo $row["id_filiere"] ?>">
+                                            <img width=20 heigth=20 src="https://bit.ly/2UwQb08">
+                                        </a>
+                                    <?php
+                                    }
                                     ?>
                                 </th>
                                 <td>
-                                    <input type="button" value="Modifie" class="btn btn-info btn-xs">
+                                    <input type="button" data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_filiere"] ?>" value="Modifie" class="btn btn-info btn-xs open_modifierModal">
                                 </td>
                             </tr>
                     <?php
@@ -141,7 +200,9 @@ function load_managers()
                     } else
                         echo "non data to show";
                     ?>
-                    <!-- asking for permission Modal -->
+                    <!-- ===================================fin tableau de filieres=================================== -->
+
+                    <!-- ====================asking for permission Modal==================== -->
                     <div class="modal fade" id="confermationAle" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -162,6 +223,7 @@ function load_managers()
                             </div>
                         </div>
                     </div>
+                    <!-- ====================end of asking for permission ==================== -->
 
 
                     <!-- =============hado les msg li kital3o 3La 9bale delet ou insert ou update=============== -->
@@ -223,7 +285,15 @@ function load_managers()
                         }
                     });
                 });
+                $(".open_modifierModal").click(function() {
+                    var id_filier_modifier = $(this).attr("id");
+                    var nom_filier=$(this).data("id");
+                      $('#Modifier_inp').val(id_filier_modifier);
+                      $('#Nom_modifier').val(nom_filier);
+                      $('#modifierModal').modal('show');
+                });
             });
         </script>
 </body>
+
 </html>
