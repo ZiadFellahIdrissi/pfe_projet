@@ -62,7 +62,7 @@ function load_managers()
                                 <div class="modal-content">
                                     <div class="modal-body">
                                         <!-- =============================================== -->
-                                        <form action="ajoute_filiere.php" method="POST">
+                                        <form action="Filiere/ajoute_filiere.php" method="POST">
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="form-group">
@@ -100,7 +100,7 @@ function load_managers()
                                 <div class="modal-body">
 
                                     <!-- =============================================== -->
-                                    <form action="modifier_filiere.php" method="POST">
+                                    <form action="Filiere/modifier_filiere.php" method="POST">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
@@ -151,65 +151,14 @@ function load_managers()
 
                     <!-- ============================================tableau de filieres============================================ -->
                     <br>
-                    <?php
-                    include 'connectionDB.php';
-                    echo '<table class="table table-bordered table-striped">';
-                    echo '<thead>';
-                    echo "<tr>
-                                <th>nom du filiere</th>
-                                <th>responsable</th>
-                                <th>supprimer</th>
-                                <th>Modifier</th>
-                            </tr>";
-                    echo '</thead>';
-                    $sqlQuery = "SELECT id_filiere,id_enseignant, nom_filiere,nom_enseignant,prenom_enseignant 
-                            FROM filiere JOIN enseignant on enseignant.id_enseignant = filiere.responsable_id";
-
-                    $resultatOfQuery = mysqli_query($conn, $sqlQuery);
-                    $resultatcheck = mysqli_num_rows($resultatOfQuery);
-
-                    if ($resultatcheck > 0) {
-                        while ($row = mysqli_fetch_assoc($resultatOfQuery)) {
-                    ?>
-                            <tr>
-                                <td><?php echo $row["nom_filiere"] ?></td>
-                                <td><?php echo $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] ?></td>
-                                <th>
-                                    <?php
-                                    $sql1 = " SELECT * FROM etudiant
-                                                  WHERE id_filiere = '" . $row["id_filiere"] . "'";
-                                    $resultat = mysqli_query($conn, $sql1);
-                                    $check = mysqli_num_rows($resultat);
-                                    if ($check > 0) {
-                                    ?>
-                                        <img data-id="<?php echo $row["id_filiere"] ?>" style="cursor:pointer;" width=20 heigth=20 src="https://bit.ly/2UwQb08" class="open-confirmation" data-toggle="modal">
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <a href="supprimer_filiere.php?id=<?php echo $row["id_filiere"] ?>">
-                                            <img width=20 heigth=20 src="https://bit.ly/2UwQb08">
-                                        </a>
-                                    <?php
-                                    }
-                                    ?>
-                                </th>
-                                <td>
-                                    <input type="button" data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_filiere"] ?>" value="Modifie" class="btn btn-info btn-xs open_modifierModal">
-                                </td>
-                            </tr>
-                    <?php
-                        }
-                        echo "</table>";
-                    } else
-                        echo "non data to show";
-                    ?>
+                    <?php include 'Filiere/AfficheTableauFiliere.php' ?>
                     <!-- ===================================fin tableau de filieres=================================== -->
 
                     <!-- ====================asking for permission Modal==================== -->
                     <div class="modal fade" id="confermationAle" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <form action="supprimer_filiere.php" method="POST">
+                                <form action="Filiere/supprimer_filiere.php" method="POST">
                                     <div class="modal-body">
                                         <p style="color:#c0392b;">Tu va supprimier tout les etudiants dans cette filiers</p>
                                         <div class="container mb-3 mt-3 " id="affiche_etudiant">
@@ -236,28 +185,28 @@ function load_managers()
                     if (strpos($fullurl, "inserting=failed")) {
                     ?>
                         <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Invalid</strong> filier deja exist
+                            ce <strong>Filiere</strong> deja existe.
                         </div>
                     <?php
                     }
                     if (strpos($fullurl, "filiere=inserted")) {
                     ?>
                         <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Filiere</strong> ajouté avec succes;
+                            <strong>Filiere</strong> ajouté avec succes.
                         </div>
                     <?php
                     }
                     if (strpos($fullurl, "filiere=deleted")) {
                     ?>
                         <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Filiere</strong> supprimé avec succes ;
+                            <strong>Filiere</strong> supprimé avec succes.
                         </div>
                     <?php
                     }
                     if (strpos($fullurl, "filiere=updated")) {
                     ?>
                         <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Filiere </strong> modifié avec succes;
+                            <strong>Filiere </strong> modifié avec succes.
                         </div>
                     <?php
                     }
@@ -277,7 +226,7 @@ function load_managers()
                     $('#confermationAle').modal('show');
                     // pour affichie les etudiant qui va supprimie si il suprimie un filiere
                     $.ajax({
-                        url: "fetching_students.php",
+                        url: "Filiere/fetching_students.php",
                         method: "POST",
                         data: {
                             filier_id: filier_id
