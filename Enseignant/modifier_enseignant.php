@@ -25,20 +25,17 @@
         exit();
     }
 
-    $sql="UPDATE `etudiant` 
-          SET `code_apoge` = $code_apoge ,
-            `cin` = '$cin',
-            `nom` = '$nom',
-            `prenom` = '$prenom',
-            `date_naissance` = '$date_naissance',
-            `email` = '$email',
-            `id_filiere` = $id_filiere
-            WHERE `etudiant`.`code_apoge` = $oldCode;";
+    $sql="UPDATE `enseignant` 
+            SET `nom_enseignant` = '$nom',
+                `prenom_enseignant` = '$prenom',
+                `date_naissance_enseignant` = '$date_naissance',
+                `email_enseignant` = '$email',
+            WHERE `enseignant`.`id_enseignant` = $id_enseignant;";
 
     mysqli_query($conn , $sql);
 
-        header('location: ../index_etudiant.php?etudiant=updated');
+        header('location: ../index_enseignant.php?enseignant=updated');
     }else 
-        echo "dore tkhra";
+        echo "dore t7wa";
 
 ?>
