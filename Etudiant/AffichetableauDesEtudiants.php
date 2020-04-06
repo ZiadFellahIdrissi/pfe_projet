@@ -31,7 +31,7 @@ if ($resultatcheck > 0) {
                 <td><?php echo $row["email"] ?></td>
                 <td><?php echo $row["nom_filiere"] ?></td>
                 <td>
-                    <a href="supprmier.php?id=<?php echo $row["code_apoge"] ?>">
+                    <a href="Etudiant/supprimer_etudiant.php?id=<?php echo $row["code_apoge"] ?>">
                         <img width=20 heigth=20 src="https://bit.ly/2UwQb08">
                     </a>
                 </td>

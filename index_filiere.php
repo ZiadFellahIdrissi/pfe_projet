@@ -36,13 +36,13 @@ function load_managers()
         <!-- bloc de menu -->
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" href="./index_filiere.php" aria-selected="true"><b>Filiere</b></a>
+                <a class="nav-link active" href="index_filiere.php" aria-selected="true"><b>Filiere</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="index_enseignant.php" aria-selected="false"><b>Enseignant</b></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link " href="./Enseignant/index_enseignant.php" aria-selected="false"><b>Enseignant</b></a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link " href="./index_etudiant.php" aria-selected="false"><b>Etudiant</b></a>
+                <a class="nav-link " href="index_etudiant.php" aria-selected="false"><b>Etudiant</b></a>
             </li>
         </ul>
         <!-- end bloc de menu -->
