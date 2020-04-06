@@ -31,9 +31,7 @@ if ($resultatcheck > 0) {
                     </a>
                 </td>
                 <td>
-                    <a id="<?php echo $row["id_enseignant"] ?>" data-toggle="modal" class="btn btn-info btn-xs Open_modifierUnEnseignant">
-                        zeb
-                    </a>
+                    <input type="button" value="Modifier" id="<?php echo $row["id_enseignant"] ?>" data-toggle="modal" class="btn btn-info btn-xs Open_modifierUnEnseignant">
                 </td>
             </tr>
     <?php

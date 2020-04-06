@@ -129,7 +129,7 @@ include 'connectionDB.php';
                         </div>
                     </div>
                 </div>
-                <!-- =====================================end formilar poir modifier un etudiant====================================== -->
+                <!-- =====================================end formilar poir modifier un enseignant====================================== -->
 
                 <br>
 
