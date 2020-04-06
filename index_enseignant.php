@@ -188,9 +188,12 @@ include 'connectionDB.php';
 
 
         </div>
+      
+        <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                $(document).on('click', '.Open_modifierUnEnseignant', function() {
+                $(document).on('click', '.Open_modifierEnseignant', function() {
                     var code = $(this).attr("id");
                     $.ajax({
                         url: "Enseignant/fetching_teachers_for_editing.php",
@@ -217,8 +220,6 @@ include 'connectionDB.php';
 
             });
         </script>
-        <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>
 </body>
 
 </html>
