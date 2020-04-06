@@ -1,6 +1,6 @@
 <?php
 
-    include 'connectionDB.php';
+    include '../connectionDB.php';
 
     $sql = "SELECT code_apoge,nom,prenom
             FROM etudiant 
