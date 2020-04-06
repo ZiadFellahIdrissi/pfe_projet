@@ -28,21 +28,21 @@ include 'connectionDB.php';
             </li>
         </ul>
         <!-- end bloc de menu -->
-        <!-- ===================================etudiant bloc======================================= -->
+        <!-- ===================================enseignant bloc======================================= -->
         <div class="tab-pane fade show active">
             <!--  the main of student bloc -->
             <div class="container mt-3 mb-3">
 
                 <!-- ======================================================================== -->
-                <!-- ===============un button pour ajoute un etudiant======================= -->
+                <!-- ===============un button pour ajoute un enseignant======================= -->
                 <div class="col-6 col-md-4">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">ajoute un etudiant</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Enseignant</button>
                     <br>
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    <form action="ajoute_etudiant.php" method="POST">
+                                    <form action="Enseignant/ajoute_enseignant.php" method="POST">
                                         <!-- =======================bloc de le nom et le prenom======================= -->
                                         <div class="row">
                                             <div class="col">
@@ -60,23 +60,6 @@ include 'connectionDB.php';
                                         </div>
                                         <!-- ===================fin bloc de le nom et le prenom======================= -->
 
-                                        <!-- =====================bloc code apuge et le cne======================= -->
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label for="codeapo" class="col-form-label">Code apouge</label>
-                                                    <input type="text" class="form-control" name="codeapoge" id="codeapo">
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label for="cin" class="col-form-label">Cin</label>
-                                                    <input type="text" class="form-control" name="cin" id="cin">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- ===================fin bloc de code apuge et le cne================== -->
-
                                         <div class="form-group">
                                             <label for="date" class="col-form-label">Date Naissance</label>
                                             <input type="date" class="form-control" name="dateN" id="date">
@@ -86,15 +69,6 @@ include 'connectionDB.php';
                                             <label for="email" class="col-form-label">Email</label>
                                             <input type="email" class="form-control" name="email" id="date">
                                         </div>
-
-                                        <!-- les options de filier -->
-                                        <div class="form-group">
-                                            <label for="filier">Filiere</label>
-                                            <select name="filier" id="filier" class="form-control">
-                                                
-                                            </select>
-                                        </div>
-                                        <!-- fin options de filiere -->
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -107,17 +81,16 @@ include 'connectionDB.php';
                         </div>
                     </div>
                 </div>
-                <!-- ====================================================================================================================================================== -->
-                <!-- =============================le bloc de botton pour ajoute un etudiant terminer======================================================================= -->
+                <!-- =============================le bloc de botton pour ajoute un enseignant terminer======================================================================= -->
 
-                <!-- =====================================formilar poir modifier un etudiant========================================== -->
-                <div class="modal fade" id="modifierUnEtudiant"  tabindex="-1" role="dialog"  aria-hidden="true">
+                <!-- =====================================formilar poir modifier un enseignant========================================== -->
+                <div class="modal fade" id="modifierUnEnseignant"  tabindex="-1" role="dialog"  aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
 
                             <div class="modal-body">
 
-                                <form action="modifier_etudiant.php" method="POST">
+                                <form action="Enseignant/modifier_enseignant.php" method="POST">
                                     <!-- =======================bloc de le nom et le prenom======================= -->
                                     <div class="row">
                                         <div class="col">
@@ -135,23 +108,6 @@ include 'connectionDB.php';
                                     </div>
                                     <!-- ===================fin bloc de le nom et le prenom======================= -->
 
-                                    <!-- =====================bloc code apuge et le cne======================= -->
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="codeapoge_modifier" class="col-form-label">Code apogee</label>
-                                                <input type="text" class="form-control" name="codeapoge" value="" id="codeapoge_modifier">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="cin_modifier" class="col-form-label">Cin</label>
-                                                <input type="text" class="form-control" name="cin" value="" id="cin_modifier">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- ===================fin bloc de code apuge et le cne================== -->
-
                                     <div class="form-group">
                                         <label for="date_modifier" class="col-form-label">Date Naissance</label>
                                         <input type="date" class="form-control" name="dateN" value="" id="date_modifier">
@@ -162,17 +118,8 @@ include 'connectionDB.php';
                                         <input type="email" class="form-control" name="email"  id="email_modifier" value="">
                                     </div>
 
-                                    <!-- les options de filier -->
-                                    <div class="form-group">
-                                        <label for="fil">Filiere</label>
-                                        <select name="fil" id="fil" class="form-control">
-                                            
-                                        </select>
-                                    </div>
-                                    <!-- fin options de filiere -->
-
                                     <div class="modal-footer">
-                                        <input type="hidden" id="codeapoger" name="codeapoger" value="">
+                                        <input type=hidden value="" name="id_enseignant" id="id_enseignant">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary" name="ajouter">Modifier</button>
                                     </div>
@@ -182,7 +129,7 @@ include 'connectionDB.php';
                         </div>
                     </div>
                 </div>
-                <!-- =====================================end formilar poir modifier un etudiant====================================== -->
+                <!-- =====================================end formilar poir modifier un enseignant====================================== -->
 
                 <br>
 
@@ -201,7 +148,14 @@ include 'connectionDB.php';
                 if (strpos($fullurl, "insert=failed")) {
                 ?>
                     <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
-                        ce <strong>Enseignant</strong> deja existe.
+                        cet <strong>Enseignant</strong> existe deja.
+                    </div>
+                <?php
+                }
+                if (strpos($fullurl, "insert=mailerr")) {
+                ?>
+                    <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
+                        cet <strong>Email</strong> est deja utilisé.
                     </div>
                 <?php
                 }
@@ -234,7 +188,35 @@ include 'connectionDB.php';
 
 
         </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(document).on('click', '.Open_modifierUnEnseignant', function() {
+                    var code = $(this).attr("id");
+                    $.ajax({
+                        url: "Enseignant/fetching_teachers_for_editing.php",
+                        method: 'GET',
+                        data: {
+                            code: code
+                        },
+                        contentType : "application/json",
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#le_nom_modifier').val(data.nom_enseignant);
+                            $('#le_prenom_modifier').val(data.prenom_enseignant);
+                            $('#date_modifier').val(data.date_naissance_enseignant);
+                            $('#email_modifier').val(data.email_enseignant);
+                            $('#id_enseignant').val(data.id_enseignant);
+                            $('#modifierUnEnseignant').modal('show');
+                        },
+                        error: function() {
+                            alert('failure');
+                        }
+                    });
+            
+                });
 
+            });
+        </script>
         <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>
 </body>
