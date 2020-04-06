@@ -39,6 +39,9 @@ function load_managers()
                 <a class="nav-link active" href="./index_filiere.php" aria-selected="true"><b>Filiere</b></a>
             </li>
             <li class="nav-item ">
+                <a class="nav-link " href="./Enseignant/index_enseignant.php" aria-selected="false"><b>Enseignant</b></a>
+            </li>
+            <li class="nav-item ">
                 <a class="nav-link " href="./index_etudiant.php" aria-selected="false"><b>Etudiant</b></a>
             </li>
         </ul>
