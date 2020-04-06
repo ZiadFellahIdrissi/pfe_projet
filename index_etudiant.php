@@ -217,7 +217,7 @@ include 'connectionDB.php';
 
                 <!-- =========feetcheing all data into a table ================= -->
                 <?php
-                    include 'Etudiant/AffichetableauDesEtudiants.php';
+                    include 'Etudiant/AffichetableauEtudiants.php';
                 ?>
                 <!-- =================end=================================== -->
 
@@ -266,7 +266,7 @@ include 'connectionDB.php';
         <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>
         <script>
-             $(document).ready(function(){
+            $(document).ready(function(){
                 $(document).on('click', '.Open_modifierUnEtudiant', function() {
                     var code = $(this).attr("id");
                     $('#codeapoger').val(code);

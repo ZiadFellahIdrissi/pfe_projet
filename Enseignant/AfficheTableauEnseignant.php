@@ -31,7 +31,7 @@ if ($resultatcheck > 0) {
                     </a>
                 </td>
                 <td>
-                    <input type="button" value="Modifier"  data-toggle="modal" class="btn btn-info btn-xs Open_modifierUnEtudiant">
+                    <input type="button" value="Modifier" id="<?php echo $row["code_apoge"] ?>" data-toggle="modal" class="btn btn-info btn-xs Open_modifierUnEtudiant">
                 </td>
             </tr>
     <?php
