@@ -30,7 +30,7 @@
                 `prenom_enseignant` = '$prenom',
                 `date_naissance_enseignant` = '$date_naissance',
                 `email_enseignant` = '$email',
-            WHERE `enseignant`.`id_enseignant` = $id_enseignant;";
+            WHERE `enseignant`.`id_enseignant` = $id_enseignant";
 
     mysqli_query($conn , $sql);
 
