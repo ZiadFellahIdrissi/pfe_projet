@@ -21,10 +21,10 @@ include 'connectionDB.php';
                 <a class="nav-link " href="index_filiere.php" aria-selected="false"><b>Filiere</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="index_enseignant.php" aria-selected="false"><b>Enseignant</b></a>
+                <a class="nav-link active" href="index_enseignant.php" aria-selected="true"><b>Enseignant</b></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link active" href="index_etudiant.php" aria-selected="true"><b>Etudiant</b></a>
+                <a class="nav-link " href="index_etudiant.php" aria-selected="false"><b>Etudiant</b></a>
             </li>
         </ul>
         <!-- end bloc de menu -->
@@ -42,7 +42,7 @@ include 'connectionDB.php';
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    <form action="Etudiant/ajoute_etudiant.php" method="POST">
+                                    <form action="ajoute_etudiant.php" method="POST">
                                         <!-- =======================bloc de le nom et le prenom======================= -->
                                         <div class="row">
                                             <div class="col">
@@ -91,21 +91,7 @@ include 'connectionDB.php';
                                         <div class="form-group">
                                             <label for="filier">Filiere</label>
                                             <select name="filier" id="filier" class="form-control">
-                                                <?php
-                                                $sqlOptions = "SELECT * from filiere";
-                                                $resultat = mysqli_query($conn, $sqlOptions);
-                                                $resultatcheck = mysqli_num_rows($resultat);
-                                                if ($resultatcheck > 0) {
-                                                    while ($row = mysqli_fetch_assoc($resultat)) {
-                                                ?>
-                                                        <option value="<?php echo $row["id_filiere"] ?>">
-                                                            <strong><?php echo $row["nom_filiere"] ?></strong>
-                                                        </option>
-                                                <?php
-
-                                                    }
-                                                }
-                                                ?>
+                                                
                                             </select>
                                         </div>
                                         <!-- fin options de filiere -->
@@ -131,7 +117,7 @@ include 'connectionDB.php';
 
                             <div class="modal-body">
 
-                                <form action="Etudiant/modifier_etudiant.php" method="POST">
+                                <form action="modifier_etudiant.php" method="POST">
                                     <!-- =======================bloc de le nom et le prenom======================= -->
                                     <div class="row">
                                         <div class="col">
@@ -180,21 +166,7 @@ include 'connectionDB.php';
                                     <div class="form-group">
                                         <label for="fil">Filiere</label>
                                         <select name="fil" id="fil" class="form-control">
-                                            <?php
-                                            $sqlOptions = "SELECT * from filiere";
-                                            $resultat = mysqli_query($conn, $sqlOptions);
-                                            $resultatcheck = mysqli_num_rows($resultat);
-                                            if ($resultatcheck > 0) {
-                                                while ($row = mysqli_fetch_assoc($resultat)) {
-                                            ?>
-                                                    <option value="<?php echo $row["id_filiere"] ?>">
-                                                        <strong><?php echo $row["nom_filiere"] ?></strong>
-                                                    </option>
-                                            <?php
-
-                                                }
-                                            }
-                                            ?>
+                                            
                                         </select>
                                     </div>
                                     <!-- fin options de filiere -->
@@ -217,7 +189,7 @@ include 'connectionDB.php';
 
                 <!-- =========feetcheing all data into a table ================= -->
                 <?php
-                    include 'Etudiant/AffichetableauDesEtudiants.php';
+                    include 'Enseignant/AffichetableauEnseignant.php';
                 ?>
                 <!-- =================end=================================== -->
 
@@ -229,28 +201,28 @@ include 'connectionDB.php';
                 if (strpos($fullurl, "insert=failed")) {
                 ?>
                     <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
-                        <strong>Invalid</strong> code apogee ou Cin!
+                        ce <strong>Enseignant</strong> deja existe.
                     </div>
                 <?php
                 }
-                if (strpos($fullurl, "etudiant=inserted")) {
+                if (strpos($fullurl, "enseignant=inserted")) {
                 ?>
                     <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                        <strong>Etudiant</strong> ajouté avec succes :)
+                        <strong>Enseignant</strong> ajouté avec succes :)
                     </div>
                 <?php
                 }
-                if (strpos($fullurl, "etudiant=deleted")) {
+                if (strpos($fullurl, "enseignant=deleted")) {
                 ?>
                     <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                        <strong>Etudiant</strong> supprimé avec succes :)
+                        <strong>Enseignant</strong> supprimé avec succes :)
                     </div>
                 <?php
                 }
-                if (strpos($fullurl, "etudiant=updated")) {
+                if (strpos($fullurl, "enseignant=updated")) {
                     ?>
                         <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Etudiant</strong> modifié avec succes :)
+                            <strong>Enseignant</strong> modifié avec succes :)
                         </div>
                     <?php
                 }
@@ -265,41 +237,6 @@ include 'connectionDB.php';
 
         <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>
-        <script>
-             $(document).ready(function(){
-                $(document).on('click', '.Open_modifierUnEtudiant', function() {
-                    var code = $(this).attr("id");
-                    $('#codeapoger').val(code);
-                    
-                    console.log(code);
-                    $.ajax({
-                        url: "Etudiant/fetching_students_for_editing.php",
-                        method: 'GET',
-                        data: {
-                            code: code
-                        },
-                        contentType : "application/json",
-                        dataType: 'json',
-                        success: function(data) {
-
-                            $('#le_nom_modifier').val(data.nom);
-                            $('#le_prenom_modifier').val(data.prenom);
-                            $('#codeapoge_modifier').val(data.code_apoge);
-                            $('#cin_modifier').val(data.cin);
-                            $('#date_modifier').val(data.date_naissance);
-                            $('#email_modifier').val(data.email);
-                            $('#fil').val(data.id_filiere);
-                            $('#modifierUnEtudiant').modal('show');
-                            console.log(data.email);
-                        },
-                        error: function() {
-                            alert('failure');
-                        }
-                    });
-            
-                });
-            });
-        </script>
 </body>
 
 </html>

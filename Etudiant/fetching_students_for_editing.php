@@ -1,5 +1,5 @@
 <?php
-    include 'connectionDB.php';
+    include '../connectionDB.php';
 
         $code_apoger=$_GET["code"];
         $sql="SELECT * FROM etudiant 
