@@ -2,30 +2,22 @@
     include '../connectionDB.php';
 
     if(isset($_POST["Modifier"])){
-
         $id_enseignant=$_POST["id_enseignant"];
         $nom=$_POST["Nom"];
         $prenom=$_POST["prenom"];
         $date_naissance=$_POST["dateN"];
         $email=$_POST["email"];
 
+        $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM enseignant
+                                                     WHERE id_enseignant=$id_enseignant"));
 
-        $sqltest = "SELECT nom_enseignant, prenom_enseignant FROM enseignant
-                        WHERE (nom_enseignant='$nom'
-                        AND prenom_enseignant='$prenom')";
+        if ($row["nom_enseignant"]==$nom
+            && $row["prenom_enseignant"]==$prenom
+            && $row["email_enseignant"]==$email
+            && $row["date_naissance_enseignant"]==$date_naissance)
+            goto success;
 
-        if(mysqli_num_rows(mysqli_query($conn,$sqltest))){
-            header('location: ../index_enseignant.php?insert=failed');
-            exit();
-        }
-
-        $sqltest2 = "SELECT email_enseignant FROM enseignant
-                    WHERE email_enseignant='$email'";
-
-        if(mysqli_num_rows(mysqli_query($conn,$sqltest2))){
-            header('location: ../index_enseignant.php?insert=failed');
-            exit();
-        }
+        include 'verification.php';
 
         $sql="UPDATE enseignant
                 SET nom_enseignant = '$nom',
@@ -35,6 +27,7 @@
                 WHERE id_enseignant = $id_enseignant";
 
         mysqli_query($conn,$sql);
+success:
         header('location: ../index_enseignant.php?enseignant=updated');
     }
 ?>
