@@ -48,13 +48,13 @@ include 'connectionDB.php';
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="le_nom" class="col-form-label">Nom </label>
-                                                    <input type="text" class="form-control" name="Nom" id="le_nom">
+                                                    <input type="text" class="form-control" name="Nom" id="le_nom" required>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="le_prenom" class="col-form-label">Prenom </label>
-                                                    <input type="text" class="form-control" name="prenom" id="le_prenom">
+                                                    <input type="text" class="form-control" name="prenom" id="le_prenom" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -62,12 +62,12 @@ include 'connectionDB.php';
 
                                         <div class="form-group">
                                             <label for="date" class="col-form-label">Date Naissance</label>
-                                            <input type="date" class="form-control" name="dateN" id="date">
+                                            <input type="date" class="form-control" name="dateN" id="date" required>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="email" class="col-form-label">Email</label>
-                                            <input type="email" class="form-control" name="email" id="date">
+                                            <input type="email" class="form-control" name="email" id="date" required>
                                         </div>
 
                                         <div class="modal-footer">
@@ -96,13 +96,13 @@ include 'connectionDB.php';
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="le_nom_modifier" class="col-form-label">Nom </label>
-                                                <input type="text" class="form-control" name="Nom" value="" id="le_nom_modifier">
+                                                <input type="text" class="form-control" name="Nom" value="" id="le_nom_modifier" required>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="le_prenom_modifier" class="col-form-label">Prenom </label>
-                                                <input type="text" class="form-control" name="prenom" value="" id="le_prenom_modifier">
+                                                <input type="text" class="form-control" name="prenom" value="" id="le_prenom_modifier" required>
                                             </div>
                                         </div>
                                     </div>
@@ -110,12 +110,12 @@ include 'connectionDB.php';
 
                                     <div class="form-group">
                                         <label for="date_modifier" class="col-form-label">Date Naissance</label>
-                                        <input type="date" class="form-control" name="dateN" value="" id="date_modifier">
+                                        <input type="date" class="form-control" name="dateN" value="" id="date_modifier" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email_modifier" class="col-form-label">Email</label>
-                                        <input type="email" class="form-control" name="email"  id="email_modifier" value="">
+                                        <input type="email" class="form-control" name="email"  id="email_modifier" value="" required>
                                     </div>
 
                                     <div class="modal-footer">
