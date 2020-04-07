@@ -1,5 +1,4 @@
 <?php
-include 'connection.php';
 function load_managers()
 {
     include 'connection.php';
