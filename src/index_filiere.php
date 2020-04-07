@@ -1,8 +1,8 @@
 <?php
-include 'connectionDB.php';
+include 'connection.php';
 function load_managers()
 {
-    include 'connectionDB.php';
+    include 'connection.php';
     $sqlOptions = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
     FROM enseignant
     WHERE `id_enseignant` not in ( SELECT responsable_id

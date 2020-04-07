@@ -1,6 +1,6 @@
 <?php
 
-        include '../connectionDB.php';
+        include '../connection.php';
 
         if (!empty($_POST)) {
                 $nom = $_POST['Nom'];

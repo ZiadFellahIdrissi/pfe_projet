@@ -1,5 +1,5 @@
 <?php 
-    include '../connectionDB.php';
+    include '../connection.php';
 
     if(isset($_POST["Modifier_inp"])){
         $filiere_id=$_POST["Modifier_inp"];
