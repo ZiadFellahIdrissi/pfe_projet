@@ -2,7 +2,6 @@
     include '../connectionDB.php';
 
     if(isset($_POST["Modifier"])){
-
         $id_enseignant=$_POST["id_enseignant"];
         $nom=$_POST["Nom"];
         $prenom=$_POST["prenom"];
