@@ -132,7 +132,22 @@ include 'connectionDB.php';
                 <!-- =====================================end formilar poir modifier un enseignant====================================== -->
 
                 <br>
-
+                <div class="modal fade" id="confermationAle" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <form action="Filiere/supprimer_filiere.php" method="POST">
+                                    <div class="modal-body">
+                                        <p style="color:#c0392b;">cet <strong>Enseignant</strong> est le responsable du filiere <strong id="fil"></strong></p>
+                                        <p>Veuillez d'abord l'omettre de la responsabilité avant le supprimer.</p> 
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="hidden" name="confirmation" id="confirmation" value="" />
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok!</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                 <!-- =========feetcheing all data into a table ================= -->
                 <?php
@@ -218,6 +233,13 @@ include 'connectionDB.php';
             
                 });
 
+                $(document).ready(function() {
+                    $(".open-confirmation").click(function() {
+                        var filiere = $(this).attr('id');
+                        $('#fil').html(filiere);
+                        $('#confermationAle').modal('show');
+                    });
+                });
             });
         </script>
 </body>
