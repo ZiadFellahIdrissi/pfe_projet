@@ -1,5 +1,5 @@
 <?php
-include '../connectionDB.php';
+include '../connection.php';
 
 if(isset($_POST['ajouter'])){
         $nom=$_POST['Nom'];

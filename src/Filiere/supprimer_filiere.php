@@ -1,6 +1,6 @@
 <?php
 
-	include '../connectionDB.php';
+	include '../connection.php';
 
 	if(isset($_GET["id"])){
 		$id_filiere=$_GET["id"];

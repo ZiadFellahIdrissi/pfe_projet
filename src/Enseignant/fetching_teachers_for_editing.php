@@ -1,5 +1,5 @@
 <?php
-    include '../connectionDB.php';
+    include '../connection.php';
 
         $id=$_GET["code"];
         $sql="SELECT * FROM enseignant 

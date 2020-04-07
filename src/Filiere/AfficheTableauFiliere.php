@@ -1,5 +1,5 @@
 <?php
-    include 'connectionDB.php';
+    include 'connection.php';
     $sqlQuery = "SELECT id_filiere,id_enseignant, nom_filiere,nom_enseignant,prenom_enseignant 
             FROM filiere JOIN enseignant on enseignant.id_enseignant = filiere.responsable_id";
 
