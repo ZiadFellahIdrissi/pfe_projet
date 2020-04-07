@@ -1,5 +1,4 @@
 <?php
-include 'connectionDB.php';
 function load_managers()
 {
     include 'connectionDB.php';

@@ -1,14 +1,5 @@
 <?php
     include 'connectionDB.php';
-    echo '<table class="table table-bordered table-striped">';
-    echo '<thead>';
-    echo "<tr>
-                <th>nom du filiere</th>
-                <th>responsable</th>
-                <th>supprimer</th>
-                <th>Modifier</th>
-            </tr>";
-    echo '</thead>';
     $sqlQuery = "SELECT id_filiere,id_enseignant, nom_filiere,nom_enseignant,prenom_enseignant 
             FROM filiere JOIN enseignant on enseignant.id_enseignant = filiere.responsable_id";
 
@@ -16,6 +7,15 @@
     $resultatcheck = mysqli_num_rows($resultatOfQuery);
 
     if ($resultatcheck > 0) {
+?>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>nom du filiere</th>
+                <th>responsable</th>
+                <th>supprimer</th>
+                <th>Modifier</th>
+            </tr>
+<?php
         while ($row = mysqli_fetch_assoc($resultatOfQuery)) {
     ?>
             <tr>
@@ -47,6 +47,5 @@
     <?php
         }
         echo "</table>";
-    } else
-        echo "non data to show";
+    }
 ?>
