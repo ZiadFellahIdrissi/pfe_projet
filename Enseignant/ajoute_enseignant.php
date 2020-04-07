@@ -11,8 +11,9 @@ if(isset($_POST['ajouter'])){
         			WHERE (nom_enseignant='$nom'
         			AND prenom_enseignant='$prenom')";
 
-        include 'verification.php';
-        
+        include 'verificationFullName.php';
+        include 'verificationEmail.php';
+
         $sql = "INSERT INTO `enseignant`(`nom_enseignant`, `prenom_enseignant`, `email_enseignant`, `date_naissance_enseignant`)
         		VALUES ('$nom', '$prenom', '$email', '$dateN')";
         mysqli_query($conn , $sql);

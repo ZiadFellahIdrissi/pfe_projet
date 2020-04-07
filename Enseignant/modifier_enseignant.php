@@ -11,14 +11,16 @@
         $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM enseignant
                                                      WHERE id_enseignant=$id_enseignant"));
 
-        if ($row["nom_enseignant"]==$nom
-            && $row["prenom_enseignant"]==$prenom
-            && $row["email_enseignant"]==$email
-            && $row["date_naissance_enseignant"]==$date_naissance)
+        if (($row["nom_enseignant"]==$nom&&$row["prenom_enseignant"]==$prenom)&&$row["email_enseignant"]==$email)
             goto success;
 
-        include 'verification.php';
+        if($row["email_enseignant"]==$email&&($row["nom_enseignant"]!=$nom||$row["prenom_enseignant"]!=$prenom))
+            goto verificationFullName;
 
+        include 'verificationEmail.php';
+verificationFullName:
+        include 'verificationFullName.php';
+success:
         $sql="UPDATE enseignant
                 SET nom_enseignant = '$nom',
                     prenom_enseignant = '$prenom',
@@ -27,7 +29,6 @@
                 WHERE id_enseignant = $id_enseignant";
 
         mysqli_query($conn,$sql);
-success:
         header('location: ../index_enseignant.php?enseignant=updated');
     }
 ?>
