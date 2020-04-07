@@ -115,6 +115,7 @@ function load_managers()
                                                         <strong>choise un nouveau responsable</strong>
                                                     </option>
                                                 <?php
+                                                include 'connection.php';
                                                 $sqlOptions = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
                                                                     FROM enseignant
                                                                     WHERE `id_enseignant` not in (SELECT responsable_id
