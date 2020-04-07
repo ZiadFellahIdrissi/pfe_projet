@@ -14,12 +14,18 @@
         if (($row["nom_enseignant"]==$nom&&$row["prenom_enseignant"]==$prenom)&&$row["email_enseignant"]==$email)
             goto success;
 
-        if($row["email_enseignant"]==$email&&($row["nom_enseignant"]!=$nom||$row["prenom_enseignant"]!=$prenom))
-            goto verificationFullName;
+        if ($row["nom_enseignant"]==$nom&&$row["prenom_enseignant"]==$prenom)
+            goto verificationEmail;
 
-        include 'verificationEmail.php';
-verificationFullName:
+        if($row["email_enseignant"]==$email)
+        {
+            include 'verificationFullName.php';
+            goto success;
+        }
+
         include 'verificationFullName.php';
+verificationEmail:
+        include 'verificationEmail.php';
 success:
         $sql="UPDATE enseignant
                 SET nom_enseignant = '$nom',
@@ -28,7 +34,7 @@ success:
                     email_enseignant = '$email'
                 WHERE id_enseignant = $id_enseignant";
 
-        mysqli_query($conn,$sql);
+        mysqli_query($conn, $sql);
         header('location: ../index_enseignant.php?enseignant=updated');
     }
 ?>
