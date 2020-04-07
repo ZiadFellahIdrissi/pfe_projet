@@ -66,20 +66,20 @@ function load_managers()
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label for="Nom" class="col-form-label">Nom du filiere</label>
-                                                        <input type="text" class="form-control" name="Nom" id="Nom">
+                                                        <input type="text" class="form-control" name="Nom" id="Nom" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="Responsable">Responsable</label>
-                                                <select name="Responsable" id="Responsable" class="form-control">
+                                                <select name="Responsable" id="Responsable" class="form-control" required>
                                                     <?php echo load_managers(); ?>
                                                 </select>
                                             </div>
 
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <input type="submit" id="ajouter" class="btn btn-primary" value="Ajouter" name="ajouter">
+                                                <input type="submit" id="ajouter" class="btn btn-primary" value="Ajouter" name="ajouter" required>
                                             </div>
                                         </form>
                                         <!-- =============================================== -->

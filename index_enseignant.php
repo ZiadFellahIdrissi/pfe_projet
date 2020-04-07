@@ -121,7 +121,7 @@ include 'connectionDB.php';
                                     <div class="modal-footer">
                                         <input type=hidden value="" name="id_enseignant" id="id_enseignant">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" name="ajouter">Modifier</button>
+                                        <button type="submit" class="btn btn-primary" name="Modifier">Modifier</button>
                                     </div>
                                 </form>
 
