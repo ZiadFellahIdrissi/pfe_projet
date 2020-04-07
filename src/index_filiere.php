@@ -1,4 +1,5 @@
 <?php
+include 'connectionDB.php';
 function load_managers()
 {
     include 'connectionDB.php';
@@ -23,7 +24,7 @@ function load_managers()
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <title>test</title>
     <!-- rahe deja telechargiite bootstarp 5aliw dakchi f blasto ou rahe i5dame likom -->
 </head>
@@ -215,8 +216,8 @@ function load_managers()
             </div>
         </div>
 
-        <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../layout/js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function() {
                 $(".open-confirmation").click(function() {
