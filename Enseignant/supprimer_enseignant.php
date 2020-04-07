@@ -2,6 +2,7 @@
 
 include '../connectionDB.php';
 if(isset($_GET["id"])){
+    
     $id=$_GET["id"];
     $sqlTest="SELECT *
             FROM enseignant
