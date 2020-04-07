@@ -1,5 +1,5 @@
 <?php
-    include '../connectionDB.php';
+    include '../connection.php';
     if($_POST["codeapoger"]!=""){
         $oldCode=$_POST["codeapoger"];
         $cin = $_POST["cin"];

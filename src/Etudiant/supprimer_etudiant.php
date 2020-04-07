@@ -1,5 +1,5 @@
 <?php
-include '../connectionDB.php';
+include '../connection.php';
 $codeapoge=$_GET["id"];
 echo $codeapoge;
 
