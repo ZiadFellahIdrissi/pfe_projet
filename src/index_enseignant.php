@@ -7,7 +7,7 @@ include 'connectionDB.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <title>test</title>
     <!-- rahe deja telechargiite bootstarp 5aliw dakchi f blasto ou rahe i5dame likom -->
 </head>
@@ -204,8 +204,8 @@ include 'connectionDB.php';
 
         </div>
       
-        <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../layout/js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $(document).on('click', '.Open_modifierEnseignant', function() {
