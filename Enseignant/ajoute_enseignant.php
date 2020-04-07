@@ -20,7 +20,7 @@ if(isset($_POST['ajouter'])){
         			 WHERE email_enseignant='$email'";
 
         if(mysqli_num_rows(mysqli_query($conn,$sqltest2))){
-            header('location: ../index_enseignant.php?insert=mailerr');
+            header('location: ../index_enseignant.php?insert=failed');
             exit();
         }
         
