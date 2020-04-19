@@ -17,7 +17,7 @@ if(isset($_POST['ajouter'])){
         $sql = "INSERT INTO `enseignant`(`nom_enseignant`, `prenom_enseignant`, `email_enseignant`, `date_naissance_enseignant`)
         		VALUES ('$nom', '$prenom', '$email', '$dateN')";
         mysqli_query($conn , $sql);
-        header('location: ../index_enseignant.php?enseignant=inserted');
+        header('location: ../Enseignant.php?enseignant=inserted');
 }
 
 ?>
