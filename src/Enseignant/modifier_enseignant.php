@@ -35,6 +35,6 @@ success:
                 WHERE id_enseignant = $id_enseignant";
 
         mysqli_query($conn, $sql);
-        header('location: ../index_enseignant.php?enseignant=updated');
+        header('location: ../Enseignant.php?enseignant=updated');
     }
 ?>
