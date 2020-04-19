@@ -15,14 +15,14 @@
         $resultatcount = mysqli_num_rows($resultat);
 
         if( $resultatcount!=0){
-            header('location: ../index_etudiant.php?insert=faild');
+            header('location: ../Etudiant.php?insert=faild');
             exit();
         }else{
         
         $sql="INSERT INTO `etudiant`(`code_apoge`, `cin`, `nom`, `prenom`, `date_naissance`, `email`, `id_filiere`)
          VALUES ($codeapoge,'$cin', '$nom' , '$prenom' , '$dateN', '$email' , $filier)";
         mysqli_query($conn , $sql);
-        header('location: ../index_etudiant.php?etudiant=inserted');
+        header('location: ../Etudiant.php?etudiant=inserted');
         }
 
     }

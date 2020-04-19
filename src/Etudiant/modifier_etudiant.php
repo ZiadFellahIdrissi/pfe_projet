@@ -15,7 +15,7 @@
                                                  WHERE cin = $cin
                                                  AND code_apoge = $code_apoge")))
         {
-            header('location: ../index_etudiant.php?insert=failed');
+            header('location: ../Etudiant.php?insert=failed');
             exit();
         }
 
@@ -31,7 +31,7 @@
 
         mysqli_query($conn , $sql);
 
-        header('location: ../index_etudiant.php?etudiant=updated');
+        header('location: ../Etudiant.php?etudiant=updated');
     }else 
         echo "dore tkhra";
 
