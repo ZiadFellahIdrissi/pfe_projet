@@ -8,21 +8,21 @@
         $cin=$_POST['cin'];
         $dateN=$_POST['dateN'];
         $email=$_POST['email'];
-        $filier=$_POST['filier'];
+        $groupe=$_POST['groupe'];
 
-        $sqltest="SELECT * from etudiant where code_apoge= $codeapoge or cin= '$cin'";
+        $sqltest="SELECT * from etudiant where code_apoge= $codeapoge or cen= '$cin'";
         $resultat=mysqli_query($conn,$sqltest);
         $resultatcount = mysqli_num_rows($resultat);
 
         if( $resultatcount!=0){
-            header('location: ../Etudiant.php?insert=faild');
+            header('location: ../Etudiants.php?insert=faild');
             exit();
         }else{
         
-        $sql="INSERT INTO `etudiant`(`code_apoge`, `cin`, `nom`, `prenom`, `date_naissance`, `email`, `id_filiere`)
-         VALUES ($codeapoge,'$cin', '$nom' , '$prenom' , '$dateN', '$email' , $filier)";
+        $sql="INSERT INTO `etudiant`(`code_apoge`, `cen`, `nom`, `prenom`, `date_naissance`, `email`, `id_groupe`)
+         VALUES ($codeapoge,'$cin', '$nom' , '$prenom' , '$dateN', '$email' , $groupe)";
         mysqli_query($conn , $sql);
-        header('location: ../Etudiant.php?etudiant=inserted');
+        header('location: ../Etudiants.php?etudiant=inserted');
         }
 
     }

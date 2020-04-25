@@ -30,10 +30,19 @@
                         <a class="nav-link" href="Enseignant.php">Enseignant <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Etudiant.php">Etudiant</a>
+                        <a class="nav-link" href="Etudiants.php">Etudiant</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Filiere.php">Filiere</a>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Abssences
+                        </a> 
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="consulte_abssence.php">Consulte Abssences</a>
+                            <a class="dropdown-item" href="#">Ajouter Abssences</a>
+                        </div>
                     </li>
                 </ul>
                 <!-- <form class="form-inline mt-2 mt-md-0">
@@ -42,7 +51,7 @@
                 </form> -->
                 <ul class="navbar-nav px-0">
                     <li class="nav-item text-nowrap">
-                        <a class="nav-link" href="#">Sign out</a>
+                        <a class="nav-link" href="../index.php">Sign out</a>
                     </li>
                 </ul>
 
@@ -63,7 +72,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="Etudiant.php">
+                            <a class="nav-link" href="Etudiants.php">
                                 <span><i class="fas fa-user-graduate"></i></span>
                                 Etudiant
                             </a>
@@ -109,9 +118,8 @@
                                 Présence <span> <i class="fas fa-angle-down"></i></span>
                             </a>
                             <ul>
-                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span>Prendre la
-                                        Presence</a></li>
-                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span>Liste de presence</a>
+                                <li class="MyNonActive"><a class="nav-link" href="consulte_abssence.php"> <span></span>Consulte Abssences</a></li>
+                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span>Ajouter Abssences</a>
                                 </li>
                             </ul>
                         </li>
@@ -279,7 +287,7 @@
                                     <tr>
                                         <th>Nom</th>
                                         <th>Prenom</th>
-                                        <th>Date Naissance</th>
+                                        <th>Telephone</th>
                                         <th>Email</th>
                                         <th>supprimer</th>
                                         <th>Modifier</th>
@@ -293,7 +301,7 @@
                                         <tr>
                                             <td><?php echo $row["nom_enseignant"] ?></t>
                                             <td><?php echo $row["prenom_enseignant"] ?></td>
-                                            <td><?php echo $row["date_naissance_enseignant"] ?></td>
+                                            <td><?php echo $row["telephone_enseignant"] ?></td>
                                             <td><?php echo $row["email_enseignant"] ?></td>
                                             <td>
                                                 <?php
