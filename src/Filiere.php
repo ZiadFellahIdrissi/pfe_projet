@@ -48,10 +48,19 @@ function load_managers()
                         <a class="nav-link" href="Enseignant.php">Enseignant</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="Etudiant.php">Etudiant</a>
+                        <a class="nav-link" href="Etudiants.php">Etudiant</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="Filiere.php">Filiere <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Abssences
+                        </a> 
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="consulte_abssence.php">Consulte Abssences</a>
+                            <a class="dropdown-item" href="#">Ajouter Abssences</a>
+                        </div>
                     </li>
                 </ul>
                 <!-- <form class="form-inline mt-2 mt-md-0">
@@ -60,7 +69,7 @@ function load_managers()
                 </form> -->
                 <ul class="navbar-nav px-0">
                     <li class="nav-item text-nowrap">
-                        <a class="nav-link" href="#">Sign out</a>
+                        <a class="nav-link" href="../index.php">Sign out</a>
                     </li>
                 </ul>
 
@@ -81,7 +90,7 @@ function load_managers()
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link " href="Etudiant.php">
+                            <a class="nav-link " href="Etudiants.php">
                                 <span><i class="fas fa-user-graduate"></i></span>
                                 Etudiant
                             </a>
@@ -126,9 +135,8 @@ function load_managers()
                                 Présence <span> <i class="fas fa-angle-down"></i></span>
                             </a>
                             <ul>
-                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span>Prendre la
-                                        Presence</a></li>
-                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span>Liste de presence</a>
+                                <li class="MyNonActive"><a class="nav-link" href="consulte_abssence.php"> <span></span>Consulte Abssences</a></li>
+                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span>Ajouter Abssence</a>
                                 </li>
                             </ul>
                         </li>
@@ -263,7 +271,8 @@ function load_managers()
 
                     <!-- ============================================tableau de filieres============================================ -->
                     <br>
-                    <?php include 'Filiere/AfficheTableauFiliere.php' ?>
+                    <p class="text-danger"><b>i'm still working on it  </b></p>
+                    <?php //include 'Filiere/AfficheTableauFiliere.php' ?>
                     <!-- ===================================fin tableau de filieres=================================== -->
 
                     <!-- ====================asking for permission Modal==================== -->
