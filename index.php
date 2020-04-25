@@ -12,17 +12,15 @@
 
   <link href="./layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="./layout/css/carsousel.css" rel="stylesheet"> <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <title>test de front-end</title>
-<style>
-  p{
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
-  }
-
-</style>
+  <style>
+    p {
+      color: black;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  </style>
 
 
 </head>
@@ -32,8 +30,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <a class="navbar-brand" href="#">Our Logo</a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -90,9 +87,9 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Des information</h1>
-                 <p  style="font-weight: bold; color:#fff200">Coût de la Formation Certifications incluses : 30 000 Dhs.<br>
-                 Début des cours/Horaire : Octobre, Vendredi soir, Samedi et Dimanche.<br>
-                 Certifications : Au moins 4 certifications industrielles sont incluses dans chaque filière.</p>
+              <p style="font-weight: bold; color:#fff200">Coût de la Formation Certifications incluses : 30 000 Dhs.<br>
+                Début des cours/Horaire : Octobre, Vendredi soir, Samedi et Dimanche.<br>
+                Certifications : Au moins 4 certifications industrielles sont incluses dans chaque filière.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
             </div>
           </div>
@@ -103,7 +100,7 @@
             <div class="carousel-caption text-right">
               <h1>Bla bla bla</h1>
               <p>test test test est test testest test test est <br>test test est test test est test test
-              test test test est test testest test test est <br>test test est test test est test test</p>
+                test test test est test testest test test est <br>test test est test test est test test</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
             </div>
           </div>
@@ -121,33 +118,10 @@
     </div>
 
     <div class="container">
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbkd<br>
-      lknlkndlnldnclncldncdlsnslnldnljdnsljndlnvlnvlnvldnldhdbkdhbk0d<br>
-
+      <br> <br> <br> <br> <br> <br> <br>
+      <br> <br> <br> <br> <br> <br> <br>
+      <br> <br> <br> <br> <br> <br> <br>
+      <br> <br> <br> <br> <br> <br> <br>
       <hr class="featurette-divider">
     </div>
     <!-- /.container -->

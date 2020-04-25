@@ -5,7 +5,7 @@
         $id_enseignant=$_POST["id_enseignant"];
         $nom=$_POST["Nom"];
         $prenom=$_POST["prenom"];
-        $date_naissance=$_POST["dateN"];
+        $telephone=$_POST["dateN"];
         $email=$_POST["email"];
 
         $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM enseignant
@@ -30,7 +30,7 @@ success:
         $sql="UPDATE enseignant
                 SET nom_enseignant = '$nom',
                     prenom_enseignant = '$prenom',
-                    date_naissance_enseignant = '$date_naissance',
+                    telephone_enseignant = '$telephone',
                     email_enseignant = '$email'
                 WHERE id_enseignant = $id_enseignant";
 
