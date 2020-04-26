@@ -5,5 +5,5 @@ echo $codeapoge;
 
 mysqli_query($conn , "DELETE FROM etudiant where code_apoge=$codeapoge");
 
-header('location: ../Etudiant.php?etudiant=deleted');
+header('location: ../Etudiants.php?etudiant=deleted');
 ?>

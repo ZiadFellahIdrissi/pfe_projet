@@ -1,6 +1,6 @@
 <?php
 
-    $conn= mysqli_connect('localhost', 'root', '', 'gestion_filieres_formation');
+    $conn= mysqli_connect('localhost', 'root', '', 'gestionfilieres');
     try{
         if (mysqli_connect_errno()) 
             throw new Exception("something goeas wrong with connceting");
