@@ -5,7 +5,7 @@ if (!empty($_GET['id_groupe'])) {
     <!-- ======================================================================== -->
     <!-- ===============un button pour ajoute un etudiant======================= -->
     <div class="col-6 col-md-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">ajoute un etudiant</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un etudiant</button>
         <br>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -212,7 +212,9 @@ if (!empty($_GET['id_groupe'])) {
                 }
                 ?>
     </div>
+    <script>
+        $('.mydatatable').DataTable();
+    </script>
 <?php
-} else
-    echo '<p class="text-danger"><b>Choise un groupe ..!</b></p>'
+}
 ?>
