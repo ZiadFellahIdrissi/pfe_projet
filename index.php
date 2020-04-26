@@ -15,27 +15,26 @@
 
 <body>
   <header>
-        <nav class="navbar navbar-dark fixed-top bg-primary">
-            <a class="navbar-brand" href="index.php">Logo Inc!</a>
-                <ul class="navbar-nav px-0">
-                    <li class="nav-item text-nowrap ">
-                        <a class="btn btn btn-info" href="src/dashboard.php">Log In</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-  <!-- footer -->
-  <div class="container">
-    <div class="fixed-bottom bg-primary" align="center">
-      <span class="text-white">&copy; 2019-2020 FSAC</span>
-    </div>
-  </div>
-  
+    <nav class="navbar navbar-dark fixed-top bg-primary">
+        <a class="navbar-brand" href="index.php">Logo Inc!</a>
+            <ul class="navbar-nav px-0">
+                <li class="nav-item text-nowrap ">
+                    <a class="btn btn btn-outline-light" href="src/dashboard.php">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  </header>
+  <main role="main">
+    
   </main>
-  <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>
-
+  <!-- footer -->
+  <footer>
+    <div class="container">
+      <div class="fixed-bottom bg-primary" align="center">
+        <span class="text-white">&copy; 2019-2020 FSAC</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

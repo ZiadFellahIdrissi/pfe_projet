@@ -1,11 +1,18 @@
 <html lang="en">
+
+<style type="text/css">
+  .span{
+    float: right;
+  }
+</style>
+
 <body>
     <header>
         <nav class="navbar navbar-dark fixed-top bg-primary">
             <a class="navbar-brand" href="dashboard.php">Gestion des filieres</a>
                 <ul class="navbar-nav px-0">
                     <li class="nav-item text-nowrap ">
-                        <a class="btn btn btn-info" href="../index.php">Log out</a>
+                        <a class="btn btn btn-outline-light" href="../index.php">Log out</a>
                     </li>
                 </ul>
             </div>
