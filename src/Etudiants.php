@@ -52,16 +52,16 @@ include 'connection.php';
                             <div class="col-md-6">
                                 <span class="font-weight-light text-nowrap lead">Choisir un groupe: </span>
                                 <select name="groupe" id="groupe">
-                                    <option value=''></option>
+                                    <option value=""></option>
                                     <?php
-                                    $sql = "SELECT id_groupe,groupe_nom FROM groupe";
-                                    $resultat = mysqli_query($conn, $sql);
-                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                        $sql = "SELECT id_groupe,groupe_nom FROM groupe";
+                                        $resultat = mysqli_query($conn, $sql);
+                                        while ($row = mysqli_fetch_assoc($resultat)) {
                                     ?>
-                                        <option value='<?php echo $row["id_groupe"] ?>'><?php echo $row["groupe_nom"] ?></option>
+                                            <option value='<?php echo $row["id_groupe"] ?>'><?php echo $row["groupe_nom"] ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                    ?> 
                                 </select>
                             </div>
                             <div class="col-md-4 offset-md-4">
@@ -80,7 +80,7 @@ include 'connection.php';
                                 if ($resultatcheck > 0) {
                                 ?>
                                     <table class="table table-bordered table-striped mydatatable">
-                                        <thead>
+                                        <thead class="thead-dark">
                                             <tr>
                                                 <th>Code Apoge</th>
                                                 <th>Cin</th>
@@ -88,8 +88,6 @@ include 'connection.php';
                                                 <th>Prenom</th>
                                                 <th>Date Naissance</th>
                                                 <th>Email</th>
-<!--                                                 <th>moyenne</th>
-                                                <th>Abssences</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -104,24 +102,6 @@ include 'connection.php';
                                                     <td><?php echo $row["prenom"] ?></td>
                                                     <td><?php echo $row["date_naissance"] ?></td>
                                                     <td><?php echo $row["email"] ?></td>
-        <!--                                             <td>
-                                                        mazaal
-                                                    </td>
-                                                    <td>
-                                                        <?php
-                                                        $sql2 = 'SELECT sum(h_abssance) sumHeurs
-                                                            FROM abssence where id_etudiant=' . $row["code_apoge"];
-
-                                                        $resultat2 = mysqli_query($conn, $sql2);
-                                                        $check = mysqli_num_rows($resultat2);
-                                                        if ($check > 0) {
-                                                            $row2 = mysqli_fetch_assoc($resultat2);
-                                                            echo $row2["sumHeurs"];
-                                                        } else {
-                                                            echo "0 H";
-                                                        }
-                                                        ?>
-                                                    </td> -->
                                                 </tr>
                                         <?php
                                             }
@@ -178,10 +158,37 @@ include 'connection.php';
     <script type="text/javascript" src="../layout/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
     <script>
+        function getParam(id){
+            string = window.location.href;
+            var url = new URL(string);
+            return url.searchParams.get("idUrl"+id);
+        }
+        if(id=getParam("Groupe")){
+            $("#groupe").val(id);
+            $(document).ready(function() {
+                    var id_groupe = $("#groupe").val();
+                    if(id_groupe){
+                        $.ajax({
+                            url: "Etudiant/afficheEtudiantsParGroup.php",
+                            method: "GET",
+                            data: {
+                                id_groupe: id_groupe
+                            },
+                            dataType: "text",
+                            success: function(data) {
+                                $('.etudiants').html(data);
+                            }
+                        });
+                    }
+            });
+        }
+
         $('.mydatatable').DataTable();
+
         $(document).ready(function() {
             $('#groupe').change(function() {
                 var id_groupe = $(this).val();
+
                 if(id_groupe){
                     $.ajax({
                         url: "Etudiant/afficheEtudiantsParGroup.php",
@@ -197,14 +204,11 @@ include 'connection.php';
                 }
             });
         });
-    </script>
-    <script>
+
         $(document).ready(function() {
             $(document).on('click', '.Open_modifierUnEtudiant', function() {
                 var code = $(this).attr("id");
                 $('#codeapoger').val(code);
-
-                console.log(code);
                 $.ajax({
                     url: "Etudiant/fetching_students_for_editing.php",
                     method: 'GET',
@@ -214,7 +218,6 @@ include 'connection.php';
                     contentType: "application/json",
                     dataType: 'json',
                     success: function(data) {
-
                         $('#le_nom_modifier').val(data.nom);
                         $('#le_prenom_modifier').val(data.prenom);
                         $('#codeapoge_modifier').val(data.code_apoge);

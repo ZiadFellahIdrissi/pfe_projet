@@ -1,20 +1,5 @@
 <?php
-function load_managers()
-{
     include 'connection.php';
-    $sqlOptions = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
-    FROM enseignant
-    WHERE `id_enseignant` not in ( SELECT responsable_id
-                                    FROM filiere )";
-    $resultat = mysqli_query($conn, $sqlOptions);
-    $resultatcheck = mysqli_num_rows($resultat);
-    if ($resultatcheck > 0) {
-        while ($row = mysqli_fetch_assoc($resultat)) {
-            $output .= '<option value="' . $row["id_enseignant"] . '"><strong>' . $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] . '</strong></option>';
-        }
-    }
-    return $output;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +63,22 @@ function load_managers()
                                             <div class="form-group">
                                                 <label for="Responsable">Responsable</label>
                                                 <select name="Responsable" id="Responsable" class="form-control" required>
-                                                    <?php echo load_managers(); ?>
+                                                    <?php
+                                                        $sql = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
+                                                                FROM enseignant
+                                                                WHERE `id_enseignant` not in ( SELECT responsable_id
+                                                                                                FROM filiere         )";
+                                                        $resultat = mysqli_query($conn, $sql);
+                                                        if (mysqli_num_rows($resultat) > 0) {
+                                                            while ($row = mysqli_fetch_assoc($resultat)) {
+                                                    ?>
+                                                                <option value="<?php echo $row['id_enseignant']?>">
+                                                                    <strong><?php echo $row['nom_enseignant'] ." ". $row["prenom_enseignant"] ?></strong>
+                                                                </option>';
+                                                    <?php
+                                                            }
+                                                        }
+                                                    ?>
                                                 </select>
                                             </div>
 

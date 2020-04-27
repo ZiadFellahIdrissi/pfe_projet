@@ -5,7 +5,7 @@ if (!empty($_GET['id_groupe'])) {
     <!-- ======================================================================== -->
     <!-- ===============un button pour ajoute un etudiant======================= -->
     <div class="col-6 col-md-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un etudiant</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Etudiant à ce Filière</button>
         <br>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -164,53 +164,53 @@ if (!empty($_GET['id_groupe'])) {
 
     <div class="table-responsive-sm">
         <?php
-        $sql = 'SELECT cen, code_apoge,date_naissance,email,nom,prenom,id_groupe
-        FROM etudiant WHERE id_groupe=' . $_GET['id_groupe'];
+            $sql = 'SELECT cen, code_apoge,date_naissance,email,nom,prenom,id_groupe
+            FROM etudiant WHERE id_groupe=' . $_GET['id_groupe'];
 
-        $resultat = mysqli_query($conn, $sql);
-        $resultatcheck = mysqli_num_rows($resultat);
-        if ($resultatcheck > 0) {
+            $resultat = mysqli_query($conn, $sql);
+            $resultatcheck = mysqli_num_rows($resultat);
+            if ($resultatcheck > 0) {
         ?>
-            <table class="table table-bordered table-striped mydatatable">
-                <thead>
-                    <tr>
-                        <th>Code Apoge</th>
-                        <th>Cin</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-                        <th>Date Naissance</th>
-                        <th>Email</th>
-                        <th>supprimer</th>
-                        <th>Modifier</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-
-                    while ($row = mysqli_fetch_assoc($resultat)) {
-                    ?>
+                <table class="table table-bordered table-striped mydatatable">
+                    <thead class="thead-dark">
                         <tr>
-                            <td><?php echo $row["code_apoge"] ?></t>
-                            <td><?php echo $row["cen"] ?></td>
-                            <td><?php echo $row["nom"] ?></td>
-                            <td><?php echo $row["prenom"] ?></td>
-                            <td><?php echo $row["date_naissance"] ?></td>
-                            <td><?php echo $row["email"] ?></td>
-                            <td>
-                                <a href="Etudiant/supprimer_etudiant.php?id=<?php echo $row["code_apoge"] ?>">
-                                    <img width=20 heigth=20 src="https://bit.ly/2UwQb08">
-                                </a>
-                            </td>
-                            <td>
-                                <input type="button" value="Modifier" id="<?php echo $row["code_apoge"] ?>" data-toggle="modal" class="btn btn-info btn-xs Open_modifierUnEtudiant">
-                            </td>
+                            <th>Code Apoge</th>
+                            <th>Cin</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Date Naissance</th>
+                            <th>Email</th>
+                            <th>supprimer</th>
+                            <th>Modifier</th>
                         </tr>
-                <?php
-                    }
-                    echo "<tbody>";
-                    echo "</table>";
+                    </thead>
+                    <tbody>
+        <?php
+
+                while ($row = mysqli_fetch_assoc($resultat)) {
+        ?>
+                    <tr>
+                        <td><?php echo $row["code_apoge"] ?></t>
+                        <td><?php echo $row["cen"] ?></td>
+                        <td><?php echo $row["nom"] ?></td>
+                        <td><?php echo $row["prenom"] ?></td>
+                        <td><?php echo $row["date_naissance"] ?></td>
+                        <td><?php echo $row["email"] ?></td>
+                        <td>
+                            <a href="Etudiant/supprimer_etudiant.php?id=<?php echo $row["code_apoge"] ?>">
+                                <img width=20 heigth=20 src="https://bit.ly/2UwQb08">
+                            </a>
+                        </td>
+                        <td>
+                            <input type="button" value="Modifier" id="<?php echo $row["code_apoge"] ?>" data-toggle="modal" class="btn btn-info btn-xs Open_modifierUnEtudiant">
+                        </td>
+                    </tr>
+        <?php
                 }
-                ?>
+                    echo "<tbody>";
+                echo "</table>";
+            }
+        ?>
     </div>
     <script>
         $('.mydatatable').DataTable();

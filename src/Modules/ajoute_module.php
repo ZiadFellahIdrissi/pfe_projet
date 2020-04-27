@@ -22,6 +22,6 @@
         $sql="INSERT INTO `Module`(`intitule`, `id_enseignant`, `horaire`, `id_filiere`)
                 VALUES ('$nom', $id_enseignant, $heures, $id_filiere)";
         mysqli_query($conn, $sql);
-        header('location: ../Modules.php?etudiant=inserted');
+        header("location: ../Modules.php?etudiant=inserted&idUrlFiliere=$id_filiere");
     }
 ?>

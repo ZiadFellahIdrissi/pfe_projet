@@ -11,7 +11,7 @@ include 'connection.php';
     <link href="../layout/css/datatables.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="../layout/css/dashboard.css" rel="stylesheet">
-    <title>test5</title>
+    <title>Absences</title>
 </head>
 
 <style>
@@ -68,7 +68,7 @@ include 'connection.php';
                         </div>
 
                         <div class="modal-body consulte_abssence">
-                            <?php include 'Abssence/afficheTableauAbssence.php' ?>
+                            <?php include 'Abssence/afficheTableauAbsence.php' ?>
                         </div>
                     </div>
                 </div>

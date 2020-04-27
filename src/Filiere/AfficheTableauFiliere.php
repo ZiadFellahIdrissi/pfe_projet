@@ -10,7 +10,7 @@
     if ($resultatcheck > 0) {
     ?>
         <table class="table table-bordered table-striped mydatatable">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>nom du filiere</th>
                     <th>responsable</th>
