@@ -1,9 +1,10 @@
 <?php 
     include '../connection.php';
-    if(!empty($_GET['id_abssence'])){
-        $id_abssence=$_GET['id_abssence'];
-        $sql="DELETE FROM abssence where id_abssence=$id_abssence";
+    if(!empty($_GET['id_absence'])){
+        $id_absence=$_GET['id_absence'];
+        $sql = "DELETE FROM absence
+        		WHERE id_absence=$id_absence";
         mysqli_query($conn,$sql);
-        header('Location: ../consulte_abssence.php?abssence=supp');
+        header('Location: ../consulter_absences.php?absence=supp');
     }
 ?>

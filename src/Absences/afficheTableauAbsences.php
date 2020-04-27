@@ -1,9 +1,9 @@
 <div class="table-responsive-sm">
     <?php
-    $sql = 'SELECT nom,prenom,intitule,date_abssence,h_abssance
+    $sql = 'SELECT nom,prenom,intitule,date_absence,h_absence
             FROM etudiant 
-            join abssence on etudiant.code_apoge=abssence.id_etudiant
-            join module on abssence.id_module=module.id_module';
+            join absence on etudiant.code_apoge=absence.id_etudiant
+            join module on absence.id_module=module.id_module';
 
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);
@@ -15,7 +15,7 @@
                     <th>Etudiant</th>
                     <th>Module</th>
                     <th>Date</th>
-                    <th>Nombre heurs</th>
+                    <th>Nombre heures</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,8 +26,8 @@
                     <tr>
                         <td><?php echo $row["nom"]." ".$row["prenom"]?></td>
                         <td><?php echo $row["intitule"] ?></td>
-                        <td><?php echo $row["date_abssence"] ?></td>
-                        <td><?php echo $row["h_abssance"].' H' ?></td>
+                        <td><?php echo $row["date_absence"] ?></td>
+                        <td><?php echo $row["h_absence"].' H' ?></td>
                     </tr>
             <?php
                 }

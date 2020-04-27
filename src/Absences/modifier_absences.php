@@ -4,21 +4,19 @@
         $date_abssence=$_POST["date"];
         $nbHeurs=$_POST["nbHeurs"];
         $module=$_POST["module"];
-        $abss_id=$_POST["abss_Id"];
+        $abs_id=$_POST["abs_Id"];
 
         
 
-        $sql="UPDATE `abssence` 
+        $sql="UPDATE `absence` 
               SET 
-                `date_abssence` = '$date_abssence',
-                `h_abssance` = $nbHeurs,
+                `date_absence` = '$date_absence',
+                `h_absence` = $nbHeurs,
                 `id_module` = $module
-                WHERE `abssence`.`id_abssence` =$abss_id;";
+                WHERE `absence`.`id_absence` =$abs_id;";
 
         mysqli_query($conn , $sql);
 
-        header('location: ../consulte_abssence.php?etudiant=updated');
-    }else 
-        echo "dore tkhra";
-
+        header('location: ../consulter_absences.php?absence=updated');
+    }
 ?>
