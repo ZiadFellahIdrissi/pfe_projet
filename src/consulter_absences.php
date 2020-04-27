@@ -62,7 +62,7 @@ include 'connection.php';
                                 </select>
                             </div>
                             <div class="col-md-4 offset-md-4">
-                                <a href="Absences/consulter_absences.php"><button type="button" class="btn btn-primary">Affiche tout</button></a>
+                                <a href="consulter_absences.php"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
                             </div>
                         </div>
 
