@@ -22,7 +22,7 @@
         $sql="INSERT INTO `etudiant`(`code_apoge`, `cen`, `nom`, `prenom`, `date_naissance`, `email`, `id_groupe`)
          VALUES ($codeapoge,'$cin', '$nom' , '$prenom' , '$dateN', '$email' , $groupe)";
         mysqli_query($conn , $sql);
-        header('location: ../Etudiants.php?etudiant=inserted');
+        header("location: ../Etudiants.php?etudiant=inserted&idUrlGroupe=$groupe");
         }
 
     }

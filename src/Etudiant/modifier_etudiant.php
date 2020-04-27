@@ -11,13 +11,13 @@
         $groupe=$_POST["groupe"];
 
 
-        // if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM etudiant
-        //                                          WHERE cen = $cin
-        //                                          AND code_apoge = $code_apoge")))
-        // {
-        //     header('location: ../Etudiants.php?insert=failed');
-        //     exit();
-        // }
+        if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM etudiant
+                                                 WHERE cen = $cin
+                                                 AND code_apoge = $code_apoge")))
+        {
+            header('location: ../Etudiants.php?insert=failed');
+            exit();
+        }
 
         $sql="UPDATE `etudiant` 
               SET `code_apoge` = $code_apoge ,
@@ -31,8 +31,6 @@
 
         mysqli_query($conn , $sql);
 
-        header('location: ../Etudiants.php?etudiant=updated');
-    }else 
-        echo "dore tkhra";
-
+        header("location: ../Etudiants.php?etudiant=updated&idUrlGroupe=$groupe");
+    }
 ?>

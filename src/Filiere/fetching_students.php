@@ -11,7 +11,7 @@
     if($resultatcheck>0){
 ?>
     <table class="table table-bordered table-striped">
-        <thead>
+        <thead class="thead-dark">
         <tr>
             <th>Code Apoge</th>
             <th>Nom</th>

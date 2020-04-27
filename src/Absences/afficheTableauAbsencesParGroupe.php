@@ -81,7 +81,7 @@ if (!empty($_GET['id_groupe'])) {
     if ($resultatcheck > 0) {
     ?>
         <table class="table table-bordered table-striped mydatatable">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>Etudiant</th>
                     <th>Module</th>

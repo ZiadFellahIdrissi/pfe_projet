@@ -73,9 +73,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="Absences.php">
                                 <span><i class="far fa-clock"></i></span>
-                                Présence <span> <i class="fas fa-angle-down"></i></span>
+                                Absences <span> <i class="fas fa-angle-down"></i></span>
                             </a>
                             <ul>
                                 <li class="MyNonActive"><a class="nav-link" href="consulte_abssence.php"> <span></span>Consulte Absences</a></li>
