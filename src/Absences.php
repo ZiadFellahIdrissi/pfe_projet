@@ -10,16 +10,7 @@
     <title>Gestion des filieres</title>
 </head>
 <style type="text/css">
-    #img1{
-        width: 230;
-        height: 130;
-        background-image: URL("../img/Absences/1.png");
-        background-repeat: no-repeat;
-    }
-    #img1:hover{
-        background-image: URL("../img/Absences/2.png");
-        background-repeat: no-repeat;
-    }
+
        
 </style>
 <body>
@@ -39,13 +30,22 @@
                         </button>
                     </div> -->
                 </div>
-                <div id="img1">
-                    <a type="button" href="Absences/consulter_absences.php">
-                        <div ></div>
-                    </a>
+                <div class="container mt-3 mb-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Absences</li>
+                        </ol>
+                    </nav>
+                    <div class="text-center">
+                        <a href="ajouter_absences.php" >
+                            <img src="../img/Absences/1.png" onmouseover="this.src='../img/Absences/2.png';" onmouseout="this.src='../img/Absences/1.png'"class="rounded" title="Ajouter Absences">
+                        </a> 
+                        <a href="consulter_absences.php" >
+                            <img src="../img/Absences/3.png" onmouseover="this.src='../img/Absences/4.png';" onmouseout="this.src='../img/Absences/3.png'"class="rounded" title="Consulter Absences">
+                        </a> 
+                    </div>
                 </div>
-
-                
             </main>
     <script type="text/javascript" src="../layout/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>

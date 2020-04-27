@@ -78,8 +78,8 @@
                                 Absences <span> <i class="fas fa-angle-down"></i></span>
                             </a>
                             <ul>
-                                <li class="MyNonActive"><a class="nav-link" href="consulte_abssence.php"> <span></span>Consulte Absences</a></li>
-                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span>Ajouter Absences</a>
+                                <li class="MyNonActive"><a class="nav-link" href="consulter_absences.php"> <span></span>Consulte Absences</a></li>
+                                <li class="MyNonActive"><a class="nav-link" href="ajouter_absences.php"> <span></span>Ajouter Absences</a>
                                 </li>
                             </ul>
                         </li>

@@ -3,7 +3,6 @@ include 'connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +21,7 @@ include 'connection.php';
 
 
 <body>
-     <?php include 'header.php' ?>
+     <?php include "header.php" ?>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Absences</h1>
@@ -42,7 +41,7 @@ include 'connection.php';
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="#">Absences</a></li>
+                            <li class="breadcrumb-item"><a href="Absences.php">Absences</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Consulter Absences</li>
                         </ol>
                     </nav>
@@ -63,12 +62,12 @@ include 'connection.php';
                                 </select>
                             </div>
                             <div class="col-md-4 offset-md-4">
-                                <a href="consulte_abssence.php"><button type="button" class="btn btn-primary">Affiche tout</button></a>
+                                <a href="Absences/consulter_absences.php"><button type="button" class="btn btn-primary">Affiche tout</button></a>
                             </div>
                         </div>
 
                         <div class="modal-body consulte_abssence">
-                            <?php include 'Abssence/afficheTableauAbsence.php' ?>
+                            <?php include 'Absences/afficheTableauAbsences.php' ?>
                         </div>
                     </div>
                 </div>
@@ -87,7 +86,7 @@ include 'connection.php';
             $('#groupe').change(function() {
                 var id_groupe = $(this).val();
                 $.ajax({
-                    url: "abssence/afficheTableauAbssenceParGroupe.php",
+                    url: "Absences/afficheTableauAbsencesParGroupe.php",
                     method: "GET",
                     data: {
                         id_groupe: id_groupe
@@ -108,7 +107,7 @@ include 'connection.php';
                 var abss_id = $(this).data('info');
                 $('#abss_Id').val(abss_id);
                 $.ajax({
-                    url: "abssence/fetching_abssence_for_editing.php",
+                    url: "Absences/fetching_absences_for_editing.php",
                     method: 'GET',
                     data: {
                         groupeId: groupeId,
