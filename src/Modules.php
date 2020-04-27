@@ -11,7 +11,7 @@ include 'connection.php';
     <link href="../layout/css/datatables.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="../layout/css/dashboard.css" rel="stylesheet">
-    <title>test5</title>
+    <title>Modules</title>
 </head>
 
 <style>
@@ -26,7 +26,7 @@ include 'connection.php';
     <?php include 'header.php' ?>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <p class="h2">Etudiants</p>
+                    <p class="h2">Modules</p>
                     <!-- <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <button type="button" class="btn btn-sm btn-outline-secondary">hiiii</button>
@@ -43,7 +43,7 @@ include 'connection.php';
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Etudiants</li>
+                            <li class="breadcrumb-item active" aria-current="page">Modules</li>
                         </ol>
                     </nav>
                     <div class="modal-content">
@@ -51,30 +51,32 @@ include 'connection.php';
 
                             <div class="col-md-6">
                                 <span class="font-weight-light text-nowrap lead">Choisir un groupe: </span>
-                                <select name="groupe" id="groupe">
+                                <select name="id_filiere" id="filiere">
                                     <option value=''></option>
                                     <?php
-                                    $sql = "SELECT id_groupe,groupe_nom FROM groupe";
+                                    $sql = "SELECT id_filiere, nom_filiere
+                                            FROM filiere";
                                     $resultat = mysqli_query($conn, $sql);
                                     while ($row = mysqli_fetch_assoc($resultat)) {
                                     ?>
-                                        <option value='<?php echo $row["id_groupe"] ?>'><?php echo $row["groupe_nom"] ?></option>
+                                        <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
                                     <?php
                                     }
                                     ?>
                                 </select>
                             </div>
                             <div class="col-md-4 offset-md-4">
-                                <a href="Etudiants.php"><button type="button" class="btn btn-primary">Affiche tous</button></a>
+                                <a href="Modules.php"><button type="button" class="btn btn-primary">Afficher tous</button></a>
                             </div>
                         </div>
 
-                        <div class="modal-body etudiants">
+                        <div class="modal-body modules">
                             <div class="table-responsive-sm">
                                 <?php
-                                $sql = 'SELECT cen, code_apoge,date_naissance,email,nom,prenom,id_groupe
-                                            FROM etudiant';
-
+                                $sql = "SELECT *
+                                        FROM Module
+                                        JOIN Enseignant ON Module.id_enseignant = Enseignant.id_enseignant
+                                        JOIN Filiere ON Module.id_filiere = Filiere.id_filiere";
                                 $resultat = mysqli_query($conn, $sql);
                                 $resultatcheck = mysqli_num_rows($resultat);
                                 if ($resultatcheck > 0) {
@@ -82,14 +84,9 @@ include 'connection.php';
                                     <table class="table table-bordered table-striped mydatatable">
                                         <thead>
                                             <tr>
-                                                <th>Code Apoge</th>
-                                                <th>Cin</th>
-                                                <th>Nom</th>
-                                                <th>Prenom</th>
-                                                <th>Date Naissance</th>
-                                                <th>Email</th>
-<!--                                                 <th>moyenne</th>
-                                                <th>Abssences</th> -->
+                                                <th>Nom du Module</th>
+                                                <th>Enseignant</th>
+                                                <th>Filiere</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -98,30 +95,9 @@ include 'connection.php';
                                             while ($row = mysqli_fetch_assoc($resultat)) {
                                             ?>
                                                 <tr>
-                                                    <td><?php echo $row["code_apoge"] ?></t>
-                                                    <td><?php echo $row["cen"] ?></td>
-                                                    <td><?php echo $row["nom"] ?></td>
-                                                    <td><?php echo $row["prenom"] ?></td>
-                                                    <td><?php echo $row["date_naissance"] ?></td>
-                                                    <td><?php echo $row["email"] ?></td>
-        <!--                                             <td>
-                                                        mazaal
-                                                    </td>
-                                                    <td>
-                                                        <?php
-                                                        $sql2 = 'SELECT sum(h_abssance) sumHeurs
-                                                            FROM abssence where id_etudiant=' . $row["code_apoge"];
-
-                                                        $resultat2 = mysqli_query($conn, $sql2);
-                                                        $check = mysqli_num_rows($resultat2);
-                                                        if ($check > 0) {
-                                                            $row2 = mysqli_fetch_assoc($resultat2);
-                                                            echo $row2["sumHeurs"];
-                                                        } else {
-                                                            echo "0 H";
-                                                        }
-                                                        ?>
-                                                    </td> -->
+                                                    <td><?php echo $row["intitule"] ?></t>
+                                                    <td><?php echo $row["prenom_enseignant"].' '.$row["nom_enseignant"] ?></td>
+                                                    <td><?php echo $row["nom_filiere"] ?></td>
                                                 </tr>
                                         <?php
                                             }
@@ -141,28 +117,28 @@ include 'connection.php';
                     if (strpos($fullurl, "insert=failed")) {
                     ?>
                         <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Invalid</strong> code apogee ou Cin!
+                            Cet <strong>Module</strong> deja existe!
                         </div>
                     <?php
                     }
-                    if (strpos($fullurl, "etudiant=inserted")) {
+                    if (strpos($fullurl, "module=inserted")) {
                     ?>
                         <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Etudiant</strong> ajouté avec succes :)
+                            <strong>Module</strong> ajouté avec succes.
                         </div>
                     <?php
                     }
-                    if (strpos($fullurl, "etudiant=deleted")) {
+                    if (strpos($fullurl, "module=deleted")) {
                     ?>
                         <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Etudiant</strong> supprimé avec succes :)
+                            <strong>Module</strong> supprimé avec succes.
                         </div>
                     <?php
                     }
-                    if (strpos($fullurl, "etudiant=updated")) {
+                    if (strpos($fullurl, "module=updated")) {
                     ?>
                         <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Etudiant</strong> modifié avec succes :)
+                            <strong>Module</strong> modifié avec succes.
                         </div>
                     <?php
                     }
@@ -180,25 +156,25 @@ include 'connection.php';
     <script>
         $('.mydatatable').DataTable();
         $(document).ready(function() {
-            $('#groupe').change(function() {
-                var id_groupe = $(this).val();
-                if(id_groupe){
+            $('#filiere').change(function() {
+                var id_filiere = $(this).val();
+                if(id_filiere){
                     $.ajax({
-                        url: "Etudiant/afficheEtudiantsParGroup.php",
+                        url: "Modules/afficheModulesParFiliere.php",
                         method: "GET",
                         data: {
-                            id_groupe: id_groupe
+                            id_filiere: id_filiere
                         },
                         dataType: "text",
                         success: function(data) {
-                            $('.etudiants').html(data);
+                            $('.modules').html(data);
                         }
                     });
                 }
             });
         });
     </script>
-    <script>
+    <!-- <script>
         $(document).ready(function() {
             $(document).on('click', '.Open_modifierUnEtudiant', function() {
                 var code = $(this).attr("id");
@@ -232,7 +208,7 @@ include 'connection.php';
 
             });
         });
-    </script>
+    </script> -->
 
 </body>
 
