@@ -66,7 +66,7 @@ include 'connection.php';
                                 </select>
                             </div>
                             <div class="col-md-4 offset-md-4">
-                                <a href="Modules.php"><button type="button" class="btn btn-primary">Afficher tous</button></a>
+                                <a href="Modules.php"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
                             </div>
                         </div>
 

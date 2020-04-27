@@ -65,7 +65,7 @@ include 'connection.php';
                                 </select>
                             </div>
                             <div class="col-md-4 offset-md-4">
-                                <a href="Etudiants.php"><button type="button" class="btn btn-primary">Affiche tous</button></a>
+                                <a href="Etudiants.php"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
                             </div>
                         </div>
 
