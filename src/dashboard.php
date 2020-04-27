@@ -38,7 +38,7 @@
                                 Etudiants
                                     <span class="badge badge-light">
                                         <?php
-                                        $sql = "SELECT * FROM etudiant;";
+                                        $sql = "SELECT * FROM etudiant";
                                         echo mysqli_num_rows(mysqli_query($conn, $sql));
                                         ?>
                                     </span>
@@ -52,7 +52,7 @@
                                 Enseignants
                                     <span class="badge badge-light">
                                         <?php
-                                        $sql = "SELECT * FROM enseignant;";
+                                        $sql = "SELECT * FROM enseignant";
                                         echo mysqli_num_rows(mysqli_query($conn, $sql));
                                         ?>
                                     </span>
@@ -66,7 +66,7 @@
                                 Filieres
                                     <span class="badge badge-light">
                                         <?php
-                                        $sql = "SELECT * FROM filiere;";
+                                        $sql = "SELECT * FROM filiere";
                                         echo mysqli_num_rows(mysqli_query($conn, $sql));
                                         ?>
                                     </span>
@@ -75,14 +75,15 @@
                         </div>
                         <div class="col-md-3">
                             <div class="stat ">
-                                <a type="button" class="btn btn-primary" href="#">
+                                <a type="button" class="btn btn-primary" href="Modules.php">
                                     <i class="fab fa-stack-overflow"></i>
                                 Modules
-                                    <span class="badge badge-light">0
-                                        <!-- <?php
-                                        $sql = "SELECT * FROM filiere;";
-                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                        ?> -->
+                                    <span class="badge badge-light">
+                                        <?php
+                                            $sql = "SELECT *
+                                                    FROM module";
+                                            echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                        ?>
                                     </span>
                                 </a>
                             </div>
