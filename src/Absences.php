@@ -10,8 +10,10 @@
     <title>Gestion des filieres</title>
 </head>
 <style type="text/css">
-
-       
+    img:hover {
+        width: 240px; 
+        height: 160px;
+    }
 </style>
 <body>
     <?php include 'header.php' ?>
@@ -38,12 +40,18 @@
                         </ol>
                     </nav>
                     <div class="text-center">
-                        <a href="ajouter_absences.php" >
-                            <img src="../img/Absences/1.png" onmouseover="this.src='../img/Absences/2.png';" onmouseout="this.src='../img/Absences/1.png'"class="rounded" title="Ajouter Absences">
-                        </a> 
-                        <a href="consulter_absences.php" >
-                            <img src="../img/Absences/3.png" onmouseover="this.src='../img/Absences/4.png';" onmouseout="this.src='../img/Absences/3.png'"class="rounded" title="Consulter Absences">
-                        </a> 
+                        <div class="row">
+                            <div class="col">
+                                <a href="ajouter_absences.php" >
+                                    <img class="img" src="../img/Absences/1.png" onmouseover="this.src='../img/Absences/2.png';" onmouseout="this.src='../img/Absences/1.png'"class="rounded" title="Ajouter Absences">
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="consulter_absences.php" >
+                                    <img src="../img/Absences/3.png" onmouseover="this.src='../img/Absences/4.png';" onmouseout="this.src='../img/Absences/3.png'"class="rounded" title="Consulter Absences">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
