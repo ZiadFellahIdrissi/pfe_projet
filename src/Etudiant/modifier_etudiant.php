@@ -8,11 +8,11 @@
         $prenom=$_POST["prenom"];
         $date_naissance=$_POST["dateN"];
         $email=$_POST["email"];
-        $groupe=$_POST["groupe"];
+        $filiere=$_POST["filiere"];
 
 
         if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM etudiant
-                                                 WHERE cen = $cin
+                                                 WHERE cne = $cin
                                                  AND code_apoge = $code_apoge")))
         {
             header('location: ../Etudiants.php?insert=failed');
@@ -21,16 +21,16 @@
 
         $sql="UPDATE `etudiant` 
               SET `code_apoge` = $code_apoge ,
-                `cen` = '$cin',
+                `cne` = '$cin',
                 `nom` = '$nom',
                 `prenom` = '$prenom',
                 `date_naissance` = '$date_naissance',
                 `email` = '$email',
-                `id_groupe` = $groupe
+                `id_filiere` = $filiere
                 WHERE `etudiant`.`code_apoge` = $oldCode;";
 
         mysqli_query($conn , $sql);
 
-        header("location: ../Etudiants.php?etudiant=updated&idUrlGroupe=$groupe");
+        header("location: ../Etudiants.php?etudiant=updated&idUrlFiliere=$filiere");
     }
 ?>

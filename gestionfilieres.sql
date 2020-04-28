@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : mar. 28 avr. 2020 à 05:19
--- Version du serveur :  10.4.11-MariaDB
--- Version de PHP : 7.4.3
+-- Host: 127.0.0.1:3306
+-- Generation Time: Apr 28, 2020 at 06:49 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,47 +19,56 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `gestionfilieres`
+-- Database: `gestionfilieres`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `absence`
+-- Table structure for table `absence`
 --
 
-CREATE TABLE `absence` (
-  `id_absence` int(5) NOT NULL,
+DROP TABLE IF EXISTS `absence`;
+CREATE TABLE IF NOT EXISTS `absence` (
+  `id_absence` int(5) NOT NULL AUTO_INCREMENT,
   `id_etudiant` int(10) NOT NULL,
   `id_module` int(5) NOT NULL,
   `date_absence` date DEFAULT NULL,
-  `h_absence` double(100,2) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `h_absence` double(100,2) DEFAULT NULL,
+  PRIMARY KEY (`id_absence`),
+  KEY `id_module` (`id_module`),
+  KEY `id_etudiant` (`id_etudiant`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `absence`
+-- Dumping data for table `absence`
 --
 
 INSERT INTO `absence` (`id_absence`, `id_etudiant`, `id_module`, `date_absence`, `h_absence`) VALUES
 (1, 17006034, 1, '2019-03-18', 1.30),
-(2, 17006034, 2, '2019-03-03', 1.30);
+(2, 17006034, 2, '2019-03-03', 1.30),
+(4, 13154827, 1, '2020-04-15', 1.30),
+(5, 13154827, 2, '2020-04-13', 3.00);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `enseignant`
+-- Table structure for table `enseignant`
 --
 
-CREATE TABLE `enseignant` (
-  `id_enseignant` int(5) NOT NULL,
+DROP TABLE IF EXISTS `enseignant`;
+CREATE TABLE IF NOT EXISTS `enseignant` (
+  `id_enseignant` int(5) NOT NULL AUTO_INCREMENT,
   `nom_enseignant` varchar(50) NOT NULL,
   `prenom_enseignant` varchar(50) NOT NULL,
   `email_enseignant` varchar(50) DEFAULT NULL,
-  `telephone_enseignant` varchar(30) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `telephone_enseignant` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_enseignant`),
+  UNIQUE KEY `email_enseignant` (`email_enseignant`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `enseignant`
+-- Dumping data for table `enseignant`
 --
 
 INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `prenom_enseignant`, `email_enseignant`, `telephone_enseignant`) VALUES
@@ -85,24 +94,27 @@ INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `prenom_enseignant`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `etudiant`
+-- Table structure for table `etudiant`
 --
 
-CREATE TABLE `etudiant` (
+DROP TABLE IF EXISTS `etudiant`;
+CREATE TABLE IF NOT EXISTS `etudiant` (
   `code_apoge` int(10) NOT NULL,
-  `cen` varchar(20) NOT NULL,
+  `cne` varchar(20) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `date_naissance` date NOT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `id_groupe` int(5) NOT NULL
+  `id_filiere` int(5) NOT NULL,
+  PRIMARY KEY (`code_apoge`),
+  UNIQUE KEY `cen` (`cne`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `etudiant`
+-- Dumping data for table `etudiant`
 --
 
-INSERT INTO `etudiant` (`code_apoge`, `cen`, `nom`, `prenom`, `date_naissance`, `email`, `id_groupe`) VALUES
+INSERT INTO `etudiant` (`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, `email`, `id_filiere`) VALUES
 (14574586, 'R131745200', 'oussama', 'farouq', '1998-07-06', 'oussama.farouq@gmail.com', 1),
 (16154875, 'R141519788', 'oussama', 'bouanane', '1998-04-16', 'oussama.ouss1@gmail.com', 3),
 (17148856, 'R140019714', 'ahmed', 'reda', '2000-04-15', 'ahmed.reda_01@gmail.com', 4),
@@ -122,17 +134,20 @@ INSERT INTO `etudiant` (`code_apoge`, `cen`, `nom`, `prenom`, `date_naissance`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `examen`
+-- Table structure for table `examen`
 --
 
-CREATE TABLE `examen` (
-  `id_examen` int(5) NOT NULL,
+DROP TABLE IF EXISTS `examen`;
+CREATE TABLE IF NOT EXISTS `examen` (
+  `id_examen` int(5) NOT NULL AUTO_INCREMENT,
   `type` varchar(20) DEFAULT NULL,
-  `id_module` int(5) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `id_module` int(5) NOT NULL,
+  PRIMARY KEY (`id_examen`),
+  KEY `id_module` (`id_module`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `examen`
+-- Dumping data for table `examen`
 --
 
 INSERT INTO `examen` (`id_examen`, `type`, `id_module`) VALUES
@@ -148,18 +163,22 @@ INSERT INTO `examen` (`id_examen`, `type`, `id_module`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `exam_pass`
+-- Table structure for table `exam_pass`
 --
 
-CREATE TABLE `exam_pass` (
-  `id` int(5) NOT NULL,
+DROP TABLE IF EXISTS `exam_pass`;
+CREATE TABLE IF NOT EXISTS `exam_pass` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `note` float(10,2) NOT NULL,
   `id_examen` int(5) NOT NULL,
-  `id_etudiant` int(5) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `id_etudiant` int(5) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_examen` (`id_examen`),
+  KEY `id_etudiant` (`id_etudiant`)
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `exam_pass`
+-- Dumping data for table `exam_pass`
 --
 
 INSERT INTO `exam_pass` (`id`, `note`, `id_examen`, `id_etudiant`) VALUES
@@ -183,183 +202,59 @@ INSERT INTO `exam_pass` (`id`, `note`, `id_examen`, `id_etudiant`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `filiere`
+-- Table structure for table `filiere`
 --
 
-CREATE TABLE `filiere` (
-  `id_filiere` int(5) NOT NULL,
+DROP TABLE IF EXISTS `filiere`;
+CREATE TABLE IF NOT EXISTS `filiere` (
+  `id_filiere` int(5) NOT NULL AUTO_INCREMENT,
   `nom_filiere` varchar(50) NOT NULL,
-  `responsable_id` int(5) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `responsable_id` int(5) NOT NULL,
+  PRIMARY KEY (`id_filiere`),
+  KEY `responsable_id` (`responsable_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `filiere`
+-- Dumping data for table `filiere`
 --
 
 INSERT INTO `filiere` (`id_filiere`, `nom_filiere`, `responsable_id`) VALUES
-(1, 'Développement et Admin des BD', 5),
-(2, 'Administration Réseaux et Systèmes', 2),
-(5, 'smiF', 3);
+(1, 'Developpement et Admin des BD', 5),
+(2, 'Administration Reseaux et Systemes', 2),
+(3, 'Developpement Mobile et Multimedia', 3),
+(4, 'SI Appliques A la Gestion des Affaires', 7);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `groupe`
+-- Table structure for table `module`
 --
 
-CREATE TABLE `groupe` (
-  `id_groupe` int(5) NOT NULL,
-  `groupe_nom` varchar(50) NOT NULL,
-  `id_filiere` int(5) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `groupe`
---
-
-INSERT INTO `groupe` (`id_groupe`, `groupe_nom`, `id_filiere`) VALUES
-(1, 'TCD', 1),
-(2, 'TDI', 1),
-(3, 'SMI', 2),
-(4, 'MDR', 2);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `module`
---
-
-CREATE TABLE `module` (
-  `id_module` int(5) NOT NULL,
+DROP TABLE IF EXISTS `module`;
+CREATE TABLE IF NOT EXISTS `module` (
+  `id_module` int(5) NOT NULL AUTO_INCREMENT,
   `intitule` varchar(80) DEFAULT NULL,
   `id_enseignant` int(11) NOT NULL,
   `horaire` int(10) DEFAULT NULL,
-  `id_filiere` int(5) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `id_filiere` int(5) NOT NULL,
+  PRIMARY KEY (`id_module`),
+  KEY `fk_filiere` (`id_filiere`),
+  KEY `fk_enseignant` (`id_enseignant`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `module`
+-- Dumping data for table `module`
 --
 
 INSERT INTO `module` (`id_module`, `intitule`, `id_enseignant`, `horaire`, `id_filiere`) VALUES
-(1, 'Administration de bases de données', 2, 64, 2),
+(1, 'Administration de bases de données', 9, 64, 1),
 (2, 'Développement BD', 3, 62, 1),
-(3, 'Langage d’interrogation des Bases de Données SQL', 4, 60, 2),
-(4, 'Méthodologie de conception des SI', 5, 60, 2),
-(5, 'Administration Linux & Virtualisation', 6, 52, 1),
-(6, 'CCNP Switch et Tshoot', 7, 55, 1),
-(7, 'Architecture des ordinateurs', 10, 50, 5),
-(8, 'Configuration d’une infrastructure réseau', 11, 60, 5);
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `absence`
---
-ALTER TABLE `absence`
-  ADD PRIMARY KEY (`id_absence`),
-  ADD KEY `id_module` (`id_module`),
-  ADD KEY `id_etudiant` (`id_etudiant`);
-
---
--- Index pour la table `enseignant`
---
-ALTER TABLE `enseignant`
-  ADD PRIMARY KEY (`id_enseignant`),
-  ADD UNIQUE KEY `email_enseignant` (`email_enseignant`);
-
---
--- Index pour la table `etudiant`
---
-ALTER TABLE `etudiant`
-  ADD PRIMARY KEY (`code_apoge`),
-  ADD UNIQUE KEY `cen` (`cen`),
-  ADD KEY `id_groupe` (`id_groupe`);
-
---
--- Index pour la table `examen`
---
-ALTER TABLE `examen`
-  ADD PRIMARY KEY (`id_examen`),
-  ADD KEY `id_module` (`id_module`);
-
---
--- Index pour la table `exam_pass`
---
-ALTER TABLE `exam_pass`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_examen` (`id_examen`),
-  ADD KEY `id_etudiant` (`id_etudiant`);
-
---
--- Index pour la table `filiere`
---
-ALTER TABLE `filiere`
-  ADD PRIMARY KEY (`id_filiere`),
-  ADD KEY `responsable_id` (`responsable_id`);
-
---
--- Index pour la table `groupe`
---
-ALTER TABLE `groupe`
-  ADD PRIMARY KEY (`id_groupe`),
-  ADD KEY `id_filiere` (`id_filiere`);
-
---
--- Index pour la table `module`
---
-ALTER TABLE `module`
-  ADD PRIMARY KEY (`id_module`),
-  ADD KEY `fk_filiere` (`id_filiere`),
-  ADD KEY `fk_enseignant` (`id_enseignant`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `absence`
---
-ALTER TABLE `absence`
-  MODIFY `id_absence` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT pour la table `enseignant`
---
-ALTER TABLE `enseignant`
-  MODIFY `id_enseignant` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT pour la table `examen`
---
-ALTER TABLE `examen`
-  MODIFY `id_examen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT pour la table `exam_pass`
---
-ALTER TABLE `exam_pass`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT pour la table `filiere`
---
-ALTER TABLE `filiere`
-  MODIFY `id_filiere` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pour la table `groupe`
---
-ALTER TABLE `groupe`
-  MODIFY `id_groupe` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT pour la table `module`
---
-ALTER TABLE `module`
-  MODIFY `id_module` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+(3, 'Langage d’interrogation des Bases de Données SQL', 4, 60, 1),
+(4, 'Méthodologie de conception des SI', 18, 60, 1),
+(5, 'Administration Linux & Virtualisation', 6, 52, 2),
+(6, 'CCNP Switch et Tshoot', 12, 55, 2),
+(7, 'Architecture des ordinateurs', 10, 50, 2),
+(8, 'Configuration d’une infrastructure réseau', 11, 60, 2);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

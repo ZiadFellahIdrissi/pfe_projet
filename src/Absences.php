@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../layout/css/animation.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="../layout/css/dashboard.css" rel="stylesheet">
     <title>Gestion des filieres</title>
@@ -20,7 +21,7 @@
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Absences</h1>
+                    <h1 class="titleH">Absences</h1>
                     <!-- <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <button type="button" class="btn btn-sm btn-outline-secondary">hiiii</button>
@@ -57,6 +58,7 @@
             </main>
     <script type="text/javascript" src="../layout/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../layout/js/animation.js"></script>
 </body>
 
 </html>

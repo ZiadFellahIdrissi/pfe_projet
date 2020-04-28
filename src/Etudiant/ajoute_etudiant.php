@@ -8,9 +8,9 @@
         $cin=$_POST['cin'];
         $dateN=$_POST['dateN'];
         $email=$_POST['email'];
-        $groupe=$_POST['groupe'];
+        $filiere=$_POST['filiere'];
 
-        $sqltest="SELECT * from etudiant where code_apoge= $codeapoge or cen= '$cin'";
+        $sqltest="SELECT * from etudiant where code_apoge= $codeapoge or cne= '$cin'";
         $resultat=mysqli_query($conn,$sqltest);
         $resultatcount = mysqli_num_rows($resultat);
 
@@ -19,10 +19,10 @@
             exit();
         }else{
         
-        $sql="INSERT INTO `etudiant`(`code_apoge`, `cen`, `nom`, `prenom`, `date_naissance`, `email`, `id_groupe`)
-         VALUES ($codeapoge,'$cin', '$nom' , '$prenom' , '$dateN', '$email' , $groupe)";
+        $sql="INSERT INTO `etudiant`(`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, `email`, `id_filiere`)
+         VALUES ($codeapoge,'$cin', '$nom' , '$prenom' , '$dateN', '$email' , $filiere)";
         mysqli_query($conn , $sql);
-        header("location: ../Etudiants.php?etudiant=inserted&idUrlGroupe=$groupe");
+        header("location: ../Etudiants.php?etudiant=inserted&idUrlFiliere=$filiere");
         }
 
     }
