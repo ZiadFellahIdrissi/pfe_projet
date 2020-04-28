@@ -165,7 +165,7 @@ if (!empty($_GET['id_filiere'])) {
     <div class="table-responsive-sm">
         <?php
         $sql = 'SELECT cne, code_apoge,date_naissance,email,nom,prenom,id_filiere
-            FROM etudiant WHERE id_filiere=' . $_GET['id_filiere'];
+                FROM etudiant WHERE id_filiere=' . $_GET['id_filiere'];
 
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
