@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 27 avr. 2020 à 02:45
+-- Généré le : mar. 28 avr. 2020 à 05:19
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.3
 
@@ -29,18 +29,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `absence` (
-  `id_abssence` int(5) NOT NULL,
+  `id_absence` int(5) NOT NULL,
   `id_etudiant` int(10) NOT NULL,
   `id_module` int(5) NOT NULL,
-  `date_abssence` date DEFAULT NULL,
-  `h_abssance` double(100,2) DEFAULT NULL
+  `date_absence` date DEFAULT NULL,
+  `h_absence` double(100,2) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `absence`
 --
 
-INSERT INTO `absence` (`id_abssence`, `id_etudiant`, `id_module`, `date_abssence`, `h_abssance`) VALUES
+INSERT INTO `absence` (`id_absence`, `id_etudiant`, `id_module`, `date_absence`, `h_absence`) VALUES
 (1, 17006034, 1, '2019-03-18', 1.30),
 (2, 17006034, 2, '2019-03-03', 1.30);
 
@@ -117,7 +117,7 @@ INSERT INTO `etudiant` (`code_apoge`, `cen`, `nom`, `prenom`, `date_naissance`, 
 (19174854, 'R631444478', 'mohamed', 'yassin', '1998-05-21', 'mohamed-yassin@gmail.com', 3),
 (19001200, 'R001515400', 'taha', 'bouchikhi', '1997-04-27', 'taha.bouchikhi@gmail.com', 3),
 (19753034, 'R761777199', 'akram', 'idrissi', '1999-12-05', 'akram.idrissi@gmail.com', 4),
-(222222222, 'C222215', 'Yahya', 'faroq', '2020-05-01', 'lerespecsssssssstful@gmail.com', 4);
+(170060343, 'R1458213582', 'Yahya', 'faroq', '2020-04-16', 'lerespectful@gmail.comf', 3);
 
 -- --------------------------------------------------------
 
@@ -249,8 +249,7 @@ INSERT INTO `module` (`id_module`, `intitule`, `id_enseignant`, `horaire`, `id_f
 (5, 'Administration Linux & Virtualisation', 6, 52, 1),
 (6, 'CCNP Switch et Tshoot', 7, 55, 1),
 (7, 'Architecture des ordinateurs', 10, 50, 5),
-(8, 'Configuration d’une infrastructure réseau', 11, 60, 5),
-(9, 'Yahya', 6, 1, 5);
+(8, 'Configuration d’une infrastructure réseau', 11, 60, 5);
 
 --
 -- Index pour les tables déchargées
@@ -260,7 +259,7 @@ INSERT INTO `module` (`id_module`, `intitule`, `id_enseignant`, `horaire`, `id_f
 -- Index pour la table `absence`
 --
 ALTER TABLE `absence`
-  ADD PRIMARY KEY (`id_abssence`),
+  ADD PRIMARY KEY (`id_absence`),
   ADD KEY `id_module` (`id_module`),
   ADD KEY `id_etudiant` (`id_etudiant`);
 
@@ -324,7 +323,7 @@ ALTER TABLE `module`
 -- AUTO_INCREMENT pour la table `absence`
 --
 ALTER TABLE `absence`
-  MODIFY `id_abssence` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_absence` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `enseignant`
@@ -360,7 +359,7 @@ ALTER TABLE `groupe`
 -- AUTO_INCREMENT pour la table `module`
 --
 ALTER TABLE `module`
-  MODIFY `id_module` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_module` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
