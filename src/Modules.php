@@ -125,53 +125,7 @@ include 'connection.php';
     <script type="text/javascript" src="../layout/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../layout/js/animation.js"></script>
-    <script>
-        function getParam(id) {
-            string = window.location.href;
-            var url = new URL(string);
-            return url.searchParams.get("idUrl" + id);
-        }
-        if (id = getParam("Filiere")) {
-            $("#filiere").val(id);
-            $(document).ready(function() {
-                var id_filiere = $("#filiere").val();
-                if (id_filiere) {
-                    $.ajax({
-                        url: "Modules/afficheModulesParFiliere.php",
-                        method: "GET",
-                        data: {
-                            id_filiere: id_filiere
-                        },
-                        dataType: "text",
-                        success: function(data) {
-                            $('.modules').html(data);
-                        }
-                    });
-                }
-            });
-        }
-
-        $('.mydatatable').DataTable();
-
-        $(document).ready(function() {
-            $('#filiere').change(function() {
-                var id_filiere = $(this).val();
-                if (id_filiere) {
-                    $.ajax({
-                        url: "Modules/afficheModulesParFiliere.php",
-                        method: "GET",
-                        data: {
-                            id_filiere: id_filiere
-                        },
-                        dataType: "text",
-                        success: function(data) {
-                            $('.modules').html(data);
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+    <script type="text/javascript" src="../layout/js/module.js"></script>
     <!-- <script>
         $(document).ready(function() {
             $(document).on('click', '.Open_modifierUnEtudiant', function() {

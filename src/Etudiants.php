@@ -25,6 +25,9 @@ include 'connection.php';
 <body>
     <?php include 'header.php' ?>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <?php include 'DML_Commentator.php';
+            DMLCommentator("etudiant");
+        ?>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="titleH">Etudiants</h1>
         </div>
@@ -59,11 +62,6 @@ include 'connection.php';
                 <?php include 'Etudiant/afficheTableauEtudiants.php'; ?>
             </div>
             <br><br>
-
-            <?php
-                include 'DML_Commentator.php';
-                DMLCommentator("etudiant");
-            ?>
         </div>
     </main>
     </div>
@@ -73,84 +71,7 @@ include 'connection.php';
     <script type="text/javascript" src="../layout/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../layout/js/animation.js"></script>
-    <script>
-        function getParam(id) {
-            string = window.location.href;
-            var url = new URL(string);
-            return url.searchParams.get("idUrl" + id);
-        }
-        if (id = getParam("Filiere")) {
-            $("#filiere").val(id);
-            $(document).ready(function() {
-                var id_filiere = $("#filiere").val();
-                if (id_filiere) {
-                    $.ajax({
-                        url: "Etudiant/afficheEtudiantsParFiliere.php",
-                        method: "GET",
-                        data: {
-                            id_filiere: id_filiere
-                        },
-                        dataType: "text",
-                        success: function(data) {
-                            $('.etudiants').html(data);
-                        }
-                    });
-                }
-            });
-        }
-
-        $('.mydatatable').DataTable();
-
-        $(document).ready(function() {
-            $('#filiere').change(function() {
-                var id_filiere = $(this).val();
-
-                if (id_filiere) {
-                    $.ajax({
-                        url: "Etudiant/afficheEtudiantsParFiliere.php",
-                        method: "GET",
-                        data: {
-                            id_filiere: id_filiere
-                        },
-                        dataType: "text",
-                        success: function(data) {
-                            $('.etudiants').html(data);
-                        }
-                    });
-                }
-            });
-        });
-
-        $(document).ready(function() {
-            $(document).on('click', '.Open_modifierUnEtudiant', function() {
-                var code = $(this).attr("id");
-                $('#codeapoger').val(code);
-                $.ajax({
-                    url: "Etudiant/fetching_students_for_editing.php",
-                    method: 'GET',
-                    data: {
-                        code: code
-                    },
-                    contentType: "application/json",
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#le_nom_modifier').val(data.nom);
-                        $('#le_prenom_modifier').val(data.prenom);
-                        $('#codeapoge_modifier').val(data.code_apoge);
-                        $('#cin_modifier').val(data.cne);
-                        $('#date_modifier').val(data.date_naissance);
-                        $('#email_modifier').val(data.email);
-                        $('#fil').val(data.id_filiere);
-                        $('#modifierUnEtudiant').modal('show');
-                    },
-                    error: function() {
-                        alert('failure');
-                    }
-                });
-
-            });
-        });
-    </script>
+    <script type="text/javascript" src="../layout/js/etudiant.js"></script>
 
 </body>
 
