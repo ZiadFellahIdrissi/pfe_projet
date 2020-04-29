@@ -15,7 +15,7 @@
         $resultatcount = mysqli_num_rows($resultat);
 
         if( $resultatcount!=0){
-            header('location: ../Etudiants.php?insert=faild');
+            header('location: ../Etudiants.php?insert=failed');
             exit();
         }else{
         

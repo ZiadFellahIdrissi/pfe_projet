@@ -2,7 +2,6 @@
 if (!empty($_GET['id_filiere'])) {
     include '../connection.php';
 ?>
-    <!-- ======================================================================== -->
     <!-- ===============un button pour ajoute un etudiant======================= -->
     <div class="col-6 col-md-4">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Etudiant à ce Filière</button>
@@ -29,7 +28,7 @@ if (!empty($_GET['id_filiere'])) {
                             </div>
                             <!-- ===================fin bloc de le nom et le prenom======================= -->
 
-                            <!-- =====================bloc code apuge et le cne======================= -->
+                            <!-- =====================bloc code apogee et le cne======================= -->
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
@@ -44,7 +43,7 @@ if (!empty($_GET['id_filiere'])) {
                                     </div>
                                 </div>
                             </div>
-                            <!-- ===================fin bloc de code apuge et le cne================== -->
+                            <!-- ===================fin bloc de code apogee et le cne================== -->
 
                             <div class="form-group">
                                 <label for="date" class="col-form-label">Date Naissance</label>
@@ -72,10 +71,9 @@ if (!empty($_GET['id_filiere'])) {
             </div>
         </div>
     </div>
-    <!-- ====================================================================================================================================================== -->
-    <!-- =============================le bloc de botton pour ajoute un etudiant terminer======================================================================= -->
+    <!-- ===============le bloc de botton pour ajoute un etudiant terminer=============== -->
 
-    <!-- =====================================formilar pour modifier un etudiant========================================== -->
+    <!-- ===============formulaire pour modifier un etudiant=============== -->
     <div class="modal fade" id="modifierUnEtudiant" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -99,7 +97,7 @@ if (!empty($_GET['id_filiere'])) {
                             </div>
                         </div>
 
-                        <!--code apuge et le cne -->
+                        <!--code apogee et le cne -->
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -155,7 +153,7 @@ if (!empty($_GET['id_filiere'])) {
             </div>
         </div>
     </div>
-    <!-- =====================================end formilar poir modifier un etudiant====================================== -->
+    <!-- =====================================end formulaire pour modifier un etudiant====================================== -->
 
     <br>
 

@@ -186,36 +186,8 @@
 
                     <!-- =============hado les msg li kital3o 3La 9bale delet ou insert ou update=============== -->
                     <?php
-                    $fullurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-                    if (strpos($fullurl, "inserting=failed")) {
-                    ?>
-                        <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            ce <strong>Filiere</strong> deja existe.
-                        </div>
-                    <?php
-                    }
-                    if (strpos($fullurl, "filiere=inserted")) {
-                    ?>
-                        <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Filiere</strong> ajouté avec succes.
-                        </div>
-                    <?php
-                    }
-                    if (strpos($fullurl, "filiere=deleted")) {
-                    ?>
-                        <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Filiere</strong> supprimé avec succes.
-                        </div>
-                    <?php
-                    }
-                    if (strpos($fullurl, "filiere=updated")) {
-                    ?>
-                        <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                            <strong>Filiere </strong> modifié avec succes.
-                        </div>
-                    <?php
-                    }
+                        include 'DML_Commentator.php';
+                        DMLCommentator("filiere");
                     ?>
                     <!-- =================================================== -->
                     

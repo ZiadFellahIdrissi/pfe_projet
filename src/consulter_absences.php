@@ -39,7 +39,73 @@ include 'connection.php';
                         </button>
                     </div> -->
         </div>
+        <!-- modification -->
+        <div class="modal fade" id="modifierAbsences" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
 
+                <div class="modal-body">
+
+                    <form action="Absences/modifier_absences.php" method="POST">
+                        <!-- le nom et le prenom-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="le_nom_modifier" class="col-form-label">Nom </label>
+                                        <input type="text" class="form-control" name="Nom" value="" id="le_nom_modifier" disabled>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="le_prenom_modifier" class="col-form-label">Prenom </label>
+                                    <input type="text" class="form-control" name="prenom" value="" id="le_prenom_modifier" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modul">Module</label>
+                            <select name="module" id="modul" class="form-control">
+                                <?php
+                                    $sql = "SELECT id_module,intitule FROM module where id_filiere=" . $_GET['id_filiere'];
+                                    $resultat = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                ?>
+                                        <option value='<?php echo $row["id_module"] ?>'><?php echo $row["intitule"] ?></option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="date_modifier" class="col-form-label">Date</label>
+                                    <input type="date" class="form-control" name="date" value="" id="date_modifier" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="nbHeurs_modifier" class="col-form-label">Nombre heures</label>
+                                    <input type="text" class="form-control" name="nbHeurs" value="" id="nbHeurs_modifier" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- modal footer -->
+                        <div class="modal-footer">
+                            <input type="hidden" id="abs_Id" name="abs_Id" value="">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="ajouter">Modifier</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- modification -->
         <div class="container mt-3 mb-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -68,9 +134,43 @@ include 'connection.php';
                         <a href="consulter_absences.php"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
                     </div>
                 </div>
+                <div class="table-responsive-sm absences">
+                    <?php
+                        $sql = 'SELECT nom,prenom,intitule,date_absence,h_absence
+                                FROM etudiant 
+                                join absence on etudiant.code_apoge=absence.id_etudiant
+                                join module on absence.id_module=module.id_module';
 
-                <div class="modal-body consulte_abssence">
-                    <?php include 'Absences/afficheTableauAbsences.php' ?>
+                        $resultat = mysqli_query($conn, $sql);
+                        $resultatcheck = mysqli_num_rows($resultat);
+                        if ($resultatcheck > 0) {
+                    ?>
+                            <table class="table table-bordered table-striped mydatatable">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Etudiant</th>
+                                        <th>Module</th>
+                                        <th>Date</th>
+                                        <th>Nombre heures</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                    <?php
+
+                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                    ?>
+                                        <tr>
+                                            <td><?php echo $row["nom"]." ".$row["prenom"]?></td>
+                                            <td><?php echo $row["intitule"] ?></td>
+                                            <td><?php echo $row["date_absence"] ?></td>
+                                            <td><?php echo $row["h_absence"].' H' ?></td>
+                                        </tr>
+                    <?php
+                                    }
+                                echo "<tbody>";
+                            echo "</table>";
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -83,21 +183,45 @@ include 'connection.php';
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../layout/js/animation.js"></script>
     <script>
+        function getParam(id) {
+            string = window.location.href;
+            var url = new URL(string);
+            return url.searchParams.get("idUrl" + id);
+        }
+        if (id = getParam("Filiere")) {
+            $("#filiere").val(id);
+            $(document).ready(function() {
+                var id_filiere = $("#filiere").val();
+                if (id_filiere) {
+                    $.ajax({
+                        url: "Absences/afficheTableauAbsencesParFiliere.php",
+                        method: "GET",
+                        data: {
+                            id_filiere: id_filiere
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $('.absences').html(data);
+                        }
+                    });
+                }
+            });
+        }
+
         $('.mydatatable').DataTable();
-    </script>
-    <script>
+
         $(document).ready(function() {
             $('#filiere').change(function() {
                 var id_filiere= $(this).val();
                 $.ajax({
-                    url: "Absences/afficheTableauAbsencesParGroupe.php",
+                    url: "Absences/afficheTableauAbsencesParFiliere.php",
                     method: "GET",
                     data: {
                         id_filiere: id_filiere
                     },
                     dataType: "text",
                     success: function(data) {
-                        $('.consulte_abssence').html(data);
+                        $('.absences').html(data);
                     }
                 });
             });
@@ -105,26 +229,25 @@ include 'connection.php';
     </script>
     <script>
         $(document).ready(function() {
-            $(document).on('click', '.open_modifierabsence', function() {
-                var abss_id = $(this).data('info');
-                console.log(abss_id);
-                $('#abs_Id').val(abss_id);
+            $(document).on('click', '.open_modifierAbsences', function() {
+                var abs_id = $(this).attr("id");
+                console.log(abs_id);
+                $('#abs_Id').val(abs_id);
                 $.ajax({
                     url: "Absences/fetching_absences_for_editing.php",
                     method: 'GET',
                     data: {
-                        abss_id: abss_id,
+                        abs_id: abs_id,
                     },
                     contentType: "application/json",
                     dataType: 'json',
                     success: function(data) {
-
                         $('#le_nom_modifier').val(data.nom);
                         $('#le_prenom_modifier').val(data.prenom);
                         $('#nbHeurs_modifier').val(data.h_absence);
                         $('#date_modifier').val(data.date_absence);
                         $('#modul').val(data.module);
-                        $('#modifierabsences').modal('show');
+                        $('#modifierAbsences').modal('show');
                         console.log(data.module);
                     },
                     error: function() {
