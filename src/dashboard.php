@@ -14,20 +14,23 @@ include 'connection.php';
     <title>Gestion des filieres</title>
 </head>
 <style type="text/css">
-    .top-left {
+/*    .top-left {
         position: absolute;
         top: 6.5%;
         left: 15.5%;
         text-shadow: 2px 2px 2px #000000;
+    }*/
+    .dash {
+        width: 55%;
     }
-
+    
     .col {
         position: relative;
         text-align: center;
         margin-bottom: 5%;
     }
 
-    kbd {
+/*    kbd {
         background-color: grey;
         color: #f7f7f7;
     }
@@ -42,7 +45,7 @@ include 'connection.php';
 
         img {
             width: 250px;
-        }
+        }*/
     }
 </style>
 
@@ -63,14 +66,14 @@ include 'connection.php';
                     </div> -->
         </div>
 
-        <!--  <div class="container home-stats text-center">
+         <div class="container home-stats text-center">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="stat ">
-                                <a type="button" class="btn btn-primary" href="Etudiants.php">
+                            <div class="stat">
+                                <a type="button" class="btn btn-primary dash" href="Etudiants.php">
                                     <i class="fas fa-user-graduate"></i>
-                                Etudiants
-                                    <span class="badge badge-light">
+                                <h6>Etudiants</h6>
+                                    <span class="badge badge-light text-center">
                                         <?php
                                         $sql = "SELECT * FROM etudiant";
                                         echo mysqli_num_rows(mysqli_query($conn, $sql));
@@ -78,13 +81,13 @@ include 'connection.php';
                                     </span>
                                 </a>
                             </div>
-                        </div>
+                        </div><br>
                         <div class="col-md-3">
                             <div class="stat ">
-                                <a type="button" class="btn btn-primary" href="Enseignant.php">
+                                <a type="button" class="btn btn-primary dash" href="Enseignant.php">
                                     <i class="fas fa-chalkboard-teacher"></i>
-                                Enseignants
-                                    <span class="badge badge-light">
+                                <h6>Enseignants</h6>
+                                    <span class="badge badge-light text-center">
                                         <?php
                                         $sql = "SELECT * FROM enseignant";
                                         echo mysqli_num_rows(mysqli_query($conn, $sql));
@@ -92,13 +95,13 @@ include 'connection.php';
                                     </span>
                                 </a>
                             </div>
-                        </div>
+                        </div><br>
                         <div class="col-md-3">
                             <div class="stat ">
-                                <a type="button" class="btn btn-primary" href="Filiere.php">
+                                <a type="button" class="btn btn-primary dash" href="Filiere.php">
                                     <i class="fas fa-university"></i>
-                                Filieres
-                                    <span class="badge badge-light">
+                                <h6>Filieres</h6>
+                                    <span class="badge badge-light text-center">
                                         <?php
                                         $sql = "SELECT * FROM filiere";
                                         echo mysqli_num_rows(mysqli_query($conn, $sql));
@@ -109,10 +112,10 @@ include 'connection.php';
                         </div>
                         <div class="col-md-3">
                             <div class="stat ">
-                                <a type="button" class="btn btn-primary" href="Modules.php">
+                                <a type="button" class="btn btn-primary dash" href="Modules.php">
                                     <i class="fab fa-stack-overflow"></i>
-                                Modules
-                                    <span class="badge badge-light">
+                                <h6>Modules</h6>
+                                    <span class="badge badge-light text-center">
                                         <?php
                                         $sql = "SELECT *
                                                     FROM module";
@@ -123,9 +126,9 @@ include 'connection.php';
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
-        <div class="container mt-3 mb-3">
+        <!-- <div class="container mt-3 mb-3">
             <div class="text-center">
                 <div class="row">
                     <div class="col">
@@ -184,7 +187,7 @@ include 'connection.php';
                             </div><br>
                         </a>
                     </div>
-                </div><br>
+                </div><br> -->
                 <!-- <div class="row">
                             <div class="col">
                                 <a href="Filiere.php" >

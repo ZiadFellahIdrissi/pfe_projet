@@ -12,8 +12,7 @@ include 'connection.php';
     <link href="../layout/css/animation.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="../layout/css/dashboard.css" rel="stylesheet">
-
-    <title>test5</title>
+    <title>Etudiants</title>
 </head>
 
 <style>
@@ -64,15 +63,11 @@ include 'connection.php';
             <br><br>
         </div>
     </main>
-    </div>
-    </div>
-
     <script type="text/javascript" src="../layout/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../layout/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../layout/js/animation.js"></script>
     <script type="text/javascript" src="../layout/js/etudiant.js"></script>
-
 </body>
 
 </html>

@@ -85,6 +85,7 @@ include 'connection.php';
                                     <tr>
                                         <th>Nom du Module</th>
                                         <th>Enseignant</th>
+                                        <th>Heures</th>
                                         <th>Filière</th>
                                     </tr>
                                 </thead>
@@ -96,6 +97,7 @@ include 'connection.php';
                                         <tr>
                                             <td><?php echo $row["intitule"] ?></t>
                                             <td><?php echo $row["prenom_enseignant"] . ' ' . $row["nom_enseignant"] ?></td>
+                                            <td><?php echo $row["horaire"] ?></td>
                                             <td><?php echo $row["nom_filiere"] ?></td>
                                         </tr>
                                 <?php
@@ -126,15 +128,12 @@ include 'connection.php';
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../layout/js/animation.js"></script>
     <script type="text/javascript" src="../layout/js/module.js"></script>
-    <!-- <script>
+    <script>
         $(document).ready(function() {
-            $(document).on('click', '.Open_modifierUnEtudiant', function() {
+            $(document).on('click', '.Open_modifierUnModule', function() {
                 var code = $(this).attr("id");
-                $('#codeapoger').val(code);
-
-                console.log(code);
                 $.ajax({
-                    url: "Etudiant/fetching_students_for_editing.php",
+                    url: "Modules/fetch_module_infos.php",
                     method: 'GET',
                     data: {
                         code: code
@@ -142,16 +141,11 @@ include 'connection.php';
                     contentType: "application/json",
                     dataType: 'json',
                     success: function(data) {
-
-                        $('#le_nom_modifier').val(data.nom);
-                        $('#le_prenom_modifier').val(data.prenom);
-                        $('#codeapoge_modifier').val(data.code_apoge);
-                        $('#cin_modifier').val(data.cen);
-                        $('#date_modifier').val(data.date_naissance);
-                        $('#email_modifier').val(data.email);
-                        $('#grou').val(data.id_groupe);
-                        $('#modifierUnEtudiant').modal('show');
-                        console.log(data.id_groupe);
+                        $('#id_module2').val(data.id_module);
+                        $('#le_nom2').val(data.intitule);
+                        $('#Heures2').val(data.horaire);
+                        $('#Enseignant2').val(data.id_enseignant);
+                        $('#modifierUnModule').modal('show');
                     },
                     error: function() {
                         alert('failure');
@@ -160,7 +154,7 @@ include 'connection.php';
 
             });
         });
-    </script> -->
+    </script>
 
 </body>
 
