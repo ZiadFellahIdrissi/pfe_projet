@@ -39,136 +39,138 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="col-md-6">
-                        <h6 style="color:red;">work in progress...</h6> 
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-primary active" for="afficheRespo">
+                                <input type="checkbox" id="afficheRespo" name="afficheRespo" checked> Affichier les responsables
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 offset-md-4">
+                        <a href="Enseignant.php"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
                     </div>
                 </div>
-                <br>
-                 <!-- ===============un button pour ajoute un enseignant======================= -->
-            <div class="col-6 col-md-4">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Enseignant</button>
-                <br>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <form action="Enseignant/ajoute_enseignant.php" method="POST">
-                                    <!-- =======================bloc de le nom et le prenom======================= -->
-                                    <div class="row">
-                                        <div class="col">
+                <!-- =========feetcheing all data into a table ================= -->
+                <div class="modal-body enseignant">
+                    <!-- ===============un button pour ajoute un enseignant======================= -->
+                    <div class="col-6 col-md-4">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Enseignant</button>
+                        <br>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form action="Enseignant/ajoute_enseignant.php" method="POST">
+                                            <!-- =======================bloc de le nom et le prenom======================= -->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="le_nom" class="col-form-label">Nom </label>
+                                                        <input type="text" class="form-control" name="Nom" id="le_nom" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="le_prenom" class="col-form-label">Prenom </label>
+                                                        <input type="text" class="form-control" name="prenom" id="le_prenom" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- ===================fin bloc de le nom et le prenom======================= -->
+
                                             <div class="form-group">
-                                                <label for="le_nom" class="col-form-label">Nom </label>
-                                                <input type="text" class="form-control" name="Nom" id="le_nom" required>
+                                                <label for="date" class="col-form-label">Date Naissance</label>
+                                                <input type="date" class="form-control" name="dateN" id="date" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email" class="col-form-label">Email</label>
+                                                <input type="email" class="form-control" name="email" id="date" required>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- =====================================formilar poir modifier un enseignant========================================== -->
+                    <div class="modal fade" id="modifierUnEnseignant" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-body">
+
+                                    <form action="Enseignant/modifier_enseignant.php" method="POST">
+                                        <!-- =======================bloc de le nom et le prenom======================= -->
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="le_nom_modifier" class="col-form-label">Nom </label>
+                                                    <input type="text" class="form-control" name="Nom" value="" id="le_nom_modifier" required>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="le_prenom_modifier" class="col-form-label">Prenom </label>
+                                                    <input type="text" class="form-control" name="prenom" value="" id="le_prenom_modifier" required>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="le_prenom" class="col-form-label">Prenom </label>
-                                                <input type="text" class="form-control" name="prenom" id="le_prenom" required>
-                                            </div>
+                                        <!-- ===================fin bloc de le nom et le prenom======================= -->
+
+                                        <div class="form-group">
+                                            <label for="date_modifier" class="col-form-label">Date Naissance</label>
+                                            <input type="date" class="form-control" name="dateN" value="" id="date_modifier" required>
                                         </div>
-                                    </div>
-                                    <!-- ===================fin bloc de le nom et le prenom======================= -->
 
-                                    <div class="form-group">
-                                        <label for="date" class="col-form-label">Date Naissance</label>
-                                        <input type="date" class="form-control" name="dateN" id="date" required>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="email_modifier" class="col-form-label">Email</label>
+                                            <input type="email" class="form-control" name="email" id="email_modifier" value="" required>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="email" class="col-form-label">Email</label>
-                                        <input type="email" class="form-control" name="email" id="date" required>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <input type=hidden value="" name="id_enseignant" id="id_enseignant">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" name="Modifier">Modifier</button>
+                                        </div>
+                                    </form>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- =====================================end modifier un enseignant====================================== -->
+
+                    <br>
+                    <!-- confirmation de la suppression du responsable -->
+                    <div class="modal fade" id="confermationAle" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <form action="Filiere/supprimer_filiere.php" method="POST">
+                                    <div class="modal-body">
+                                        <p style="color:#c0392b;">cet <strong>Enseignant</strong> est le responsable du filiere <strong id="fil"></strong></p>
+                                        <p>Veuillez d'abord l'omettre de la responsabilité avant le supprimer.</p>
+                                    </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
+                                        <input type="hidden" name="confirmation" id="confirmation" value="" />
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok!</button>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
                     </div>
+                    <!-- end confirmation de la suppression du responsable -->
+                    <?php include 'Enseignant/afficheTableauEnseignants.php'; ?>
                 </div>
             </div>
-            <br>
-                     <!-- =========feetcheing all data into a table ================= -->
-            <?php include 'Enseignant/afficheTableauEnseignants.php'; ?>
-
-            
-           
-
-            <!-- =====================================formilar poir modifier un enseignant========================================== -->
-            <div class="modal fade" id="modifierUnEnseignant" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-
-                        <div class="modal-body">
-
-                            <form action="Enseignant/modifier_enseignant.php" method="POST">
-                                <!-- =======================bloc de le nom et le prenom======================= -->
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="le_nom_modifier" class="col-form-label">Nom </label>
-                                            <input type="text" class="form-control" name="Nom" value="" id="le_nom_modifier" required>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="le_prenom_modifier" class="col-form-label">Prenom </label>
-                                            <input type="text" class="form-control" name="prenom" value="" id="le_prenom_modifier" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ===================fin bloc de le nom et le prenom======================= -->
-
-                                <div class="form-group">
-                                    <label for="date_modifier" class="col-form-label">Date Naissance</label>
-                                    <input type="date" class="form-control" name="dateN" value="" id="date_modifier" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email_modifier" class="col-form-label">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email_modifier" value="" required>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <input type=hidden value="" name="id_enseignant" id="id_enseignant">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" name="Modifier">Modifier</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- =====================================end modifier un enseignant====================================== -->
-
-            <br>
-            <!-- confirmation de la suppression du responsable -->
-            <div class="modal fade" id="confermationAle" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <form action="Filiere/supprimer_filiere.php" method="POST">
-                            <div class="modal-body">
-                                <p style="color:#c0392b;">cet <strong>Enseignant</strong> est le responsable du filiere <strong id="fil"></strong></p>
-                                <p>Veuillez d'abord l'omettre de la responsabilité avant le supprimer.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <input type="hidden" name="confirmation" id="confirmation" value="" />
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok!</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- end confirmation de la suppression du responsable -->
-        </div>
 
     </main>
-    </div>
-    </div>
     <script type="text/javascript" src="../layout/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../layout/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>

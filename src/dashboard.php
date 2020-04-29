@@ -14,38 +14,17 @@ include 'connection.php';
     <title>Gestion des filieres</title>
 </head>
 <style type="text/css">
-/*    .top-left {
-        position: absolute;
-        top: 6.5%;
-        left: 15.5%;
-        text-shadow: 2px 2px 2px #000000;
-    }*/
     .dash {
-        width: 55%;
+        width: 75%;
     }
-    
-    .col {
-        position: relative;
-        text-align: center;
+
+    .col-md-3 {
         margin-bottom: 5%;
     }
 
-/*    kbd {
-        background-color: grey;
-        color: #f7f7f7;
-    }
-
-    @media screen and (max-width: 921px) {
-        .top-left {
-            position: absolute;
-            top: 6.5%;
-            left: 21.5%;
-            text-shadow: 2px 2px 2px #000000;
-        }
-
-        img {
-            width: 250px;
-        }*/
+    .color {
+        background: rgb(226, 231, 238);
+        background: linear-gradient(232deg, rgba(226, 231, 238, 1) 33%, rgba(35, 151, 199, 1) 87%);
     }
 </style>
 
@@ -54,180 +33,90 @@ include 'connection.php';
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="titleH">Dashboard</h1>
-            <!-- <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group mr-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">hiiii</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">hiiii</button>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                            <span data-feather="calendar"></span>
-                            for now
-                        </button>
-                    </div> -->
         </div>
 
-         <div class="container home-stats text-center">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="stat">
-                                <a type="button" class="btn btn-primary dash" href="Etudiants.php">
-                                    <i class="fas fa-user-graduate"></i>
-                                <h6>Etudiants</h6>
-                                    <span class="badge badge-light text-center">
-                                        <?php
-                                        $sql = "SELECT * FROM etudiant";
-                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                        ?>
-                                    </span>
-                                </a>
-                            </div>
-                        </div><br>
-                        <div class="col-md-3">
-                            <div class="stat ">
-                                <a type="button" class="btn btn-primary dash" href="Enseignant.php">
-                                    <i class="fas fa-chalkboard-teacher"></i>
-                                <h6>Enseignants</h6>
-                                    <span class="badge badge-light text-center">
-                                        <?php
-                                        $sql = "SELECT * FROM enseignant";
-                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                        ?>
-                                    </span>
-                                </a>
-                            </div>
-                        </div><br>
-                        <div class="col-md-3">
-                            <div class="stat ">
-                                <a type="button" class="btn btn-primary dash" href="Filiere.php">
-                                    <i class="fas fa-university"></i>
-                                <h6>Filieres</h6>
-                                    <span class="badge badge-light text-center">
-                                        <?php
-                                        $sql = "SELECT * FROM filiere";
-                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                        ?>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat ">
-                                <a type="button" class="btn btn-primary dash" href="Modules.php">
-                                    <i class="fab fa-stack-overflow"></i>
-                                <h6>Modules</h6>
-                                    <span class="badge badge-light text-center">
-                                        <?php
-                                        $sql = "SELECT *
+        <div class="container home-stats text-center">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="stat">
+                        <a type="button" class="btn color dash" href="Etudiants.php">
+                            <i class="fas fa-user-graduate"></i>
+                            <h6>Etudiants</h6>
+                            <span class="badge badge-light text-center">
+                                <?php
+                                $sql = "SELECT * FROM etudiant";
+                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                ?>
+                            </span>
+                        </a>
+                    </div>
+                </div><br>
+                <div class="col-md-3">
+                    <div class="stat ">
+                        <a type="button" class="btn color dash" href="Enseignant.php">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h6>Enseignants</h6>
+                            <span class="badge badge-light text-center">
+                                <?php
+                                $sql = "SELECT * FROM enseignant";
+                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                ?>
+                            </span>
+                        </a>
+                    </div>
+                </div><br>
+                <div class="col-md-3">
+                    <div class="stat ">
+                        <a type="button" class="btn color dash" href="Filiere.php">
+                            <i class="fas fa-university"></i>
+                            <h6>Filieres</h6>
+                            <span class="badge badge-light text-center">
+                                <?php
+                                $sql = "SELECT * FROM filiere";
+                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                ?>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat ">
+                        <a type="button" class="btn color dash" href="Modules.php">
+                            <i class="fab fa-stack-overflow"></i>
+                            <h6>Modules</h6>
+                            <span class="badge badge-light text-center">
+                                <?php
+                                $sql = "SELECT *
                                                     FROM module";
-                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                        ?>
-                                    </span>
-                                </a>
+                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                ?>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <div class="container">
+            <div class="row">
+
+                <div class="col">
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            <img src="../img/Dashboard/10.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-        <!-- <div class="container mt-3 mb-3">
-            <div class="text-center">
-                <div class="row">
-                    <div class="col">
-                        <a href="Etudiants.php">
-                            <img src="../img/Dashboard/1.png" onmouseover="this.src='../img/Dashboard/2.png';" onmouseout="this.src='../img/Dashboard/1.png'" class="rounded" title="Etudiants" height="130px">
-                            <div class="top-left h6">
-                                <kbd>
-                                    <?php
-                                    $sql = "SELECT *
-                                                        FROM etudiant";
-                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                    ?>
-                                </kbd>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="Enseignant.php">
-                            <img src="../img/Dashboard/5.png" onmouseover="this.src='../img/Dashboard/6.png';" onmouseout="this.src='../img/Dashboard/5.png'" class="rounded" title="Enseignants" height="130px">
-                            <div class="top-left h6">
-                                <kbd>
-                                    <?php
-                                    $sql = "SELECT *
-                                                        FROM enseignant";
-                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                    ?>
-                                </kbd>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="Modules.php">
-                            <img src="../img/Dashboard/7.png" onmouseover="this.src='../img/Dashboard/8.png';" onmouseout="this.src='../img/Dashboard/7.png'" class="rounded" title="Modules" height="130px">
-                            <div class="top-left h6">
-                                <kbd>
-                                    <?php
-                                    $sql = "SELECT *
-                                                        FROM module";
-                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                    ?>
-                                </kbd>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="Filiere.php">
-                            <img src="../img/Dashboard/3.png" onmouseover="this.src='../img/Dashboard/4.png';" onmouseout="this.src='../img/Dashboard/3.png'" class="rounded" title="Filères" height="130px">
-                            <div class="top-left h6">
-                                <kbd>
-                                    <?php
-                                    $sql = "SELECT *
-                                                        FROM filiere";
-                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                    ?>
-                                </kbd>
-                            </div><br>
-                        </a>
-                    </div>
-                </div><br> -->
-                <!-- <div class="row">
-                            <div class="col">
-                                <a href="Filiere.php" >
-                                    <img src="../img/Dashboard/3.png" onmouseover="this.src='../img/Dashboard/4.png';" onmouseout="this.src='../img/Dashboard/3.png'" class="rounded" title="Filères" height="130px">
-                                    <div class="top-left h6">
-                                        <kbd>
-                                            <?php
-                                            $sql = "SELECT *
-                                                        FROM filiere";
-                                            echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                            ?>
-                                        </kbd>
-                                    </div><br>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="Modules.php" >
-                                    <img src="../img/Dashboard/7.png" onmouseover="this.src='../img/Dashboard/8.png';" onmouseout="this.src='../img/Dashboard/7.png'" class="rounded" title="Modules" height="130px">
-                                    <div class="top-left h6">
-                                        <kbd>
-                                            <?php
-                                            $sql = "SELECT *
-                                                        FROM module";
-                                            echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                            ?>
-                                        </kbd>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="Absences.php" >
-                                    <img src="../img/Dashboard/9.png" onmouseover="this.src='../img/Dashboard/10.png';" onmouseout="this.src='../img/Dashboard/9.png'" class="rounded" title="Notes" height="130px">
-                                </a>
-                            </div>
-                        </div> -->
+                <div class="col">
+                    <?php include "cal.html" ?>
+                </div>
             </div>
         </div>
+        <br> <br> <br>
     </main>
-    </div>
-    </div>
     <script type="text/javascript" src="../layout/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../layout/js/animation.js"></script>
