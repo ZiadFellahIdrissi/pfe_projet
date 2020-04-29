@@ -105,7 +105,7 @@ include 'connection.php';
                 <div class="col">
                     <div class="col cardcol">
                         <div class="card" style="width: 18rem;">
-                            <a href="#">
+                            <a href="Absences.php">
                                 <img src="../img/Dashboard/9.png" onmouseover="this.src='../img/Dashboard/10.png';" onmouseout="this.src='../img/Dashboard/9.png'" class="card-img-top" title="Notes">
                             </a>
                             <div class="card" style="width: 18rem;">
