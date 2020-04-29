@@ -16,14 +16,14 @@ if (id = getParam("Filiere")) {
         var id_filiere = $("#filiere").val();
         if (id_filiere) {
             $.ajax({
-                url: "Etudiant/afficheEtudiantsParFiliere.php",
+                url: "Absences/afficheTableauAbsencesParFiliere.php",
                 method: "GET",
                 data: {
                     id_filiere: id_filiere
                 },
                 dataType: "text",
                 success: function(data) {
-                    $('.etudiants').html(data);
+                    $('.absences').html(data);
                 }
             });
         }
@@ -35,44 +35,40 @@ $('.mydatatable').DataTable();
 $(document).ready(function() {
     $('#filiere').change(function() {
         var id_filiere = $(this).val();
-
-        if (id_filiere) {
-            $.ajax({
-                url: "Etudiant/afficheEtudiantsParFiliere.php",
-                method: "GET",
-                data: {
-                    id_filiere: id_filiere
-                },
-                dataType: "text",
-                success: function(data) {
-                    $('.etudiants').html(data);
-                }
-            });
-        }
+        $.ajax({
+            url: "Absences/afficheTableauAbsencesParFiliere.php",
+            method: "GET",
+            data: {
+                id_filiere: id_filiere
+            },
+            dataType: "text",
+            success: function(data) {
+                $('.absences').html(data);
+            }
+        });
     });
 });
-
 $(document).ready(function() {
-    $(document).on('click', '.Open_modifierUnEtudiant', function() {
-        var code = $(this).attr("id");
-        $('#codeapoger').val(code);
+    $(document).on('click', '.open_modifierAbsences', function() {
+        var abs_id = $(this).attr("id");
+        console.log(abs_id);
+        $('#abs_Id').val(abs_id);
         $.ajax({
-            url: "Etudiant/fetching_students_for_editing.php",
+            url: "Absences/fetching_absences_for_editing.php",
             method: 'GET',
             data: {
-                code: code
+                abs_id: abs_id,
             },
             contentType: "application/json",
             dataType: 'json',
             success: function(data) {
                 $('#le_nom_modifier').val(data.nom);
                 $('#le_prenom_modifier').val(data.prenom);
-                $('#codeapoge_modifier').val(data.code_apoge);
-                $('#cin_modifier').val(data.cne);
-                $('#date_modifier').val(data.date_naissance);
-                $('#email_modifier').val(data.email);
-                $('#fil').val(data.id_filiere);
-                $('#modifierUnEtudiant').modal('show');
+                $('#nbHeurs_modifier').val(data.h_absence);
+                $('#date_modifier').val(data.date_absence);
+                $('#modul').val(data.id_module);
+                $('#modifierAbsences').modal('show');
+                console.log(data.module);
             },
             error: function() {
                 alert('failure');
