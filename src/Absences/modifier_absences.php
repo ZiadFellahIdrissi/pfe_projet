@@ -1,7 +1,7 @@
 <?php
     include '../connection.php';
     if(isset($_POST["modifier"])){
-        $date_abssence=$_POST["date"];
+        $date_absence=$_POST["date"];
         $nbHeurs=$_POST["nbHeurs"];
         $module=$_POST["module"];
         $abs_id=$_POST["abs_Id"];
@@ -20,7 +20,7 @@
                 WHERE `absence`.`id_absence` =$abs_id;";
 
         mysqli_query($conn , $sql);
-
+        // echo $date_absence .' '.$nbHeurs.' '.$module .' '.$row["fil"];;
         header("location: ../consulter_absences.php?absence=updated&idUrlFiliere=$id_filiere");
     }
 ?>
