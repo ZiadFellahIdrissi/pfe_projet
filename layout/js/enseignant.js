@@ -39,3 +39,14 @@ $(document).ready(function() {
         });
     });
 });
+$(document).ready(function() {
+    $(document).on('click', '#afficheRespo', function() {
+        $.ajax({
+            url: "Enseignant/affiche_responsables.php",
+            dataType: "text",
+            success: function(data) {
+                $('.enseignant').html(data);
+            }
+        });
+    });
+});
