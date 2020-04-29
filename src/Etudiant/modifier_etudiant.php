@@ -2,12 +2,12 @@
     include '../connection.php';
     if($_POST["codeapoger"]!=""){
         $oldCode=$_POST["codeapoger"];
-        $cin = $_POST["cin"];
+        $cin = mysqli_real_escape_string($conn, $_POST["cin"]);
         $code_apoge =$_POST["codeapoge"];
-        $nom =$_POST["Nom"];
-        $prenom=$_POST["prenom"];
+        $nom = mysqli_real_escape_string($conn, $_POST["Nom"]);
+        $prenom = mysqli_real_escape_string($conn, $_POST["prenom"]);
         $date_naissance=$_POST["dateN"];
-        $email=$_POST["email"];
+        $email=mysqli_real_escape_string($conn, $_POST["email"]);
         $filiere=$_POST["filiere"];
 
 
@@ -15,7 +15,7 @@
                                                  WHERE cne = $cin
                                                  AND code_apoge = $code_apoge")))
         {
-            header('location: ../Etudiants.php?insert=failed');
+            header('location: ../Etudiants.php?inserting=failed');
             exit();
         }
 

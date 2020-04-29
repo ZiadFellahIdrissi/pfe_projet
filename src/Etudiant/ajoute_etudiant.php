@@ -2,12 +2,12 @@
     include '../connection.php';
 
     if(isset($_POST['ajouter'])){
-        $nom=$_POST['Nom'];
-        $prenom=$_POST['prenom'];
+        $nom=mysqli_real_escape_string($conn, $_POST['Nom']);
+        $prenom=mysqli_real_escape_string($conn, $_POST['prenom']);
         $codeapoge=$_POST['codeapoge'];
-        $cin=$_POST['cin'];
+        $cin=mysqli_real_escape_string($conn, $_POST['cin']);
         $dateN=$_POST['dateN'];
-        $email=$_POST['email'];
+        $email=mysqli_real_escape_string($conn, $_POST['email']);
         $filiere=$_POST['filiere'];
 
         $sqltest="SELECT * from etudiant where code_apoge= $codeapoge or cne= '$cin'";
@@ -15,7 +15,7 @@
         $resultatcount = mysqli_num_rows($resultat);
 
         if( $resultatcount!=0){
-            header('location: ../Etudiants.php?insert=failed');
+            header('location: ../Etudiants.php?inserting=failed');
             exit();
         }else{
         

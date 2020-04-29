@@ -9,10 +9,14 @@
     <link href="../layout/css/animation.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="../layout/css/dashboard.css" rel="stylesheet">
-    <title>test5</title>
+    <title>Enseignants</title>
 </head>
 
-<!-- Custom styles for this template -->
+<style>
+    .modal-header {
+        background-color: #dcdde1;
+    }
+</style>
 
 <body>
     <?php include 'header.php' ?>
@@ -23,16 +27,6 @@
         ?>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="titleH">Enseignants</h1>
-            <!--                     <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group mr-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">hiiii</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">hiiii</button>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                            <span data-feather="calendar"></span>
-                            for now
-                        </button>
-                    </div> -->
         </div>
         <div class="container mt-3 mb-3">
             <nav aria-label="breadcrumb">
@@ -41,8 +35,15 @@
                     <li class="breadcrumb-item active" aria-current="page">Enseignants</li>
                 </ol>
             </nav>
-            <!-- ======================================================================== -->
-            <!-- ===============un button pour ajoute un enseignant======================= -->
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="col-md-6">
+                        <h6 style="color:red;">work in progress...</h6> 
+                    </div>
+                </div>
+                <br>
+                 <!-- ===============un button pour ajoute un enseignant======================= -->
             <div class="col-6 col-md-4">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Enseignant</button>
                 <br>
@@ -89,7 +90,12 @@
                     </div>
                 </div>
             </div>
-            <!-- =============================le bloc de botton pour ajoute un enseignant terminer======================================================================= -->
+            <br>
+                     <!-- =========feetcheing all data into a table ================= -->
+            <?php include 'Enseignant/afficheTableauEnseignants.php'; ?>
+
+            
+           
 
             <!-- =====================================formilar poir modifier un enseignant========================================== -->
             <div class="modal fade" id="modifierUnEnseignant" tabindex="-1" role="dialog" aria-hidden="true">
@@ -137,9 +143,10 @@
                     </div>
                 </div>
             </div>
-            <!-- =====================================end formilar poir modifier un enseignant====================================== -->
+            <!-- =====================================end modifier un enseignant====================================== -->
 
             <br>
+            <!-- confirmation de la suppression du responsable -->
             <div class="modal fade" id="confermationAle" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -156,74 +163,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- =========feetcheing all data into a table ================= -->
-            <div class="table-responsive-sm">
-                <?php
-                include 'connection.php';
-
-                $sql = "SELECT *FROM enseignant";
-
-                $resultat = mysqli_query($conn, $sql);
-                $resultatcheck = mysqli_num_rows($resultat);
-
-                if ($resultatcheck > 0) {
-                ?>
-                    <table class="table table-bordered table-striped mydatatable">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Nom</th>
-                                <th>Prenom</th>
-                                <th>Telephone</th>
-                                <th>Email</th>
-                                <th>supprimer</th>
-                                <th>Modifier</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-
-                            while ($row = mysqli_fetch_assoc($resultat)) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $row["nom_enseignant"] ?></t>
-                                    <td><?php echo $row["prenom_enseignant"] ?></td>
-                                    <td><?php echo $row["telephone_enseignant"] ?></td>
-                                    <td><?php echo $row["email_enseignant"] ?></td>
-                                    <td>
-                                        <?php
-                                        $sqlF = " SELECT * FROM filiere WHERE responsable_id = '" . $row["id_enseignant"] . "'";
-                                        $resultatF = mysqli_query($conn, $sqlF);
-                                        $rowF = mysqli_fetch_assoc($resultatF);
-                                        $checkF = mysqli_num_rows($resultatF);
-                                        if ($checkF > 0) {
-                                        ?>
-                                            <img id="<?php echo $rowF["nom_filiere"] ?>" style="cursor:pointer;" width=20 heigth=20 src="https://bit.ly/2UwQb08" class="open-confirmation" data-toggle="modal">
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <a href="Enseignant/supprimer_enseignant.php?id=<?php echo $row["id_enseignant"] ?>">
-                                                <img width=20 heigth=20 src="https://bit.ly/2UwQb08">
-                                            </a>
-                                        <?php
-                                        }
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <input type="button" value="Modifier" id="<?php echo $row["id_enseignant"] ?>" data-toggle="modal" class="btn btn-info btn-xs Open_modifierEnseignant">
-                                    </td>
-                                </tr>
-                        <?php
-                            }
-                            echo "</tbody>";
-                            echo "</table>";
-                        }
-                        ?>
-            </div>
-            <!-- =================end=================================== -->
-
-            <!-- ==================================================================== -->
-
+            <!-- end confirmation de la suppression du responsable -->
         </div>
 
     </main>
