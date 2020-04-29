@@ -50,7 +50,7 @@
           </li>
 
           <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="src/dashboard.php">Log In</a>
+            <a class="btn btn btn-outline-dark" href="login_page.php">Log In</a>
           </li>
         </ul>
       </div>

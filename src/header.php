@@ -35,7 +35,6 @@
                                 Dashboard
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="Etudiants.php">
                                 <span><i class="fas fa-user-graduate"></i></span>
@@ -53,7 +52,6 @@
                         <li class="nav-item ">
                             <a class="nav-link" href="Filiere.php">
                                 <span><i class="fas fa-university"></i></span>
-
                                 Filiere
                             </a>
                             <!-- <ul>
@@ -83,19 +81,19 @@
                                 Absences <span> <i class="fas fa-angle-down"></i></span>
                             </a>
                             <ul>
-                                <li class="MyNonActive"><a class="nav-link" href="consulter_absences.php"> <span></span>Consulte Absences</a></li>
-                                <li class="MyNonActive"><a class="nav-link" href="ajouter_absences.php"> <span></span>Ajouter Absences</a>
+                                <li class="MyNonActive"><a class="nav-link" href="consulter_absences.php"> <span></span>Consulter Absences</a></li>
+                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span><span style="color: red;">Gestion des Absences</span></a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="#">
                                 <span><i class="fas fa-file"></i></span>
-                                Examen <span> <i class="fas fa-angle-down"></i></span>
+                                <span style="color: red;"> Notes </span> <span> <i class="fas fa-angle-down"></i></span>
                             </a>
                             <ul>
-                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span>Examen</a></li>
-                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span>Gestion des Notes</a>
+                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span><span style="color: red;">Consulter Notes</span></a></li>
+                                <li class="MyNonActive"><a class="nav-link" href="#"> <span></span><span style="color: red;">Gestion des Notes</span></a>
                                 </li>
                             </ul>
                         </li>

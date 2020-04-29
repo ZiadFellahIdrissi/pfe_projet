@@ -3,10 +3,10 @@
 
     if(isset($_POST["Modifier"])){
         $id_enseignant=$_POST["id_enseignant"];
-        $nom=$_POST["Nom"];
-        $prenom=$_POST["prenom"];
+        $nom=mysqli_real_escape_string($conn, $_POST["Nom"]);
+        $prenom=mysqli_real_escape_string($conn, $_POST["prenom"]);
         $telephone=$_POST["dateN"];
-        $email=$_POST["email"];
+        $email=mysqli_real_escape_string($conn, $_POST["email"]);
 
         $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM enseignant
                                                      WHERE id_enseignant=$id_enseignant"));

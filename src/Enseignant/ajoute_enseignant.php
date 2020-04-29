@@ -2,10 +2,10 @@
 include '../connection.php';
 
 if(isset($_POST['ajouter'])){
-        $nom=$_POST['Nom'];
-        $prenom=$_POST['prenom'];
-        $tele=$_POST['dateN'];
-        $email=$_POST['email'];
+        $nom=mysqli_real_escape_string($conn, $_POST['Nom']);
+        $prenom=mysqli_real_escape_string($conn, $_POST['prenom']);
+        $tel=$_POST['dateN'];
+        $email=mysqli_real_escape_string($conn, $_POST['email']);
 
         $sqltest = "SELECT nom_enseignant, prenom_enseignant FROM enseignant
         			WHERE (nom_enseignant='$nom'
@@ -15,7 +15,7 @@ if(isset($_POST['ajouter'])){
         include 'verificationEmail.php';
 
         $sql = "INSERT INTO `enseignant`(`nom_enseignant`, `prenom_enseignant`, `email_enseignant`, `telephone_enseignant`)
-        		VALUES ('$nom', '$prenom', '$email', '$tele')";
+        		VALUES ('$nom', '$prenom', '$email', '$tel')";
         mysqli_query($conn , $sql);
         header('location: ../Enseignant.php?enseignant=inserted');
 }

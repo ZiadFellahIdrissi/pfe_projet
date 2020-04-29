@@ -39,3 +39,19 @@ $(document).ready(function() {
         });
     });
 });
+
+$(document).ready(function() {
+    $(document).on('click', '#afficheRespo', function() {
+        $.ajax({
+            url: "Enseignant/affiche_responsables.php",
+            dataType: "text",
+            success: function(data) {
+                $('.enseignant').html(data);
+                $('#afficheRespo').html("Afficher tous les enseignants");
+                $('#afficheRespo').attr('href', "Enseignant.php");
+                $('.titleH').html("Responsables");
+                $('.aff').html("Enseignants -> Responsables")
+            }
+        });
+    });
+});
