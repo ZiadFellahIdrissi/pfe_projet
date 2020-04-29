@@ -21,7 +21,9 @@ include 'connection.php';
     .col-md-3 {
         margin-bottom: 5%;
     }
-
+    .cardcol {
+        margin-top: 14%;
+    }
     .color {
         background: rgb(226, 231, 238);
         background: linear-gradient(232deg, rgba(226, 231, 238, 1) 33%, rgba(35, 151, 199, 1) 87%);
@@ -39,7 +41,7 @@ include 'connection.php';
             <div class="row">
                 <div class="col-md-3">
                     <div class="stat">
-                        <a type="button" class="btn color dash" href="Etudiants.php">
+                        <a type="button" class="btn btn-info dash" href="Etudiants.php">
                             <i class="fas fa-user-graduate"></i>
                             <h6>Etudiants</h6>
                             <span class="badge badge-light text-center">
@@ -53,7 +55,7 @@ include 'connection.php';
                 </div><br>
                 <div class="col-md-3">
                     <div class="stat ">
-                        <a type="button" class="btn color dash" href="Enseignant.php">
+                        <a type="button" class="btn btn-info dash" href="Enseignant.php">
                             <i class="fas fa-chalkboard-teacher"></i>
                             <h6>Enseignants</h6>
                             <span class="badge badge-light text-center">
@@ -67,7 +69,7 @@ include 'connection.php';
                 </div><br>
                 <div class="col-md-3">
                     <div class="stat ">
-                        <a type="button" class="btn color dash" href="Filiere.php">
+                        <a type="button" class="btn btn-info dash" href="Filiere.php">
                             <i class="fas fa-university"></i>
                             <h6>Filieres</h6>
                             <span class="badge badge-light text-center">
@@ -81,7 +83,7 @@ include 'connection.php';
                 </div>
                 <div class="col-md-3">
                     <div class="stat ">
-                        <a type="button" class="btn color dash" href="Modules.php">
+                        <a type="button" class="btn btn-info dash" href="Modules.php">
                             <i class="fab fa-stack-overflow"></i>
                             <h6>Modules</h6>
                             <span class="badge badge-light text-center">
@@ -101,11 +103,15 @@ include 'connection.php';
             <div class="row">
 
                 <div class="col">
-                    <div class="col">
+                    <div class="col cardcol">
                         <div class="card" style="width: 18rem;">
-                            <img src="../img/Dashboard/10.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#">
+                                <img src="../img/Dashboard/9.png" onmouseover="this.src='../img/Dashboard/10.png';" onmouseout="this.src='../img/Dashboard/9.png'" class="card-img-top" title="Notes">
+                            </a>
+                            <div class="card" style="width: 18rem;">
+                                <a href="#" style="border-style: solid; border-color:red;">
+                                    <img src="../img/Dashboard/11.png" onmouseover="this.src='../img/Dashboard/12.png';" onmouseout="this.src='../img/Dashboard/11.png'" class="card-img-top" title="Notes">
+                                </a>
                             </div>
                         </div>
                     </div>

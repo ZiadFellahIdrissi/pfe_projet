@@ -29,7 +29,7 @@
                 while ($row = mysqli_fetch_assoc($resultat)) {
                 ?>
                     <tr>
-                        <td><?php echo $row["nom_enseignant"] ?></t>
+                        <td><?php echo $row["nom_enseignant"] ?></td>
                         <td><?php echo $row["prenom_enseignant"] ?></td>
                         <td><?php echo $row["telephone_enseignant"] ?></td>
                         <td><?php echo $row["email_enseignant"] ?></td>
@@ -41,7 +41,7 @@
                 echo "</table>";
             }
             ?>
-            <script>
-                $('.mydatatable').DataTable();
-            </script>
+    <script>
+        $('.mydatatable').DataTable();
+    </script>
 </div>

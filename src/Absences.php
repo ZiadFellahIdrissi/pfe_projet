@@ -44,7 +44,7 @@
                             <div class="col">
                                 <a href="#" >
                                     <!-- <img class="img" src="../img/Absences/1.png" onmouseover="this.src='../img/Absences/2.png';" onmouseout="this.src='../img/Absences/1.png'"class="rounded" title="Ajouter Absences"> -->
-                                    <img  style="border-style: solid; border-color:red;" src="../img/Absences/1.png" class="rounded" title="Ajouter Absences">
+                                    <img style="border-style: solid; border-color:red;" src="../img/Absences/1.png" class="rounded" title="Ajouter Absences">
                                 </a>
                             </div>
                             <div class="col">
