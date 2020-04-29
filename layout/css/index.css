@@ -1,0 +1,34 @@
+p {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+header {
+    background: url("../../img/index/1.jpg");
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+header:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-image: url("../../img/index/wave-bottom.svg");
+    height: 275px;
+}
+
+.navbar {
+    padding: .7rem;
+}
+
+.navbar-nav li {
+    padding-right: 3.5rem;
+}
+
+nav {
+    font-weight: bold;
+}

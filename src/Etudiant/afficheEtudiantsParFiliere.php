@@ -1,11 +1,10 @@
 <?php
-if (!empty($_GET['id_groupe'])) {
+if (!empty($_GET['id_filiere'])) {
     include '../connection.php';
 ?>
-    <!-- ======================================================================== -->
     <!-- ===============un button pour ajoute un etudiant======================= -->
     <div class="col-6 col-md-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">ajoute un etudiant</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Etudiant à ce Filière</button>
         <br>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -29,7 +28,7 @@ if (!empty($_GET['id_groupe'])) {
                             </div>
                             <!-- ===================fin bloc de le nom et le prenom======================= -->
 
-                            <!-- =====================bloc code apuge et le cne======================= -->
+                            <!-- =====================bloc code apogee et le cne======================= -->
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
@@ -39,12 +38,12 @@ if (!empty($_GET['id_groupe'])) {
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="cin" class="col-form-label">Cen</label>
+                                        <label for="cin" class="col-form-label">Cne</label>
                                         <input type="text" class="form-control" name="cin" id="cin" required>
                                     </div>
                                 </div>
                             </div>
-                            <!-- ===================fin bloc de code apuge et le cne================== -->
+                            <!-- ===================fin bloc de code apogee et le cne================== -->
 
                             <div class="form-group">
                                 <label for="date" class="col-form-label">Date Naissance</label>
@@ -58,7 +57,7 @@ if (!empty($_GET['id_groupe'])) {
 
 
                             <div class="form-group">
-                                <input type="hidden" name="groupe" value="<?php echo $_GET['id_groupe'] ?>" class="form-control" >
+                                <input type="hidden" name="filiere" value="<?php echo $_GET['id_filiere'] ?>" class="form-control">
                             </div>
 
                             <div class="modal-footer">
@@ -72,10 +71,9 @@ if (!empty($_GET['id_groupe'])) {
             </div>
         </div>
     </div>
-    <!-- ====================================================================================================================================================== -->
-    <!-- =============================le bloc de botton pour ajoute un etudiant terminer======================================================================= -->
+    <!-- ===============le bloc de botton pour ajoute un etudiant terminer=============== -->
 
-    <!-- =====================================formilar pour modifier un etudiant========================================== -->
+    <!-- ===============formulaire pour modifier un etudiant=============== -->
     <div class="modal fade" id="modifierUnEtudiant" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -99,7 +97,7 @@ if (!empty($_GET['id_groupe'])) {
                             </div>
                         </div>
 
-                        <!--code apuge et le cne -->
+                        <!--code apogee et le cne -->
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -129,14 +127,14 @@ if (!empty($_GET['id_groupe'])) {
 
                         <!-- groupe -->
                         <div class="form-group">
-                            <label for="grou">Groupe</label>
-                            <select name="groupe" id="grou" class="form-control">
+                            <label for="fil">Groupe</label>
+                            <select name="filiere" id="fil" class="form-control">
                                 <?php
-                                $sql = "SELECT id_groupe,groupe_nom FROM groupe";
+                                $sql = "SELECT id_filiere,nom_filiere FROM filiere";
                                 $resultat = mysqli_query($conn, $sql);
                                 while ($row = mysqli_fetch_assoc($resultat)) {
                                 ?>
-                                    <option value='<?php echo $row["id_groupe"] ?>'><?php echo $row["groupe_nom"] ?></option>
+                                    <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -155,7 +153,7 @@ if (!empty($_GET['id_groupe'])) {
             </div>
         </div>
     </div>
-    <!-- =====================================end formilar poir modifier un etudiant====================================== -->
+    <!-- =====================================end formulaire pour modifier un etudiant====================================== -->
 
     <br>
 
@@ -164,15 +162,15 @@ if (!empty($_GET['id_groupe'])) {
 
     <div class="table-responsive-sm">
         <?php
-        $sql = 'SELECT cen, code_apoge,date_naissance,email,nom,prenom,id_groupe
-        FROM etudiant WHERE id_groupe=' . $_GET['id_groupe'];
+        $sql = 'SELECT cne, code_apoge,date_naissance,email,nom,prenom,id_filiere
+                FROM etudiant WHERE id_filiere=' . $_GET['id_filiere'];
 
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
         if ($resultatcheck > 0) {
         ?>
             <table class="table table-bordered table-striped mydatatable">
-                <thead>
+                <thead class="thead-dark">
                     <tr>
                         <th>Code Apoge</th>
                         <th>Cin</th>
@@ -191,7 +189,7 @@ if (!empty($_GET['id_groupe'])) {
                     ?>
                         <tr>
                             <td><?php echo $row["code_apoge"] ?></t>
-                            <td><?php echo $row["cen"] ?></td>
+                            <td><?php echo $row["cne"] ?></td>
                             <td><?php echo $row["nom"] ?></td>
                             <td><?php echo $row["prenom"] ?></td>
                             <td><?php echo $row["date_naissance"] ?></td>
@@ -212,7 +210,9 @@ if (!empty($_GET['id_groupe'])) {
                 }
                 ?>
     </div>
+    <script>
+        $('.mydatatable').DataTable();
+    </script>
 <?php
-} else
-    echo '<p class="text-danger"><b>Choise un groupe ..!</b></p>'
+}
 ?>

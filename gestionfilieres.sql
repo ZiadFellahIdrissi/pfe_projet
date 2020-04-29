@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 25, 2020 at 04:54 PM
+-- Generation Time: Apr 28, 2020 at 07:25 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -25,34 +25,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `abssence`
+-- Table structure for table `absence`
 --
 
-DROP TABLE IF EXISTS `abssence`;
-CREATE TABLE IF NOT EXISTS `abssence` (
-  `id_abssence` int(5) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `absence`;
+CREATE TABLE IF NOT EXISTS `absence` (
+  `id_absence` int(5) NOT NULL AUTO_INCREMENT,
   `id_etudiant` int(10) NOT NULL,
   `id_module` int(5) NOT NULL,
-  `date_abssence` date DEFAULT NULL,
-  `h_abssance` double(100,2) DEFAULT NULL,
-  PRIMARY KEY (`id_abssence`),
+  `date_absence` date DEFAULT NULL,
+  `h_absence` double(100,2) DEFAULT NULL,
+  PRIMARY KEY (`id_absence`),
   KEY `id_module` (`id_module`),
   KEY `id_etudiant` (`id_etudiant`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `abssence`
+-- Dumping data for table `absence`
 --
 
-INSERT INTO `abssence` (`id_abssence`, `id_etudiant`, `id_module`, `date_abssence`, `h_abssance`) VALUES
-(1, 17006034, 1, '2019-03-18', 3.00),
-(2, 17006034, 2, '2019-03-03', 1.50),
-(4, 13154827, 1, '2019-03-18', 1.50),
-(5, 13154827, 2, '2019-03-03', 1.50),
-(6, 17148856, 7, '2019-05-02', 3.00),
-(7, 17148856, 8, '2019-04-20', 1.50),
-(8, 16154875, 6, '2019-12-20', 3.00),
-(9, 16154875, 5, '2019-10-05', 1.50);
+INSERT INTO `absence` (`id_absence`, `id_etudiant`, `id_module`, `date_absence`, `h_absence`) VALUES
+(1, 17006034, 1, '2019-03-18', 1.30),
+(2, 17006034, 2, '2019-03-03', 1.30),
+(4, 13154827, 1, '2020-04-15', 1.30),
+(5, 13154827, 2, '2020-04-13', 3.00);
 
 -- --------------------------------------------------------
 
@@ -104,22 +100,21 @@ INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `prenom_enseignant`
 DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `code_apoge` int(10) NOT NULL,
-  `cen` varchar(20) NOT NULL,
+  `cne` varchar(20) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `date_naissance` date NOT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `id_groupe` int(5) NOT NULL,
+  `id_filiere` int(5) NOT NULL,
   PRIMARY KEY (`code_apoge`),
-  UNIQUE KEY `cen` (`cen`),
-  KEY `id_groupe` (`id_groupe`)
+  UNIQUE KEY `cen` (`cne`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `etudiant`
 --
 
-INSERT INTO `etudiant` (`code_apoge`, `cen`, `nom`, `prenom`, `date_naissance`, `email`, `id_groupe`) VALUES
+INSERT INTO `etudiant` (`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, `email`, `id_filiere`) VALUES
 (14574586, 'R131745200', 'oussama', 'farouq', '1998-07-06', 'oussama.farouq@gmail.com', 1),
 (16154875, 'R141519788', 'oussama', 'bouanane', '1998-04-16', 'oussama.ouss1@gmail.com', 3),
 (17148856, 'R140019714', 'ahmed', 'reda', '2000-04-15', 'ahmed.reda_01@gmail.com', 4),
@@ -130,9 +125,11 @@ INSERT INTO `etudiant` (`code_apoge`, `cen`, `nom`, `prenom`, `date_naissance`, 
 (19111750, 'R231238112', 'amal', 'charoni', '1998-01-12', 'amal.charoni@gmail.com', 4),
 (19504586, 'R331745111', 'safaa', 'chafiq', '1998-02-13', 'safaa.chafiq@gmail.com', 4),
 (19100075, 'R441519222', 'nouhaila', 'bouanane', '1998-03-16', 'nouhaila.bouanane@gmail.com', 2),
+(19112356, 'R540333714', 'amine', 'sefrioui', '2000-04-20', 'amine.sfrioui@gmail.com', 2),
 (19174854, 'R631444478', 'mohamed', 'yassin', '1998-05-21', 'mohamed-yassin@gmail.com', 3),
 (19001200, 'R001515400', 'taha', 'bouchikhi', '1997-04-27', 'taha.bouchikhi@gmail.com', 3),
-(19753034, 'R761777199', 'akram', 'idrissi', '1999-12-05', 'akram.idrissi@gmail.com', 4);
+(19753034, 'R761777199', 'akram', 'idrissi', '1999-12-05', 'akram.idrissi@gmail.com', 4),
+(170060343, 'R1458213582', 'Yahya', 'faroq', '2020-04-16', 'lerespectful@gmail.comf', 3);
 
 -- --------------------------------------------------------
 
@@ -215,41 +212,17 @@ CREATE TABLE IF NOT EXISTS `filiere` (
   `responsable_id` int(5) NOT NULL,
   PRIMARY KEY (`id_filiere`),
   KEY `responsable_id` (`responsable_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `filiere`
 --
 
 INSERT INTO `filiere` (`id_filiere`, `nom_filiere`, `responsable_id`) VALUES
-(1, 'Développement et Admin des BD', 5),
-(5, 'ffffffffffff', 7),
-(2, 'Administration Réseaux et Systèmes', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `groupe`
---
-
-DROP TABLE IF EXISTS `groupe`;
-CREATE TABLE IF NOT EXISTS `groupe` (
-  `id_groupe` int(5) NOT NULL AUTO_INCREMENT,
-  `groupe_nom` varchar(50) NOT NULL,
-  `id_filiere` int(5) NOT NULL,
-  PRIMARY KEY (`id_groupe`),
-  KEY `id_filiere` (`id_filiere`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `groupe`
---
-
-INSERT INTO `groupe` (`id_groupe`, `groupe_nom`, `id_filiere`) VALUES
-(1, 'TCD', 1),
-(2, 'TDI', 1),
-(3, 'SMI', 2),
-(4, 'MDR', 2);
+(1, 'Developpement et Admin des BD', 5),
+(2, 'Administration Reseaux et Systemes', 2),
+(3, 'Developpement Mobile et Multimedia', 3),
+(4, 'SI Appliques A la Gestion des Affaires', 7);
 
 -- --------------------------------------------------------
 
@@ -261,26 +234,27 @@ DROP TABLE IF EXISTS `module`;
 CREATE TABLE IF NOT EXISTS `module` (
   `id_module` int(5) NOT NULL AUTO_INCREMENT,
   `intitule` varchar(80) DEFAULT NULL,
+  `id_enseignant` int(11) NOT NULL,
   `horaire` int(10) DEFAULT NULL,
-  `id_groupe` int(5) NOT NULL,
+  `id_filiere` int(5) NOT NULL,
   PRIMARY KEY (`id_module`),
-  UNIQUE KEY `intitule` (`intitule`),
-  KEY `id_groupe` (`id_groupe`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  KEY `fk_filiere` (`id_filiere`),
+  KEY `fk_enseignant` (`id_enseignant`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `module`
 --
 
-INSERT INTO `module` (`id_module`, `intitule`, `horaire`, `id_groupe`) VALUES
-(1, 'Administration de bases de donnees', 64, 1),
-(2, 'Developpement BD', 62, 1),
-(3, 'Langage d interrogation des Bases de Donnees SQL', 60, 2),
-(4, 'Methodologie de conception des SI', 60, 2),
-(5, 'Administration Linux et Virtualisation', 52, 3),
-(6, 'CCNP Switch et Tshoot', 55, 3),
-(7, 'Architecture des ordinateurs', 50, 4),
-(8, 'Configuration d une infrastructure reseau', 60, 4);
+INSERT INTO `module` (`id_module`, `intitule`, `id_enseignant`, `horaire`, `id_filiere`) VALUES
+(1, 'Administration de bases de données', 9, 64, 1),
+(2, 'Développement BD', 3, 62, 1),
+(3, 'Langage d’interrogation des Bases de Données SQL', 4, 60, 1),
+(4, 'Méthodologie de conception des SI', 18, 60, 1),
+(5, 'Administration Linux & Virtualisation', 6, 52, 2),
+(6, 'CCNP Switch et Tshoot', 12, 55, 2),
+(7, 'Architecture des ordinateurs', 10, 50, 2),
+(8, 'Configuration d’une infrastructure réseau', 11, 60, 2);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
