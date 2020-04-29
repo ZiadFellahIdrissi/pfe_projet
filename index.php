@@ -12,7 +12,19 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <title>Welcome</title>
 </head>
-
+<style>
+    .header-content .h1{
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: black;
+  }
+  .header-content p{
+    letter-spacing: 1px;
+    font-weight: 300;
+    text-transform: capitalize;
+  }
+</style>
 <body>
   <header>
     <nav class="navbar navbar-expand-md navbar-light fixed-top ">

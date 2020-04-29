@@ -1,20 +1,25 @@
 <html lang="en">
 
 <style type="text/css">
-  .span{
-    float: right;
-  }
+    .span {
+        float: right;
+    }
+
+    .navbar {
+        background: rgb(85, 228, 239);
+        background: linear-gradient(90deg, rgba(85, 228, 239, 1) 12%, rgba(9, 123, 227, 1) 99%);
+    }
 </style>
 
 <body>
     <header>
-        <nav class="navbar navbar-dark fixed-top bg-primary">
+        <nav class="navbar navbar-light fixed-top">
             <a class="navbar-brand" href="dashboard.php">Gestion des filieres</a>
-                <ul class="navbar-nav px-0">
-                    <li class="nav-item text-nowrap ">
-                        <a class="btn btn btn-outline-light" href="../index.php">Log out</a>
-                    </li>
-                </ul>
+            <ul class="navbar-nav px-0">
+                <li class="nav-item text-nowrap ">
+                    <a class="btn btn btn-outline-light" href="../index.php">Log out</a>
+                </li>
+            </ul>
             </div>
         </nav>
     </header>
@@ -100,4 +105,5 @@
         </div>
     </div>
 </body>
+
 </html>
