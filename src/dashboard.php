@@ -16,25 +16,42 @@ include 'connection.php';
 <style type="text/css">
     .top-left {
         position: absolute;
-        top: 8.5%;
-        left: 22.5%;
+        top: 6.5%;
+        left: 15.5%;
         text-shadow: 2px 2px 2px #000000;
     }
+
     .col {
         position: relative;
         text-align: center;
+        margin-bottom: 5%;
     }
+
     kbd {
         background-color: grey;
         color: #f7f7f7;
     }
+
+    @media screen and (max-width: 921px) {
+        .top-left {
+            position: absolute;
+            top: 6.5%;
+            left: 21.5%;
+            text-shadow: 2px 2px 2px #000000;
+        }
+
+        img {
+            width: 250px;
+        }
+    }
 </style>
+
 <body>
     <?php include 'header.php' ?>
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="titleH">Dashboard</h1>
-                    <!-- <div class="btn-toolbar mb-2 mb-md-0">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="titleH">Dashboard</h1>
+            <!-- <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <button type="button" class="btn btn-sm btn-outline-secondary">hiiii</button>
                             <button type="button" class="btn btn-sm btn-outline-secondary">hiiii</button>
@@ -44,9 +61,9 @@ include 'connection.php';
                             for now
                         </button>
                     </div> -->
-                </div>
+        </div>
 
-               <!--  <div class="container home-stats text-center">
+        <!--  <div class="container home-stats text-center">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="stat ">
@@ -97,9 +114,9 @@ include 'connection.php';
                                 Modules
                                     <span class="badge badge-light">
                                         <?php
-                                            $sql = "SELECT *
+                                        $sql = "SELECT *
                                                     FROM module";
-                                            echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
                                         ?>
                                     </span>
                                 </a>
@@ -108,53 +125,76 @@ include 'connection.php';
                     </div>
                 </div> -->
 
-                 <div class="container mt-3 mb-3">
-                    <div class="text-center">
-                        <div class="row">
-                            <div class="col">
-                                <a href="Etudiants.php" >
-                                    <img src="../img/Dashboard/1.png" onmouseover="this.src='../img/Dashboard/2.png';" onmouseout="this.src='../img/Dashboard/1.png'" class="rounded" title="Etudiants">
-                                    <div class="top-left h6">
-                                        <kbd>
-                                            <?php
-                                                $sql = "SELECT *
+        <div class="container mt-3 mb-3">
+            <div class="text-center">
+                <div class="row">
+                    <div class="col">
+                        <a href="Etudiants.php">
+                            <img src="../img/Dashboard/1.png" onmouseover="this.src='../img/Dashboard/2.png';" onmouseout="this.src='../img/Dashboard/1.png'" class="rounded" title="Etudiants" height="130px">
+                            <div class="top-left h6">
+                                <kbd>
+                                    <?php
+                                    $sql = "SELECT *
                                                         FROM etudiant";
-                                                echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                            ?>
-                                        </kbd>
-                                    </div>
-                                </a>
+                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                    ?>
+                                </kbd>
                             </div>
-                            <div class="col">
-                                <a href="Enseignant.php" >
-                                    <img src="../img/Dashboard/5.png" onmouseover="this.src='../img/Dashboard/6.png';" onmouseout="this.src='../img/Dashboard/5.png'" class="rounded" title="Enseignants">
-                                    <div class="top-left h6">
-                                        <kbd>
-                                            <?php
-                                                $sql = "SELECT *
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="Enseignant.php">
+                            <img src="../img/Dashboard/5.png" onmouseover="this.src='../img/Dashboard/6.png';" onmouseout="this.src='../img/Dashboard/5.png'" class="rounded" title="Enseignants" height="130px">
+                            <div class="top-left h6">
+                                <kbd>
+                                    <?php
+                                    $sql = "SELECT *
                                                         FROM enseignant";
-                                                echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                            ?>
-                                        </kbd>
-                                    </div>
-                                </a>
+                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                    ?>
+                                </kbd>
                             </div>
-                            <div class="col">
-                                <a href="Notes.php" >
-                                    <img src="../img/Dashboard/11.png" onmouseover="this.src='../img/Dashboard/12.png';" onmouseout="this.src='../img/Dashboard/11.png'" class="rounded" title="Notes">
-                                </a>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="Modules.php">
+                            <img src="../img/Dashboard/7.png" onmouseover="this.src='../img/Dashboard/8.png';" onmouseout="this.src='../img/Dashboard/7.png'" class="rounded" title="Modules" height="130px">
+                            <div class="top-left h6">
+                                <kbd>
+                                    <?php
+                                    $sql = "SELECT *
+                                                        FROM module";
+                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                    ?>
+                                </kbd>
                             </div>
-                        </div><br>
-                        <div class="row">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="Filiere.php">
+                            <img src="../img/Dashboard/3.png" onmouseover="this.src='../img/Dashboard/4.png';" onmouseout="this.src='../img/Dashboard/3.png'" class="rounded" title="Filères" height="130px">
+                            <div class="top-left h6">
+                                <kbd>
+                                    <?php
+                                    $sql = "SELECT *
+                                                        FROM filiere";
+                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                    ?>
+                                </kbd>
+                            </div><br>
+                        </a>
+                    </div>
+                </div><br>
+                <!-- <div class="row">
                             <div class="col">
                                 <a href="Filiere.php" >
-                                    <img src="../img/Dashboard/3.png" onmouseover="this.src='../img/Dashboard/4.png';" onmouseout="this.src='../img/Dashboard/3.png'" class="rounded" title="Filères">
+                                    <img src="../img/Dashboard/3.png" onmouseover="this.src='../img/Dashboard/4.png';" onmouseout="this.src='../img/Dashboard/3.png'" class="rounded" title="Filères" height="130px">
                                     <div class="top-left h6">
                                         <kbd>
                                             <?php
-                                                $sql = "SELECT *
+                                            $sql = "SELECT *
                                                         FROM filiere";
-                                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                            echo mysqli_num_rows(mysqli_query($conn, $sql));
                                             ?>
                                         </kbd>
                                     </div><br>
@@ -162,13 +202,13 @@ include 'connection.php';
                             </div>
                             <div class="col">
                                 <a href="Modules.php" >
-                                    <img src="../img/Dashboard/7.png" onmouseover="this.src='../img/Dashboard/8.png';" onmouseout="this.src='../img/Dashboard/7.png'" class="rounded" title="Modules">
+                                    <img src="../img/Dashboard/7.png" onmouseover="this.src='../img/Dashboard/8.png';" onmouseout="this.src='../img/Dashboard/7.png'" class="rounded" title="Modules" height="130px">
                                     <div class="top-left h6">
                                         <kbd>
                                             <?php
-                                                $sql = "SELECT *
+                                            $sql = "SELECT *
                                                         FROM module";
-                                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                            echo mysqli_num_rows(mysqli_query($conn, $sql));
                                             ?>
                                         </kbd>
                                     </div>
@@ -176,14 +216,14 @@ include 'connection.php';
                             </div>
                             <div class="col">
                                 <a href="Absences.php" >
-                                    <img src="../img/Dashboard/9.png" onmouseover="this.src='../img/Dashboard/10.png';" onmouseout="this.src='../img/Dashboard/9.png'" class="rounded" title="Notes">
+                                    <img src="../img/Dashboard/9.png" onmouseover="this.src='../img/Dashboard/10.png';" onmouseout="this.src='../img/Dashboard/9.png'" class="rounded" title="Notes" height="130px">
                                 </a>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+                        </div> -->
+            </div>
         </div>
+    </main>
+    </div>
     </div>
     <script type="text/javascript" src="../layout/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../layout/js/bootstrap.min.js"></script>
