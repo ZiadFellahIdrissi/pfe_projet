@@ -221,43 +221,8 @@
             <!-- ==================================================================== -->
             <!-- hadi dhiya les msgs li kital3o dyal ajoute supprimie ou modifier -->
             <?php
-            $fullurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-            if (strpos($fullurl, "insert=failed")) {
-            ?>
-                <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    cet <strong>Enseignant</strong> existe deja.
-                </div>
-            <?php
-            }
-            if (strpos($fullurl, "insert=mailerr")) {
-            ?>
-                <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    cet <strong>Email</strong> est deja utilisé.
-                </div>
-            <?php
-            }
-            if (strpos($fullurl, "enseignant=inserted")) {
-            ?>
-                <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    <strong>Enseignant</strong> ajouté avec succes :)
-                </div>
-            <?php
-            }
-            if (strpos($fullurl, "enseignant=deleted")) {
-            ?>
-                <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    <strong>Enseignant</strong> supprimé avec succes :)
-                </div>
-            <?php
-            }
-            if (strpos($fullurl, "enseignant=updated")) {
-            ?>
-                <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    <strong>Enseignant</strong> modifié avec succes :)
-                </div>
-            <?php
-            }
+                include 'DML_Commentator.php';
+                DMLCommentator("enseignant");
             ?>
             <!-- ==================================================================== -->
             <!-- ==================================================================== -->

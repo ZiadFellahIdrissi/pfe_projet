@@ -85,7 +85,7 @@ include 'connection.php';
                                     <tr>
                                         <th>Nom du Module</th>
                                         <th>Enseignant</th>
-                                        <th>Filiere</th>
+                                        <th>Filière</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -111,36 +111,8 @@ include 'connection.php';
             <!-- ==================================================================== -->
             <!-- hadi dhiya les msgs li kital3o dyal ajoute supprimie ou modifier -->
             <?php
-            $fullurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-            if (strpos($fullurl, "insert=failed")) {
-            ?>
-                <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    Cet <strong>Module</strong> deja existe!
-                </div>
-            <?php
-            }
-            if (strpos($fullurl, "module=inserted")) {
-            ?>
-                <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    <strong>Module</strong> ajouté avec succes.
-                </div>
-            <?php
-            }
-            if (strpos($fullurl, "module=deleted")) {
-            ?>
-                <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    <strong>Module</strong> supprimé avec succes.
-                </div>
-            <?php
-            }
-            if (strpos($fullurl, "module=updated")) {
-            ?>
-                <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    <strong>Module</strong> modifié avec succes.
-                </div>
-            <?php
-            }
+                include 'DML_Commentator.php';
+                DMLCommentator("module");
             ?>
             <!-- ==================================================================== -->
             <!-- ==================================================================== -->

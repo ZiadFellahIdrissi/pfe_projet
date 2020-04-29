@@ -22,23 +22,11 @@ include 'connection.php';
     }
 </style>
 
-<!-- Custom styles for this template -->
-
 <body>
     <?php include 'header.php' ?>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="titleH">Etudiants</h1>
-            <!-- <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group mr-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">hiiii</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">hiiii</button>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                            <span data-feather="calendar"></span>
-                            for now
-                        </button>
-                    </div> -->
         </div>
 
         <div class="container mt-3 mb-3">
@@ -52,7 +40,7 @@ include 'connection.php';
                 <div class="modal-header">
                     <div class="col-md-6">
                         <select name="filiere" id="filiere" class="form-control">
-                            <option value=''>Choisir un filiere</option>
+                            <option value=''>Choisir un filière</option>
                             <?php
                             $sql = "SELECT id_filiere,nom_filiere FROM filiere";
                             $resultat = mysqli_query($conn, $sql);
@@ -68,87 +56,14 @@ include 'connection.php';
                         <a href="Etudiants.php"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
                     </div>
                 </div>
-
-                <div class="modal-body etudiants">
-                    <div class="table-responsive-sm">
-                        <?php
-                        $sql = 'SELECT cne, code_apoge,date_naissance,email,nom,prenom,id_filiere
-                                            FROM etudiant';
-
-                        $resultat = mysqli_query($conn, $sql);
-                        $resultatcheck = mysqli_num_rows($resultat);
-                        if ($resultatcheck > 0) {
-                        ?>
-                            <table class="table table-bordered table-striped mydatatable">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Code Apoge</th>
-                                        <th>Cin</th>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>Date Naissance</th>
-                                        <th>Email</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-
-                                    while ($row = mysqli_fetch_assoc($resultat)) {
-                                    ?>
-                                        <tr>
-                                            <td><?php echo $row["code_apoge"] ?></t>
-                                            <td><?php echo $row["cne"] ?></td>
-                                            <td><?php echo $row["nom"] ?></td>
-                                            <td><?php echo $row["prenom"] ?></td>
-                                            <td><?php echo $row["date_naissance"] ?></td>
-                                            <td><?php echo $row["email"] ?></td>
-                                        </tr>
-                                <?php
-                                    }
-                                    echo "<tbody>";
-                                    echo "</table>";
-                                }
-                                ?>
-                    </div>
-                </div>
+                <?php include 'Etudiant/afficheTableauEtudiants.php'; ?>
             </div>
             <br><br>
-            <!-- ==================================================================== -->
-            <!-- hadi dhiya les msgs li kital3o dyal ajoute supprimie ou modifier -->
-            <?php
-            $fullurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-            if (strpos($fullurl, "insert=failed")) {
-            ?>
-                <div class="alert alert-danger col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    <strong>Invalid</strong> code apogee ou Cin!
-                </div>
             <?php
-            }
-            if (strpos($fullurl, "etudiant=inserted")) {
+                include 'DML_Commentator.php';
+                DMLCommentator("etudiant");
             ?>
-                <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    <strong>Etudiant</strong> ajouté avec succes :)
-                </div>
-            <?php
-            }
-            if (strpos($fullurl, "etudiant=deleted")) {
-            ?>
-                <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    <strong>Etudiant</strong> supprimé avec succes :)
-                </div>
-            <?php
-            }
-            if (strpos($fullurl, "etudiant=updated")) {
-            ?>
-                <div class="alert alert-success col-lg-4 col-lg-push-3 " style="text-align:center;">
-                    <strong>Etudiant</strong> modifié avec succes :)
-                </div>
-            <?php
-            }
-            ?>
-            <!-- ==================================================================== -->
-            <!-- ==================================================================== -->
         </div>
     </main>
     </div>
@@ -170,7 +85,7 @@ include 'connection.php';
                 var id_filiere = $("#filiere").val();
                 if (id_filiere) {
                     $.ajax({
-                        url: "Etudiant/afficheEtudiantsParGroup.php",
+                        url: "Etudiant/afficheEtudiantsParFiliere.php",
                         method: "GET",
                         data: {
                             id_filiere: id_filiere
@@ -192,7 +107,7 @@ include 'connection.php';
 
                 if (id_filiere) {
                     $.ajax({
-                        url: "Etudiant/afficheEtudiantsParGroup.php",
+                        url: "Etudiant/afficheEtudiantsParFiliere.php",
                         method: "GET",
                         data: {
                             id_filiere: id_filiere
@@ -227,7 +142,6 @@ include 'connection.php';
                         $('#email_modifier').val(data.email);
                         $('#fil').val(data.id_filiere);
                         $('#modifierUnEtudiant').modal('show');
-                        console.log(data.id_filiere);
                     },
                     error: function() {
                         alert('failure');
