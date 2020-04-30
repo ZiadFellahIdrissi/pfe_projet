@@ -73,9 +73,9 @@ include 'connection.php';
                     <div class="table-responsive-sm">
                         <?php
                         $sql = "SELECT *
-                                        FROM Module
-                                        JOIN Enseignant ON Module.id_enseignant = Enseignant.id_enseignant
-                                        JOIN Filiere ON Module.id_filiere = Filiere.id_filiere";
+                                        FROM module
+                                        JOIN enseignant ON module.id_enseignant = enseignant.id_enseignant
+                                        JOIN filiere ON module.id_filiere = filiere.id_filiere";
                         $resultat = mysqli_query($conn, $sql);
                         $resultatcheck = mysqli_num_rows($resultat);
                         if ($resultatcheck > 0) {

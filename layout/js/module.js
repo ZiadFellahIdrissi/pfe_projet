@@ -30,8 +30,6 @@ if (id = getParam("Filiere")) {
     });
 }
 
-$('.mydatatable').DataTable();
-
 $(document).ready(function() {
     $('#filiere').change(function() {
         var id_filiere = $(this).val();

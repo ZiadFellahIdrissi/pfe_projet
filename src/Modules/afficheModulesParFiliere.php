@@ -35,7 +35,7 @@ if (!empty($_GET['id_filiere'])) {
                                             <option value=''></option>
                                             <?php
                                                 $sql = "SELECT *
-                                                        FROM Enseignant";
+                                                        FROM enseignant";
                                                 $resultat = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($resultat)) {
                                             ?>
@@ -91,7 +91,7 @@ if (!empty($_GET['id_filiere'])) {
                                             <option value=''></option>
                                             <?php
                                                 $sql = "SELECT *
-                                                        FROM Enseignant";
+                                                        FROM enseignant";
                                                 $resultat = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($resultat)) {
                                             ?>
@@ -127,10 +127,10 @@ if (!empty($_GET['id_filiere'])) {
         <?php
         $id_filiere = $_GET["id_filiere"];
         $sql = "SELECT *
-                FROM Module
-                JOIN Enseignant ON Module.id_enseignant = Enseignant.id_enseignant
-                JOIN Filiere ON Module.id_filiere = Filiere.id_filiere
-                WHERE Module.id_filiere = $id_filiere";
+                FROM module
+                JOIN enseignant ON module.id_enseignant = enseignant.id_enseignant
+                JOIN filiere ON module.id_filiere = filiere.id_filiere
+                WHERE module.id_filiere = $id_filiere";
 
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
