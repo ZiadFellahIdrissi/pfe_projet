@@ -16,7 +16,7 @@ if (id = getParam("Filiere")) {
         var id_filiere = $("#filiere").val();
         if (id_filiere) {
             $.ajax({
-                url: "Absences/afficheTableauAbsencesParFiliere.php",
+                url: "../Absences/afficheTableauAbsencesParFiliere.php",
                 method: "GET",
                 data: {
                     id_filiere: id_filiere
@@ -36,7 +36,7 @@ $(document).ready(function() {
     $('#filiere').change(function() {
         var id_filiere = $(this).val();
         $.ajax({
-            url: "Absences/afficheTableauAbsencesParFiliere.php",
+            url: "../Absences/afficheTableauAbsencesParFiliere.php",
             method: "GET",
             data: {
                 id_filiere: id_filiere
@@ -54,7 +54,7 @@ $(document).ready(function() {
         console.log(abs_id);
         $('#abs_Id').val(abs_id);
         $.ajax({
-            url: "Absences/fetching_absences_for_editing.php",
+            url: "../Absences/fetching_absences_for_editing.php",
             method: 'GET',
             data: {
                 abs_id: abs_id,

@@ -16,7 +16,7 @@ if (id = getParam("Filiere")) {
         var id_filiere = $("#filiere").val();
         if (id_filiere) {
             $.ajax({
-                url: "Modules/afficheModulesParFiliere.php",
+                url: "../Modules/afficheModulesParFiliere.php",
                 method: "GET",
                 data: {
                     id_filiere: id_filiere
@@ -35,7 +35,7 @@ $(document).ready(function() {
         var id_filiere = $(this).val();
         if (id_filiere) {
             $.ajax({
-                url: "Modules/afficheModulesParFiliere.php",
+                url: "../Modules/afficheModulesParFiliere.php",
                 method: "GET",
                 data: {
                     id_filiere: id_filiere
@@ -46,5 +46,30 @@ $(document).ready(function() {
                 }
             });
         }
+    });
+});
+$(document).ready(function() {
+    $(document).on('click', '.Open_modifierUnModule', function() {
+        var code = $(this).attr("id");
+        $.ajax({
+            url: "../Modules/fetch_module_infos.php",
+            method: 'GET',
+            data: {
+                code: code
+            },
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(data) {
+                $('#id_module2').val(data.id_module);
+                $('#le_nom2').val(data.intitule);
+                $('#Heures2').val(data.horaire);
+                $('#Enseignant2').val(data.id_enseignant);
+                $('#modifierUnModule').modal('show');
+            },
+            error: function() {
+                alert('failure');
+            }
+        });
+
     });
 });

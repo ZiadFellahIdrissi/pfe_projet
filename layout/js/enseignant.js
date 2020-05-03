@@ -9,7 +9,7 @@ $(document).ready(function() {
     $(document).on('click', '.Open_modifierEnseignant', function() {
         var code = $(this).attr("id");
         $.ajax({
-            url: "Enseignant/fetching_teachers_for_editing.php",
+            url: "../Enseignant/fetching_teachers_for_editing.php",
             method: 'GET',
             data: {
                 code: code
@@ -43,7 +43,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $(document).on('click', '#afficheRespo', function() {
         $.ajax({
-            url: "Enseignant/affiche_responsables.php",
+            url: "../Enseignant/affiche_responsables.php",
             dataType: "text",
             success: function(data) {
                 $('.enseignant').html(data);
