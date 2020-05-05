@@ -26,6 +26,7 @@ include '../../connection.php';
     <!-- Main CSS-->
     <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
 </head>
+
 <style>
     .modal-header {
         background-color: #dcdde1;
@@ -96,7 +97,7 @@ include '../../connection.php';
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
     <!-- <script type="text/javascript" src="../../../layout/js/animation.js"></script> -->
     <script type="text/javascript" src="../../../layout/js/module.js"></script>
-
+    <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 </body>
-
+    
 </html>
