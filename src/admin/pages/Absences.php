@@ -1,3 +1,12 @@
+<?php
+include_once '../../../core/init.php';
+$user = new User_Admin();
+if (!$user->isLoggedIn()) {
+    header('Location: ./login_page.php');
+}else{
+    $nom=$user->data()->username;
+    $email=$user->data()->email;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,3 +88,6 @@
 </body>
 
 </html>
+<?php
+}
+?>

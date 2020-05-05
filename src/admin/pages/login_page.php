@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@1,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./layout/css/materialize.min.css">
+    <link rel="stylesheet" href="../../../layout/css/materialize.min.css">
     <title>login in</title>
 </head>
 <style>
@@ -67,36 +67,37 @@
         cursor: pointer;
         transition: .5s;
     }
-    .x{
+
+    .x {
         margin-top: 8%;
         margin-left: 30%;
         font-size: 25px;
         font-weight: bold;
-        color:black;
+        color: black;
     }
 </style>
 
 <body>
     <header>
-      <a class="btn-floating pulse" href="index.php"><span class="x">&times;</span></a>
+        <a class="btn-floating pulse" href="index.php"><span class="x">&times;</span></a>
     </header>
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l6">
                 <div style="margin-top: 170px;"></div>
-                <img src="img/login/login.svg" class="img-responsive" width="370px" height="350px">
+                <img src="../../../img/login/login.svg" class="img-responsive" width="370px" height="350px">
             </div>
             <div class="col s12 m12 l6 ">
                 <div style="margin-top: 80px;"></div>
                 <div class="img">
-                    <img src="img/login/profile.svg" alt="" class="profileimg">
+                    <img src="../../../img/login/profile.svg" alt="" class="profileimg">
                 </div>
                 <h2>Login as admin</h2>
-                <form class="col s12" method="POST" action="validation_login.php">
+                <form class="col s12" method="POST" action="">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="email" type="text" name="email" class="validate">
-                            <label for="email">Email</label>
+                            <input id="email" type="text" name="username" class="validate">
+                            <label for="email">User Name</label>
                         </div>
                         <div class="input-field col s12">
                             <input id="password" type="password" name="password" class="validate">
@@ -104,28 +105,33 @@
                         </div>
                     </div>
                     <?php
-                        $fullurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                        if (strpos($fullurl, "login=failed")) {
-                                echo '<p style="color:#d63031;"><b>Email or password invalide</b></p>';
-                        }
+                    include_once '../../../core/init.php';
+                    if (isset($_POST["login"])) {
+                        $user = new User_Admin();
+                        $login = $user->login($_POST["username"], $_POST["password"]);
+
+                        if ($login) {
+                            header('Location: ./index.php');
+                        } else
+                            echo '<p style="color:#d63031;"><b>Email or password invalide</b></p>';
+                    }
                     ?>
-                    <button class="btn waves-effect waves-light" type="submit">Log in
+                    <button class="btn waves-effect waves-light" name="login" type="submit">Log in
                     </button>
                 </form>
 
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="./layout/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../../../layout/js/materialize.min.js"></script>
     <script>
         $(document).ready(function() {
             M.updateTextFields();
         });
-        $(document).ready(function(){
-    $('.sidenav').sidenav();
-  });
-        
+        $(document).ready(function() {
+            $('.sidenav').sidenav();
+        });
     </script>
 </body>
 
