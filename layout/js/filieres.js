@@ -22,11 +22,27 @@ $(document).ready(function() {
             }
         });
     });
+
     $(".open_modifierModal").click(function() {
-        var id_filier_modifier = $(this).attr("id");
-        var nom_filier = $(this).data("id");
-        $('#Modifier_inp').val(id_filier_modifier);
-        $('#Nom_modifier').val(nom_filier);
-        $('#modifierModal').modal('show');
+        var code = $(this).attr("id");
+        $.ajax({
+            url: "../Filiere/fetching_filieres_for_editing.php",
+            method: 'GET',
+            data: {
+                code: code
+            },
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(data) {
+                $('#Modifier_inp').val(data.id_filiere);
+                $('#Responsable_modifier').val(data.responsable_id);
+                $('#Nom_modifier').val(data.nom_filiere);
+                $('#modifierModal').modal('show');
+            },
+            error: function() {
+                alert('failure');
+            }
+        });
+        
     });
 });

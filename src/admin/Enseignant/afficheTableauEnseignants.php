@@ -24,15 +24,14 @@
 									</div>
 								</div>
 								<!-- ===================fin bloc de le nom et le prenom======================= -->
-
 								<div class="form-group">
-									<label for="date" class="col-form-label">Date Naissance</label>
-									<input type="date" class="form-control" name="dateN" id="date" required>
+									<label for="numTel" class="col-form-label">Numéro de téléphone</label>
+									<input type="text" class="form-control" name="numTel" id="numTel" required>
 								</div>
 
 								<div class="form-group">
 									<label for="email" class="col-form-label">Email</label>
-									<input type="email" class="form-control" name="email" id="date" required>
+									<input type="email" class="form-control" name="email" id="email" required>
 								</div>
 
 								<div class="modal-footer">
@@ -60,26 +59,26 @@
 								<div class="col">
 									<div class="form-group">
 										<label for="le_nom_modifier" class="col-form-label">Nom </label>
-										<input type="text" class="form-control" name="Nom" value="" id="le_nom_modifier" required>
+										<input type="text" class="form-control" name="Nom" id="le_nom_modifier" required>
 									</div>
 								</div>
 								<div class="col">
 									<div class="form-group">
 										<label for="le_prenom_modifier" class="col-form-label">Prenom </label>
-										<input type="text" class="form-control" name="prenom" value="" id="le_prenom_modifier" required>
+										<input type="text" class="form-control" name="prenom" id="le_prenom_modifier" required>
 									</div>
 								</div>
 							</div>
 							<!-- ===================fin bloc de le nom et le prenom======================= -->
 
 							<div class="form-group">
-								<label for="date_modifier" class="col-form-label">Date Naissance</label>
-								<input type="date" class="form-control" name="dateN" value="" id="date_modifier" required>
+								<label for="tel_modifier" class="col-form-label">Numéro de téléphone</label>
+								<input type="text" class="form-control" name="numTel" id="tel_modifier" required>
 							</div>
 
 							<div class="form-group">
 								<label for="email_modifier" class="col-form-label">Email</label>
-								<input type="email" class="form-control" name="email" id="email_modifier" value="" required>
+								<input type="email" class="form-control" name="email" id="email_modifier" required>
 							</div>
 
 							<div class="modal-footer">
@@ -101,12 +100,12 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-body">
-						<p style="color:#c0392b;">cet <strong>Enseignant</strong> est le responsable du filiere <strong id="fil"></strong></p>
-						<p>Veuillez d'abord l'omettre de la responsabilité avant le supprimer.</p>
+						<p style="color:#c0392b;">cet <strong>Enseignant</strong> est le responsable du filiere <strong id="fil"></strong>!</p>
+						<span>Veuillez d'abord l'omettre de la responsabilité avant de le supprimer.</span>
 					</div>
 					<div class="modal-footer">
 						<input type="hidden" name="confirmation" id="confirmation" value="" />
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Ok!</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 					</div>
 
 				</div>
@@ -152,7 +151,7 @@
 										if ($checkF > 0) {
 										?>
 											<a>
-												<button id="<?php echo $rowF["nom_filiere"] ?>" class="item open-confirmation" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Supprimier">
+												<button id="<?php echo $rowF["nom_filiere"] ?>" class="item open-confirmation" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Supprimer">
 													<i class="zmdi zmdi-delete"></i>
 												</button>
 											</a>
@@ -160,7 +159,7 @@
 										} else {
 										?>
 											<a href="../Enseignant/supprimer_enseignant.php?id=<?php echo $row["id_enseignant"] ?>">
-												<button class="item" data-toggle="tooltip" data-placement="top" title="Supprimier">
+												<button class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
 													<i class="zmdi zmdi-delete"></i>
 												</button>
 											</a>
@@ -169,9 +168,6 @@
 										?>
 										<button data-toggle="tooltip" id="<?php echo $row["id_enseignant"] ?>" data-toggle="modal" class="item Open_modifierEnseignant" data-placement="top" title="Modifier">
 											<i class="zmdi zmdi-edit"></i>
-										</button>
-										<button class="item" data-toggle="tooltip" data-placement="top" title="More">
-											<i class="zmdi zmdi-more"></i>
 										</button>
 									</div>
 								</td>
@@ -184,15 +180,8 @@
 					?>
 		</div>
 
-		<td>
-
-
-
-
-
-		</td>
-
 	</div>
 	<script>
 		$('.mydatatable').DataTable();
 	</script>
+	<script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>

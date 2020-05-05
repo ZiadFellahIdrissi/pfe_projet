@@ -19,7 +19,7 @@ $(document).ready(function() {
             success: function(data) {
                 $('#le_nom_modifier').val(data.nom_enseignant);
                 $('#le_prenom_modifier').val(data.prenom_enseignant);
-                $('#date_modifier').val(data.date_naissance_enseignant);
+                $('#tel_modifier').val(data.telephone_enseignant);
                 $('#email_modifier').val(data.email_enseignant);
                 $('#id_enseignant').val(data.id_enseignant);
                 $('#modifierUnEnseignant').modal('show');
@@ -50,7 +50,7 @@ $(document).ready(function() {
                 $('#afficheRespo').html("Afficher tous les enseignants");
                 $('#afficheRespo').attr('href', "Enseignant.php");
                 $('.titleH').html("Responsables");
-                $('.aff').html("Enseignants -> Responsables")
+                $('.aff').html('<li class="breadcrumb-item"><a href="./">Dashboard</a></li><li class="breadcrumb-item"><a href="./Enseignant.php">Enseignants</a></li><li class="breadcrumb-item active" aria-current="page">Responsables</li>');
             }
         });
     });

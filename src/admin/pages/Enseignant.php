@@ -1,5 +1,12 @@
 <?php
 include '../../connection.php';
+include_once '../../../core/init.php';
+$user = new User_Admin();
+if (!$user->isLoggedIn()) {
+    header('Location: ./login_page.php');
+}else{
+    $nom=$user->data()->username;
+    $email=$user->data()->email;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +29,6 @@ include '../../connection.php';
     <!-- lib CSS-->
     <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
 </head>
@@ -49,9 +55,9 @@ include '../../connection.php';
             ?>
             <div class="container  mb-3">
                 <nav aria-label="breadcrumb nov">
-                    <ol class="breadcrumb nov">
+                    <ol class="breadcrumb nov aff">
                         <li class="breadcrumb-item"><a href="./">Dashboard</a></li>
-                        <li class="breadcrumb-item active aff" aria-current="page">Enseignants</li>
+                        <li class="breadcrumb-item active" aria-current="page">Enseignants</li>
                     </ol>
                 </nav>
 
@@ -83,12 +89,15 @@ include '../../connection.php';
 
     <!-- lib JS   -->
     <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
-    <script type="text/javascript" src="../../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <!-- Main JS-->
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
     <script type="text/javascript" src="../../../layout/js/animation.js"></script>
     <script type="text/javascript" src="../../../layout/js/enseignant.js"></script>
+    <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 </body>
 
 </html>
+<?php
+}
+?>

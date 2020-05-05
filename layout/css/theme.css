@@ -2316,7 +2316,7 @@ section {
     z-index: 1001;
     top: 0;
     right: 0;
-    left: 340px;
+    left: 300px;
 }
 
 @media (max-width: 991px) {

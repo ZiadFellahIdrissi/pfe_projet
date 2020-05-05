@@ -1,5 +1,12 @@
 <?php
-include 'connection.php';
+include '../../connection.php';
+include_once '../../../core/init.php';
+$user = new User_Admin();
+if (!$user->isLoggedIn()) {
+    header('Location: ./login_page.php');
+}else{
+    $nom=$user->data()->username;
+    $email=$user->data()->email;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,8 +90,10 @@ include 'connection.php';
     <script>
         $('.mydatatable').DataTable();
     </script>
-
-
+    <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 </body>
 
 </html>
+<?php
+}
+?>

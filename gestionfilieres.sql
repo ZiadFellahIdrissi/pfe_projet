@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 28, 2020 at 07:25 PM
+-- Generation Time: May 05, 2020 at 05:21 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -46,9 +46,7 @@ CREATE TABLE IF NOT EXISTS `absence` (
 
 INSERT INTO `absence` (`id_absence`, `id_etudiant`, `id_module`, `date_absence`, `h_absence`) VALUES
 (1, 17006034, 1, '2019-03-18', 1.30),
-(2, 17006034, 2, '2019-03-03', 1.30),
-(4, 13154827, 1, '2020-04-15', 1.30),
-(5, 13154827, 2, '2020-04-13', 3.00);
+(4, 13154827, 3, '2020-04-15', 1.50);
 
 -- --------------------------------------------------------
 
@@ -65,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `enseignant` (
   `telephone_enseignant` varchar(30) NOT NULL,
   PRIMARY KEY (`id_enseignant`),
   UNIQUE KEY `email_enseignant` (`email_enseignant`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `enseignant`
@@ -80,7 +78,6 @@ INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `prenom_enseignant`
 (7, 'brahim', 'maklofe', 'brahim.makloufe@gmail.com', '0619961215'),
 (8, 'mohamed', 'daher', 'mohamed.daher@gmail.com', '0619800618'),
 (10, 'mohamoud', 'abghour', 'mahmoude.abghoure@gmail.com', '0619801212'),
-(11, 'karim', 'samoudi', 'karim.samoudi@gmail.com', '0619760429'),
 (12, 'marouan', 'moussaid', 'marouan.moussaid@gmail.com', '0619650111'),
 (13, 'aymane', 'bakire', 'aymane.bakire@gmail.com', '0619900707'),
 (14, 'nordine', 'charfaoui', 'nordine.charfaoui@gmail.com', '0619771205'),
@@ -119,7 +116,6 @@ INSERT INTO `etudiant` (`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, 
 (16154875, 'R141519788', 'oussama', 'bouanane', '1998-04-16', 'oussama.ouss1@gmail.com', 3),
 (17148856, 'R140019714', 'ahmed', 'reda', '2000-04-15', 'ahmed.reda_01@gmail.com', 4),
 (19147554, 'R131018478', 'ayamn', 'darof', '1998-04-16', 'darof-marwan@gmail.com', 2),
-(15001300, 'R001515478', 'ayman', 'nadore', '1999-04-01', 'aymane.nadore@gmail.com', 3),
 (17006034, 'R161715199', 'ziad', 'fellah', '1999-12-06', 'ziad.fellah@gmail.com', 1),
 (13154827, 'R145821358', 'yahya', 'khalid', '1999-08-06', 'yahya.khalid@gmail.com', 1),
 (19111750, 'R231238112', 'amal', 'charoni', '1998-01-12', 'amal.charoni@gmail.com', 4),
@@ -129,7 +125,7 @@ INSERT INTO `etudiant` (`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, 
 (19174854, 'R631444478', 'mohamed', 'yassin', '1998-05-21', 'mohamed-yassin@gmail.com', 3),
 (19001200, 'R001515400', 'taha', 'bouchikhi', '1997-04-27', 'taha.bouchikhi@gmail.com', 3),
 (19753034, 'R761777199', 'akram', 'idrissi', '1999-12-05', 'akram.idrissi@gmail.com', 4),
-(170060343, 'R1458213582', 'Yahya', 'faroq', '2020-04-16', 'lerespectful@gmail.comf', 3);
+(170060343, 'R1458213582', 'Yahya', 'faroqi', '2020-04-16', 'lerespectful@gmail.comf', 3);
 
 -- --------------------------------------------------------
 
@@ -212,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `filiere` (
   `responsable_id` int(5) NOT NULL,
   PRIMARY KEY (`id_filiere`),
   KEY `responsable_id` (`responsable_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `filiere`
@@ -220,9 +216,9 @@ CREATE TABLE IF NOT EXISTS `filiere` (
 
 INSERT INTO `filiere` (`id_filiere`, `nom_filiere`, `responsable_id`) VALUES
 (1, 'Developpement et Admin des BD', 5),
-(2, 'Administration Reseaux et Systemes', 2),
+(2, 'Administration Reseaux et Systemes', 4),
 (3, 'Developpement Mobile et Multimedia', 3),
-(4, 'SI Appliques A la Gestion des Affaires', 7);
+(4, 'SI Appliques A la Gestion des Affaires', 8);
 
 -- --------------------------------------------------------
 
@@ -240,21 +236,47 @@ CREATE TABLE IF NOT EXISTS `module` (
   PRIMARY KEY (`id_module`),
   KEY `fk_filiere` (`id_filiere`),
   KEY `fk_enseignant` (`id_enseignant`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `module`
 --
 
 INSERT INTO `module` (`id_module`, `intitule`, `id_enseignant`, `horaire`, `id_filiere`) VALUES
-(1, 'Administration de bases de données', 9, 64, 1),
-(2, 'Développement BD', 3, 62, 1),
-(3, 'Langage d’interrogation des Bases de Données SQL', 4, 60, 1),
-(4, 'Méthodologie de conception des SI', 18, 60, 1),
+(1, 'Administration de bases de donnees', 9, 64, 1),
+(2, 'Developpement BD', 3, 62, 1),
+(3, 'Langage d interrogation des Bases de Donnees SQL', 4, 60, 1),
+(4, 'Methodologie de conception des SI', 18, 60, 1),
 (5, 'Administration Linux & Virtualisation', 6, 52, 2),
 (6, 'CCNP Switch et Tshoot', 12, 55, 2),
-(7, 'Architecture des ordinateurs', 10, 50, 2),
-(8, 'Configuration d’une infrastructure réseau', 11, 60, 2);
+(7, 'Architecture des ordinateurs', 10, 50, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `pasword` varchar(32) NOT NULL,
+  `letype` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `pasword`, `letype`) VALUES
+(1, 'admin', 'admin@admin.fsac.ma', 'admin', 'admin'),
+(3, 'admin2', 'admin2@admin.fsac.ma', '123456789', 'admin'),
+(4, 'admin3', 'admin3@fsac.ma', 'ziadfellah', 'etudiant');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

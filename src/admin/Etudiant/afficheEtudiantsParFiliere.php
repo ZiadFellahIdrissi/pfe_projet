@@ -127,7 +127,7 @@ if (!empty($_GET['id_filiere'])) {
 
                         <!-- groupe -->
                         <div class="form-group">
-                            <label for="fil">Groupe</label>
+                            <label for="fil">Filière</label>
                             <select name="filiere" id="fil" class="form-control">
                                 <?php
                                 $sql = "SELECT id_filiere,nom_filiere FROM filiere";
@@ -220,6 +220,7 @@ if (!empty($_GET['id_filiere'])) {
     <script>
         $('.mydatatable').DataTable();
     </script>
+    <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 <?php
 }
 ?>

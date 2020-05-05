@@ -69,9 +69,9 @@
 
 <!-- MENU SIDEBAR-->
 <aside class="menu-sidebar d-none d-lg-block js-scrollbar1" style="overflow: auto;">
-    <div class="lgo ">
+    <div class="logo ">
         <a href="# ">
-            <img src="../../../img/Dashboard/mylogo.png " height="10px " alt=" " style="border-radius: 50%; " />
+            <img src="../../../img/Dashboard/mylogo1.png "  alt=" " />
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
@@ -232,7 +232,11 @@
                                     <img src="../../../img/Dashboard/profile.svg " alt="John Doe " />
                                 </div>
                                 <div class="content ">
-                                    <a class="js-acc-btn " href="# ">Mohamed Reda</a>
+                                    <a class="js-acc-btn " href="# ">
+                                        <?php
+                                        echo $nom;
+                                        ?>
+                                    </a>
                                 </div>
                                 <div class="account-dropdown js-dropdown ">
                                     <div class="info clearfix ">
@@ -243,9 +247,17 @@
                                         </div>
                                         <div class="content ">
                                             <h5 class="name ">
-                                                <a href="# ">Mohamed Reda</a>
+                                                <a href="# ">
+                                                    <?php
+                                                    echo $nom;
+                                                    ?>
+                                                </a>
                                             </h5>
-                                            <span class="email ">mohamedReda@gmail.com</span>
+                                            <span class="email ">
+                                                <?php
+                                                echo $email;
+                                                ?>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="account-dropdown__body ">
@@ -263,7 +275,7 @@
                                         </div>
                                     </div>
                                     <div class="account-dropdown__footer ">
-                                        <a href="../../../index.php">
+                                        <a href="logout.php">
                                             <i class="zmdi zmdi-power "></i>Logout</a>
                                     </div>
                                 </div>
@@ -274,3 +286,6 @@
             </div>
         </div>
     </header>
+
+    <script type="text/javascript" src="../../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">

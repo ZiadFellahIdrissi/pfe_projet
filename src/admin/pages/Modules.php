@@ -1,5 +1,12 @@
 <?php
 include '../../connection.php';
+include_once '../../../core/init.php';
+$user = new User_Admin();
+if (!$user->isLoggedIn()) {
+    header('Location: ./login_page.php');
+}else{
+    $nom=$user->data()->username;
+    $email=$user->data()->email;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +33,7 @@ include '../../connection.php';
     <!-- Main CSS-->
     <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
 </head>
+
 <style>
     .modal-header {
         background-color: #dcdde1;
@@ -90,13 +98,15 @@ include '../../connection.php';
 
     <!-- lib JS   -->
     <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
-    <script type="text/javascript" src="../../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <!-- Main JS-->
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
     <!-- <script type="text/javascript" src="../../../layout/js/animation.js"></script> -->
     <script type="text/javascript" src="../../../layout/js/module.js"></script>
-
+    <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 </body>
-
+    
 </html>
+<?php
+}
+?>

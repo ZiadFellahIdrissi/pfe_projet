@@ -50,7 +50,10 @@
           </li>
 
           <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="login_page.php">Log In</a>
+            <a class="btn btn btn-outline-dark" href="src/etudiant/pages/login.php">Espace Etudiant</a>
+          </li>
+          <li class="nav-item text-nowrap ">
+            <a class="btn btn btn-outline-dark" href="src/admin/pages/login.php">Espace Admin</a>
           </li>
         </ul>
       </div>
