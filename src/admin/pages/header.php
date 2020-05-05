@@ -69,9 +69,9 @@
 
 <!-- MENU SIDEBAR-->
 <aside class="menu-sidebar d-none d-lg-block js-scrollbar1" style="overflow: auto;">
-    <div class="lgo ">
+    <div class="logo ">
         <a href="# ">
-            <img src="../../../img/Dashboard/mylogo.png " height="10px " alt=" " style="border-radius: 50%; " />
+            <img src="../../../img/Dashboard/mylogo1.png "  alt=" " />
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
