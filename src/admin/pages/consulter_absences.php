@@ -29,7 +29,6 @@ if (!$user->isLoggedIn()) {
     <!-- lib CSS-->
     <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
 </head>
@@ -96,7 +95,6 @@ if (!$user->isLoggedIn()) {
 
     <!-- lib JS   -->
     <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
-    <script type="text/javascript" src="../../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <!-- Main JS-->
     <script type="text/javascript" src="../../../layout/js/main.js "></script>

@@ -101,7 +101,6 @@ if (!$user->isLoggedIn()) {
 
     <!-- lib JS   -->
     <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
-    <script type="text/javascript" src="../../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <!-- Main JS-->
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
