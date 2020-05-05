@@ -215,6 +215,7 @@ include '../../connection.php';
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
     <script type="text/javascript" src="../../../layout/js/animation.js"></script>
     <script type="text/javascript" src="../../../layout/js/filieres.js"></script>
+    <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 </body>
 
 </html>
