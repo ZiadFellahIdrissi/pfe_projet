@@ -28,7 +28,6 @@ if (!$user->isLoggedIn()) {
     <!-- lib CSS-->
     <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
 </head>
@@ -62,60 +61,62 @@ if (!$user->isLoggedIn()) {
                 </nav>
 
                 <!-- ================================================ajoute un filier================================================================================================ -->
-                <div class="col-6 col-md-4">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Ajouter un filiere</button>
-                    <br>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <!-- =============================================== -->
-                                    <form action="../Filiere/ajoute_filiere.php" method="POST">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label for="Nom" class="col-form-label">Nom du filiere</label>
-                                                    <input type="text" class="form-control" name="Nom" id="Nom" required>
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="col-6 col-md-4">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Ajouter un filiere</button>
+                            <br><br>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <!-- =============================================== -->
+                                            <form action="../Filiere/ajoute_filiere.php" method="POST">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="Nom" class="col-form-label">Nom du filiere</label>
+                                                            <input type="text" class="form-control" name="Nom" id="Nom" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Responsable">Responsable</label>
-                                            <select name="Responsable" id="Responsable" class="form-control" required>
-                                                <?php
-                                                $sql = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
-                                                                FROM enseignant
-                                                                WHERE `id_enseignant` not in ( SELECT responsable_id
-                                                                                                FROM filiere )";
-                                                $resultat = mysqli_query($conn, $sql);
-                                                if (mysqli_num_rows($resultat) > 0) {
-                                                    while ($row = mysqli_fetch_assoc($resultat)) {
-                                                ?>
-                                                        <option value="<?php echo $row['id_enseignant'] ?>">
-                                                            <strong><?php echo $row['nom_enseignant'] . " " . $row["prenom_enseignant"] ?></strong>
-                                                        </option>';
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
+                                                <div class="form-group">
+                                                    <label for="Responsable">Responsable</label>
+                                                    <select name="Responsable" id="Responsable" class="form-control" required>
+                                                        <?php
+                                                        $sql = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
+                                                                        FROM enseignant
+                                                                        WHERE `id_enseignant` not in ( SELECT responsable_id
+                                                                                                        FROM filiere )";
+                                                        $resultat = mysqli_query($conn, $sql);
+                                                        if (mysqli_num_rows($resultat) > 0) {
+                                                            while ($row = mysqli_fetch_assoc($resultat)) {
+                                                        ?>
+                                                                <option value="<?php echo $row['id_enseignant'] ?>">
+                                                                    <strong><?php echo $row['nom_enseignant'] . " " . $row["prenom_enseignant"] ?></strong>
+                                                                </option>';
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <input type="submit" id="ajouter" class="btn btn-primary" value="Ajouter" name="ajouter" required>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <input type="submit" id="ajouter" class="btn btn-primary" value="Ajouter" name="ajouter" required>
+                                                </div>
+                                            </form>
                                         </div>
-                                    </form>
-                                    <!-- =============================================== -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- liste des filieres -->
+                        <?php include '../Filiere/AfficheTableauFiliere.php' ?>
                     </div>
-                    <!-- ============================================================================================================================== -->
                 </div>
-                <!-- ==============================fin ajoute un filier================================================================================== -->
-
-
+                
                 <!-- ============================================modal pour la modification ============================================================================= -->
                 <div class="modal fade" id="modifierModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -128,30 +129,22 @@ if (!$user->isLoggedIn()) {
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="Nom" class="col-form-label">Nom du filiere</label>
-                                                <input type="text" class="form-control" name="Nom" value="" id="Nom_modifier" disabled>
+                                                <input type="text" class="form-control" name="Nom" value="" id="Nom_modifier">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="Responsable_modifier">Responsable</label>
-                                        <select name="Responsable_modifier" id="Responsable_modifier" class="form-control">
-                                            <option value="">
-                                                <strong>Choisir un nouveau Responsable</strong>
-                                            </option>
+                                        <select name="Responsable_modifier" id="Responsable_modifier" value="" class="form-control">
                                             <?php
-                                            include 'connection.php';
-                                            $sqlOptions = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
-                                                                    FROM enseignant
-                                                                    WHERE `id_enseignant` not in (SELECT responsable_id
-                                                                                                FROM filiere )";
+                                            $sqlOptions = "SELECT id_enseignant,nom_enseignant,prenom_enseignant
+                                                            FROM enseignant ";
                                             $resultat = mysqli_query($conn, $sqlOptions);
                                             $resultatcheck = mysqli_num_rows($resultat);
-                                            if ($resultatcheck > 0) {
-                                                while ($row = mysqli_fetch_assoc($resultat)) {
-                                                    echo '<option value="' . $row["id_enseignant"] . '">
-                                                        <strong>' . $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] . '</strong>
-                                                    </option>';
-                                                }
+                                            while ($row = mysqli_fetch_assoc($resultat)) {
+                                                echo '<option value="' . $row["id_enseignant"] . '">
+                                                    <strong>' . $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] . '</strong>
+                                                </option>';
                                             }
                                             ?>
                                         </select>
@@ -174,8 +167,6 @@ if (!$user->isLoggedIn()) {
 
 
                 <!-- ============================================tableau de filieres============================================ -->
-                <br>
-                <?php include '../Filiere/AfficheTableauFiliere.php' ?>
                 <!-- ===================================fin tableau de filieres=================================== -->
 
                 <!-- ====================asking for permission Modal==================== -->
@@ -184,7 +175,7 @@ if (!$user->isLoggedIn()) {
                         <div class="modal-content">
                             <form action="../Filiere/supprimer_filiere.php" method="POST">
                                 <div class="modal-header">
-                                    <h6 style="color:#c0392b;" class="modal-title" id="exampleModalScrollableTitle">Tu va supprimier tout les etudiants dans cette filiers</h6>
+                                    <h6 style="color:#c0392b;" class="modal-title" id="exampleModalScrollableTitle">Tu vas supprimer tous ces Etudiants dans cet Filiere</h6>
                                 </div>
                                 <div class="modal-body">
                                     <div class="container mb-3 mt-3" id="affiche_etudiant">
@@ -216,7 +207,6 @@ if (!$user->isLoggedIn()) {
 
     <!-- lib JS   -->
     <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
-    <script type="text/javascript" src="../../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <!-- Main JS-->
     <script type="text/javascript" src="../../../layout/js/main.js "></script>

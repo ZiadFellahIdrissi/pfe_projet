@@ -4,7 +4,7 @@
                     AND prenom_enseignant='$prenom')";
 
     if(mysqli_num_rows(mysqli_query($conn,$sqltest))){
-        header('location: ../pages/Enseignant.php?insert=failed');
+        header('location: ../pages/Enseignant.php?inserting=failed');
         exit();
     }
 ?>
