@@ -1,6 +1,5 @@
-//9raaa l comment f ligne 37
-
 $('.mydatatable').DataTable();
+
 $(document).ready(function() {
     $('.toast').toast({
         delay: 5000
@@ -14,8 +13,13 @@ function getParam(id) {
     var url = new URL(string);
     return url.searchParams.get("idUrl" + id);
 }
-if (id = getParam("Filiere")) {
+
+var id = getParam("Filiere");
+var id2 = getParam("Sem");
+
+if (id && id2) {
     $("#filiere").val(id);
+    $("#semester").val(id2);
     $(document).ready(function() {
         var id_filiere = $("#filiere").val();
         var semester = $("#semester").val();
@@ -30,18 +34,25 @@ if (id = getParam("Filiere")) {
                 dataType: "text",
                 success: function(data) {
                     $('.modules').html(data);
+                    $('#semester').show();
                 }
             });
         }
     });
 }
 
-// rahe hna bdalte 7awle tfhame ache darte ou 9ado f hade l fonction li lfo9 
-// dae l blane dyal fache nrja3 nb9a f nafse filiere ou nafse semester
+$(document).ready(function() {
+    $('#semester').hide();
+    $('#filiere').change(affiche);
+    function affiche() {
+        if(isNaN($('#affiche').val()))
+            $('#semester').show();
+    }
+});
+
 $(document).ready(function() {
     $('#filiere').change(affiche);
     $("#semester").change(affiche);
-
     function affiche() {
         var id_filiere = $("#filiere").val();
         var semester = $("#semester").val();
@@ -60,8 +71,8 @@ $(document).ready(function() {
             });
         }
     }
-
 });
+
 $(document).ready(function() {
     $(document).on('click', '.Open_modifierUnModule', function() {
         var code = $(this).attr("id");

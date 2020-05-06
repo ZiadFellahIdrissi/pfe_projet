@@ -1,6 +1,6 @@
 <?php
     include '../../connection.php';
-    if($_POST["codeapoger"]!=""){
+    if($_POST["codeapoger"]!="" && isset($_POST['modifier'])){
         $oldCode = $_POST["codeapoger"];
         $cne = mysqli_real_escape_string($conn, trim($_POST["cin"]));
         $code_apoge = $_POST["codeapoge"];
@@ -14,13 +14,13 @@
                                                     FROM etudiant
                                                     WHERE code_apoge = $oldCode "));
 
-        if($row["code_apoge"]==$code_apoge && $row["cne"]==$cne && $row["email"]==$email)
+        if($oldCode==$code_apoge && $row["cne"]==$cne && $row["email"]==$email)
             goto success;
 
-        if($row["code_apoge"]==$code_apoge && $row["email"]==$email)
+        if($oldCode==$code_apoge && $row["email"]==$email)
             goto verificationCne;
 
-        if($row["code_apoge"]==$code_apoge)
+        if($oldCode==$code_apoge)
             goto verificationEmail;
         
         include 'verificationCodeApogee.php';
