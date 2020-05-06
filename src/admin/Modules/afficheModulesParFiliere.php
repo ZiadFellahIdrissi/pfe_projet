@@ -158,16 +158,11 @@ if (!empty($_GET['id_filiere'])) {
                             <td><?php echo $row["nom_filiere"] ?></td>
                             <td>
                                 <div class="table-data-feature" style="text-align: center">
-                                    <button data-toggle="tooltip" id="<?php echo $row["id_module"] ?>" data-toggle="modal" class="item Open_modifierUnModule" data-placement="top" title="Modifier">
-                                        <i class="zmdi zmdi-edit"></i>
+                                    <button onclick="location.href='../Modules/supprimer_module.php?id=<?php echo $row["id_module"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" >
+                                        <i class="zmdi zmdi-delete"></i>
                                     </button>
-                                    <a href="../Modules/supprimer_module.php?id=<?php echo $row["id_module"] ?>">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Supprimier">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
-                                    </a>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                        <i class="zmdi zmdi-more"></i>
+                                    <button data-toggle="tooltip" id="<?php echo $row["id_module"] ?>" data-toggle="modal" class="item Open_modifierUnModule" data-placement="top" title="Modifier" >
+                                        <i class="zmdi zmdi-edit"></i>
                                     </button>
                                 </div>
                             </td>

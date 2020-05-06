@@ -1,27 +1,37 @@
 <?php
     include '../../connection.php';
     if($_POST["codeapoger"]!=""){
-        $oldCode=$_POST["codeapoger"];
-        $cin = mysqli_real_escape_string($conn, $_POST["cin"]);
-        $code_apoge =$_POST["codeapoge"];
-        $nom = mysqli_real_escape_string($conn, $_POST["Nom"]);
-        $prenom = mysqli_real_escape_string($conn, $_POST["prenom"]);
+        $oldCode = $_POST["codeapoger"];
+        $cne = mysqli_real_escape_string($conn, trim($_POST["cin"]));
+        $code_apoge = $_POST["codeapoge"];
+        $nom = mysqli_real_escape_string($conn, trim($_POST["Nom"]));
+        $prenom = mysqli_real_escape_string($conn, trim($_POST["prenom"]));
         $date_naissance=$_POST["dateN"];
-        $email=mysqli_real_escape_string($conn, $_POST["email"]);
+        $email=mysqli_real_escape_string($conn, trim($_POST["email"]));
         $filiere=$_POST["filiere"];
 
+        $row=mysqli_num_rows(mysqli_query($conn, " SELECT *
+                                                    FROM etudiant
+                                                    WHERE code_apoge = $oldCode "));
 
-        if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM etudiant
-                                                 WHERE cne = $cin
-                                                 AND code_apoge = $code_apoge")))
-        {
-            header('location: ../pages/Etudiants.php?inserting=failed');
-            exit();
-        }
+        if($row["code_apoge"]==$code_apoge && $row["cne"]==$cne && $row["email"]==$email)
+            goto success;
 
+        if($row["code_apoge"]==$code_apoge && $row["email"]==$email)
+            goto verificationCne;
+
+        if($row["code_apoge"]==$code_apoge)
+            goto verificationEmail;
+        
+        include 'verificationCodeApogee.php';
+verificationEmail:
+        include 'verificationEmail.php';
+verificationCne:
+        include 'verificationCne.php';
+success:
         $sql="UPDATE `etudiant` 
               SET `code_apoge` = $code_apoge ,
-                `cne` = '$cin',
+                `cne` = '$cne',
                 `nom` = '$nom',
                 `prenom` = '$prenom',
                 `date_naissance` = '$date_naissance',

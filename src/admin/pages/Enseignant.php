@@ -81,7 +81,6 @@ if (!$user->isLoggedIn()) {
     </div> <!-- hade div daroori tb9a hitache dyal wahde dive ma7loola fl header   -->
 
     <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
 
     <!-- Bootstrap JS-->
     <script type="text/javascript" src="../../../layout/js/bootstrap.min.js "></script>
@@ -93,6 +92,7 @@ if (!$user->isLoggedIn()) {
     <!-- Main JS-->
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
     <script type="text/javascript" src="../../../layout/js/animation.js"></script>
+    <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../../../layout/js/enseignant.js"></script>
     <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 </body>

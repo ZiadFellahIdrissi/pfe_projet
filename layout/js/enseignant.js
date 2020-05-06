@@ -1,10 +1,11 @@
 $('.mydatatable').DataTable();
+
 $(document).ready(function() {
     $('.toast').toast({ delay: 5000 });
     $('.toast').toast('show');
 
 });
-$('.mydatatable').DataTable();
+
 $(document).ready(function() {
     $(document).on('click', '.Open_modifierEnseignant', function() {
         var code = $(this).attr("id");

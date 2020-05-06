@@ -43,6 +43,6 @@
             ?>
 </div>
 <script>
-    $('.mydatatable').DataTable();
+    $('.mydatatable').dataTable();
 </script>
 <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
