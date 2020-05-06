@@ -54,6 +54,17 @@ if (!empty($_GET['id_filiere'])) {
                                 </div>
                             </div>
                         </div>
+                        <!-- <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="semesterBl" class="col-form-label">Semester</label>
+                                    <select name="mySemester" id="semesterBl" class="form-control">
+                                        <option value="100">1ere Semester</option>
+                                        <option value="200">2eme Semester</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div> -->
 
                         <!-- modal footer -->
                         <div class="modal-footer">
@@ -70,12 +81,14 @@ if (!empty($_GET['id_filiere'])) {
     <!-- modification -->
     <div class="table-responsive-sm abs absences">
         <?php
+        $semester = $_GET["semester"];
+        $filiere = $_GET['id_filiere'];
 
-        $sql = 'SELECT nom,prenom,code_apoge,intitule,absence.date_absence,h_absence,absence.id_absence,module.id_module as module
+        $sql = "SELECT nom,prenom,code_apoge,intitule,absence.date_absence,h_absence,absence.id_absence,module.id_module as module
                 FROM etudiant 
                 join absence on etudiant.code_apoge=absence.id_etudiant
                 join module on absence.id_module=module.id_module
-                where etudiant.id_filiere=' . $_GET['id_filiere'];
+                where etudiant.id_filiere=$filiere and module.semester=$semester";
         error_reporting(0);
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
