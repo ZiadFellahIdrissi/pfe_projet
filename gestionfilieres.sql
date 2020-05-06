@@ -2,10 +2,10 @@
 -- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: May 05, 2020 at 05:21 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  mer. 06 mai 2020 à 06:31
+-- Version du serveur :  10.4.10-MariaDB
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `gestionfilieres`
+-- Base de données :  `gestionfilieres`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absence`
+-- Structure de la table `absence`
 --
 
 DROP TABLE IF EXISTS `absence`;
@@ -38,20 +38,20 @@ CREATE TABLE IF NOT EXISTS `absence` (
   PRIMARY KEY (`id_absence`),
   KEY `id_module` (`id_module`),
   KEY `id_etudiant` (`id_etudiant`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `absence`
+-- Déchargement des données de la table `absence`
 --
 
 INSERT INTO `absence` (`id_absence`, `id_etudiant`, `id_module`, `date_absence`, `h_absence`) VALUES
-(1, 17006034, 1, '2019-03-18', 1.30),
+(6, 14574586, 19, '2020-04-15', 1.30),
 (4, 13154827, 3, '2020-04-15', 1.50);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enseignant`
+-- Structure de la table `enseignant`
 --
 
 DROP TABLE IF EXISTS `enseignant`;
@@ -63,10 +63,10 @@ CREATE TABLE IF NOT EXISTS `enseignant` (
   `telephone_enseignant` varchar(30) NOT NULL,
   PRIMARY KEY (`id_enseignant`),
   UNIQUE KEY `email_enseignant` (`email_enseignant`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `enseignant`
+-- Déchargement des données de la table `enseignant`
 --
 
 INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `prenom_enseignant`, `email_enseignant`, `telephone_enseignant`) VALUES
@@ -78,6 +78,7 @@ INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `prenom_enseignant`
 (7, 'brahim', 'maklofe', 'brahim.makloufe@gmail.com', '0619961215'),
 (8, 'mohamed', 'daher', 'mohamed.daher@gmail.com', '0619800618'),
 (10, 'mohamoud', 'abghour', 'mahmoude.abghoure@gmail.com', '0619801212'),
+(23, 'ziad', 'fellah', 'khadi@gmail.com', '0693986210'),
 (12, 'marouan', 'moussaid', 'marouan.moussaid@gmail.com', '0619650111'),
 (13, 'aymane', 'bakire', 'aymane.bakire@gmail.com', '0619900707'),
 (14, 'nordine', 'charfaoui', 'nordine.charfaoui@gmail.com', '0619771205'),
@@ -91,7 +92,7 @@ INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `prenom_enseignant`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `etudiant`
+-- Structure de la table `etudiant`
 --
 
 DROP TABLE IF EXISTS `etudiant`;
@@ -108,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `etudiant`
+-- Déchargement des données de la table `etudiant`
 --
 
 INSERT INTO `etudiant` (`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, `email`, `id_filiere`) VALUES
@@ -130,7 +131,7 @@ INSERT INTO `etudiant` (`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `examen`
+-- Structure de la table `examen`
 --
 
 DROP TABLE IF EXISTS `examen`;
@@ -143,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `examen` (
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `examen`
+-- Déchargement des données de la table `examen`
 --
 
 INSERT INTO `examen` (`id_examen`, `type`, `id_module`) VALUES
@@ -159,7 +160,7 @@ INSERT INTO `examen` (`id_examen`, `type`, `id_module`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exam_pass`
+-- Structure de la table `exam_pass`
 --
 
 DROP TABLE IF EXISTS `exam_pass`;
@@ -174,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `exam_pass` (
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `exam_pass`
+-- Déchargement des données de la table `exam_pass`
 --
 
 INSERT INTO `exam_pass` (`id`, `note`, `id_examen`, `id_etudiant`) VALUES
@@ -198,7 +199,7 @@ INSERT INTO `exam_pass` (`id`, `note`, `id_examen`, `id_etudiant`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `filiere`
+-- Structure de la table `filiere`
 --
 
 DROP TABLE IF EXISTS `filiere`;
@@ -211,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `filiere` (
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `filiere`
+-- Déchargement des données de la table `filiere`
 --
 
 INSERT INTO `filiere` (`id_filiere`, `nom_filiere`, `responsable_id`) VALUES
@@ -223,7 +224,7 @@ INSERT INTO `filiere` (`id_filiere`, `nom_filiere`, `responsable_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `module`
+-- Structure de la table `module`
 --
 
 DROP TABLE IF EXISTS `module`;
@@ -233,28 +234,64 @@ CREATE TABLE IF NOT EXISTS `module` (
   `id_enseignant` int(11) NOT NULL,
   `horaire` int(10) DEFAULT NULL,
   `id_filiere` int(5) NOT NULL,
+  `semester` int(5) NOT NULL,
   PRIMARY KEY (`id_module`),
   KEY `fk_filiere` (`id_filiere`),
-  KEY `fk_enseignant` (`id_enseignant`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+  KEY `fk_enseignant` (`id_enseignant`),
+  KEY `semester` (`semester`)
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `module`
+-- Déchargement des données de la table `module`
 --
 
-INSERT INTO `module` (`id_module`, `intitule`, `id_enseignant`, `horaire`, `id_filiere`) VALUES
-(1, 'Administration de bases de donnees', 9, 64, 1),
-(2, 'Developpement BD', 3, 62, 1),
-(3, 'Langage d interrogation des Bases de Donnees SQL', 4, 60, 1),
-(4, 'Methodologie de conception des SI', 18, 60, 1),
-(5, 'Administration Linux & Virtualisation', 6, 52, 2),
-(6, 'CCNP Switch et Tshoot', 12, 55, 2),
-(7, 'Architecture des ordinateurs', 10, 50, 2);
+INSERT INTO `module` (`id_module`, `intitule`, `id_enseignant`, `horaire`, `id_filiere`, `semester`) VALUES
+(19, 'Administration de bases de donnees ', 4, 40, 1, 200),
+(2, 'Developpement BD', 3, 62, 1, 200),
+(3, 'Langage d interrogation des Bases de Donnees SQL', 4, 60, 1, 100),
+(4, 'Methodologie de conception des SI', 18, 66, 1, 100),
+(5, 'Administration Linux & Virtualisation', 6, 52, 2, 200),
+(6, 'CCNP Switch et Tshoot', 12, 55, 2, 200),
+(7, 'Architecture des ordinateurs', 10, 50, 2, 100),
+(21, 'Programmation Objet', 12, 65, 2, 100),
+(22, 'HTML5/CSS3', 7, 42, 3, 100),
+(23, 'Android Application Development', 19, 50, 3, 200),
+(24, 'Fondamentaux de creation de jeux', 12, 75, 3, 200),
+(25, 'Traitement des elements 2D et 3D', 13, 56, 3, 100),
+(26, 'Creations des sites marchands', 14, 70, 4, 100),
+(27, 'Marketing et management des organisations', 20, 68, 4, 100),
+(28, 'Droit des societes', 6, 66, 4, 200),
+(29, 'Outils informatiques pour la gestion et statistiques', 10, 60, 4, 200),
+(31, 'Gestion de projets', 2, 50, 2, 200);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `semester`
+--
+
+DROP TABLE IF EXISTS `semester`;
+CREATE TABLE IF NOT EXISTS `semester` (
+  `id_sem` int(5) NOT NULL,
+  `nom_sem` varchar(15) NOT NULL,
+  `date_debut` date DEFAULT NULL,
+  `date_fin` date DEFAULT NULL,
+  PRIMARY KEY (`id_sem`),
+  UNIQUE KEY `nom_sem` (`nom_sem`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `semester`
+--
+
+INSERT INTO `semester` (`id_sem`, `nom_sem`, `date_debut`, `date_fin`) VALUES
+(100, '1er Semester', '2020-09-12', '2021-01-01'),
+(200, '2eme Semester', '2021-02-01', '2021-06-01');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -270,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `pasword`, `letype`) VALUES

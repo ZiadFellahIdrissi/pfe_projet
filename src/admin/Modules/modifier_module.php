@@ -4,7 +4,8 @@
     	$id_filiere=$_POST["Filiere"];
     	$id_module=$_POST["id_module"];
         $intitule = mysqli_real_escape_string($conn, $_POST["Nom"]);
-        $heures =$_POST["Heures"];
+		$heures =$_POST["Heures"];
+		$Mysemester=$_POST['mySemester'];
         $id_enseignant=$_POST["Enseignant"];
 
         $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT intitule
@@ -23,7 +24,8 @@
 		$sql =" UPDATE `module` 
 				SET `intitule` = '$intitule' ,
 					`horaire` = $heures,
-					`id_enseignant` = $id_enseignant
+					`id_enseignant` = $id_enseignant,
+					semester=$Mysemester
 				WHERE `module`.`id_module` = $id_module";
         mysqli_query($conn , $sql);
 

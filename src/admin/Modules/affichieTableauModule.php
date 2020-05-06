@@ -4,6 +4,7 @@
         $sql = "SELECT *
                 FROM module
                 JOIN enseignant ON module.id_enseignant = enseignant.id_enseignant
+                Join semester on module.semester=semester.id_sem
                 JOIN filiere ON module.id_filiere = filiere.id_filiere";
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
@@ -16,6 +17,7 @@
                         <th>Enseignant</th>
                         <th>Heures</th>
                         <th>Filière</th>
+                        <th>Semester</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +30,7 @@
                             <td><?php echo $row["prenom_enseignant"] . ' ' . $row["nom_enseignant"] ?></td>
                             <td><?php echo $row["horaire"] ?></td>
                             <td><?php echo $row["nom_filiere"] ?></td>
+                            <td><?php echo $row["nom_sem"] ?></td>
                         </tr>
                 <?php
                     }
