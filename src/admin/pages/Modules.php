@@ -64,12 +64,6 @@ if (!$user->isLoggedIn()) {
                     </nav>
                     <div class="modal-content">
                         <div class="modal-header">
-                            <div class="col-md-3 semester">
-                                <select name="semester" id="semester" class="form-control">
-                                    <option value='100'>1er Semester</option>
-                                    <option value='200'>2eme Semester</option>
-                                </select>
-                            </div>
                             <div class="col-md-5 select">
                                 <select name="filiere" id="filiere" class="form-control">
                                     <option value=''>Choisir un filiere</option>
@@ -83,6 +77,12 @@ if (!$user->isLoggedIn()) {
                                     <?php
                                     }
                                     ?>
+                                </select>
+                            </div>
+                            <div class="col-md-3 semester">
+                                <select name="semester" id="semester" class="form-control">
+                                    <option value='100'>1er Semester</option>
+                                    <option value='200'>2eme Semester</option>
                                 </select>
                             </div>
                             <div class="col-md-4 offset-md-2">
