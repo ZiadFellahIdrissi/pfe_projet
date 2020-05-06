@@ -19,15 +19,32 @@ if (!empty($_GET['id_filiere'])) {
                                         <input type="text" class="form-control" name="Nom" id="le_nom" required>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- ===================fin bloc de le nom et le prenom======================= -->
-                            <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="Heures" class="col-form-label">Heures de la semaine</label>
                                         <input type="number" class="form-control" name="Heures" id="Heures" required>
                                     </div>
                                 </div>
+                            </div>
+                            <!-- ===================fin bloc de semester et prof======================= -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="semesterB" class="col-form-label">Semester</label>
+                                        <select name="mySemester" id="semesterB" class="form-control">
+                                            <option value='<?php echo $_GET["semester"] ?>'>
+                                                <?php
+                                                $sql01 = "SELECT nom_sem
+                                                FROM semester where id_sem=" . $_GET["semester"];
+                                                $resultat01 = mysqli_query($conn, $sql01);
+                                                $row01 = mysqli_fetch_assoc($resultat01);
+                                                echo $row01["nom_sem"];
+                                                ?>
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="codeapo" class="col-form-label">Enseignant du Module</label>
@@ -76,14 +93,24 @@ if (!empty($_GET['id_filiere'])) {
                                     <input type="text" class="form-control" name="Nom" id="le_nom2" required>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label for="Heures2" class="col-form-label">Heures de la semaine</label>
                                     <input type="number" class="form-control" name="Heures" id="Heures2" required>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="semesterBl" class="col-form-label">Semester</label>
+                                    <select name="mySemester" id="semesterBl" class="form-control">
+                                            <option value="100">1ere Semester</option>
+                                            <option value="200">2eme Semester</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="col">
                                 <div class="form-group">
                                     <label for="Enseignant2" class="col-form-label">Enseignant du Module</label>
@@ -126,11 +153,12 @@ if (!empty($_GET['id_filiere'])) {
     <div class="table-responsive-sm">
         <?php
         $id_filiere = $_GET["id_filiere"];
+        $semster = $_GET["semester"];
         $sql = "SELECT *
                 FROM module
                 JOIN enseignant ON module.id_enseignant = enseignant.id_enseignant
                 JOIN filiere ON module.id_filiere = filiere.id_filiere
-                WHERE module.id_filiere = $id_filiere";
+                WHERE module.id_filiere = $id_filiere and module.semester= $semster";
 
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
@@ -142,9 +170,8 @@ if (!empty($_GET['id_filiere'])) {
                         <th>Nom du Module</th>
                         <th>Enseignant</th>
                         <th>Heures</th>
-                        <th>Filiere</th>
                         <th>Options</th>
-            
+
                     </tr>
                 </thead>
                 <tbody>
@@ -155,19 +182,13 @@ if (!empty($_GET['id_filiere'])) {
                             <td><?php echo $row["intitule"] ?></td>
                             <td><?php echo $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] ?></td>
                             <td><?php echo $row["horaire"] ?></td>
-                            <td><?php echo $row["nom_filiere"] ?></td>
                             <td>
                                 <div class="table-data-feature" style="text-align: center">
+                                    <button onclick="location.href='../Modules/supprimer_module.php?id=<?php echo $row["id_module"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
                                     <button data-toggle="tooltip" id="<?php echo $row["id_module"] ?>" data-toggle="modal" class="item Open_modifierUnModule" data-placement="top" title="Modifier">
                                         <i class="zmdi zmdi-edit"></i>
-                                    </button>
-                                    <a href="../Modules/supprimer_module.php?id=<?php echo $row["id_module"] ?>">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Supprimier">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
-                                    </a>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                        <i class="zmdi zmdi-more"></i>
                                     </button>
                                 </div>
                             </td>
@@ -176,7 +197,7 @@ if (!empty($_GET['id_filiere'])) {
                     }
                     echo "<tbody>";
                     echo "</table>";
-                }else{
+                } else {
                     echo '<div class="alert alert-warning" role="alert">
                           <b>Acun module dans cette filiere</b>
                   </div>';

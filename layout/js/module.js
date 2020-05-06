@@ -1,6 +1,10 @@
+//9raaa l comment f ligne 37
+
 $('.mydatatable').DataTable();
 $(document).ready(function() {
-    $('.toast').toast({ delay: 5000 });
+    $('.toast').toast({
+        delay: 5000
+    });
     $('.toast').toast('show');
 
 });
@@ -14,12 +18,14 @@ if (id = getParam("Filiere")) {
     $("#filiere").val(id);
     $(document).ready(function() {
         var id_filiere = $("#filiere").val();
+        var semester = $("#semester").val();
         if (id_filiere) {
             $.ajax({
                 url: "../Modules/afficheModulesParFiliere.php",
                 method: "GET",
                 data: {
-                    id_filiere: id_filiere
+                    id_filiere: id_filiere,
+                    semester: semester
                 },
                 dataType: "text",
                 success: function(data) {
@@ -30,15 +36,22 @@ if (id = getParam("Filiere")) {
     });
 }
 
+// rahe hna bdalte 7awle tfhame ache darte ou 9ado f hade l fonction li lfo9 
+// dae l blane dyal fache nrja3 nb9a f nafse filiere ou nafse semester
 $(document).ready(function() {
-    $('#filiere').change(function() {
-        var id_filiere = $(this).val();
+    $('#filiere').change(affiche);
+    $("#semester").change(affiche);
+
+    function affiche() {
+        var id_filiere = $("#filiere").val();
+        var semester = $("#semester").val();
         if (id_filiere) {
             $.ajax({
                 url: "../Modules/afficheModulesParFiliere.php",
                 method: "GET",
                 data: {
-                    id_filiere: id_filiere
+                    id_filiere: id_filiere,
+                    semester: semester
                 },
                 dataType: "text",
                 success: function(data) {
@@ -46,7 +59,8 @@ $(document).ready(function() {
                 }
             });
         }
-    });
+    }
+
 });
 $(document).ready(function() {
     $(document).on('click', '.Open_modifierUnModule', function() {
@@ -64,6 +78,7 @@ $(document).ready(function() {
                 $('#le_nom2').val(data.intitule);
                 $('#Heures2').val(data.horaire);
                 $('#Enseignant2').val(data.id_enseignant);
+                $('#semesterBl').val(data.semester);
                 $('#modifierUnModule').modal('show');
             },
             error: function() {

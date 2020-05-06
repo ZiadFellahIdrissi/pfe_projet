@@ -33,19 +33,19 @@
                             $check = mysqli_num_rows($resultat);
                             if ($check > 0) {
                             ?>
-                                <button data-id="<?php echo $row["id_filiere"] ?>" style="cursor:pointer;" class="item open-confirmation" data-toggle="modal" data-toggle="tooltip" title="Supprimer">
+                                <button data-id="<?php echo $row["id_filiere"] ?>" style="cursor:pointer;" class="item open-confirmation" data-toggle="modal" data-toggle="tooltip" title="Supprimer" >
                                     <i class="zmdi zmdi-delete"></i>
                                 </button>
                             <?php
                             } else {
                             ?>
-                                <a class="item" href="../Filiere/supprimer_filiere.php?id=<?php echo $row["id_filiere"] ?>" title="Supprimer">
-                                    <i class="zmdi zmdi-delete"></i>
+                                <a class="item" href="../Filiere/supprimer_filiere.php?id=<?php echo $row["id_filiere"] ?>" title="Supprimer" >
+                                    <i class="zmdi zmdi-delete" ></i>
                                 </a>
                             <?php
                             }
                             ?>
-                            <button data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_filiere"] ?>" data-toggle="tooltip" class="item open_modifierModal" title="Modifier">
+                            <button data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_filiere"] ?>" data-toggle="tooltip" class="item open_modifierModal" title="Modifier" >
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
                         </div>

@@ -1,3 +1,12 @@
+<?php
+include '../../connection.php';
+include_once '../../../core/init.php';
+$user = new User_Admin();
+if ($user->isLoggedIn()) {
+    header('Location: ./');
+}else{
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -59,3 +68,6 @@
 </body>
 
 </html>
+<?php 
+}
+?>

@@ -150,23 +150,19 @@
 										$checkF = mysqli_num_rows($resultatF);
 										if ($checkF > 0) {
 										?>
-											<a>
-												<button id="<?php echo $rowF["nom_filiere"] ?>" class="item open-confirmation" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Supprimer">
-													<i class="zmdi zmdi-delete"></i>
-												</button>
-											</a>
+											<button id="<?php echo $rowF["nom_filiere"] ?>" class="item open-confirmation" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Supprimer" >
+												<i class="zmdi zmdi-delete"></i>
+											</button>
 										<?php
 										} else {
 										?>
-											<a href="../Enseignant/supprimer_enseignant.php?id=<?php echo $row["id_enseignant"] ?>">
-												<button class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
-													<i class="zmdi zmdi-delete"></i>
-												</button>
-											</a>
+											<button onclick="location.href='../Enseignant/supprimer_enseignant.php?id=<?php echo $row["id_enseignant"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" >
+												<i class="zmdi zmdi-delete"></i>
+											</button>
 										<?php
 										}
 										?>
-										<button data-toggle="tooltip" id="<?php echo $row["id_enseignant"] ?>" data-toggle="modal" class="item Open_modifierEnseignant" data-placement="top" title="Modifier">
+										<button data-toggle="tooltip" id="<?php echo $row["id_enseignant"] ?>" data-toggle="modal" class="item Open_modifierEnseignant" data-placement="top" title="Modifier" >
 											<i class="zmdi zmdi-edit"></i>
 										</button>
 									</div>

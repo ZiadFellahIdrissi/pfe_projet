@@ -11,7 +11,6 @@
                                    WHERE id_filiere!=$filiere_id      ");
 
         while ($row=mysqli_fetch_assoc($sql) ){
-            // print_r($row);
             foreach ($row as $key => $data)
             {
                 if (strcmp($row[$key], $nom)==0 || $row[$key] == $resp_id){

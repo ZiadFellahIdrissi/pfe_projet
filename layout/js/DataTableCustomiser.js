@@ -1,6 +1,5 @@
-var t=document.querySelector(".mydatatable");
-var rows=t.querySelectorAll("tr");
-var p=document.querySelector(".dataTables_paginate");
-if(rows.length<=10){
-    $(p).hide();
+if(document.querySelector(".mydatatable").querySelectorAll("tr").length<=10){
+    $(document.querySelector(".dataTables_paginate")).hide();
+	$(document.querySelector(".dataTables_length")).hide();
+	$(document.querySelector(".dataTables_info")).hide();
 }

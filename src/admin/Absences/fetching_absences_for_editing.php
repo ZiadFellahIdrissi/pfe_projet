@@ -4,7 +4,7 @@
     if(!empty($_GET["abs_id"]))
     {
         $abs=$_GET["abs_id"];
-        $sql="SELECT nom,prenom,date_absence,h_absence,module.id_module
+        $sql="SELECT *
         FROM etudiant 
         join absence on etudiant.code_apoge=absence.id_etudiant
         join module on absence.id_module=module.id_module

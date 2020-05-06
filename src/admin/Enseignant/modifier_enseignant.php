@@ -12,28 +12,15 @@
                                                      FROM enseignant
                                                      WHERE id_enseignant=$id_enseignant"));
 
-        if (($row["nom_enseignant"]==$nom&&$row["prenom_enseignant"]==$prenom)&&$row["email_enseignant"]==$email&&$row["telephone_enseignant"]==$telephone)
+        if ($row["email_enseignant"]==$email && $row["telephone_enseignant"]==$telephone)
             goto success;
 
-        if ($row["nom_enseignant"]==$nom&&$row["prenom_enseignant"]==$prenom&&$row["email_enseignant"]==$email)
-            goto verificationTel;
-
-        if ($row["nom_enseignant"]==$nom&&$row["prenom_enseignant"]==$prenom&&$row["telephone_enseignant"]==$telephone)
-        {
-            include 'verificationEmail.php';
-            goto success;
-        }
-
-        if($row["email_enseignant"]==$email&&$row["telephone_enseignant"]==$telephone)
-        {
-            include 'verificationFullName.php';
-            goto success;
-        }
-
-        include 'verificationEmail.php';
-        include 'verificationFullName.php';
-verificationTel:
+        if ($row["telephone_enseignant"]==$telephone)
+            goto verificationEmail;
+        
         include 'verificationTel.php';
+verificationEmail:
+        include 'verificationEmail.php';
 success:
         $sql="UPDATE enseignant
                 SET nom_enseignant = '$nom',
