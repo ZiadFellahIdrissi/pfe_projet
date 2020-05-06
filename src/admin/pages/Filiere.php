@@ -83,6 +83,7 @@ if (!$user->isLoggedIn()) {
                                                 <div class="form-group">
                                                     <label for="Responsable">Responsable</label>
                                                     <select name="Responsable" id="Responsable" class="form-control" required>
+                                                        <option value=""></option>
                                                         <?php
                                                         $sql = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
                                                                         FROM enseignant

@@ -14,6 +14,7 @@ if(isset($_POST['ajouter'])){
 
         include 'verificationFullName.php';
         include 'verificationEmail.php';
+        include 'verificationTel.php';
 
         $sql = "INSERT INTO `enseignant`(`nom_enseignant`, `prenom_enseignant`, `email_enseignant`, `telephone_enseignant`)
         		VALUES ('$nom', '$prenom', '$email', '$tel')";
