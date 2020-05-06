@@ -50,6 +50,17 @@ $(document).ready(function() {
     }
 });
 
+var id_f = $("#filiere").val();
+
+$(document).ready(function() {
+     $('#filiere').change(affiche);
+      function affiche() {
+        if(id_f != $('#filiere').val()){
+            $('#semester').prop('selectedIndex',0);
+        }
+      }
+});
+
 $(document).ready(function() {
     $('#filiere').change(affiche);
     $("#semester").change(affiche);

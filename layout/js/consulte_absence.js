@@ -48,28 +48,38 @@ $(document).ready(function() {
     }
 });
 
+var id_f = $("#filiere").val();
+
+$(document).ready(function() {
+     $('#filiere').change(affiche);
+      function affiche() {
+        if(id_f != $('#filiere').val()){
+            $('#semester').prop('selectedIndex',0);
+        }
+      }
+});
+
 $(document).ready(function() {
     $('#filiere').change(affiche);
     $('#semester').change(affiche);
-
     function affiche() {
         var id_filiere = $("#filiere").val();
         var semester = $("#semester").val();
-
-        $.ajax({
-            url: "../Absences/afficheTableauAbsencesParFiliere.php",
-            method: "GET",
-            data: {
-                id_filiere: id_filiere,
-                semester: semester
-            },
-            dataType: "text",
-            success: function(data) {
-                $('.absences').html(data);
-            }
-        });
+            $.ajax({
+                url: "../Absences/afficheTableauAbsencesParFiliere.php",
+                method: "GET",
+                data: {
+                    id_filiere: id_filiere,
+                    semester: semester
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('.absences').html(data);
+                }
+            });
     }
 });
+
 $(document).ready(function() {
     $(document).on('click', '.open_modifierAbsences', function() {
         var abs_id = $(this).attr("id");
