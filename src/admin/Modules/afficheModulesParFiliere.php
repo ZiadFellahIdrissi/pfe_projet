@@ -150,7 +150,7 @@ if (!empty($_GET['id_filiere'])) {
             <table class="table table-bordered table-striped mydatatable">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Nom du Module</th>
+                        <th> Nom du Module</th>
                         <th>Enseignant</th>
                         <th>Heures</th>
                         <th>Options</th>
@@ -161,7 +161,7 @@ if (!empty($_GET['id_filiere'])) {
                     <?php
                     while ($row = mysqli_fetch_assoc($resultat)) {
                     ?>
-                        <tr>
+                        <tr  id=<?php echo $row["id_filiere"]?> >
                             <td><?php echo $row["intitule"] ?></td>
                             <td><?php echo $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] ?></td>
                             <td><?php echo $row["horaire"] ?></td>

@@ -62,7 +62,7 @@ if (!$user->isLoggedIn()) {
                         <div class="modal-header">
                             <div class="col-md-5">
                                 <select name="filiere" id="filiere" class="form-control">
-                                    <option>Choisir un filiere</option>
+                                    <option value=''>Choisir un filiere</option>
                                     <?php
                                         $sql = "SELECT id_filiere,nom_filiere FROM filiere";
                                         $resultat = mysqli_query($conn, $sql);
@@ -76,8 +76,8 @@ if (!$user->isLoggedIn()) {
                             </div>
                             <div class="col-md-3 semester">
                                 <select name="semester" id="semester" class="form-control">
-                                    <option value='100'>1er Semestre</option>
-                                    <option value='200'>2eme Semestre</option>
+                                    <option value=100>1er Semestre</option>
+                                    <option value=200>2eme Semestre</option>
                                 </select>
                             </div>
                             <div class="col-md-4 offset-md-2">
@@ -105,8 +105,8 @@ if (!$user->isLoggedIn()) {
         <!-- Main JS-->
         <script type="text/javascript" src="../../../layout/js/main.js "></script>
         <!-- <script type="text/javascript" src="../../../layout/js/animation.js"></script> -->
-        <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
         <script type="text/javascript" src="../../../layout/js/consulte_absence.js"></script>
+        <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
     </body>
 
     </html>

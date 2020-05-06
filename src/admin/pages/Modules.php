@@ -81,8 +81,8 @@ if (!$user->isLoggedIn()) {
                             </div>
                             <div class="col-md-3 semester">
                                 <select name="semester" id="semester" class="form-control">
-                                    <option value='100'>1er Semester</option>
-                                    <option value='200'>2eme Semester</option>
+                                    <option value='100'>1er Semestre</option>
+                                    <option value='200'>2ème Semestre</option>
                                 </select>
                             </div>
                             <div class="col-md-4 offset-md-2">
