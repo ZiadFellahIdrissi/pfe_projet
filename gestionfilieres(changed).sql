@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 08, 2020 at 09:31 PM
+-- Generation Time: May 08, 2020 at 10:09 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `avoir_note` (
   PRIMARY KEY (`id`),
   KEY `id_etudiant` (`id_etudiant`),
   KEY `id_examen` (`id_examen`)
-) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `avoir_note`
@@ -92,7 +92,7 @@ INSERT INTO `avoir_note` (`id`, `note`, `id_examen`, `id_etudiant`) VALUES
 (56, 17.00, 17, 17106043),
 (57, 15.00, 37, 14574586),
 (58, 10.00, 37, 13154827),
-(59, 20.00, 42, 19174854);
+(61, 11.00, 37, 17006034);
 
 -- --------------------------------------------------------
 
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `examen` (
   `letype` varchar(50) NOT NULL,
   PRIMARY KEY (`id_examen`),
   KEY `id_module` (`id_module`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `examen`
@@ -200,10 +200,8 @@ INSERT INTO `examen` (`id_examen`, `date_exame`, `heur_debut`, `heur_fin`, `sall
 (19, '2020-05-19', '08:30:00', '10:00:00', 'salle_E', 27, 'Controle'),
 (17, '2020-05-15', '15:00:00', '17:00:00', 'salle_C', 25, 'Exam Final'),
 (37, '2020-05-09', '10:00:00', '13:00:00', 'salle_A', 4, 'Controle'),
-(35, '2020-05-05', '00:00:00', '00:00:00', 'salle_A', 19, 'Controle'),
 (24, '2020-04-22', '10:00:00', '11:00:00', 'salle_A', 25, 'Controle'),
 (25, '2020-05-11', '15:00:00', '16:30:00', 'salle_A', 27, 'Exam Final'),
-(42, '2020-05-21', '10:00:00', '12:00:00', 'salle_A', 24, 'Controle'),
 (30, '2020-05-08', '10:00:00', '13:00:00', 'salle_A', 22, 'Controle');
 
 -- --------------------------------------------------------
