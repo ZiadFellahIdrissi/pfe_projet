@@ -1,5 +1,5 @@
 <?php include '../../connection.php';
-if (!empty($_GET['id_filiere'])) {
+if (isset($_GET['id_filiere'])) {
 ?>
     <!-- modification -->
     <div class="modal fade" id="modifierAbsences" tabindex="-1" role="dialog" aria-hidden="true">
@@ -29,13 +29,13 @@ if (!empty($_GET['id_filiere'])) {
                             <label for="modul">Module</label>
                             <select name="module" id="modul" class="form-control">
                                 <?php
-                                $sql = "SELECT id_module,intitule FROM module where id_filiere=" . $_GET['id_filiere'];
-                                $resultat = mysqli_query($conn, $sql);
-                                while ($row = mysqli_fetch_assoc($resultat)) {
-                                ?>
-                                    <option value='<?php echo $row["id_module"] ?>'><?php echo $row["intitule"] ?></option>
-                                <?php
-                                }
+                                    $sql = "SELECT id_module,intitule FROM module where id_filiere=" . $_GET['id_filiere'];
+                                    $resultat = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                    ?>
+                                        <option value='<?php echo $row["id_module"] ?>'><?php echo $row["intitule"] ?></option>
+                                    <?php
+                                    }
                                 ?>
                             </select>
                         </div>
@@ -80,7 +80,7 @@ if (!empty($_GET['id_filiere'])) {
     </div>
     <!-- modification -->
     <div class="table-responsive-sm abs absences">
-        <?php
+<?php
         $semester = $_GET["semester"];
         $filiere = $_GET['id_filiere'];
 
@@ -94,7 +94,7 @@ if (!empty($_GET['id_filiere'])) {
         $resultatcheck = mysqli_num_rows($resultat);
         error_reporting(E_ALL);
         if ($resultatcheck > 0) {
-        ?>
+?>
             <table class="table table-bordered table-striped mydatatable">
                 <thead class="thead-dark">
                     <tr>
@@ -106,45 +106,35 @@ if (!empty($_GET['id_filiere'])) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
+<?php
 
                     while ($row = mysqli_fetch_assoc($resultat)) {
-                    ?>
+?>
                         <tr>
                             <td><?php echo $row["nom"] . " " . $row["prenom"] ?></td>
                             <td><?php echo $row["intitule"] ?></td>
                             <td><?php echo $row["date_absence"] ?></td>
-                            <td><?php echo $row["h_absence"] . ' H' ?></td>
+                            <td><?php echo $row["h_absence"] . 'H' ?></td>
                             <td>
                                 <div class="table-data-feature" style="text-align: center">
                                     <button data-toggle="tooltip" id="<?php echo $row['id_absence'] ?>" data-toggle="modal" class="item open_modifierAbsences" data-placement="top" title="Modifier">
                                         <i class="zmdi zmdi-edit"></i>
                                     </button>
-                                    <a href="../Absences/supprimer_absences.php?id_absence=<?php echo $row['id_absence'] ?>">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Supprimier">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
-                                    </a>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                        <i class="zmdi zmdi-more"></i>
+                                    <button onclick="location.href='../Absences/supprimer_absences.php?id_absence=<?php echo $row['id_absence'] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimier">
+                                        <i class="zmdi zmdi-delete"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
-            <?php
+<?php
                     }
                     echo "<tbody>";
-                    echo "</table> </div>";
-                } else
-                    echo '<div class="alert alert-warning" role="alert">
-                            <b>Acun absnece dans cette filiere</b>
-                        </div>';
-            } else
-                echo '<p class="text-danger"><b>Choisir un groupe ..!</b></p>';
-            ?>
+                echo "</table> </div>";
+        }
+}
+?>
     </div>
     <script>
         $('.mydatatable').DataTable();
     </script>
     <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
-    <!-- =========================================================================================================== -->

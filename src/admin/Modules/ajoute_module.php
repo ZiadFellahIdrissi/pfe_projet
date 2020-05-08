@@ -22,6 +22,6 @@
                     VALUES ('$nom', $id_enseignant, $heures, $id_filiere,$Mysemester)";   //TODO: fixer le probleme ou le nom inseré
                                                                                 //comporte un apostrophe
         mysqli_query($conn, $sql1);
-        header("location: ../pages/Modules.php?module=inserted&idUrlFiliere=$id_filiere");
+        header("location: ../pages/Modules.php?module=inserted&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
     }
 ?>

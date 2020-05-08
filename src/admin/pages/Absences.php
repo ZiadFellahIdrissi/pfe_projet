@@ -49,11 +49,11 @@ if (!$user->isLoggedIn()) {
                         <li class="breadcrumb-item active" aria-current="page">Absences</li>
                     </ol>
                 </nav>
-                <div class="text-center">
+                <!-- <div class="text-center">
                     <div class="row">
                         <div class="col">
                             <a href="ajouter_absences.php">
-                                <!-- <img class="img" src="../img/Absences/1.png" onmouseover="this.src='../img/Absences/2.png';" onmouseout="this.src='../img/Absences/1.png'"class="rounded" title="Ajouter Absences"> -->
+                                <img class="img" src="../img/Absences/1.png" onmouseover="this.src='../img/Absences/2.png';" onmouseout="this.src='../img/Absences/1.png'"class="rounded" title="Ajouter Absences">
                                 <img style="border-style: solid; border-color:red;" src="../../../img/Absences/1.png" class="rounded" title="Ajouter Absences">
                             </a>
                         </div>
@@ -63,7 +63,7 @@ if (!$user->isLoggedIn()) {
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

@@ -6,12 +6,14 @@
         $module=$_POST["module"];
         $abs_id=$_POST["abs_Id"];
 
-        $row = mysqli_fetch_assoc(mysqli_query($conn, " SELECT etudiant.id_filiere as fil
+        $row = mysqli_fetch_assoc(mysqli_query($conn, " SELECT etudiant.id_filiere, module.semester
                                                         FROM absence
                                                         JOIN etudiant ON absence.id_etudiant = etudiant.code_apoge
-                                                        WHERE id_absence = $abs_id"));
-        $id_filiere=$row["fil"];
+                                                        JOIN module ON absence.id_module = module.id_module
+                                                        WHERE id_absence = $abs_id                                  "));
 
+        $id_filiere=$row["id_filiere"];
+        $Mysemester=$row["semester"];
         $sql="UPDATE `absence` 
               SET 
                 `date_absence` = '$date_absence',
@@ -21,6 +23,6 @@
 
         mysqli_query($conn , $sql);
         // echo $date_absence .' '.$nbHeurs.' '.$module .' '.$row["fil"];;
-        header("location: ../pages/consulter_absences.php?absence=updated&idUrlFiliere=$id_filiere");
+        header("location: ../pages/consulter_absences.php?absence=updated&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
     }
 ?>

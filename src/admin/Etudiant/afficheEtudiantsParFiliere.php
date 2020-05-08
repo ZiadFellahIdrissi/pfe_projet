@@ -145,7 +145,7 @@ if (!empty($_GET['id_filiere'])) {
                         <div class="modal-footer">
                             <input type="hidden" id="codeapoger" name="codeapoger" value="">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" name="ajouter">Modifier</button>
+                            <button type="submit" class="btn btn-primary" name="modifier">Modifier</button>
                         </div>
                     </form>
 

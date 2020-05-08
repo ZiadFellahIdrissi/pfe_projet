@@ -1,4 +1,5 @@
 $('.mydatatable').DataTable();
+
 $(document).ready(function() {
     $('.toast').toast({ delay: 5000 });
     $('.toast').toast('show');
@@ -10,8 +11,13 @@ function getParam(id) {
     var url = new URL(string);
     return url.searchParams.get("idUrl" + id);
 }
-if (id = getParam("Filiere")) {
+
+var id = getParam("Filiere");
+var id2 = getParam("Sem");
+
+if (id && id2) {
     $("#filiere").val(id);
+    $("#semester").val(id2);
     $(document).ready(function() {
         var id_filiere = $("#filiere").val();
         var semester = $("#semester").val();
@@ -26,35 +32,54 @@ if (id = getParam("Filiere")) {
                 dataType: "text",
                 success: function(data) {
                     $('.absences').html(data);
+                    $('#semester').show();
                 }
             });
         }
     });
 }
 
+$(document).ready(function() {
+    $('#semester').hide();
+    $('#filiere').change(affiche);
+    function affiche() {
+        if(isNaN($('#affiche').val()))
+            $('#semester').show();
+    }
+});
+
+var id_f = $("#filiere").val();
+
+$(document).ready(function() {
+     $('#filiere').change(affiche);
+      function affiche() {
+        if(id_f != $('#filiere').val()){
+            $('#semester').prop('selectedIndex',0);
+        }
+      }
+});
 
 $(document).ready(function() {
     $('#filiere').change(affiche);
     $('#semester').change(affiche);
-
     function affiche() {
         var id_filiere = $("#filiere").val();
         var semester = $("#semester").val();
-
-        $.ajax({
-            url: "../Absences/afficheTableauAbsencesParFiliere.php",
-            method: "GET",
-            data: {
-                id_filiere: id_filiere,
-                semester: semester
-            },
-            dataType: "text",
-            success: function(data) {
-                $('.absences').html(data);
-            }
-        });
+            $.ajax({
+                url: "../Absences/afficheTableauAbsencesParFiliere.php",
+                method: "GET",
+                data: {
+                    id_filiere: id_filiere,
+                    semester: semester
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('.absences').html(data);
+                }
+            });
     }
 });
+
 $(document).ready(function() {
     $(document).on('click', '.open_modifierAbsences', function() {
         var abs_id = $(this).attr("id");

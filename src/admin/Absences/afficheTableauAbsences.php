@@ -2,9 +2,9 @@
     <div class="table-responsive-sm">
         <?php
         $sql = 'SELECT nom,prenom,intitule,date_absence,h_absence
-                                FROM etudiant 
-                                join absence on etudiant.code_apoge=absence.id_etudiant
-                                join module on absence.id_module=module.id_module';
+                FROM etudiant 
+                join absence on etudiant.code_apoge=absence.id_etudiant
+                join module on absence.id_module=module.id_module';
 
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
@@ -28,7 +28,7 @@
                             <td><?php echo $row["nom"] . " " . $row["prenom"] ?></td>
                             <td><?php echo $row["intitule"] ?></td>
                             <td><?php echo $row["date_absence"] ?></td>
-                            <td><?php echo $row["h_absence"] . ' H' ?></td>
+                            <td><?php echo $row["h_absence"] . 'H' ?></td>
                         </tr>
                 <?php
                     }

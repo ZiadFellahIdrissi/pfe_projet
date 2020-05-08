@@ -1,6 +1,6 @@
 <?php
     include '../../connection.php';
-    if($_POST["Filiere"]!=""){
+    if($_POST["Filiere"]!="" && isset($_POST["modifier"])){
     	$id_filiere=$_POST["Filiere"];
     	$id_module=$_POST["id_module"];
         $intitule = mysqli_real_escape_string($conn, $_POST["Nom"]);
@@ -29,6 +29,6 @@
 				WHERE `module`.`id_module` = $id_module";
         mysqli_query($conn , $sql);
 
-        header("location: ../pages/Modules.php?module=updated&idUrlFiliere=$id_filiere");
+        header("location: ../pages/Modules.php?module=updated&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
     }
 ?>
