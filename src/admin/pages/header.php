@@ -39,19 +39,31 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow" href="#">
-                        <i class="fas fa-copy"></i>Notes <i class="fas fa-angle-down"></i> </a>
+                        <i class="fas fa-calendar-alt"></i>Examens <i class="fas fa-angle-down"></i> </a>
                     <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                         <li>
-                            <a href="#">Consulter Notes</a>
+                            <a href="./CalendrierExamens.php">Calendrier Exames</a>
                         </li>
                         <li>
-                            <a href="#">Gestion des Notes</a>
+                            <a href="./consulte_Examen.php">Liste Examens</a>
                         </li>
                     </ul>
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow" href="#">
-                        <i class="fas fa-copy"></i>Absences <i class="fas fa-angle-down"></i></a>
+                        <i class="fas fa-copy"></i>Notes <i class="fas fa-angle-down"></i> </a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="./consulter_Notes.php">Consulter Notes</a>
+                        </li>
+                        <li>
+                            <a href="./ajoute_notes">Gestion des Notes</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="far fa-clock"></i>Absences <i class="fas fa-angle-down"></i></a>
                     <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                         <li>
                             <a href="consulter_absences.php">Consulter Absences</a>
@@ -71,7 +83,7 @@
 <aside class="menu-sidebar d-none d-lg-block js-scrollbar1" style="overflow: auto;">
     <div class="logo ">
         <a href="# ">
-            <img src="../../../img/Dashboard/mylogo1.png "  alt=" " />
+            <img src="../../../img/Dashboard/mylogo1.png " alt=" " />
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
@@ -101,21 +113,34 @@
                         <span><i class="fab fa-stack-overflow "></i></span> Modules
                     </a>
                 </li>
-                <li class="has-sub ">
-                    <a class="js-arrow " href="#">
-                        <i class="fas fa-copy "></i>Notes <i class="fas fa-angle-down "></i> </a>
-                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-calendar-alt"></i>Examens <i class="fas fa-angle-down"></i> </a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                         <li>
-                            <a href="# ">Consulter Notes</a>
+                            <a href="./CalendrierExamens.php">Calendrier Exames</a>
                         </li>
                         <li>
-                            <a href="# ">Gestion des Notes</a>
+                            <a href="./consulte_Examen.php">Liste Examens</a>
                         </li>
                     </ul>
                 </li>
                 <li class="has-sub ">
                     <a class="js-arrow " href="#">
-                        <i class="fas fa-copy "></i>Absences <i class="fas fa-angle-down "></i></a>
+                        <i class="fas fa-copy "></i>Notes <i class="fas fa-angle-down "></i> </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="./consulter_Notes.php ">Consulter Notes</a>
+                        </li>
+                        <li>
+                            <a href="./ajoute_notes">Gestion des Notes</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub ">
+                    <a class="js-arrow " href="#">
+                        <i class="far fa-clock"></i></i>Absences <i class="fas fa-angle-down "></i>
+                    </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list ">
                         <li>
                             <a href="consulter_absences.php">Consulter Absences</a>
