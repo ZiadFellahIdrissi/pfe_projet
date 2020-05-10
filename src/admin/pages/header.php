@@ -18,11 +18,13 @@
             <ul class="navbar-mobile__list list-unstyled">
                 <li class="active">
                     <a href="./">
-                        <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        <i class="fas fa-tachometer-alt"></i>Dashboard
+                    </a>
                 </li>
                 <li>
                     <a href="./Etudiants.php">
-                        <i class="fas fa-user-graduate"></i>Etudiants</a>
+                        <i class="fas fa-user-graduate"></i>Etudiants
+                    </a>
                 </li>
                 <li>
                     <a href="./Filiere.php">
@@ -31,11 +33,13 @@
                 </li>
                 <li>
                     <a href="./Enseignant.php">
-                        <i class="fas fa-chalkboard-teacher"></i>Enseignant</a>
+                        <i class="fas fa-chalkboard-teacher"></i>Enseignant
+                    </a>
                 </li>
                 <li>
                     <a href="./Modules.php">
-                        <i class="fab fa-stack-overflow"></i>Modules</a>
+                        <i class="fab fa-stack-overflow"></i>Modules
+                    </a>
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow" href="#">
@@ -61,17 +65,10 @@
                         </li>
                     </ul>
                 </li>
-                <li class="has-sub">
-                    <a class="js-arrow" href="#">
-                        <i class="far fa-clock"></i>Absences <i class="fas fa-angle-down"></i></a>
-                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                        <li>
-                            <a href="consulter_absences.php">Consulter Absences</a>
-                        </li>
-                        <li>
-                            <a href="ajouter_absences.php">Gestion des Absences</a>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="Absences.php">
+                        <i class="far fa-clock"></i>Absences
+                    </a>
                 </li>
             </ul>
         </div>
@@ -137,20 +134,11 @@
                         </li>
                     </ul>
                 </li>
-                <li class="has-sub ">
-                    <a class="js-arrow " href="#">
-                        <i class="far fa-clock"></i></i>Absences <i class="fas fa-angle-down "></i>
+                <li>
+                    <a href="Absences.php">
+                        <i class="far fa-clock"></i>Absences
                     </a>
-                    <ul class="list-unstyled navbar__sub-list js-sub-list ">
-                        <li>
-                            <a href="consulter_absences.php">Consulter Absences</a>
-                        </li>
-                        <li>
-                            <a href="ajouter_absences.php">Gestion des Absences</a>
-                        </li>
-                    </ul>
                 </li>
-
             </ul>
         </nav>
     </div>
