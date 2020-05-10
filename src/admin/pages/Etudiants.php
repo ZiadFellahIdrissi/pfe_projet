@@ -49,7 +49,7 @@ if (!$user->isLoggedIn()) {
 
 <body class=""> <!--animsition-->
     <div class="page-wrapper">
-        <?php include 'header.php' ?>
+        <?php include 'header.php'; ?>
         <div class="main-content ">
             <?php include '../../DML_Commentator.php';  
             DMLCommentator("etudiant");
