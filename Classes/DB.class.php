@@ -4,12 +4,12 @@ class DB{
     private $_pdo,
             $_query,
             $_error = false,
-            $_results='',
-            $_count=0;
+            $_results = '',
+            $_count = 0;
 
     private function __construct(){
         try{
-            $dsn ="mysql:host=" . Config::get('mysql/host'). ";dbname=" . Config::get('mysql/db');
+            $dsn ='mysql:host='.Config::get('mysql/host').';dbname='.Config::get('mysql/db');
             $this->_pdo = new PDO($dsn, Config::get('mysql/username'), Config::get('mysql/password'));
         }catch(PDOException $e){
             die($e->getMessage());
