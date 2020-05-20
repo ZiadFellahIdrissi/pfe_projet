@@ -3,9 +3,9 @@ session_start();
 
 $GLOBALS['config'] = array(
     'mysql' => array(
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'username' => 'root',
-        'password'=> '',
+        'password' => '',
         'db' => 'gestionfilieres'
     ),
     'remember' => array(
@@ -22,6 +22,6 @@ spl_autoload_register('myAutoLoader');
 function myAutoLoader($className){
     $path = "../../../Classes/";
     $ext = ".class.php";
-    $fullPath = $path . $className . $ext;
+    $fullPath = $path.$className.$ext;
     include_once $fullPath;
 }

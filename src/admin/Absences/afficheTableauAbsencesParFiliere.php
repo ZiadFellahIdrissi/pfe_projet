@@ -1,6 +1,105 @@
 <?php include '../../connection.php';
 if (isset($_GET['id_filiere'])) {
 ?>
+
+ <!-- ajout -->
+     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ajouterAbsences" data-whatever="@getbootstrap">Ajouter un Absence</button>
+     <br><br>
+    <div class="modal fade" id="ajouterAbsences" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+
+                    <form action="../Absences/ajouter_absences.php" method="POST">
+                        <!-- le nom et le prenom-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="id_etu" class="col-form-label">Nom </label>
+                                    <select name="id_etu" id="id_etu" class="form-control">
+                                        <option value=''></option>
+                                        <?php
+                                            $sql = "SELECT code_apoge, nom, prenom
+                                                    FROM etudiant
+                                                    JOIN filiere on etudiant.id_filiere = filiere.id_filiere
+                                                    WHERE etudiant.id_filiere =".$_GET['id_filiere'];
+                                            $resultat = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_assoc($resultat)) {
+                                            ?>
+                                                <option value='<?php echo $row["code_apoge"] ?>'><?php echo $row["prenom"].' '.$row["nom"] ?></option>
+                                            <?php
+                                            }
+                                        ?>
+                            </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modul">Module</label>
+                            <select name="module" id="modul" class="form-control">
+                                    <option value=''></option>
+                                <?php
+                                    $sql = "SELECT id_module, intitule
+                                            FROM module
+                                            WHERE id_filiere =".$_GET['id_filiere']."
+                                            AND semester =". $_GET['semester'] ;
+                                    $resultat = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                    ?>
+                                        <option value='<?php echo $row["id_module"] ?>'><?php echo $row["intitule"] ?></option>
+                                    <?php
+                                    }
+                                ?>
+                            </select>
+                        </div>
+ 
+                        <div class="form-group">
+                            <label for="semesterBl" class="col-form-label">Semestre</label>
+                            <select name="mySemester" id="semesterBl" class="form-control">
+                                <?php
+                                    $sql = "SELECT id_sem, nom_sem
+                                            FROM semester
+                                            WHERE id_sem=" . $_GET['semester'];
+                                    $resultat = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                    ?>
+                                        <option value=<?php echo $row["id_sem"] ?> ><?php echo $row["nom_sem"] ?></option>
+                                    <?php
+                                    }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="dateA" class="col-form-label">Date</label>
+                                    <input type="date" class="form-control" name="dateA" value="" id="dateA" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="nbHeurs" class="col-form-label">Nombre heures</label>
+                                    <input type="text" class="form-control" name="nbHeurs" value="" id="nbHeurs" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="Ajouter">Ajouter</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ajout -->
+
     <!-- modification -->
     <div class="modal fade" id="modifierAbsences" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -13,13 +112,13 @@ if (isset($_GET['id_filiere'])) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="le_nom_modifier" class="col-form-label">Nom </label>
+                                    <label for="le_nom_modifier" class="col-form-label">Nom</label>
                                     <input type="text" class="form-control" name="Nom" value="" id="le_nom_modifier" disabled>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="le_prenom_modifier" class="col-form-label">Prenom </label>
+                                    <label for="le_prenom_modifier" class="col-form-label">Prenom</label>
                                     <input type="text" class="form-control" name="prenom" value="" id="le_prenom_modifier" disabled>
                                 </div>
                             </div>
@@ -29,7 +128,10 @@ if (isset($_GET['id_filiere'])) {
                             <label for="modul">Module</label>
                             <select name="module" id="modul" class="form-control">
                                 <?php
-                                    $sql = "SELECT id_module,intitule FROM module where id_filiere=" . $_GET['id_filiere'];
+                                    $sql = "SELECT id_module,intitule
+                                            FROM module
+                                            WHERE id_filiere=" . $_GET['id_filiere']."
+                                            AND semester =". $_GET['semester'] ;
                                     $resultat = mysqli_query($conn, $sql);
                                     while ($row = mysqli_fetch_assoc($resultat)) {
                                     ?>

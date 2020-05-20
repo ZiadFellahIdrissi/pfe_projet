@@ -14,15 +14,15 @@
 
         $id_filiere=$row["id_filiere"];
         $Mysemester=$row["semester"];
-        $sql="UPDATE `absence` 
+
+        $sql="UPDATE absence 
               SET 
-                `date_absence` = '$date_absence',
-                `h_absence` = $nbHeurs,
-                `id_module` = $module
-                WHERE `absence`.`id_absence` =$abs_id;";
+                date_absence = '$date_absence',
+                h_absence = $nbHeurs,
+                id_module = $module
+                WHERE id_absence = $abs_id;";
 
         mysqli_query($conn , $sql);
-        // echo $date_absence .' '.$nbHeurs.' '.$module .' '.$row["fil"];;
-        header("location: ../pages/consulter_absences.php?absence=updated&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
+        header("location: ../pages/Absences.php?absence=updated&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
     }
 ?>

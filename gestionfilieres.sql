@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: May 08, 2020 at 09:31 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Hôte : 127.0.0.1
+-- Généré le : Dim 10 mai 2020 à 19:33
+-- Version du serveur :  10.4.11-MariaDB
+-- Version de PHP : 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,54 +19,52 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `gestionfilieres`
+-- Base de données : `gestionfilieres`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absence`
+-- Structure de la table `absence`
 --
 
-DROP TABLE IF EXISTS `absence`;
-CREATE TABLE IF NOT EXISTS `absence` (
-  `id_absence` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `absence` (
+  `id_absence` int(5) NOT NULL,
   `id_etudiant` int(10) NOT NULL,
   `id_module` int(5) NOT NULL,
   `date_absence` date DEFAULT NULL,
-  `h_absence` double(100,2) DEFAULT NULL,
-  PRIMARY KEY (`id_absence`),
-  KEY `id_module` (`id_module`),
-  KEY `id_etudiant` (`id_etudiant`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `h_absence` double(100,2) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `absence`
+-- Déchargement des données de la table `absence`
 --
 
 INSERT INTO `absence` (`id_absence`, `id_etudiant`, `id_module`, `date_absence`, `h_absence`) VALUES
 (6, 14574586, 19, '2020-04-15', 1.30),
-(4, 13154827, 3, '2020-04-15', 1.50);
+(4, 13154827, 3, '2020-04-15', 1.50),
+(14, 14574586, 19, '2020-05-22', 1.35),
+(13, 17006034, 19, '2020-05-31', 1.56),
+(12, 13154822, 2, '2020-05-30', 99.00),
+(11, 19147554, 5, '2020-05-30', 1.53),
+(15, 13154822, 2, '2020-05-28', 1.51),
+(16, 19504586, 27, '2020-05-31', 2.54);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `avoir_note`
+-- Structure de la table `avoir_note`
 --
 
-DROP TABLE IF EXISTS `avoir_note`;
-CREATE TABLE IF NOT EXISTS `avoir_note` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `avoir_note` (
+  `id` int(5) NOT NULL,
   `note` float(10,2) NOT NULL,
   `id_examen` int(5) NOT NULL,
-  `id_etudiant` int(5) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_etudiant` (`id_etudiant`),
-  KEY `id_examen` (`id_examen`)
-) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+  `id_etudiant` int(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `avoir_note`
+-- Déchargement des données de la table `avoir_note`
 --
 
 INSERT INTO `avoir_note` (`id`, `note`, `id_examen`, `id_etudiant`) VALUES
@@ -92,27 +90,25 @@ INSERT INTO `avoir_note` (`id`, `note`, `id_examen`, `id_etudiant`) VALUES
 (56, 17.00, 17, 17106043),
 (57, 15.00, 37, 14574586),
 (58, 10.00, 37, 13154827),
-(59, 20.00, 42, 19174854);
+(61, 11.00, 37, 17006034),
+(62, 10.00, 45, 14574586);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enseignant`
+-- Structure de la table `enseignant`
 --
 
-DROP TABLE IF EXISTS `enseignant`;
-CREATE TABLE IF NOT EXISTS `enseignant` (
-  `id_enseignant` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `enseignant` (
+  `id_enseignant` int(5) NOT NULL,
   `nom_enseignant` varchar(50) NOT NULL,
   `prenom_enseignant` varchar(50) NOT NULL,
   `email_enseignant` varchar(50) DEFAULT NULL,
-  `telephone_enseignant` varchar(30) NOT NULL,
-  PRIMARY KEY (`id_enseignant`),
-  UNIQUE KEY `email_enseignant` (`email_enseignant`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+  `telephone_enseignant` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `enseignant`
+-- Déchargement des données de la table `enseignant`
 --
 
 INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `prenom_enseignant`, `email_enseignant`, `telephone_enseignant`) VALUES
@@ -137,24 +133,21 @@ INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `prenom_enseignant`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `etudiant`
+-- Structure de la table `etudiant`
 --
 
-DROP TABLE IF EXISTS `etudiant`;
-CREATE TABLE IF NOT EXISTS `etudiant` (
+CREATE TABLE `etudiant` (
   `code_apoge` int(10) NOT NULL,
   `cne` varchar(20) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `date_naissance` date NOT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `id_filiere` int(5) NOT NULL,
-  PRIMARY KEY (`code_apoge`),
-  UNIQUE KEY `cen` (`cne`)
+  `id_filiere` int(5) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `etudiant`
+-- Déchargement des données de la table `etudiant`
 --
 
 INSERT INTO `etudiant` (`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, `email`, `id_filiere`) VALUES
@@ -163,7 +156,7 @@ INSERT INTO `etudiant` (`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, 
 (17148856, 'R140019714', 'ahmed', 'reda', '2000-04-15', 'ahmed.reda_01@gmail.com', 4),
 (19147554, 'R131018478', 'ayamn', 'darof', '1998-04-16', 'darof-marwan@gmail.com', 2),
 (17006034, 'R161715199', 'ziad', 'fellah', '1999-12-06', 'ziad.fellah@gmail.com', 1),
-(13154827, 'R145821358', 'yahya', 'khalid', '1999-08-06', 'yahya.khalid@gmail.com', 1),
+(13154822, 'R145821358', 'yahya', 'khalid', '1999-08-06', 'yahya.khalid@gmail.com', 1),
 (19111750, 'R231238112', 'amal', 'charoni', '1998-01-12', 'amal.charoni@gmail.com', 4),
 (19504586, 'R331745111', 'safaa', 'chafiq', '1998-02-13', 'safaa.chafiq@gmail.com', 4),
 (19100075, 'R441519222', 'nouhaila', 'bouanane', '1998-03-16', 'nouhaila.bouanane@gmail.com', 2),
@@ -176,53 +169,45 @@ INSERT INTO `etudiant` (`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `examen`
+-- Structure de la table `examen`
 --
 
-DROP TABLE IF EXISTS `examen`;
-CREATE TABLE IF NOT EXISTS `examen` (
-  `id_examen` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `examen` (
+  `id_examen` int(5) NOT NULL,
   `date_exame` date NOT NULL,
   `heur_debut` time NOT NULL,
   `heur_fin` time NOT NULL,
   `salle` varchar(50) NOT NULL,
   `id_module` int(5) NOT NULL,
-  `letype` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_examen`),
-  KEY `id_module` (`id_module`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+  `letype` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `examen`
+-- Déchargement des données de la table `examen`
 --
 
 INSERT INTO `examen` (`id_examen`, `date_exame`, `heur_debut`, `heur_fin`, `salle`, `id_module`, `letype`) VALUES
 (19, '2020-05-19', '08:30:00', '10:00:00', 'salle_E', 27, 'Controle'),
-(17, '2020-05-15', '15:00:00', '17:00:00', 'salle_C', 25, 'Exam Final'),
-(37, '2020-05-09', '10:00:00', '13:00:00', 'salle_A', 4, 'Controle'),
-(35, '2020-05-05', '00:00:00', '00:00:00', 'salle_A', 19, 'Controle'),
+(44, '2020-05-04', '04:00:00', '06:00:00', 'salle_A', 19, 'Controle'),
+(37, '2020-05-09', '07:00:00', '08:30:00', 'salle_A', 4, 'Controle'),
 (24, '2020-04-22', '10:00:00', '11:00:00', 'salle_A', 25, 'Controle'),
-(25, '2020-05-11', '15:00:00', '16:30:00', 'salle_A', 27, 'Exam Final'),
-(42, '2020-05-21', '10:00:00', '12:00:00', 'salle_A', 24, 'Controle'),
+(45, '2020-04-28', '00:00:00', '00:00:00', 'salle_A', 19, 'Exam Final'),
 (30, '2020-05-08', '10:00:00', '13:00:00', 'salle_A', 22, 'Controle');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `filiere`
+-- Structure de la table `filiere`
 --
 
-DROP TABLE IF EXISTS `filiere`;
-CREATE TABLE IF NOT EXISTS `filiere` (
-  `id_filiere` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `filiere` (
+  `id_filiere` int(5) NOT NULL,
   `nom_filiere` varchar(50) NOT NULL,
-  `responsable_id` int(5) NOT NULL,
-  PRIMARY KEY (`id_filiere`),
-  KEY `responsable_id` (`responsable_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+  `responsable_id` int(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `filiere`
+-- Déchargement des données de la table `filiere`
 --
 
 INSERT INTO `filiere` (`id_filiere`, `nom_filiere`, `responsable_id`) VALUES
@@ -234,25 +219,20 @@ INSERT INTO `filiere` (`id_filiere`, `nom_filiere`, `responsable_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `module`
+-- Structure de la table `module`
 --
 
-DROP TABLE IF EXISTS `module`;
-CREATE TABLE IF NOT EXISTS `module` (
-  `id_module` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `module` (
+  `id_module` int(5) NOT NULL,
   `intitule` varchar(80) DEFAULT NULL,
   `id_enseignant` int(11) NOT NULL,
   `horaire` int(10) DEFAULT NULL,
   `id_filiere` int(5) NOT NULL,
-  `semester` int(5) NOT NULL,
-  PRIMARY KEY (`id_module`),
-  KEY `fk_filiere` (`id_filiere`),
-  KEY `fk_enseignant` (`id_enseignant`),
-  KEY `semester` (`semester`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+  `semester` int(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `module`
+-- Déchargement des données de la table `module`
 --
 
 INSERT INTO `module` (`id_module`, `intitule`, `id_enseignant`, `horaire`, `id_filiere`, `semester`) VALUES
@@ -272,26 +252,23 @@ INSERT INTO `module` (`id_module`, `intitule`, `id_enseignant`, `horaire`, `id_f
 (27, 'Marketing et management des organisations', 20, 68, 4, 100),
 (28, 'Droit des societes', 6, 66, 4, 200),
 (29, 'Outils informatiques pour la gestion et statistiques', 10, 60, 4, 200),
-(31, 'Gestion de projets', 2, 50, 2, 200);
+(31, 'Gestion des projets', 2, 50, 2, 200);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `semester`
+-- Structure de la table `semester`
 --
 
-DROP TABLE IF EXISTS `semester`;
-CREATE TABLE IF NOT EXISTS `semester` (
+CREATE TABLE `semester` (
   `id_sem` int(5) NOT NULL,
   `nom_sem` varchar(15) NOT NULL,
   `date_debut` date DEFAULT NULL,
-  `date_fin` date DEFAULT NULL,
-  PRIMARY KEY (`id_sem`),
-  UNIQUE KEY `nom_sem` (`nom_sem`)
+  `date_fin` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `semester`
+-- Déchargement des données de la table `semester`
 --
 
 INSERT INTO `semester` (`id_sem`, `nom_sem`, `date_debut`, `date_fin`) VALUES
@@ -301,29 +278,143 @@ INSERT INTO `semester` (`id_sem`, `nom_sem`, `date_debut`, `date_fin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(5) NOT NULL,
   `username` varchar(32) NOT NULL,
   `email` varchar(50) NOT NULL,
   `pasword` varchar(32) NOT NULL,
-  `letype` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `letype` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `pasword`, `letype`) VALUES
 (1, 'admin', 'admin@admin.fsac.ma', 'admin', 'admin'),
 (3, 'admin2', 'admin2@admin.fsac.ma', '123456789', 'admin'),
 (4, 'admin3', 'admin3@fsac.ma', 'ziadfellah', 'etudiant');
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `absence`
+--
+ALTER TABLE `absence`
+  ADD PRIMARY KEY (`id_absence`),
+  ADD KEY `id_module` (`id_module`),
+  ADD KEY `id_etudiant` (`id_etudiant`);
+
+--
+-- Index pour la table `avoir_note`
+--
+ALTER TABLE `avoir_note`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_etudiant` (`id_etudiant`),
+  ADD KEY `id_examen` (`id_examen`);
+
+--
+-- Index pour la table `enseignant`
+--
+ALTER TABLE `enseignant`
+  ADD PRIMARY KEY (`id_enseignant`),
+  ADD UNIQUE KEY `email_enseignant` (`email_enseignant`);
+
+--
+-- Index pour la table `etudiant`
+--
+ALTER TABLE `etudiant`
+  ADD PRIMARY KEY (`code_apoge`),
+  ADD UNIQUE KEY `cen` (`cne`);
+
+--
+-- Index pour la table `examen`
+--
+ALTER TABLE `examen`
+  ADD PRIMARY KEY (`id_examen`),
+  ADD KEY `id_module` (`id_module`);
+
+--
+-- Index pour la table `filiere`
+--
+ALTER TABLE `filiere`
+  ADD PRIMARY KEY (`id_filiere`),
+  ADD KEY `responsable_id` (`responsable_id`);
+
+--
+-- Index pour la table `module`
+--
+ALTER TABLE `module`
+  ADD PRIMARY KEY (`id_module`),
+  ADD KEY `fk_filiere` (`id_filiere`),
+  ADD KEY `fk_enseignant` (`id_enseignant`),
+  ADD KEY `semester` (`semester`);
+
+--
+-- Index pour la table `semester`
+--
+ALTER TABLE `semester`
+  ADD PRIMARY KEY (`id_sem`),
+  ADD UNIQUE KEY `nom_sem` (`nom_sem`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `absence`
+--
+ALTER TABLE `absence`
+  MODIFY `id_absence` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT pour la table `avoir_note`
+--
+ALTER TABLE `avoir_note`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
+--
+-- AUTO_INCREMENT pour la table `enseignant`
+--
+ALTER TABLE `enseignant`
+  MODIFY `id_enseignant` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT pour la table `examen`
+--
+ALTER TABLE `examen`
+  MODIFY `id_examen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT pour la table `filiere`
+--
+ALTER TABLE `filiere`
+  MODIFY `id_filiere` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT pour la table `module`
+--
+ALTER TABLE `module`
+  MODIFY `id_module` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
