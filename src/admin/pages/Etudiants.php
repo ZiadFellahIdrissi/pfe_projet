@@ -47,16 +47,16 @@ if (!$user->isLoggedIn()) {
     }
 </style>
 
-<body class=""> <!--animsition-->
+<body>
     <div class="page-wrapper">
-        <?php include 'header.php'; ?>
+        <?php 
+            include 'header.php';
+        ?>
         <div class="main-content ">
-            <?php include '../../DML_Commentator.php';  
-            DMLCommentator("etudiant");
+            <?php
+                include '../../DML_Commentator.php';  
+                DMLCommentator("etudiant");
             ?>
-            <!--<div class="d-flex justify-content-between " style="margin-top: 0px; margin-left:2%; margin-bottom:2.5%; ">
-                <h1 class="title">Etudiants</h1>
-            </div>-->
             <div class="container mb-3">
                 <nav aria-label="breadcrumb nov">
                     <ol class="breadcrumb nov">
@@ -90,7 +90,7 @@ if (!$user->isLoggedIn()) {
             </div>
         </div>
     </div>
-    </div> <!-- hade div daroori tb9a hitache dyal wahde dive ma7loola fl header   -->
+    </div>
 
     <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>

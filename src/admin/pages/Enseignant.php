@@ -71,14 +71,12 @@ if (!$user->isLoggedIn()) {
                         </div>
 
                     </div>
-
-                    <!-- end confirmation de la suppression du responsable -->
                     <?php include '../Enseignant/afficheTableauEnseignants.php'; ?>
                 </div>
             </div>
         </div>
     </div>
-    </div> <!-- hade div daroori tb9a hitache dyal wahde dive ma7loola fl header   -->
+    </div>
 
     <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
 

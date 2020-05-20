@@ -97,15 +97,8 @@ if (!$user->isLoggedIn()) {
 
         <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
-
-        <!-- Bootstrap JS-->
         <script type="text/javascript" src="../../../layout/js/bootstrap.min.js "></script>
-
-
-        <!-- lib JS   -->
         <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
-
-        <!-- Main JS-->
         <script type="text/javascript" src="../../../layout/js/main.js "></script>
         <!-- <script type="text/javascript" src="../../../layout/js/animation.js"></script> -->
         <script type="text/javascript" src="../../../layout/js/module.js"></script>
