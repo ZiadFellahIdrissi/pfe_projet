@@ -41,6 +41,6 @@ success:
 
         mysqli_query($conn , $sql);
 
-        header("location: ../pages/Etudiants.php?etudiant=updated&idUrlFiliere=$filiere");
+        header("location: ../Etudiants?etudiant=updated&idUrlFiliere=$filiere");
     }
 ?>

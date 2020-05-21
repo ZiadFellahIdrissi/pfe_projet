@@ -28,8 +28,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./Filiere.php">
-                        <i class="fas fa-university"></i>Filiere
+                    <a href="./Filieres.php">
+                        <i class="fas fa-university"></i>Filières
                     </a>
                 </li>
                 <li>

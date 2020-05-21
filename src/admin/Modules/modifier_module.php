@@ -16,7 +16,7 @@
         foreach ($row as $data)
 	    {
 	        if ($data == $intitule){
-	        	header("location: ../pages/Modules.php?inserting=failed&idUrlFiliere=$id_filiere");
+	        	header("location: ../Modules?inserting=failed&idUrlFiliere=$id_filiere");
             	exit();
 	        }
 	    }
@@ -29,6 +29,6 @@
 				WHERE `module`.`id_module` = $id_module";
         mysqli_query($conn , $sql);
 
-        header("location: ../pages/Modules.php?module=updated&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
+        header("location: ../Modules?module=updated&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
     }
 ?>

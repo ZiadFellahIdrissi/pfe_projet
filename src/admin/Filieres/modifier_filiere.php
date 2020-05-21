@@ -14,7 +14,7 @@
             foreach ($row as $key => $data)
             {
                 if (strcmp($row[$key], $nom)==0 || $row[$key] == $resp_id){
-                    header("location: ../pages/Filiere.php?inserting=failed");
+                    header("location: ../Filieres?inserting=failed");
                     exit();
                 }
             }
@@ -23,6 +23,6 @@
                                 set responsable_id = $resp_id,
                                     nom_filiere = '$nom'
                                 WHERE id_filiere = $filiere_id " );
-        header("location: ../pages/Filiere.php?filiere=updated");
+        header("location: ../Filieres?filiere=updated");
     }
 ?>

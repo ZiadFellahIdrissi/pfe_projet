@@ -1,6 +1,5 @@
 <?php
     include '../../connection.php';
-
     if(isset($_POST['ajouter'])){
         $nom=mysqli_real_escape_string($conn, $_POST['Nom']);
         $prenom=mysqli_real_escape_string($conn, $_POST['prenom']);
@@ -15,14 +14,14 @@
         $resultatcount = mysqli_num_rows($resultat);
 
         if( $resultatcount!=0){
-            header('location: ../../pages/Etudiants.php?inserting=failed');
+            header('location: ../Etudiants?inserting=failed');
             exit();
         }else{
         
         $sql="INSERT INTO `etudiant`(`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, `email`, `id_filiere`)
          VALUES ($codeapoge,'$cin', '$nom' , '$prenom' , '$dateN', '$email' , $filiere)";
         mysqli_query($conn , $sql);
-        header("location: ../pages/Etudiants.php?etudiant=inserted&idUrlFiliere=$filiere");
+        header("location: ../Etudiants?etudiant=inserted&idUrlFiliere=$filiere");
         }
-
     }
+?>

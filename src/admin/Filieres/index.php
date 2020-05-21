@@ -1,13 +1,13 @@
 <?php
-include '../../connection.php';
-include_once '../../../core/init.php';
-$user = new User_Admin();
-if (!$user->isLoggedIn()) {
-    header('Location: ./login_page.php');
-}else{
-    $nom=$user->data()->username;
-    $email=$user->data()->email;
-?>
+    include '../../connection.php';
+    include_once '../../../core/init.php';
+    $user = new User_Admin();
+    if (!$user->isLoggedIn()) {
+        header('Location: ../pages/login.php');
+    }else{
+        $nom=$user->data()->username;
+        $email=$user->data()->email;
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +15,7 @@ if (!$user->isLoggedIn()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="../../../layout/css/animation.css" rel="stylesheet" type="text/css" />
-    <title>Filiere</title>
+    <title>Filières</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="../../../lib/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
@@ -47,35 +47,38 @@ if (!$user->isLoggedIn()) {
 
 <body class=""> <!--animsition-->
     <div class="page-wrapper">
-        <?php include './header.php' ?>
+        <?php
+            include '../pages/header.php';
+        ?>
         <div class="main-content ">
-            <?php include '../../DML_Commentator.php';
-            DMLCommentator('filiere');
+            <?php
+                include '../../DML_Commentator.php';
+                DMLCommentator('filiere');
             ?>
             <div class="container mb-3">
                 <nav aria-label="breadcrumb nov ">
                     <ol class="breadcrumb nov ">
-                        <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Filieres</li>
+                        <li class="breadcrumb-item"><a href="../">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Filières</li>
                     </ol>
                 </nav>
 
-                <!-- ================================================ajoute un filier================================================================================================ -->
+                <!-- =====================ajoute un filier========================== -->
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="col-6 col-md-4">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Ajouter un filiere</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Ajouter une filière</button>
                             <br><br>
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <!-- =============================================== -->
-                                            <form action="../Filiere/ajoute_filiere.php" method="POST">
+                                            <form action="ajoute_filiere.php" method="POST">
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
-                                                            <label for="Nom" class="col-form-label">Nom du filiere</label>
+                                                            <label for="Nom" class="col-form-label">Nom de la filière</label>
                                                             <input type="text" class="form-control" name="Nom" id="Nom" required>
                                                         </div>
                                                     </div>
@@ -85,20 +88,20 @@ if (!$user->isLoggedIn()) {
                                                     <select name="Responsable" id="Responsable" class="form-control" required>
                                                         <option value=""></option>
                                                         <?php
-                                                        $sql = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
-                                                                        FROM enseignant
-                                                                        WHERE `id_enseignant` not in ( SELECT responsable_id
-                                                                                                        FROM filiere )";
-                                                        $resultat = mysqli_query($conn, $sql);
-                                                        if (mysqli_num_rows($resultat) > 0) {
-                                                            while ($row = mysqli_fetch_assoc($resultat)) {
+                                                            $sql = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
+                                                                            FROM enseignant
+                                                                            WHERE `id_enseignant` not in ( SELECT responsable_id
+                                                                                                            FROM filiere )";
+                                                            $resultat = mysqli_query($conn, $sql);
+                                                            if (mysqli_num_rows($resultat) > 0) {
+                                                                while ($row = mysqli_fetch_assoc($resultat)) {
                                                         ?>
-                                                                <option value="<?php echo $row['id_enseignant'] ?>">
-                                                                    <strong><?php echo $row['nom_enseignant'] . " " . $row["prenom_enseignant"] ?></strong>
-                                                                </option>';
+                                                                    <option value="<?php echo $row['id_enseignant'] ?>">
+                                                                        <strong><?php echo $row['nom_enseignant'] . " " . $row["prenom_enseignant"] ?></strong>
+                                                                    </option>';
                                                         <?php
+                                                                }
                                                             }
-                                                        }
                                                         ?>
                                                     </select>
                                                 </div>
@@ -114,22 +117,22 @@ if (!$user->isLoggedIn()) {
                             </div>
                         </div>
                         <!-- liste des filieres -->
-                        <?php include '../Filiere/AfficheTableauFiliere.php' ?>
+                        <?php
+                            include 'AfficheTableauFiliere.php';
+                        ?>
                     </div>
                 </div>
                 
-                <!-- ============================================modal pour la modification ============================================================================= -->
+                <!-- =======================modal pour la modification============================ -->
                 <div class="modal fade" id="modifierModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body">
-
-                                <!-- =============================================== -->
-                                <form action="../Filiere/modifier_filiere.php" method="POST">
+                                <form action="modifier_filiere.php" method="POST">
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <label for="Nom" class="col-form-label">Nom du filiere</label>
+                                                <label for="Nom" class="col-form-label">Nom de la filière</label>
                                                 <input type="text" class="form-control" name="Nom" value="" id="Nom_modifier">
                                             </div>
                                         </div>
@@ -138,15 +141,15 @@ if (!$user->isLoggedIn()) {
                                         <label for="Responsable_modifier">Responsable</label>
                                         <select name="Responsable_modifier" id="Responsable_modifier" value="" class="form-control">
                                             <?php
-                                            $sqlOptions = "SELECT id_enseignant,nom_enseignant,prenom_enseignant
-                                                            FROM enseignant ";
-                                            $resultat = mysqli_query($conn, $sqlOptions);
-                                            $resultatcheck = mysqli_num_rows($resultat);
-                                            while ($row = mysqli_fetch_assoc($resultat)) {
-                                                echo '<option value="' . $row["id_enseignant"] . '">
-                                                    <strong>' . $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] . '</strong>
-                                                </option>';
-                                            }
+                                                $sqlOptions = "SELECT id_enseignant,nom_enseignant,prenom_enseignant
+                                                                FROM enseignant ";
+                                                $resultat = mysqli_query($conn, $sqlOptions);
+                                                $resultatcheck = mysqli_num_rows($resultat);
+                                                while ($row = mysqli_fetch_assoc($resultat)) {
+                                                    echo '<option value="' . $row["id_enseignant"] . '">
+                                                        <strong>' . $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] . '</strong>
+                                                    </option>';
+                                                }
                                             ?>
                                         </select>
                                     </div>
@@ -157,18 +160,11 @@ if (!$user->isLoggedIn()) {
                                         <input type="submit" id="Modifier" class="btn btn-primary" value="Modifier" name="Modifier">
                                     </div>
                                 </form>
-                                <!-- =============================================== -->
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- ============================================fin la modification============================================ -->
-
-
-
-                <!-- ============================================tableau de filieres============================================ -->
-                <!-- ===================================fin tableau de filieres=================================== -->
+                <!-- ============================fin la modification======================== -->
 
                 <!-- ====================asking for permission Modal==================== -->
                 <div class="modal fade" id="confermationAle" role="dialog" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -176,12 +172,12 @@ if (!$user->isLoggedIn()) {
                         <div class="modal-content">
                             <form action="../Filiere/supprimer_filiere.php" method="POST">
                                 <div class="modal-header">
-                                    <h6 style="color:#c0392b;" class="modal-title" id="exampleModalScrollableTitle">Tu vas supprimer tous ces Etudiants dans cet Filiere</h6>
+                                    <h4 style="color:#c0392b;" class="modal-title" id="exampleModalScrollableTitle">Tu vas supprimer tous ces Etudiants dans cette filière!</h6>
                                 </div>
                                 <div class="modal-body">
                                     <div class="container mb-3 mt-3" id="affiche_etudiant">
-                                        <!-- ici j'affichie les etudiant qui va supprimie
-                                            si l'utilisateur suprimie un filiere -->
+                                        <!-- l'affichage des etudiants qui va être supprimé
+                                            si l'utilisateur veut supprimer leur filiere -->
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -201,14 +197,10 @@ if (!$user->isLoggedIn()) {
 
     <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
-
     <!-- Bootstrap JS-->
     <script type="text/javascript" src="../../../layout/js/bootstrap.min.js "></script>
-
-
     <!-- lib JS   -->
     <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
-
     <!-- Main JS-->
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
     <script type="text/javascript" src="../../../layout/js/animation.js"></script>

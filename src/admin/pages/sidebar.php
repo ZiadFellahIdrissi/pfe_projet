@@ -7,29 +7,29 @@
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
         <nav class="navbar-sidebar">
-            <ul class="list-unstyled navbar__list ">
+            <ul class="list-unstyled navbar__list">
                 <li class="active ">
                     <a href="./">
-                        <i class="fas fa-tachometer-alt "></i>Dashboard</a>
+                        <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="./Etudiants.php">
-                        <i class="fas fa-user-graduate "></i> Etudiants
+                    <a href="../Etudiants">
+                        <i class="fas fa-user-graduate"></i>Etudiants
                     </a>
                 </li>
                 <li>
-                    <a href="./Filiere.php">
-                        <span><i class="fas fa-university "></i></span> Filiere
+                    <a href="../Filieres">
+                        <span><i class="fas fa-university"></i></span>Filières
                     </a>
                 </li>
                 <li>
-                    <a href="./Enseignant.php">
-                        <span><i class="fas fa-chalkboard-teacher "></i></span> Enseignant
+                    <a href="../Enseignants">
+                        <span><i class="fas fa-chalkboard-teacher"></i></span>Enseignants
                     </a>
                 </li>
                 <li>
-                    <a href="./Modules.php">
-                        <span><i class="fab fa-stack-overflow "></i></span> Modules
+                    <a href="../Modules">
+                        <span><i class="fab fa-stack-overflow"></i></span>Modules
                     </a>
                 </li>
                 <li class="has-sub">
@@ -37,10 +37,10 @@
                         <i class="fas fa-calendar-alt"></i>Examens <i class="fas fa-angle-down"></i> </a>
                     <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                         <li>
-                            <a href="./CalendrierExamens.php">Calendrier Exames</a>
+                            <a href="../CalendrierExamens.php">Calendrier Exames</a>
                         </li>
                         <li>
-                            <a href="./consulte_Examen.php">Liste Examens</a>
+                            <a href="../consulte_Examen.php">Liste Examens</a>
                         </li>
                     </ul>
                 </li>
@@ -49,15 +49,15 @@
                         <i class="fas fa-copy "></i>Notes <i class="fas fa-angle-down "></i> </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
-                            <a href="./consulter_Notes.php ">Consulter Notes</a>
+                            <a href="../consulter_Notes.php ">Consulter Notes</a>
                         </li>
                         <li>
-                            <a href="./ajoute_notes">Gestion des Notes</a>
+                            <a href="../ajoute_notes">Gestion des Notes</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="Absences.php">
+                    <a href="../Absences.php">
                         <i class="far fa-clock"></i>Absences
                     </a>
                 </li>

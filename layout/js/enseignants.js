@@ -10,7 +10,7 @@ $(document).ready(function() {
     $(document).on('click', '.Open_modifierEnseignant', function() {
         var code = $(this).attr("id");
         $.ajax({
-            url: "../Enseignant/fetching_teachers_for_editing.php",
+            url: "fetching_teachers_for_editing.php",
             method: 'GET',
             data: {
                 code: code
@@ -41,18 +41,18 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-    $(document).on('click', '#afficheRespo', function() {
-        $.ajax({
-            url: "../Enseignant/affiche_responsables.php",
-            dataType: "text",
-            success: function(data) {
-                $('.enseignant').html(data);
-                $('#afficheRespo').html("Afficher tous les enseignants");
-                $('#afficheRespo').attr('href', "Enseignant.php");
-                $('.titleH').html("Responsables");
-                $('.aff').html('<li class="breadcrumb-item"><a href="./">Dashboard</a></li><li class="breadcrumb-item"><a href="./Enseignant.php">Enseignants</a></li><li class="breadcrumb-item active" aria-current="page">Responsables</li>');
-            }
-        });
-    });
-});
+// $(document).ready(function() {
+//     $(document).on('click', '#afficheRespo', function() {
+//         $.ajax({
+//             url: "../Responsables/affiche_responsables.php",
+//             dataType: "text",
+//             success: function(data) {
+//                 $('.enseignant').html(data);
+//                 $('#afficheRespo').html("Afficher tous les enseignants");
+//                 $('#afficheRespo').attr('href', "./");
+//                 $('.titleH').html("Responsables");
+//                 $('.aff').html('<li class="breadcrumb-item"><a href="../">Dashboard</a></li><li class="breadcrumb-item"><a href="./">Enseignants</a></li><li class="breadcrumb-item active" aria-current="page">Responsables</li>');
+//             }
+//         });
+//     });
+// });
