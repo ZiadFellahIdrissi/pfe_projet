@@ -8,5 +8,5 @@
 		$id_filiere=$row["id_filiere"];
 		mysqli_query($conn , "DELETE FROM etudiant
 							  WHERE code_apoge = $codeapoge");
-		header("location: ../pages/Etudiants.php?etudiant=deleted&idUrlFiliere=$id_filiere");
+		header("location: ../Etudiants?etudiant=deleted&idUrlFiliere=$id_filiere");
 	}

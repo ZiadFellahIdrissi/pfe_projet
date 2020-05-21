@@ -1,12 +1,12 @@
 <?php
-include '../../connection.php';
-include_once '../../../core/init.php';
-$user = new User_Admin();
-if (!$user->isLoggedIn()) {
-    header('Location: ./login_page.php');
-}else{
-    $nom=$user->data()->username;
-    $email=$user->data()->email;
+    include '../../connection.php';
+    include_once '../../../core/init.php';
+    $user = new User_Admin();
+    if (!$user->isLoggedIn()) {
+        header('Location: ../pages/login.php');
+    }else{
+        $nom=$user->data()->username;
+        $email=$user->data()->email;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,20 +47,20 @@ if (!$user->isLoggedIn()) {
     }
 </style>
 
-<body class=""> <!--animsition-->
+<body>
     <div class="page-wrapper">
-        <?php include 'header.php'; ?>
+        <?php 
+            include '../pages/header.php';
+        ?>
         <div class="main-content ">
-            <?php include '../../DML_Commentator.php';  
-            DMLCommentator("etudiant");
+            <?php
+                include '../../DML_Commentator.php';  
+                DMLCommentator("etudiant");
             ?>
-            <!--<div class="d-flex justify-content-between " style="margin-top: 0px; margin-left:2%; margin-bottom:2.5%; ">
-                <h1 class="title">Etudiants</h1>
-            </div>-->
             <div class="container mb-3">
                 <nav aria-label="breadcrumb nov">
                     <ol class="breadcrumb nov">
-                        <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="../pages">Dashboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Etudiants</li>
                     </ol>
                 </nav>
@@ -68,44 +68,43 @@ if (!$user->isLoggedIn()) {
                     <div class="modal-header">
                         <div class="col-md-6">
                             <select name="filiere" id="filiere" class="form-control">
-                                <option value=''>Choisir un filière</option>
+                                <option value=''>Choisissez une filière</option>
                                 <?php
-                                $sql = "SELECT id_filiere,nom_filiere FROM filiere";
-                                $resultat = mysqli_query($conn, $sql);
-                                while ($row = mysqli_fetch_assoc($resultat)) {
+                                    $sql = "SELECT id_filiere,nom_filiere FROM filiere";
+                                    $resultat = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($resultat)) {
                                 ?>
-                                    <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
+                                        <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
                                 <?php
-                                }
+                                    }
                                 ?>
                             </select>
                         </div>
                         <div class="col-md-4 offset-md-4">
-                            <a href="Etudiants.php"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
+                            <a href="./"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
                         </div>
                     </div>
-                    <?php include '../Etudiant/afficheTableauEtudiants.php'; ?>
+                    <?php
+                        include 'afficheTableauEtudiants.php';
+                    ?>
                 </div>
                 <br><br>
             </div>
         </div>
     </div>
-    </div> <!-- hade div daroori tb9a hitache dyal wahde dive ma7loola fl header   -->
+    </div>
 
     <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
-
     <!-- Bootstrap JS-->
     <script type="text/javascript" src="../../../layout/js/bootstrap.min.js "></script>
 
-
     <!-- lib JS   -->
     <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
-
     <!-- Main JS-->
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
     <script type="text/javascript" src="../../../layout/js/animation.js"></script>
-    <script type="text/javascript" src="../../../layout/js/etudiant.js"></script>
+    <script type="text/javascript" src="../../../layout/js/etudiants.js"></script>
     <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 </body>
 

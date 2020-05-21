@@ -9,6 +9,6 @@
 		$id_filiere=$row["id_filiere"];
 		mysqli_query($conn , "DELETE FROM module
 							  WHERE id_module = $id_module");
-		header("location: ../pages/Modules.php?module=deleted&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
+		header("location: ../Modules?module=deleted&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
 	}
 ?>

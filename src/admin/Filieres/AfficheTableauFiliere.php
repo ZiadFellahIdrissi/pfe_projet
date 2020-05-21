@@ -39,7 +39,7 @@
                             <?php
                             } else {
                             ?>
-                                <a class="item" href="../Filiere/supprimer_filiere.php?id=<?php echo $row["id_filiere"] ?>" title="Supprimer" >
+                                <a class="item" href="supprimer_filiere.php?id=<?php echo $row["id_filiere"] ?>" title="Supprimer" >
                                     <i class="zmdi zmdi-delete" ></i>
                                 </a>
                             <?php

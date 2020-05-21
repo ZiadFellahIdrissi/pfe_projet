@@ -4,7 +4,7 @@ if (!empty($_GET['id_filiere'])) {
 ?>
     <!-- ======================================================================== -->
     <div class="col-6 col-md-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Module à ce Filiere</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Module à cette filière</button>
         <br>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -18,7 +18,7 @@ if (!empty($_GET['id_filiere'])) {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="semesterB" class="col-form-label">Semester</label>
+                                        <label for="semesterB" class="col-form-label">Semestre</label>
                                         <select name="mySemester" id="semesterB" class="form-control">
                                             <option value='<?php echo $_GET["semester"] ?>'>
                                                 <?php
@@ -61,11 +61,10 @@ if (!empty($_GET['id_filiere'])) {
                             <!-- ===================================== -->
                             <div class="modal-footer">
                                 <input type="hidden" name="Filiere" value="<?php echo $_GET['id_filiere'] ?>" class="form-control">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                                 <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -85,10 +84,10 @@ if (!empty($_GET['id_filiere'])) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="semesterBl" class="col-form-label">Semester</label>
+                                    <label for="semesterBl" class="col-form-label">Semestre</label>
                                     <select name="mySemester" id="semesterBl" class="form-control">
-                                            <option value="100">1ere Semester</option>
-                                            <option value="200">2eme Semester</option>
+                                            <option value="100">1ere Semestre</option>
+                                            <option value="200">2eme Semestre</option>
                                     </select>
                                 </div>
                             </div>
@@ -120,7 +119,7 @@ if (!empty($_GET['id_filiere'])) {
                         <div class="modal-footer">
                             <input type="hidden" name="Filiere" value="<?php echo $_GET['id_filiere'] ?>" class="form-control">
                             <input type="hidden" name="id_module" id="id_module2" value="" class="form-control">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                             <button type="submit" class="btn btn-primary" name="modifier">Modifier</button>
                         </div>
                     </form>
@@ -167,7 +166,7 @@ if (!empty($_GET['id_filiere'])) {
                             <td><?php echo $row["horaire"] ?></td>
                             <td>
                                 <div class="table-data-feature" style="text-align: center">
-                                    <button onclick="location.href='../Modules/supprimer_module.php?id=<?php echo $row["id_module"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                    <button onclick="location.href='supprimer_module.php?id=<?php echo $row["id_module"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
                                         <i class="zmdi zmdi-delete"></i>
                                     </button>
                                     <button data-toggle="tooltip" id="<?php echo $row["id_module"] ?>" data-toggle="modal" class="item Open_modifierUnModule" data-placement="top" title="Modifier">

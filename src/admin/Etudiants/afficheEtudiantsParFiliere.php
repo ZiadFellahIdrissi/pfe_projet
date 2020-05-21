@@ -4,13 +4,13 @@ if (!empty($_GET['id_filiere'])) {
 ?>
     <!-- ===============un button pour ajoute un etudiant======================= -->
     <div class="col-6 col-md-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Etudiant à ce Filière</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Etudiant à cette filière</button>
         <br>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <form action="../Etudiant/ajoute_etudiant.php" method="POST">
+                        <form action="ajoute_etudiant.php" method="POST">
                             <!-- =======================bloc de le nom et le prenom======================= -->
                             <div class="row">
                                 <div class="col">
@@ -80,7 +80,7 @@ if (!empty($_GET['id_filiere'])) {
 
                 <div class="modal-body">
 
-                    <form action="../Etudiant/modifier_etudiant.php" method="POST">
+                    <form action="modifier_etudiant.php" method="POST">
                         <!-- le nom et le prenom-->
                         <div class="row">
                             <div class="col">
@@ -101,7 +101,7 @@ if (!empty($_GET['id_filiere'])) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="codeapoge_modifier" class="col-form-label">Code apogee</label>
+                                    <label for="codeapoge_modifier" class="col-form-label">Code apogée</label>
                                     <input type="text" class="form-control" name="codeapoge" value="" id="codeapoge_modifier" required>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@ if (!empty($_GET['id_filiere'])) {
                         <!-- modal footer -->
                         <div class="modal-footer">
                             <input type="hidden" id="codeapoger" name="codeapoger" value="">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                             <button type="submit" class="btn btn-primary" name="modifier">Modifier</button>
                         </div>
                     </form>
@@ -196,7 +196,7 @@ if (!empty($_GET['id_filiere'])) {
                             <td><?php echo $row["email"] ?></td>
                             <td>
                                 <div class="table-data-feature" style="text-align: center">
-                                    <button onclick="location.href='../Etudiant/supprimer_etudiant.php?id=<?php echo $row["code_apoge"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" >
+                                    <button onclick="location.href='supprimer_etudiant.php?id=<?php echo $row["code_apoge"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" >
                                         <i class="zmdi zmdi-delete"></i>
                                     </button>
                                     <button data-toggle="tooltip" id="<?php echo $row["code_apoge"] ?>" data-toggle="modal" class="item Open_modifierUnEtudiant" data-placement="top" title="Modifier" >

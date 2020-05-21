@@ -7,7 +7,7 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-body">
-							<form action="../Enseignant/ajoute_enseignant.php" method="POST">
+							<form action="ajoute_enseignant.php" method="POST">
 								<!-- =======================bloc de le nom et le prenom======================= -->
 								<div class="row">
 									<div class="col">
@@ -25,7 +25,7 @@
 								</div>
 								<!-- ===================fin bloc de le nom et le prenom======================= -->
 								<div class="form-group">
-									<label for="numTel" class="col-form-label">Numéro de téléphone</label>
+									<label for="numTel" class="col-form-label">Numéro du téléphone</label>
 									<input type="text" class="form-control" name="numTel" id="numTel" required>
 								</div>
 
@@ -35,7 +35,7 @@
 								</div>
 
 								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 									<button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
 								</div>
 							</form>
@@ -45,15 +45,13 @@
 				</div>
 			</div>
 		</div>
-		<!-- =====================================formilar poir modifier un enseignant========================================== -->
+		<!-- =====================formilar poir modifier un enseignant==================== -->
 
 		<div class="modal fade" id="modifierUnEnseignant" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-
 					<div class="modal-body">
-
-						<form action="../Enseignant/modifier_enseignant.php" method="POST">
+						<form action="modifier_enseignant.php" method="POST">
 							<!-- =======================bloc de le nom et le prenom======================= -->
 							<div class="row">
 								<div class="col">
@@ -72,7 +70,7 @@
 							<!-- ===================fin bloc de le nom et le prenom======================= -->
 
 							<div class="form-group">
-								<label for="tel_modifier" class="col-form-label">Numéro de téléphone</label>
+								<label for="tel_modifier" class="col-form-label">Numéro du téléphone</label>
 								<input type="text" class="form-control" name="numTel" id="tel_modifier" required>
 							</div>
 
@@ -83,7 +81,7 @@
 
 							<div class="modal-footer">
 								<input type=hidden value="" name="id_enseignant" id="id_enseignant">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 								<button type="submit" class="btn btn-primary" name="Modifier">Modifier</button>
 							</div>
 						</form>
@@ -92,7 +90,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- =====================================end modifier un enseignant====================================== -->
+		<!-- ======================end modifier un enseignant======================== -->
 
 		<br>
 		<!-- confirmation de la suppression du responsable -->
@@ -156,7 +154,7 @@
 										<?php
 										} else {
 										?>
-											<button onclick="location.href='../Enseignant/supprimer_enseignant.php?id=<?php echo $row["id_enseignant"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" >
+											<button onclick="location.href='supprimer_enseignant.php?id=<?php echo $row["id_enseignant"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" >
 												<i class="zmdi zmdi-delete"></i>
 											</button>
 										<?php

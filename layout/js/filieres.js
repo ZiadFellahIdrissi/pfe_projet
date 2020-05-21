@@ -11,7 +11,7 @@ $(document).ready(function() {
         $('#confermationAle').modal('show');
         // pour affichie les etudiant qui va supprimie si il suprimie un filiere
         $.ajax({
-            url: "../Filiere/fetching_students.php",
+            url: "fetching_students.php",
             method: "POST",
             data: {
                 filier_id: filier_id
@@ -26,7 +26,7 @@ $(document).ready(function() {
     $(".open_modifierModal").click(function() {
         var code = $(this).attr("id");
         $.ajax({
-            url: "../Filiere/fetching_filieres_for_editing.php",
+            url: "fetching_filieres_for_editing.php",
             method: 'GET',
             data: {
                 code: code

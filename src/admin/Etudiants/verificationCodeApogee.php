@@ -5,7 +5,7 @@
                  AND code_apoge != $oldCode";
 
     if(mysqli_num_rows(mysqli_query($conn, $sqltest2))){
-        header('location: ../pages/Etudiants.php?inserting=failed?hhh2');
+        header('location: ../Etudiants?inserting=failed?hhh2');
         exit();
     }
 ?>
