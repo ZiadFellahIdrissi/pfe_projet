@@ -28,7 +28,7 @@ class User_Admin{
         if($username){
             if($password){
                 $filed = (is_numeric($username)) ? 'id' : 'username';
-                $dataPas=$this->_db->query("SELECT * FROM users where $filed=? and pasword=? and letype=?",array($username,$password,'admin'));
+                $dataPas=$this->_db->query("SELECT * FROM administrateur where $filed=? and pasword=?",array($username,$password));
                 if($dataPas->count()){
                     return true;
                 }
@@ -42,7 +42,7 @@ class User_Admin{
     public function find($username = null){
         if($username){
             $filed = (is_numeric($username)) ? 'id' : 'username';
-            $data=$this->_db->query("SELECT * FROM users where $filed=? and letype=?",array($username,'admin'));
+            $data=$this->_db->query("SELECT * FROM administrateur where $filed=?",array($username));
                 if($data->count()){
                     $this->_data=$data->first();
                     return true;

@@ -5,8 +5,9 @@ $user = new User_Admin();
 if (!$user->isLoggedIn()) {
     header('Location: ./login.php');
 }else{
-    $nom=$user->data()->username;
-    $email=$user->data()->email;
+    $nom = $user->data()->nom;
+    $prenom = $user->data()->prenom;
+    $username =$user->data()->username;
 ?>
 <!DOCTYPE html>
 <html lang="en">

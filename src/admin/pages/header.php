@@ -106,7 +106,7 @@
                                 <div class="content ">
                                     <a class="js-acc-btn " href="# ">
                                         <?php
-                                        echo $nom;
+                                        echo $prenom.' '.$nom;
                                         ?>
                                     </a>
                                 </div>
@@ -121,13 +121,13 @@
                                             <h5 class="name ">
                                                 <a href="# ">
                                                     <?php
-                                                    echo $nom;
+                                                    echo $prenom.' '.$nom;
                                                     ?>
                                                 </a>
                                             </h5>
                                             <span class="email ">
                                                 <?php
-                                                echo $email;
+                                                echo $username;
                                                 ?>
                                             </span>
                                         </div>
