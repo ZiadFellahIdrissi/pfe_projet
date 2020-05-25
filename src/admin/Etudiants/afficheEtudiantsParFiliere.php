@@ -2,76 +2,99 @@
 if (!empty($_GET['id_filiere'])) {
     include '../../connection.php';
 ?>
-    <!-- ===============un button pour ajoute un etudiant======================= -->
-    <div class="col-6 col-md-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un Etudiant à cette filière</button>
-        <br>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <form action="ajoute_etudiant.php" method="POST">
-                            <!-- =======================bloc de le nom et le prenom======================= -->
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="le_nom" class="col-form-label">Nom </label>
-                                        <input type="text" class="form-control" name="Nom" id="le_nom" required>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="le_prenom" class="col-form-label">Prenom </label>
-                                        <input type="text" class="form-control" name="prenom" id="le_prenom" required>
-                                    </div>
+    <!-- ===============Un button pour ajoute un etudiant======================= -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Ajouter un Etudiant à cette filière
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form action="ajoute_etudiant.php" method="POST">
+                        <!-- ======================Nom, Prenom======================= -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="le_nom" class="col-form-label">Nom </label>
+                                    <input type="text" class="form-control" name="Nom" id="le_nom" required>
                                 </div>
                             </div>
-                            <!-- ===================fin bloc de le nom et le prenom======================= -->
-
-                            <!-- =====================bloc code apogee et le cne======================= -->
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="codeapo" class="col-form-label">Code apouge</label>
-                                        <input type="text" class="form-control" name="codeapoge" id="codeapo" required>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="cin" class="col-form-label">Cne</label>
-                                        <input type="text" class="form-control" name="cin" id="cin" required>
-                                    </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="le_prenom" class="col-form-label">Prenom </label>
+                                    <input type="text" class="form-control" name="prenom" id="le_prenom" required>
                                 </div>
                             </div>
-                            <!-- ===================fin bloc de code apogee et le cne================== -->
+                        </div>
 
-                            <div class="form-group">
-                                <label for="date" class="col-form-label">Date Naissance</label>
-                                <input type="date" class="form-control" name="dateN" id="date" required>
+                        <!-- =====================CNE,CIN======================= -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="cne" class="col-form-label">cne</label>
+                                    <input type="text" class="form-control" name="cne" id="cne" required>
+                                </div>
                             </div>
-
-                            <div class="form-group">
-                                <label for="email" class="col-form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="date" required>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="cin" class="col-form-label">Cin</label>
+                                    <input type="text" class="form-control" name="cin" id="cin" required>
+                                </div>
                             </div>
+                        </div>
 
-
-                            <div class="form-group">
-                                <input type="hidden" name="filiere" value="<?php echo $_GET['id_filiere'] ?>" class="form-control">
+                        <!-- =====================Date naissance, date inscription======================= -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="date" class="col-form-label">Date Naissance</label>
+                                    <input type="date" class="form-control" name="dateN" id="date" required>
+                                </div>
                             </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="date_ins" class="col-form-label">Date Inscription</label>
+                                    <input type="date" class="form-control" name="date_ins" id="date_ins" required>
+                                </div>
                             </div>
-                        </form>
+                        </div>
 
-                    </div>
+                        <!-- ===================adresse================== -->
+                        <div class="form-group">
+                            <label for="adresse" class="col-form-label">Adresse</label>
+                            <input type="text" class="form-control" name="adresse" id="adresse" required>
+                        </div>
+
+                        <!-- ===================Telephone,, Email================== -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="telephone" class="col-form-label">Telephone</label>
+                                    <input type="text" class="form-control" name="telephone" id="telephone" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="email" class="col-form-label">Email</label>
+                                    <input type="email" class="form-control" name="email" id="date" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- modal footer -->
+                        <div class="modal-footer">
+                            <input type="hidden" name="filiere" value="<?php echo $_GET['id_filiere'] ?>" class="form-control">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ===============le bloc de botton pour ajoute un etudiant terminer=============== -->
+    <!-- ===================================fin ajouter un etudiant============================== -->
+
+
 
     <!-- ===============formulaire pour modifier un etudiant=============== -->
     <div class="modal fade" id="modifierUnEtudiant" tabindex="-1" role="dialog" aria-hidden="true">
@@ -162,8 +185,9 @@ if (!empty($_GET['id_filiere'])) {
 
     <div class="table-responsive-sm">
         <?php
-        $sql = 'SELECT cne, code_apoge,date_naissance,email,nom,prenom,id_filiere
-                FROM etudiant WHERE id_filiere=' . $_GET['id_filiere'];
+        $sql = 'SELECT etudiant.cin,users.date_naissence, users.email, users.nom, users.prenom
+                FROM users join etudiant on etudiant.infos=users.id WHERE etudiant.filiere=' . $_GET['id_filiere'];
+
 
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
@@ -172,7 +196,6 @@ if (!empty($_GET['id_filiere'])) {
             <table class="table table-bordered table-striped mydatatable">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Code Apoge</th>
                         <th>Cin</th>
                         <th>Nom</th>
                         <th>Prenom</th>
@@ -188,21 +211,20 @@ if (!empty($_GET['id_filiere'])) {
                     while ($row = mysqli_fetch_assoc($resultat)) {
                     ?>
                         <tr>
-                            <td><?php echo $row["code_apoge"] ?></t>
-                            <td><?php echo $row["cne"] ?></td>
+                            <td><?php echo $row["cin"] ?></td>
                             <td><?php echo $row["nom"] ?></td>
                             <td><?php echo $row["prenom"] ?></td>
-                            <td><?php echo $row["date_naissance"] ?></td>
+                            <td><?php echo $row["date_naissence"] ?></td>
                             <td><?php echo $row["email"] ?></td>
                             <td>
-                                <div class="table-data-feature" style="text-align: center">
+                                <!-- <div class="table-data-feature" style="text-align: center">
                                     <button onclick="location.href='supprimer_etudiant.php?id=<?php echo $row["code_apoge"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" >
                                         <i class="zmdi zmdi-delete"></i>
                                     </button>
                                     <button data-toggle="tooltip" id="<?php echo $row["code_apoge"] ?>" data-toggle="modal" class="item Open_modifierUnEtudiant" data-placement="top" title="Modifier" >
                                         <i class="zmdi zmdi-edit"></i>
                                     </button>
-                                </div>
+                                </div> -->
                             </td>
                         </tr>
                 <?php

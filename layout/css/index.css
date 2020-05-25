@@ -4,21 +4,14 @@ p {
     font-size: 20px;
 }
 
+
 header {
-    background: url("../../img/index/1.jpg");
+    background: #AEACFB;
     background-size: cover;
     height: 100vh;
-    position: relative;
+    position: fixed;
     overflow: hidden;
-}
-
-header:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-image: url("../../img/index/wave-bottom.svg");
-    height: 275px;
+    margin: auto;
 }
 
 .navbar {
@@ -31,4 +24,25 @@ header:after {
 
 nav {
     font-weight: bold;
+}
+
+body{
+    text-align: center;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0%;
+    right: 0%;
+}
+
+@media screen and (max-width: 650px) {
+    .footer{
+        display: none;
+    }
+
+    #logo{
+        float: left;
+        width: 50%;
+    }
 }

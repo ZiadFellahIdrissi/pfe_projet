@@ -1,0 +1,2 @@
+#logo{width:20%}#holder{animation:waveee 1s linear infinite alternate;transform-origin:top;transform-box:fill-box}@keyframes waveee{from{transform:rotateZ(3deg)}to{transform:rotateZ(-2deg)}}#diploma{animation:wavee 1s linear infinite alternate;transform-origin:center;transform-box:fill-box}@keyframes wavee{from{transform:rotateZ(-2deg)}to{transform:rotateZ(3deg)}}
+/*# sourceMappingURL=logo.css.map */
