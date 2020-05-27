@@ -1,6 +1,12 @@
 #pic{
-    width: 80%;
+    width: 400px;
 }
+
+@media screen and (max-width: 1000px) {
+    #pic{
+        display: none;
+    }
+} 
 
 #lid{
     animation: on 2s 1s ease infinite;

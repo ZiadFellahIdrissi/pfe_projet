@@ -27,8 +27,10 @@
         public function checkPassword($username = null ,$password=null ){
             if($username){
                 if($password){
-                    $filed = (is_numeric($username)) ? 'id' : 'username';
-                    $dataPas=$this->_db->query("SELECT * FROM administrateur where $filed=? and pasword=?",array($username,$password));
+                    $dataPas=$this->_db->query("SELECT *
+                                                FROM Administrateur
+                                                WHERE username = ?
+                                                AND password = ?",array($username,$password));
                     if($dataPas->count()){
                         return true;
                     }
@@ -41,8 +43,9 @@
 
         public function find($username = null){
             if($username){
-                $filed = (is_numeric($username)) ? 'id' : 'username';
-                $data=$this->_db->query("SELECT * FROM administrateur where $filed=?",array($username));
+                $data=$this->_db->query("SELECT *
+                                         FROM Administrateur
+                                         WHERE username = ?",array($username));
                     if($data->count()){
                         $this->_data=$data->first();
                         return true;
@@ -58,12 +61,12 @@
             Session::delete($this->_sessionName);
         }
 
-        public function login($email = null , $password = null){
-            $user = $this->find($email);
-            $userPas =$this->checkPassword($email,$password);
+        public function login($username = null , $password = null){
+            $user = $this->find($username);
+            $userPas =$this->checkPassword($username,$password);
             if($user){
                 if($userPas){
-                Session::put($this->_sessionName,$this->data()->id);
+                Session::put($this->_sessionName, $this->data()->username);
                 return true;
                 }
             }

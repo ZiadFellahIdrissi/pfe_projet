@@ -1,2 +1,249 @@
-#pic{width:80%}#lid{animation:on 2s 1s ease infinite}@keyframes on{30%{opacity:1}50%{opacity:0.75}70%{opacity:0.5}100%{opacity:0}30%{opacity:0.03}60%{opacity:0.5}80%{opacity:0.75}100%{opacity:1}}#plant1{animation:shake 1s linear infinite alternate;transform-origin:bottom;transform-box:fill-box}@keyframes shake{from{transform:rotateZ(-2deg)}to{transform:rotateZ(3deg)}}#plant2{animation:shake_ 1s linear infinite alternate;transform-origin:bottom;transform-box:fill-box}@keyframes shake_{from{transform:rotateZ(3deg)}to{transform:rotateZ(-2deg)}}#lefthand{animation:move 2s linear infinite alternate;transform-origin:center;transform-box:fill-box}@keyframes move{from{transform:rotateZ(-2deg)}to{transform:rotateZ(2deg)}}#righthand{animation:move_ 2s linear infinite alternate;transform-origin:bottom;transform-box:fill-box}@keyframes move_{from{transform:rotateZ(-2deg)}to{transform:rotateZ(2deg)}}#useless4{animation:wave 2s linear infinite alternate;transform-origin:center;transform-box:fill-box}@keyframes wave{from{transform:rotateZ(-0.5deg)}to{transform:rotateZ(0.5deg)}}#hair{animation:move__ 2s ease infinite alternate;transform-origin:center;transform-box:fill-box}@keyframes move__{from{transform:rotateZ(1.5deg)}to{transform:rotateZ(-1.5deg)}}
+#pic {
+  width: 400px;
+}
+
+@media screen and (max-width: 1000px) {
+  #pic {
+    display: none;
+  }
+}
+
+#lid {
+  -webkit-animation: on 2s 1s ease infinite;
+          animation: on 2s 1s ease infinite;
+}
+
+@-webkit-keyframes on {
+  30% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.03;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes on {
+  30% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.03;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#plant1 {
+  -webkit-animation: shake 1s linear infinite alternate;
+          animation: shake 1s linear infinite alternate;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  transform-box: fill-box;
+}
+
+@-webkit-keyframes shake {
+  from {
+    -webkit-transform: rotateZ(-2deg);
+            transform: rotateZ(-2deg);
+  }
+  to {
+    -webkit-transform: rotateZ(3deg);
+            transform: rotateZ(3deg);
+  }
+}
+
+@keyframes shake {
+  from {
+    -webkit-transform: rotateZ(-2deg);
+            transform: rotateZ(-2deg);
+  }
+  to {
+    -webkit-transform: rotateZ(3deg);
+            transform: rotateZ(3deg);
+  }
+}
+
+#plant2 {
+  -webkit-animation: shake_ 1s linear infinite alternate;
+          animation: shake_ 1s linear infinite alternate;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  transform-box: fill-box;
+}
+
+@-webkit-keyframes shake_ {
+  from {
+    -webkit-transform: rotateZ(3deg);
+            transform: rotateZ(3deg);
+  }
+  to {
+    -webkit-transform: rotateZ(-2deg);
+            transform: rotateZ(-2deg);
+  }
+}
+
+@keyframes shake_ {
+  from {
+    -webkit-transform: rotateZ(3deg);
+            transform: rotateZ(3deg);
+  }
+  to {
+    -webkit-transform: rotateZ(-2deg);
+            transform: rotateZ(-2deg);
+  }
+}
+
+#lefthand {
+  -webkit-animation: move 2s linear infinite alternate;
+          animation: move 2s linear infinite alternate;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  transform-box: fill-box;
+}
+
+@-webkit-keyframes move {
+  from {
+    -webkit-transform: rotateZ(-2deg);
+            transform: rotateZ(-2deg);
+  }
+  to {
+    -webkit-transform: rotateZ(2deg);
+            transform: rotateZ(2deg);
+  }
+}
+
+@keyframes move {
+  from {
+    -webkit-transform: rotateZ(-2deg);
+            transform: rotateZ(-2deg);
+  }
+  to {
+    -webkit-transform: rotateZ(2deg);
+            transform: rotateZ(2deg);
+  }
+}
+
+#righthand {
+  -webkit-animation: move____ 2s linear infinite alternate;
+          animation: move____ 2s linear infinite alternate;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  transform-box: fill-box;
+}
+
+@-webkit-keyframes move____ {
+  from {
+    -webkit-transform: rotateZ(-2deg);
+            transform: rotateZ(-2deg);
+  }
+  to {
+    -webkit-transform: rotateZ(2deg);
+            transform: rotateZ(2deg);
+  }
+}
+
+@keyframes move____ {
+  from {
+    -webkit-transform: rotateZ(-2deg);
+            transform: rotateZ(-2deg);
+  }
+  to {
+    -webkit-transform: rotateZ(2deg);
+            transform: rotateZ(2deg);
+  }
+}
+
+#useless4 {
+  -webkit-animation: wave 2s linear infinite alternate;
+          animation: wave 2s linear infinite alternate;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  transform-box: fill-box;
+}
+
+@-webkit-keyframes wave {
+  from {
+    -webkit-transform: rotateZ(-0.5deg);
+            transform: rotateZ(-0.5deg);
+  }
+  to {
+    -webkit-transform: rotateZ(0.5deg);
+            transform: rotateZ(0.5deg);
+  }
+}
+
+@keyframes wave {
+  from {
+    -webkit-transform: rotateZ(-0.5deg);
+            transform: rotateZ(-0.5deg);
+  }
+  to {
+    -webkit-transform: rotateZ(0.5deg);
+            transform: rotateZ(0.5deg);
+  }
+}
+
+#hair {
+  -webkit-animation: move__ 2s ease infinite alternate;
+          animation: move__ 2s ease infinite alternate;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  transform-box: fill-box;
+}
+
+@-webkit-keyframes move__ {
+  from {
+    -webkit-transform: rotateZ(1.5deg);
+            transform: rotateZ(1.5deg);
+  }
+  to {
+    -webkit-transform: rotateZ(-1.5deg);
+            transform: rotateZ(-1.5deg);
+  }
+}
+
+@keyframes move__ {
+  from {
+    -webkit-transform: rotateZ(1.5deg);
+            transform: rotateZ(1.5deg);
+  }
+  to {
+    -webkit-transform: rotateZ(-1.5deg);
+            transform: rotateZ(-1.5deg);
+  }
+}
 /*# sourceMappingURL=womanIndex.css.map */

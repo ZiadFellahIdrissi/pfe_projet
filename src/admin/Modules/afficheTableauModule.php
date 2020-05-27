@@ -2,22 +2,24 @@
     <div class="table-responsive-sm">
         <?php
         $sql = "SELECT *
-                FROM module
-                JOIN enseignant ON module.id_enseignant = enseignant.id_enseignant
-                Join semester on module.semester=semester.id_sem
-                JOIN filiere ON module.id_filiere = filiere.id_filiere";
+                FROM Module
+                JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
+                JOIN Personnel ON Module.id_enseignant = Personnel.id
+                JOIN Utilisateur ON Personnel.id = Utilisateur.id
+                JOIN dispose_de ON Module.id_module = dispose_de.id_module
+                JOIN Filiere ON dispose_de.id_filiere = Filiere.id_filiere";
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
         if ($resultatcheck > 0) {
         ?>
-            <table class="table table-bordered table-striped mydatatable">
-                <thead class="thead-dark">
+            <table class="table table table-borderless table-data3 mydatatable">
+                <thead>
                     <tr>
                         <th>Nom du Module</th>
                         <th>Enseignant</th>
                         <th>Heures</th>
                         <th>Filière</th>
-                        <th>Semester</th>
+                        <th>Semestre</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,10 +29,10 @@
                     ?>
                         <tr>
                             <td><?php echo $row["intitule"] ?></td>
-                            <td><?php echo $row["prenom_enseignant"] . ' ' . $row["nom_enseignant"] ?></td>
-                            <td><?php echo $row["horaire"] ?></td>
+                            <td><?php echo $row["nom"] . ' ' . $row["prenom"] ?></td>
+                            <td><?php echo $row["heures_sem"] ?></td>
                             <td><?php echo $row["nom_filiere"] ?></td>
-                            <td><?php echo $row["nom_sem"] ?></td>
+                            <td><?php echo $row["semestre"] ?></td>
                         </tr>
                 <?php
                     }

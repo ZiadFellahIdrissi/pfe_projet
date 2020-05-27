@@ -1,11 +1,11 @@
 <?php
     $sqltest1 = "SELECT cne
-    			 FROM etudiant
+    			 FROM Etudiant
                  WHERE cne = '$cne'
-                 AND code_apoge != $oldCode";
+                 AND id != $oldCin";
 
     if(mysqli_num_rows(mysqli_query($conn, $sqltest1))){
-        header('location: ../Etudiants?inserting=failed?hhh1');
+        header("location: ./?inserting=failed&idUrlFiliere=$filiere");
         exit();
     }
 ?>

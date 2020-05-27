@@ -299,7 +299,7 @@ a:hover {
 }
 
  #train1{
-    animation: train 1s linear infinite alternate;
+    animation: train 2s linear infinite alternate;
     transform-origin: center;
     transform-box: fill-box;
 }
@@ -314,7 +314,7 @@ a:hover {
 }
 
 #train3{
-    animation: trainnn 1s linear infinite alternate;
+    animation: trainnn 2s linear infinite alternate;
     transform-origin: center;
     transform-box: fill-box;
 }
@@ -328,31 +328,31 @@ a:hover {
     }
 }
 #train2{
-    animation: trainn 1s linear infinite alternate;
+    animation: trainn 2s linear infinite alternate;
     transform-origin: center;
     transform-box: fill-box;
 }
 
 @keyframes trainn{
     from{
-        transform: rotateZ(1deg);
+        transform: rotateZ(0.8deg);
     }
     to{
-        transform: rotateZ(-1deg);
+        transform: rotateZ(-0.8deg);
     }
 }
 
 #rightfoot{
-    animation: foot 1s linear infinite alternate;
+    animation: foot 2s linear infinite alternate;
     transform-origin: top;
     transform-box: fill-box;
 }
 
 @keyframes foot{
     from{
-        transform: rotateZ(2deg);
+        transform: rotateZ(1.5deg);
     }
     to{
-        transform: rotateZ(-2deg);
+        transform: rotateZ(-1.5deg);
     }
 }

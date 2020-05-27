@@ -6,22 +6,29 @@
         $id_enseignant=$_POST["Enseignant"];
         $id_filiere=$_POST["Filiere"];
         $heures=$_POST["Heures"];
-        
+        $coeffC=$_POST["coeffC"];
+        $coeffE=$_POST["coeffE"];
 
-        $sqltest="SELECT *
-                  FROM module
-                  WHERE intitule = '$nom'
-                  AND id_filiere = $id_filiere";
-        $resultat=mysqli_query($conn, $sqltest);
-        $resultatcount = mysqli_num_rows($resultat);
+        $resultatcount = mysqli_num_rows(mysqli_query($conn, "SELECT *
+                                                              FROM Module
+                                                              JOIN dispose_de ON Module.id_module = dispose_de.id_module
+                                                              WHERE Module.intitule = '$nom'
+                                                              AND dispose_de.id_filiere = $id_filiere                   "));
+
         if( $resultatcount>0 ){
-            header("location: ../Modules?inserting=failed&idUrlFiliere=$id_filiere");
+            header("location: ./?inserting=failed&idUrlFiliere=$id_filiere"); //doesnt redirect to the "filiere"
+                                                                              //despite the id being shown in the url
             exit();
         }
-        $sql1 = "INSERT INTO `module`(`intitule`, `id_enseignant`, `horaire`, `id_filiere`, `semester`)
-                    VALUES ('$nom', $id_enseignant, $heures, $id_filiere,$Mysemester)";   //TODO: fixer le probleme ou le nom inseré
-                                                                                //comporte un apostrophe
-        mysqli_query($conn, $sql1);
-        header("location: ../Modules?module=inserted&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
+
+        mysqli_query($conn, "INSERT INTO `Module`(`intitule`, `id_enseignant`, `heures_sem`, `id_semestre`)
+                                VALUES ('$nom', $id_enseignant, $heures, $Mysemester)                       ");
+
+        mysqli_query($conn, "INSERT INTO `dispose_de`(`id_filiere`, `id_module`, `coeff_examen`, `coeff_controle`)
+                                SELECT $id_filiere, id_module, $coeffE, $coeffC
+                                FROM Module
+                                WHERE intitule='$nom'");
+
+        header("location: ./?module=inserted&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
     }
 ?>

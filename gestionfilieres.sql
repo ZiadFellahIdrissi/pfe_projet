@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2020 at 06:52 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Host: localhost
+-- Generation Time: May 28, 2020 at 12:29 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,203 +24,404 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `administrateur`
+-- Table structure for table `Administrateur`
 --
 
-DROP TABLE IF EXISTS `administrateur`;
-CREATE TABLE IF NOT EXISTS `administrateur` (
-  `id` int(10) NOT NULL,
-  `nom` varchar(40) NOT NULL,
-  `prenom` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `pasword` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `Administrateur` (
+  `username` varchar(40) NOT NULL,
+  `password` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `administrateur`
+-- Dumping data for table `Administrateur`
 --
 
-INSERT INTO `administrateur` (`id`, `nom`, `prenom`, `username`, `pasword`) VALUES
-(1, 'brahim', 'manwari', 'admin', 'admin');
+INSERT INTO `Administrateur` (`username`, `password`) VALUES
+('admin', 'admin');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `etudiant`
+-- Table structure for table `assiste`
 --
 
-DROP TABLE IF EXISTS `etudiant`;
-CREATE TABLE IF NOT EXISTS `etudiant` (
-  `cin` varchar(20) NOT NULL,
-  `cne` varchar(20) NOT NULL,
-  `date_insc` date NOT NULL,
-  `sommePaye` float NOT NULL,
-  `infos` int(5) NOT NULL,
-  `filiere` int(5) NOT NULL,
-  PRIMARY KEY (`cin`),
-  KEY `filiere` (`filiere`),
-  KEY `infos` (`infos`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `etudiant`
---
-
-INSERT INTO `etudiant` (`cin`, `cne`, `date_insc`, `sommePaye`, `infos`, `filiere`) VALUES
-('bl153548', 'R131238116', '2020-09-19', 500, 1, 1);
+CREATE TABLE `assiste` (
+  `id_seance` int(11) NOT NULL,
+  `id_etudiant` int(11) NOT NULL,
+  `absent` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `filiere`
+-- Table structure for table `associe_a`
 --
 
-DROP TABLE IF EXISTS `filiere`;
-CREATE TABLE IF NOT EXISTS `filiere` (
-  `id_filiere` int(5) NOT NULL AUTO_INCREMENT,
-  `nom_filiere` varchar(50) NOT NULL,
-  `responsable_id` int(5) NOT NULL,
-  PRIMARY KEY (`id_filiere`),
-  KEY `responsable_id` (`responsable_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `filiere`
---
-
-INSERT INTO `filiere` (`id_filiere`, `nom_filiere`, `responsable_id`) VALUES
-(1, 'Developpement et Admin des BD', 2),
-(2, 'Administration Reseaux et Systemes', 4),
-(3, 'Developpement Mobile et Multimedia', 3),
-(4, 'SI Appliques A la Gestion des Affaires', 6);
+CREATE TABLE `associe_a` (
+  `id_module` int(11) NOT NULL,
+  `id_seance` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `module`
+-- Table structure for table `dispose_de`
 --
 
-DROP TABLE IF EXISTS `module`;
-CREATE TABLE IF NOT EXISTS `module` (
-  `id_module` int(5) NOT NULL AUTO_INCREMENT,
-  `intitule` varchar(80) DEFAULT NULL,
+CREATE TABLE `dispose_de` (
+  `id_filiere` int(11) NOT NULL,
+  `id_module` int(11) NOT NULL,
+  `coeff_examen` float NOT NULL,
+  `coeff_controle` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `dispose_de`
+--
+
+INSERT INTO `dispose_de` (`id_filiere`, `id_module`, `coeff_examen`, `coeff_controle`) VALUES
+(1, 12, 0.01, 0.01),
+(1, 13, 0.6, 0.04),
+(3, 14, 0.55, 0.2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Etudiant`
+--
+
+CREATE TABLE `Etudiant` (
+  `id` int(11) NOT NULL,
+  `somme` int(11) DEFAULT NULL,
+  `cne` varchar(8) NOT NULL,
+  `id_filiere` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Etudiant`
+--
+
+INSERT INTO `Etudiant` (`id`, `somme`, `cne`, `id_filiere`) VALUES
+(55, NULL, 'F14454', 1),
+(12555, NULL, 'F1354433', 1),
+(69420, NULL, 'F1354421', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Filiere`
+--
+
+CREATE TABLE `Filiere` (
+  `id_filiere` int(11) NOT NULL,
+  `prix_formation` int(11) NOT NULL,
+  `nom_filiere` varchar(100) NOT NULL,
+  `id_responsable` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Filiere`
+--
+
+INSERT INTO `Filiere` (`id_filiere`, `prix_formation`, `nom_filiere`, `id_responsable`) VALUES
+(1, 30000, 'DBA DYL 2 DRAHM', 2),
+(3, 69420, 'PL/SQL dyl 3DH', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Module`
+--
+
+CREATE TABLE `Module` (
+  `id_module` int(11) NOT NULL,
+  `heures_sem` int(11) NOT NULL,
+  `intitule` varchar(100) NOT NULL,
   `id_enseignant` int(11) NOT NULL,
-  `horaire` int(10) DEFAULT NULL,
-  `id_filiere` int(5) NOT NULL,
-  `semester` int(5) NOT NULL,
-  PRIMARY KEY (`id_module`),
-  KEY `fk_filiere` (`id_filiere`),
-  KEY `semester` (`semester`),
-  KEY `id_enseignant` (`id_enseignant`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+  `id_semestre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `module`
+-- Dumping data for table `Module`
 --
 
-INSERT INTO `module` (`id_module`, `intitule`, `id_enseignant`, `horaire`, `id_filiere`, `semester`) VALUES
-(19, 'Administration de bases de donnees ', 4, 40, 1, 200),
-(2, 'Developpement BD', 3, 62, 1, 200),
-(3, 'Langage d interrogation des Bases de Donnees SQL', 4, 60, 1, 100),
-(4, 'Methodologie de conception des SI', 18, 66, 1, 100),
-(5, 'Administration Linux & Virtualisation', 6, 52, 2, 200),
-(6, 'CCNP Switch et Tshoot', 12, 55, 2, 200),
-(7, 'Architecture des ordinateurs', 10, 50, 2, 100),
-(21, 'Programmation Objet', 12, 65, 2, 100),
-(22, 'HTML5/CSS3', 7, 42, 3, 100),
-(23, 'Android Application Development', 19, 50, 3, 200),
-(24, 'Fondamentaux de creation de jeux', 12, 75, 3, 200),
-(25, 'Traitement des elements 2D et 3D', 13, 56, 3, 100),
-(26, 'Creations des sites marchands', 14, 70, 4, 100),
-(27, 'Marketing et management des organisations', 20, 68, 4, 100),
-(28, 'Droit des societes', 6, 66, 4, 200),
-(29, 'Outils informatiques pour la gestion et statistiques', 10, 60, 4, 200),
-(31, 'Gestion de projets', 2, 50, 2, 200);
+INSERT INTO `Module` (`id_module`, `heures_sem`, `intitule`, `id_enseignant`, `id_semestre`) VALUES
+(12, 69, 'FFFFFFFF', 1, 1),
+(13, 68, 'ffDSQF', 2, 2),
+(14, 69, 'FFFFFFFFQQQ', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personnel`
+-- Table structure for table `Personnel`
 --
 
-DROP TABLE IF EXISTS `personnel`;
-CREATE TABLE IF NOT EXISTS `personnel` (
-  `cin` varchar(20) NOT NULL,
-  `role` varchar(20) NOT NULL,
-  `infos` int(5) NOT NULL,
-  PRIMARY KEY (`cin`),
-  KEY `infos` (`infos`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `Personnel` (
+  `id` int(11) NOT NULL,
+  `role` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `personnel`
+-- Dumping data for table `Personnel`
 --
 
-INSERT INTO `personnel` (`cin`, `role`, `infos`) VALUES
-('bl151219', 'responsable', 2),
-('bk160017', 'responsable', 3),
-('ct152106', 'responsable', 4),
-('bb154710', 'responsable', 5),
-('bs120013', 'enseignant', 6);
+INSERT INTO `Personnel` (`id`, `role`) VALUES
+(1, 'enseignant'),
+(2, 'responsable'),
+(69, 'enseignant');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `semester`
+-- Table structure for table `Seance`
 --
 
-DROP TABLE IF EXISTS `semester`;
-CREATE TABLE IF NOT EXISTS `semester` (
-  `id_sem` int(5) NOT NULL,
-  `nom_sem` varchar(15) NOT NULL,
-  `date_debut` date DEFAULT NULL,
-  `date_fin` date DEFAULT NULL,
-  PRIMARY KEY (`id_sem`),
-  UNIQUE KEY `nom_sem` (`nom_sem`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `semester`
---
-
-INSERT INTO `semester` (`id_sem`, `nom_sem`, `date_debut`, `date_fin`) VALUES
-(100, '1er Semester', '2020-09-12', '2021-01-01'),
-(200, '2eme Semester', '2021-02-01', '2021-06-01');
+CREATE TABLE `Seance` (
+  `id_seance` int(11) NOT NULL,
+  `h_debut` time NOT NULL,
+  `h_fin` time NOT NULL,
+  `type` varchar(2) NOT NULL,
+  `date_seance` date NOT NULL,
+  `salle` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `Semestre`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `prenom` varchar(70) NOT NULL,
-  `nom` varchar(70) NOT NULL,
-  `date_naissence` date NOT NULL,
-  `telephone` varchar(50) NOT NULL,
-  `adresse` varchar(100) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `pasword` varchar(50) NOT NULL,
-  `imagePath` varchar(100) NOT NULL,
-  `etat_image` int(2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+CREATE TABLE `Semestre` (
+  `id_semestre` int(11) NOT NULL,
+  `semestre` varchar(12) NOT NULL,
+  `date_debut` date NOT NULL,
+  `date_fin` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `Semestre`
 --
 
-INSERT INTO `users` (`id`, `prenom`, `nom`, `date_naissence`, `telephone`, `adresse`, `email`, `username`, `pasword`, `imagePath`, `etat_image`) VALUES
-(1, 'ziad', 'fellah-idrissi', '1999-05-19', '0666589724', '', 'ziad.fe@gmail.com', 'ziad.fellahidrissi.etu', 'ziadfellahidrissi', '', 0),
-(2, 'mohamed', 'abghoure', '1974-05-19', '0514295874', '', 'mohamed.abghoure@gmail.com', 'mohamed_abghoure', 'respo123456', '', 0),
-(3, 'amine', 'mrabte', '1982-05-19', '0666041240', '', 'amine_mrabte@gmail.com', 'amine_mrabte', 'respo123456', '', 0),
-(4, 'nourdine', 'sakire', '1973-05-12', '0698521410', '', 'nourdine.sakire@gmail.com', 'nourdine_sakire@gmail.com', 'respo123456', '', 0),
-(5, 'kaltoum', 'darqaoui', '1969-05-18', '0641158730', '', 'kaltoum.darqaoui@gmail.com', 'kamtoum_darqaoui', 'respo123456', '', 0),
-(6, 'samira', 'banghazi', '1987-05-18', '0600290670', '', 'samira.banghazi@gmail.com', 'samira_banghazi', 'prof123456', '', 0);
+INSERT INTO `Semestre` (`id_semestre`, `semestre`, `date_debut`, `date_fin`) VALUES
+(1, 'Semestre 1', '2020-05-04', '2020-05-29'),
+(2, 'Semestre 2', '2020-05-20', '2020-06-25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suit`
+--
+
+CREATE TABLE `suit` (
+  `id_module` int(11) NOT NULL,
+  `id_etudiant` int(11) NOT NULL,
+  `note` float NOT NULL,
+  `type` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Utilisateur`
+--
+
+CREATE TABLE `Utilisateur` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(32) NOT NULL,
+  `prenom` varchar(32) NOT NULL,
+  `date_naissance` date NOT NULL,
+  `password` varchar(40) DEFAULT NULL,
+  `telephone` char(10) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `username` varchar(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Utilisateur`
+--
+
+INSERT INTO `Utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `password`, `telephone`, `email`, `username`) VALUES
+(1, 'Motazee', 'Mohammed', '2020-05-17', '1234', '0614445', 'enseignant@fsac.ma', 'ens'),
+(2, 'Lmohami', 'Rass', '2020-05-11', '1234', '01548997', 'res@fsac.ma', 'res'),
+(55, 'fela7', 'sdaych9a', '2020-05-06', '', '066541', 'fff@sqdqsdqs', ''),
+(69, 'lfate7', 'bofet7a', '2020-05-18', 'azerty', '066541', 'bb@gf.com', '1234'),
+(12555, 'Khalide', 'Khalide', '2020-05-21', 'qsq', '05541', 'fela7@fsac.madd', 'fff'),
+(69420, 'rabi3', 'sissi', '2020-05-14', '', '0622', 'ad@ff.com', '');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Administrateur`
+--
+ALTER TABLE `Administrateur`
+  ADD PRIMARY KEY (`username`,`password`);
+
+--
+-- Indexes for table `assiste`
+--
+ALTER TABLE `assiste`
+  ADD PRIMARY KEY (`id_seance`,`id_etudiant`),
+  ADD KEY `assiste_Etudiant0_FK` (`id_etudiant`);
+
+--
+-- Indexes for table `associe_a`
+--
+ALTER TABLE `associe_a`
+  ADD KEY `associe_a_Module_FK` (`id_module`),
+  ADD KEY `associe_a_Seance0_FK` (`id_seance`);
+
+--
+-- Indexes for table `dispose_de`
+--
+ALTER TABLE `dispose_de`
+  ADD PRIMARY KEY (`id_filiere`,`id_module`),
+  ADD KEY `dispose_de_Module0_FK` (`id_module`);
+
+--
+-- Indexes for table `Etudiant`
+--
+ALTER TABLE `Etudiant`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `Etudiant_Idx` (`cne`),
+  ADD KEY `Etudiant_Filiere0_FK` (`id_filiere`);
+
+--
+-- Indexes for table `Filiere`
+--
+ALTER TABLE `Filiere`
+  ADD PRIMARY KEY (`id_filiere`),
+  ADD UNIQUE KEY `Filiere_Idx` (`nom_filiere`),
+  ADD KEY `Filiere_Personnel_FK` (`id_responsable`);
+
+--
+-- Indexes for table `Module`
+--
+ALTER TABLE `Module`
+  ADD PRIMARY KEY (`id_module`),
+  ADD UNIQUE KEY `Module_Idx` (`intitule`),
+  ADD KEY `Module_Personnel_FK` (`id_enseignant`),
+  ADD KEY `Module_Semestre0_FK` (`id_semestre`);
+
+--
+-- Indexes for table `Personnel`
+--
+ALTER TABLE `Personnel`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `Seance`
+--
+ALTER TABLE `Seance`
+  ADD PRIMARY KEY (`id_seance`),
+  ADD UNIQUE KEY `Seance_Idx` (`date_seance`,`salle`);
+
+--
+-- Indexes for table `Semestre`
+--
+ALTER TABLE `Semestre`
+  ADD PRIMARY KEY (`id_semestre`);
+
+--
+-- Indexes for table `suit`
+--
+ALTER TABLE `suit`
+  ADD PRIMARY KEY (`id_module`,`id_etudiant`),
+  ADD KEY `suit_Etudiant0_FK` (`id_etudiant`);
+
+--
+-- Indexes for table `Utilisateur`
+--
+ALTER TABLE `Utilisateur`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `Utilisateur_Idx` (`telephone`,`email`,`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `Filiere`
+--
+ALTER TABLE `Filiere`
+  MODIFY `id_filiere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `Module`
+--
+ALTER TABLE `Module`
+  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `Semestre`
+--
+ALTER TABLE `Semestre`
+  MODIFY `id_semestre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `Utilisateur`
+--
+ALTER TABLE `Utilisateur`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69421;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `assiste`
+--
+ALTER TABLE `assiste`
+  ADD CONSTRAINT `assiste_Etudiant0_FK` FOREIGN KEY (`id_etudiant`) REFERENCES `Etudiant` (`id`),
+  ADD CONSTRAINT `assiste_Seance_FK` FOREIGN KEY (`id_seance`) REFERENCES `Seance` (`id_seance`);
+
+--
+-- Constraints for table `associe_a`
+--
+ALTER TABLE `associe_a`
+  ADD CONSTRAINT `associe_a_Module_FK` FOREIGN KEY (`id_module`) REFERENCES `Module` (`id_module`),
+  ADD CONSTRAINT `associe_a_Seance0_FK` FOREIGN KEY (`id_seance`) REFERENCES `Seance` (`id_seance`);
+
+--
+-- Constraints for table `dispose_de`
+--
+ALTER TABLE `dispose_de`
+  ADD CONSTRAINT `dispose_de_Filiere_FK` FOREIGN KEY (`id_filiere`) REFERENCES `Filiere` (`id_filiere`),
+  ADD CONSTRAINT `dispose_de_Module0_FK` FOREIGN KEY (`id_module`) REFERENCES `Module` (`id_module`);
+
+--
+-- Constraints for table `Etudiant`
+--
+ALTER TABLE `Etudiant`
+  ADD CONSTRAINT `Etudiant_Filiere0_FK` FOREIGN KEY (`id_filiere`) REFERENCES `Filiere` (`id_filiere`),
+  ADD CONSTRAINT `Etudiant_Utilisateur_FK` FOREIGN KEY (`id`) REFERENCES `Utilisateur` (`id`);
+
+--
+-- Constraints for table `Filiere`
+--
+ALTER TABLE `Filiere`
+  ADD CONSTRAINT `Filiere_Personnel_FK` FOREIGN KEY (`id_responsable`) REFERENCES `Personnel` (`id`);
+
+--
+-- Constraints for table `Module`
+--
+ALTER TABLE `Module`
+  ADD CONSTRAINT `Module_Personnel_FK` FOREIGN KEY (`id_enseignant`) REFERENCES `Personnel` (`id`),
+  ADD CONSTRAINT `Module_Semestre0_FK` FOREIGN KEY (`id_semestre`) REFERENCES `Semestre` (`id_semestre`);
+
+--
+-- Constraints for table `Personnel`
+--
+ALTER TABLE `Personnel`
+  ADD CONSTRAINT `Personnel_Utilisateur_FK` FOREIGN KEY (`id`) REFERENCES `Utilisateur` (`id`);
+
+--
+-- Constraints for table `suit`
+--
+ALTER TABLE `suit`
+  ADD CONSTRAINT `suit_Etudiant0_FK` FOREIGN KEY (`id_etudiant`) REFERENCES `Etudiant` (`id`),
+  ADD CONSTRAINT `suit_Module_FK` FOREIGN KEY (`id_module`) REFERENCES `Module` (`id_module`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,8 +5,6 @@
     if (!$user->isLoggedIn()) {
         header('Location: ../pages/login.php');
     }else{
-        $nom = $user->data()->nom;
-        $prenom = $user->data()->prenom;
         $username =$user->data()->username;
 ?>
 <!DOCTYPE html>
@@ -62,7 +60,7 @@
                     <div class="modal-header">
                         <div class="col-md-6">
                             <div>
-                                <a class="btn btn-primary text-white" id="afficheRespo" name="afficheRespo" href="../Responsables">Afficher seulement les responsables
+                                <a class="btn btn-primary text-white" href="../Responsables">Afficher seulement les responsables
                                 </a>
                             </div>
                         </div>

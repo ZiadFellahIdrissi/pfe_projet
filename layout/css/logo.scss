@@ -1,6 +1,3 @@
-#logo{
-	width: 20%;
-}
 
 #holder{
 	animation: waveee 1s linear infinite alternate;
@@ -10,10 +7,10 @@
 
 @keyframes waveee{
 	from{
-		transform: rotateZ(3deg);
+		transform: rotateZ(4deg);
 	}
 	to{
-		transform: rotateZ(-2deg);
+		transform: rotateZ(-3deg);
 	}
 }
 
@@ -29,5 +26,23 @@
 	}
 	to{
 		transform: rotateZ(3deg);
+	}
+}
+
+#logo:hover{
+	.sparkles{
+		animation: getbig 1s ease alternate;
+		transform-origin: center;
+		transform-box: fill-box;
+	}
+}
+
+
+@keyframes getbig{
+	from{
+		transform: scale(1);
+	}
+	to{
+		transform: scale(2);
 	}
 }

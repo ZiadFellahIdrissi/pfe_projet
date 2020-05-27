@@ -98,9 +98,13 @@ $(document).ready(function() {
             success: function(data) {
                 $('#id_module2').val(data.id_module);
                 $('#le_nom2').val(data.intitule);
-                $('#Heures2').val(data.horaire);
+                $('#Heures2').val(data.heures_sem);
+                $('#coeffC_modifier').val(data.coeff_controle);
+                $('#coeffE_modifier').val(data.coeff_examen);
                 $('#Enseignant2').val(data.id_enseignant);
-                $('#semesterBl').val(data.semester);
+                $('#semesterBl').val(data.id_semestre);
+                $('#oldSem').val(data.id_semestre);
+                $('#filiere_modifier').val(data.id_filiere);
                 $('#modifierUnModule').modal('show');
             },
             error: function() {

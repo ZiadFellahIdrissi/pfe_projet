@@ -28,65 +28,56 @@
   }
 </style>
 <body>
-  <header>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top ">
-      <a class="navbar-brand" href="#">
-        <?php
-          include './img/index/logo.svg';
-        ?>
-      </a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Test</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Test</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Test</a>
-          </li>
-
-          <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="src/etudiant/pages/login.php">Espace Etudiant</a>
-          </li>
-          <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="src/admin/pages/login.php">Espace Admin</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div >
-      <div class="header-content">
-        <div class="row">
-          <div class="col-lg-6">
-            <div style="margin-top: 150px;"></div>
-            <h1>Procédure d'inscription</h1>
-            <p>
-              Les programmes de formation proposés sont payants et sont dispensés en temps aménagé le vendredi soir,
-              le samedi et le dimanche.</p>
-            <p><a class="btn btn-lg btn-outline-primary" href="#" role="button">S'inscrire maintenant</a></p>
-            <div class="go-about"></div>
-          </div>
-          <div class="col-lg-6">
-            <div style="margin: 150px;"></div>
+  <!-- header !-->
+    <nav class="navbar navbar-expand-md navbar-light bg-dark">
+      <div class="innerHeader ml-auto">
+        <div class="logo">
+          <a class="navbar-brand" href="#">
             <?php
-                include 'img/index/teacher.svg';
+              include './img/index/logo.svg';
             ?>
-          </div>
+          </a>
+        </div>
+
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+
+            <li class="nav-item text-nowrap ">
+              <a class="btn btn btn-outline-dark" href="src/etudiant/pages/login.php">Espace Etudiant</a>
+            </li>
+            <li class="nav-item text-nowrap ">
+              <a class="btn btn btn-outline-dark" href="src/admin/pages/login.php">Espace Admin</a>
+            </li>
+          </ul>
         </div>
       </div>
+    </nav>
+  <!-- end header -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1>Procédure d'inscription</h1>
+        <p>
+          Les programmes de formation proposés sont payants et sont dispensés en temps aménagé le vendredi soir,
+          le samedi et le dimanche.</p>
+        <p><a class="btn btn-lg btn-outline-primary" href="#" role="button">S'inscrire maintenant</a></p>
+        <div class="go-about"></div>
+      </div>
+      <div class="col-lg-6">
+        <?php
+            include 'img/index/teacher.svg';
+        ?>
+      </div>
     </div>
-
-  </header>
+  </div>
   <div class="footer">
       tous droits reservés.
   </div>

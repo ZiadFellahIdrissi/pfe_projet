@@ -3,25 +3,28 @@
     if(isset($_POST['ajouter'])){
         $nom=mysqli_real_escape_string($conn, $_POST['Nom']);
         $prenom=mysqli_real_escape_string($conn, $_POST['prenom']);
-        $codeapoge=$_POST['codeapoge'];
-        $cin=mysqli_real_escape_string($conn, $_POST['cin']);
+        $cne=mysqli_real_escape_string($conn, $_POST['cne']);
+        $cin=$_POST['cin'];
         $dateN=$_POST['dateN'];
+        $telephone=$_POST['telephone'];
         $email=mysqli_real_escape_string($conn, $_POST['email']);
         $filiere=$_POST['filiere'];
 
-        $sqltest="SELECT * from etudiant where code_apoge= $codeapoge or cne= '$cin'";
-        $resultat=mysqli_query($conn,$sqltest);
-        $resultatcount = mysqli_num_rows($resultat);
+        $oldCin = 0; //hada ghy3wna bch nkhdmo b dok les script dyl verification(modification)
+        include 'verificationCin.php';
+        include 'verificationCne.php';
+        include 'verificationEmail.php';
+        include 'verificationTel.php';
 
-        if( $resultatcount!=0){
-            header('location: ../Etudiants?inserting=failed');
-            exit();
-        }else{
-        
-        $sql="INSERT INTO `etudiant`(`code_apoge`, `cne`, `nom`, `prenom`, `date_naissance`, `email`, `id_filiere`)
-         VALUES ($codeapoge,'$cin', '$nom' , '$prenom' , '$dateN', '$email' , $filiere)";
+
+        $sql = "INSERT INTO `Utilisateur`(`id`, `nom`, `prenom`, `date_naissance`, `email`, `telephone`)
+                    VALUES ($cin, '$nom' , '$prenom' , '$dateN', '$email' , '$telephone')";
         mysqli_query($conn , $sql);
+
+        $sql = "INSERT INTO `Etudiant`(`id`, `cne`, `id_filiere`)
+                VALUES ($cin, '$cne' , $filiere)";
+        mysqli_query($conn , $sql);
+
         header("location: ../Etudiants?etudiant=inserted&idUrlFiliere=$filiere");
-        }
     }
 ?>

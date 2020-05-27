@@ -5,9 +5,7 @@
     if (!$user->isLoggedIn()) {
         header('Location: ../pages/login.php');
     } else {
-        $nom = $user->data()->nom;
-    $prenom = $user->data()->prenom;
-    $username =$user->data()->username;
+        $username =$user->data()->username;
 ?>
 <html lang="en">
     <head>
@@ -68,10 +66,10 @@
                         <div class="modal-header">
                             <div class="col-md-5 select">
                                 <select name="filiere" id="filiere" class="form-control">
-                                    <option value=''>Choisir un filiere</option>
+                                    <option value=''>Choisissez une filiere</option>
                                     <?php
                                         $sql = "SELECT id_filiere, nom_filiere
-                                                FROM filiere";
+                                                FROM Filiere";
                                         $resultat = mysqli_query($conn, $sql);
                                         while ($row = mysqli_fetch_assoc($resultat)) {
                                     ?>
@@ -83,16 +81,16 @@
                             </div>
                             <div class="col-md-3 semester">
                                 <select name="semester" id="semester" class="form-control">
-                                    <option value='100'>1er Semestre</option>
-                                    <option value='200'>2ème Semestre</option>
+                                    <option value='1'>1er Semestre</option>
+                                    <option value='2'>2ème Semestre</option>
                                 </select>
                             </div>
                             <div class="col-md-4 offset-md-2">
-                                <a href="Modules.php"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
+                                <a href="./"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
                             </div>
                         </div>
                         <?php
-                            include 'affichieTableauModule.php';
+                            include 'afficheTableauModule.php';
                         ?>
                     </div>
                 </div>
@@ -105,7 +103,7 @@
         <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
         <script type="text/javascript" src="../../../layout/js/main.js "></script>
         <!-- <script type="text/javascript" src="../../../layout/js/animation.js"></script> -->
-        <script type="text/javascript" src="../../../layout/js/module.js"></script>
+        <script type="text/javascript" src="../../../layout/js/modules.js"></script>
         <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
     </body>
 

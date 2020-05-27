@@ -1,12 +1,14 @@
 <?php
 	include '../../connection.php';
 	if(isset($_GET["id"])){
-		$codeapoge=$_GET["id"];
+		$cin=$_GET["id"];
 		$row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT id_filiere
-													 FROM etudiant
-													 WHERE code_apoge = $codeapoge"));
-		$id_filiere=$row["id_filiere"];
-		mysqli_query($conn , "DELETE FROM etudiant
-							  WHERE code_apoge = $codeapoge");
-		header("location: ../Etudiants?etudiant=deleted&idUrlFiliere=$id_filiere");
+													 FROM Etudiant
+													 WHERE id = $cin"));
+		$filiere=$row["id_filiere"];
+		mysqli_query($conn , "DELETE FROM Etudiant
+							  WHERE id = $cin        ");
+		mysqli_query($conn , "DELETE FROM Utilisateur
+							  WHERE id = $cin		 ");
+		header("location: ./?etudiant=deleted&idUrlFiliere=$filiere");
 	}

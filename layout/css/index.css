@@ -4,22 +4,17 @@ p {
     font-size: 20px;
 }
 
-
-header {
-    background: #AEACFB;
-    background-size: cover;
-    height: 100vh;
-    position: fixed;
-    overflow: hidden;
-    margin: auto;
+.innerHeader{
+    background-color: red;
+    margin: 0 20px;
+    width: 1200px;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
-.navbar {
-    padding: .7rem;
-}
 
 .navbar-nav li {
-    padding-right: 3.5rem;
+    padding: 0 1.5rem;
 }
 
 nav {
@@ -27,22 +22,16 @@ nav {
 }
 
 body{
-    text-align: center;
+    overflow: hidden;
+    text-align: center; /* fix */
+    background: #AEACFB;
 }
 
-.footer{
-    position: fixed;
-    bottom: 0%;
-    right: 0%;
-}
-
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1000px) {
     .footer{
         display: none;
     }
-
-    #logo{
-        float: left;
-        width: 50%;
+    body{
+        overflow: scroll;
     }
 }
