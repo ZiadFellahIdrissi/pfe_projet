@@ -4,31 +4,34 @@ p {
     font-size: 20px;
 }
 
-header {
-    background: url("../../img/index/1.jpg");
-    background-size: cover;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
+.innerHeader{
+    background-color: red;
+    margin: 0 20px;
+    width: 1200px;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
-header:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-image: url("../../img/index/wave-bottom.svg");
-    height: 275px;
-}
-
-.navbar {
-    padding: .7rem;
-}
 
 .navbar-nav li {
-    padding-right: 3.5rem;
+    padding: 0 1.5rem;
 }
 
 nav {
     font-weight: bold;
+}
+
+body{
+    overflow: hidden;
+    text-align: center; /* fix */
+    background: #AEACFB;
+}
+
+@media screen and (max-width: 1000px) {
+    .footer{
+        display: none;
+    }
+    body{
+        overflow: scroll;
+    }
 }

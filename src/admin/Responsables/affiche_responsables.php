@@ -2,19 +2,20 @@
 <div class="table-responsive-sm">
     <?php
     include '../../connection.php';
-
-    $sql = "SELECT enseignant.nom_enseignant, enseignant.prenom_enseignant,
-                enseignant.email_enseignant , enseignant.telephone_enseignant,
-                filiere.nom_filiere from filiere 
-                join enseignant on filiere.responsable_id=enseignant.id_enseignant";
+    $sql = "SELECT Utilisateur.id cin, Utilisateur.nom, Utilisateur.prenom, Utilisateur.email,
+                    Utilisateur.date_naissance, Utilisateur.telephone, Filiere.nom_filiere
+            FROM Personnel
+            JOIN Utilisateur ON Personnel.id = Utilisateur.id
+            JOIN Filiere ON Personnel.id = Filiere.id_responsable               ";
 
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);
 
     if ($resultatcheck > 0) {
     ?>
-        <table class="table table-bordered table-striped mydatatable">
-            <thead class="thead-dark">
+        <br>
+        <table class="table table table-borderless table-data3 mydatatable">
+            <thead>
                 <tr>
                     <th>Nom</th>
                     <th>Prenom</th>
@@ -24,23 +25,24 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
+<?php
 
                 while ($row = mysqli_fetch_assoc($resultat)) {
-                ?>
+?>
                     <tr>
-                        <td><?php echo $row["nom_enseignant"] ?></td>
-                        <td><?php echo $row["prenom_enseignant"] ?></td>
-                        <td><?php echo $row["telephone_enseignant"] ?></td>
-                        <td><?php echo $row["email_enseignant"] ?></td>
+                        <td><?php echo $row["nom"] ?></td>
+                        <td><?php echo $row["prenom"] ?></td>
+                        <td><?php echo $row["telephone"] ?></td>
+                        <td><?php echo $row["email"] ?></td>
                         <td><?php echo $row["nom_filiere"] ?> </td>
                     </tr>
-            <?php
+<?php
                 }
                 echo "</tbody>";
-                echo "</table>";
-            }
-            ?>
+                echo "</table><br>";
+    } else
+            echo '<p style="text-align: center" >la vida loca</p>';
+?>
 </div>
 <script>
     $('.mydatatable').dataTable();

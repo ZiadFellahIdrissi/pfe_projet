@@ -5,12 +5,10 @@
     if (!$user->isLoggedIn()) {
         header('Location: ../pages/login.php');
     }else{
-        $nom = $user->data()->nom;
-    $prenom = $user->data()->prenom;
-    $username =$user->data()->username;
+        $username =$user->data()->username;
     ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -64,11 +62,11 @@
                     </ol>
                 </nav>
 
-                <!-- =====================ajoute un filier========================== -->
+                <!-- =====================ajoute une filiere========================== -->
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="col-6 col-md-4">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Ajouter une filière</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">+ Ajouter</button>
                             <br><br>
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -76,37 +74,42 @@
                                         <div class="modal-body">
                                             <!-- =============================================== -->
                                             <form action="ajoute_filiere.php" method="POST">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label for="Nom" class="col-form-label">Nom de la filière</label>
-                                                            <input type="text" class="form-control" name="Nom" id="Nom" required>
-                                                        </div>
-                                                    </div>
+                                                <div class="form-group">
+                                                    <label for="Nom" class="col-form-label">Nom de la filière</label>
+                                                    <input type="text" class="form-control" name="Nom" id="Nom" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Responsable">Responsable</label>
-                                                    <select name="Responsable" id="Responsable" class="form-control" required>
-                                                        <option value=""></option>
-                                                        <?php
-                                                            $sql = "SELECT `id_enseignant`,nom_enseignant,prenom_enseignant
-                                                                            FROM enseignant
-                                                                            WHERE `id_enseignant` not in ( SELECT responsable_id
-                                                                                                            FROM filiere )";
-                                                            $resultat = mysqli_query($conn, $sql);
-                                                            if (mysqli_num_rows($resultat) > 0) {
-                                                                while ($row = mysqli_fetch_assoc($resultat)) {
-                                                        ?>
-                                                                    <option value="<?php echo $row['id_enseignant'] ?>">
-                                                                        <strong><?php echo $row['nom_enseignant'] . " " . $row["prenom_enseignant"] ?></strong>
-                                                                    </option>';
-                                                        <?php
-                                                                }
-                                                            }
-                                                        ?>
-                                                    </select>
-                                                </div>
-
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <label for="prix" class="col-form-label">Tarif</label>
+                                                            <input type="number" class="form-control" name="prix" id="prix" required>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label for="Responsable">Responsable</label>
+                                                            <select name="Responsable" id="Responsable" class="form-control" required>
+                                                                <option value=""></option>
+                                                                <?php
+                                                                    $sql = "SELECT Personnel.id, Utilisateur.nom, Utilisateur.prenom
+                                                                            FROM Personnel
+                                                                            JOIN Utilisateur ON Personnel.id = Utilisateur.id
+                                                                            WHERE Personnel.role = 'enseignant'
+                                                                            AND Personnel.id not in ( SELECT id_responsable
+                                                                                                        FROM Filiere          )";
+                                                                    $resultat = mysqli_query($conn, $sql);
+                                                                    if (mysqli_num_rows($resultat) > 0) {
+                                                                        while ($row = mysqli_fetch_assoc($resultat)) {
+                                                                ?>
+                                                                            <option value="<?php echo $row['id'] ?>">
+                                                                                <strong><?php echo $row['nom'] . " " . $row["prenom"] ?></strong>
+                                                                            </option>';
+                                                                <?php
+                                                                        }
+                                                                    }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>             
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                     <input type="submit" id="ajouter" class="btn btn-primary" value="Ajouter" name="ajouter" required>
@@ -130,33 +133,40 @@
                         <div class="modal-content">
                             <div class="modal-body">
                                 <form action="modifier_filiere.php" method="POST">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="Nom" class="col-form-label">Nom de la filière</label>
-                                                <input type="text" class="form-control" name="Nom" value="" id="Nom_modifier">
+                                    <div class="form-group">
+                                        <label for="Nom" class="col-form-label">Nom de la filière</label>
+                                        <input type="text" class="form-control" name="Nom" id="Nom_modifier">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="prix" class="col-form-label">Tarif</label>
+                                                <input type="number" class="form-control" name="prix" id="prix_modifier" required>
+                                            </div>
+                                            <div class="col">
+                                                <label for="Responsable_modifier">Responsable</label>
+                                                <select name="Responsable_modifier" id="Responsable_modifier" class="form-control">
+                                                    <?php
+                                                        $sqlOptions = " SELECT Personnel.id, Utilisateur.nom, Utilisateur.prenom
+                                                                        FROM Personnel
+                                                                        JOIN Utilisateur ON Personnel.id = Utilisateur.id
+                                                                        WHERE Personnel.id NOT IN ( SELECT id_responsable
+                                                                                                    FROM Filiere          )";
+                                                        $resultat = mysqli_query($conn, $sqlOptions);
+                                                        $resultatcheck = mysqli_num_rows($resultat);
+                                                        while ($row = mysqli_fetch_assoc($resultat)) {
+                                                            echo '<option value="'.$row["id"].'">
+                                                                     <strong>'.$row["nom"].' '.$row["prenom"].'</strong>
+                                                                 </option>';
+                                                        }
+                                                    ?>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="Responsable_modifier">Responsable</label>
-                                        <select name="Responsable_modifier" id="Responsable_modifier" value="" class="form-control">
-                                            <?php
-                                                $sqlOptions = "SELECT id_enseignant,nom_enseignant,prenom_enseignant
-                                                                FROM enseignant ";
-                                                $resultat = mysqli_query($conn, $sqlOptions);
-                                                $resultatcheck = mysqli_num_rows($resultat);
-                                                while ($row = mysqli_fetch_assoc($resultat)) {
-                                                    echo '<option value="' . $row["id_enseignant"] . '">
-                                                        <strong>' . $row["nom_enseignant"] . ' ' . $row["prenom_enseignant"] . '</strong>
-                                                    </option>';
-                                                }
-                                            ?>
-                                        </select>
-                                    </div>
-
                                     <div class="modal-footer">
                                         <input type="hidden" name="Modifier_inp" id="Modifier_inp" value="" />
+                                        <input type="hidden" name="oldResp" id="oldResp" value="" />
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <input type="submit" id="Modifier" class="btn btn-primary" value="Modifier" name="Modifier">
                                     </div>
@@ -171,20 +181,32 @@
                 <div class="modal fade" id="confermationAle" role="dialog" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form action="../Filiere/supprimer_filiere.php" method="POST">
-                                <div class="modal-header">
-                                    <h4 style="color:#c0392b;" class="modal-title" id="exampleModalScrollableTitle">Tu vas supprimer tous ces Etudiants dans cette filière!</h6>
+                            <form action="./supprimer_filiere.php" method="POST">
+                                <div class="modal-header container">
+                                    <h5 class="modal-title btn-dark text-center" id="exampleModalScrollableTitle">
+                                        En supprimant cette <span style="opacity: 0.8;">filière</span> Tu vas également supprimer tous ces
+                                    </h5>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="container mb-3 mt-3" id="affiche_etudiant">
+                                    <div class="container">
+                                        Etudiants
+                                    </div>
+                                    <div class="container mb-3 mt-3" id="affiche_etudiants">
                                         <!-- l'affichage des etudiants qui va être supprimé
+                                            si l'utilisateur veut supprimer leur filiere -->
+                                    </div>
+                                    <div class="container">
+                                        Modules
+                                    </div>
+                                    <div class="container mb-3 mt-3" id="affiche_modules">
+                                        <!-- l'affichage des modules qui va être supprimé
                                             si l'utilisateur veut supprimer leur filiere -->
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="hidden" name="confirmation" id="confirmation" value="" />
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
-                                    <button type="submit" class="btn btn-primary">Oui je confirme</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                    <button type="submit" class="btn btn-danger">Confirmer</button>
                                 </div>
                             </form>
                         </div>

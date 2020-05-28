@@ -4,7 +4,7 @@ if (!empty($_GET['id_filiere'])) {
 ?>
     <!-- ===============Un button pour ajoute un etudiant======================= -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Ajouter un Etudiant à cette filière
+        + Ajouter
     </button>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -31,7 +31,7 @@ if (!empty($_GET['id_filiere'])) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="cne" class="col-form-label">cne</label>
+                                    <label for="cne" class="col-form-label">Cne</label>
                                     <input type="text" class="form-control" name="cne" id="cne" required>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@ if (!empty($_GET['id_filiere'])) {
                             </div>
                         </div>
 
-                        <!-- =====================Date naissance, date inscription======================= -->
+                        <!-- =====================Date naissance, Telephone======================= -->
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -53,32 +53,16 @@ if (!empty($_GET['id_filiere'])) {
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="date_ins" class="col-form-label">Date Inscription</label>
-                                    <input type="date" class="form-control" name="date_ins" id="date_ins" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ===================adresse================== -->
-                        <div class="form-group">
-                            <label for="adresse" class="col-form-label">Adresse</label>
-                            <input type="text" class="form-control" name="adresse" id="adresse" required>
-                        </div>
-
-                        <!-- ===================Telephone,, Email================== -->
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
                                     <label for="telephone" class="col-form-label">Telephone</label>
                                     <input type="text" class="form-control" name="telephone" id="telephone" required>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="email" class="col-form-label">Email</label>
-                                    <input type="email" class="form-control" name="email" id="date" required>
-                                </div>
-                            </div>
+                        </div>
+
+                        <!-- ===================Email================== -->
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email</label>
+                            <input type="email" class="form-control" name="email" id="date" required>
                         </div>
                         
                         <!-- modal footer -->
@@ -109,13 +93,13 @@ if (!empty($_GET['id_filiere'])) {
                             <div class="col">
                                 <div class="form-group">
                                     <label for="le_nom_modifier" class="col-form-label">Nom </label>
-                                    <input type="text" class="form-control" name="Nom" value="" id="le_nom_modifier" required>
+                                    <input type="text" class="form-control" name="Nom" id="le_nom_modifier" required>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="le_prenom_modifier" class="col-form-label">Prenom </label>
-                                    <input type="text" class="form-control" name="prenom" value="" id="le_prenom_modifier" required>
+                                    <input type="text" class="form-control" name="prenom" id="le_prenom_modifier" required>
                                 </div>
                             </div>
                         </div>
@@ -124,49 +108,59 @@ if (!empty($_GET['id_filiere'])) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="codeapoge_modifier" class="col-form-label">Code apogée</label>
-                                    <input type="text" class="form-control" name="codeapoge" value="" id="codeapoge_modifier" required>
+                                    <label for="codeapoge_modifier" class="col-form-label">Cne</label>
+                                    <input type="text" class="form-control" name="cne" id="cne_modifier" required>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="cin_modifier" class="col-form-label">Cne</label>
-                                    <input type="text" class="form-control" name="cin" value="" id="cin_modifier" required>
+                                    <label for="cin_modifier" class="col-form-label">Cin</label>
+                                    <input type="text" class="form-control" name="cin" id="cin_modifier" required>
                                 </div>
                             </div>
                         </div>
 
                         <!-- date naissance -->
-                        <div class="form-group">
-                            <label for="date_modifier" class="col-form-label">Date Naissance</label>
-                            <input type="date" class="form-control" name="dateN" value="" id="date_modifier" required>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="date_modifier" class="col-form-label">Date Naissance</label>
+                                    <input type="date" class="form-control" name="dateN" value="" id="date_modifier" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="tel_modifier" class="col-form-label">Telephone</label>
+                                    <input type="text" class="form-control" name="tel" id="tel_modifier" required>
+                                </div>
+                            </div>
                         </div>
-
                         <!-- email -->
                         <div class="form-group">
                             <label for="email_modifier" class="col-form-label">Email</label>
                             <input type="email" class="form-control" name="email" id="email_modifier" value="" required>
                         </div>
 
-                        <!-- groupe -->
+                        <!-- filiere -->
                         <div class="form-group">
                             <label for="fil">Filière</label>
                             <select name="filiere" id="fil" class="form-control">
                                 <?php
-                                $sql = "SELECT id_filiere,nom_filiere FROM filiere";
-                                $resultat = mysqli_query($conn, $sql);
-                                while ($row = mysqli_fetch_assoc($resultat)) {
+                                    $sql = "SELECT id_filiere,nom_filiere
+                                            FROM Filiere";
+                                    $resultat = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($resultat)) {
                                 ?>
-                                    <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
+                                        <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
                                 <?php
-                                }
+                                    }
                                 ?>
                             </select>
                         </div>
 
                         <!-- modal footer -->
                         <div class="modal-footer">
-                            <input type="hidden" id="codeapoger" name="codeapoger" value="">
+                            <input type="hidden" id="oldCin" name="oldCin" value="">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                             <button type="submit" class="btn btn-primary" name="modifier">Modifier</button>
                         </div>
@@ -185,18 +179,18 @@ if (!empty($_GET['id_filiere'])) {
 
     <div class="table-responsive-sm">
         <?php
-        $sql = 'SELECT etudiant.cin,users.date_naissence, users.email, users.nom, users.prenom
-                FROM users join etudiant on etudiant.infos=users.id WHERE etudiant.filiere=' . $_GET['id_filiere'];
-
-
+        $sql = "SELECT Etudiant.id cin, Etudiant.cne, Utilisateur.date_naissance, Utilisateur.email,
+                        Utilisateur.nom, Utilisateur.prenom, Utilisateur.id cin
+                FROM Utilisateur 
+                join Etudiant ON Etudiant.id = Utilisateur.id
+                WHERE Etudiant.id_filiere=" . $_GET['id_filiere'];
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
         if ($resultatcheck > 0) {
         ?>
-            <table class="table table-bordered table-striped mydatatable">
-                <thead class="thead-dark">
+            <table class="table table table-borderless table-data3 mydatatable">
+                <thead>
                     <tr>
-                        <th>Cin</th>
                         <th>Nom</th>
                         <th>Prenom</th>
                         <th>Date Naissance</th>
@@ -211,20 +205,20 @@ if (!empty($_GET['id_filiere'])) {
                     while ($row = mysqli_fetch_assoc($resultat)) {
                     ?>
                         <tr>
-                            <td><?php echo $row["cin"] ?></td>
                             <td><?php echo $row["nom"] ?></td>
                             <td><?php echo $row["prenom"] ?></td>
-                            <td><?php echo $row["date_naissence"] ?></td>
+                            <td><?php echo $row["date_naissance"] ?></td>
                             <td><?php echo $row["email"] ?></td>
                             <td>
-                                <!-- <div class="table-data-feature" style="text-align: center">
-                                    <button onclick="location.href='supprimer_etudiant.php?id=<?php echo $row["code_apoge"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" >
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </button>
-                                    <button data-toggle="tooltip" id="<?php echo $row["code_apoge"] ?>" data-toggle="modal" class="item Open_modifierUnEtudiant" data-placement="top" title="Modifier" >
-                                        <i class="zmdi zmdi-edit"></i>
-                                    </button>
-                                </div> -->
+                                <button onclick="location.href='supprimer_etudiant.php?id=<?php echo $row['cin'] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" >
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                                <button data-toggle="tooltip" id="<?php echo $row['cin'] ?>" data-toggle="modal" class="item Open_modifierUnEtudiant" data-placement="top" title="Modifier" >
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button>
+                                <!-- <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["cin"] ?>"  title="More">
+                                    <i class="zmdi zmdi-more"></i>
+                                </button>  -->
                             </td>
                         </tr>
                 <?php

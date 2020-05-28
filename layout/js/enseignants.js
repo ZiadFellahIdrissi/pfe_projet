@@ -18,11 +18,13 @@ $(document).ready(function() {
             contentType: "application/json",
             dataType: 'json',
             success: function(data) {
-                $('#le_nom_modifier').val(data.nom_enseignant);
-                $('#le_prenom_modifier').val(data.prenom_enseignant);
-                $('#tel_modifier').val(data.telephone_enseignant);
-                $('#email_modifier').val(data.email_enseignant);
-                $('#id_enseignant').val(data.id_enseignant);
+                $('#le_nom_modifier').val(data.nom);
+                $('#le_prenom_modifier').val(data.prenom);
+                $('#tel_modifier').val(data.telephone);
+                $('#email_modifier').val(data.email);
+                $('#cin_modifier').val(data.id);
+                $('#id_enseignant').val(data.id);
+                $('#dateN_modifier').val(data.date_naissance);
                 $('#modifierUnEnseignant').modal('show');
             },
             error: function() {
@@ -33,10 +35,18 @@ $(document).ready(function() {
     });
 
     $(document).ready(function() {
-        $(".open-confirmation").click(function() {
+        $(".open-confirmationR").click(function() {
             var filiere = $(this).attr('id');
             $('#fil').html(filiere);
-            $('#confermationAle').modal('show');
+            $('#confermationR').modal('show');
+        });
+    });
+
+    $(document).ready(function() {
+        $(".open-confirmationE").click(function() {
+            var module = $(this).attr('id');
+            $('#module').html(module);
+            $('#confermationE').modal('show');
         });
     });
 });

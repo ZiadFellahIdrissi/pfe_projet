@@ -56,22 +56,24 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $(document).on('click', '.Open_modifierUnEtudiant', function() {
-        var code = $(this).attr("id");
-        $('#codeapoger').val(code);
+        var cin = $(this).attr("id");
+        console.log(cin);
+        $('#oldCin').val(cin);
         $.ajax({
             url: "fetching_students_for_editing.php",
             method: 'GET',
             data: {
-                code: code
+                cin: cin
             },
             contentType: "application/json",
             dataType: 'json',
             success: function(data) {
                 $('#le_nom_modifier').val(data.nom);
                 $('#le_prenom_modifier').val(data.prenom);
-                $('#codeapoge_modifier').val(data.code_apoge);
-                $('#cin_modifier').val(data.cne);
+                $('#cne_modifier').val(data.cne);
+                $('#cin_modifier').val(data.cin);
                 $('#date_modifier').val(data.date_naissance);
+                $('#tel_modifier').val(data.telephone);
                 $('#email_modifier').val(data.email);
                 $('#fil').val(data.id_filiere);
                 $('#modifierUnEtudiant').modal('show');

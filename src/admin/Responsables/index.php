@@ -5,8 +5,7 @@
     if (!$user->isLoggedIn()) {
         header('Location: ../pages/login.php');
     }else{
-        $nom=$user->data()->username;
-        $email=$user->data()->email;
+        $username =$user->data()->username;
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,46 +1,65 @@
 <?php
     include '../../connection.php';
-    if($_POST["codeapoger"]!="" && isset($_POST['modifier'])){
-        $oldCode = $_POST["codeapoger"];
-        $cne = mysqli_real_escape_string($conn, trim($_POST["cin"]));
-        $code_apoge = $_POST["codeapoge"];
+    if($_POST["oldCin"]!="" && isset($_POST['modifier'])){
+        $oldCin = $_POST["oldCin"];
+        $cin = mysqli_real_escape_string($conn, trim($_POST["cin"]));
+        $cne = $_POST["cne"];
         $nom = mysqli_real_escape_string($conn, trim($_POST["Nom"]));
         $prenom = mysqli_real_escape_string($conn, trim($_POST["prenom"]));
         $date_naissance=$_POST["dateN"];
         $email=mysqli_real_escape_string($conn, trim($_POST["email"]));
+        $telephone=mysqli_real_escape_string($conn, trim($_POST["tel"]));
         $filiere=$_POST["filiere"];
 
-        $row=mysqli_num_rows(mysqli_query($conn, " SELECT *
-                                                    FROM etudiant
-                                                    WHERE code_apoge = $oldCode "));
-
-        if($oldCode==$code_apoge && $row["cne"]==$cne && $row["email"]==$email)
+        $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT *
+                                                     FROM Etudiant
+                                                     JOIN Utilisateur ON Etudiant.id = Utilisateur.id
+                                                     WHERE Etudiant.id = $oldCin                      "));
+        
+        if($oldCin==$cin && $row["cne"]==$cne && $row["email"]==$email && $row["telephone"]==$telephone)
             goto success;
 
-        if($oldCode==$code_apoge && $row["email"]==$email)
+        if($oldCin==$cin && $row["email"]==$email && $row["telephone"]==$telephone)
             goto verificationCne;
 
-        if($oldCode==$code_apoge)
+        if($oldCin==$cin && $row["email"]==$email)
+            goto verificationTel;
+
+        if($oldCin==$cin && $row["telephone"]==$telephone){
+            include 'verificationEmail.php';
+            goto verificationCne;
+        }
+
+        if($oldCin==$cin)
             goto verificationEmail;
-        
-        include 'verificationCodeApogee.php';
+            
+        include 'verificationCin.php';
 verificationEmail:
         include 'verificationEmail.php';
+verificationTel:
+        include 'verificationTel.php';
 verificationCne:
         include 'verificationCne.php';
 success:
-        $sql="UPDATE `etudiant` 
-              SET `code_apoge` = $code_apoge ,
-                `cne` = '$cne',
-                `nom` = '$nom',
-                `prenom` = '$prenom',
-                `date_naissance` = '$date_naissance',
-                `email` = '$email',
-                `id_filiere` = $filiere
-                WHERE `etudiant`.`code_apoge` = $oldCode;";
 
-        mysqli_query($conn , $sql);
+        //fetching confidentials infos
+        $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT username, password
+                                                        FROM Utilisateur
+                                                        WHERE Utilisateur.id = $oldCin"));
+        $username=$row['username'];
+        $password=$row['password'];
 
-        header("location: ../Etudiants?etudiant=updated&idUrlFiliere=$filiere");
+        //modification(insert and delete the old row because of the PK constraint thingy)
+        mysqli_query($conn, "DELETE FROM Etudiant
+                                WHERE id = $oldCin");
+        mysqli_query($conn, "DELETE FROM Utilisateur
+                                WHERE id = $oldCin");
+
+        mysqli_query($conn, "INSERT INTO `Utilisateur`(`id`, `nom`, `prenom`, `date_naissance`, `email`, `telephone`, `username`, `password`)
+                                VALUES ($cin, '$nom' , '$prenom' , '$date_naissance', '$email' , '$telephone', '$username', '$password')     ");
+        mysqli_query($conn , "INSERT INTO `Etudiant`(`id`, `cne`, `id_filiere`)
+                                VALUES ($cin, '$cne' , $filiere)                ");
+        
+        header("location: ./?etudiant=updated&idUrlFiliere=$filiere");
     }
 ?>
