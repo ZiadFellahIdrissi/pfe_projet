@@ -65,8 +65,7 @@ if (!empty($_GET['id_filiere'])) {
                                     <?php
                                     $sql = "SELECT Personnel.id, Utilisateur.nom, Utilisateur.prenom
                                             FROM Personnel
-                                            JOIN Utilisateur ON Personnel.id = Utilisateur.id
-                                            WHERE Personnel.role = 'enseignant'";
+                                            JOIN Utilisateur ON Personnel.id = Utilisateur.id        ";
                                     $resultat = mysqli_query($conn, $sql);
                                     while ($row = mysqli_fetch_assoc($resultat)) {
                                     ?>

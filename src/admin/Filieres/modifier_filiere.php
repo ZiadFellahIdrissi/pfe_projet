@@ -4,8 +4,9 @@
         $id_filiere=$_POST["Modifier_inp"];
         $nom=trim(mysqli_real_escape_string($conn, $_POST["Nom"]));
         $resp_id=$_POST["Responsable_modifier"];
+        $oldResp=$_POST['oldResp'];
         $prix=$_POST['prix_modifier'];
-
+        
         $sql=mysqli_query($conn, " SELECT nom_filiere, id_responsable
                                    FROM Filiere
                                    WHERE id_filiere != $id_filiere    ");
@@ -21,9 +22,18 @@
         }
 
         mysqli_query($conn , " UPDATE Filiere
-                                set id_responsable = $resp_id,
+                                SET id_responsable = $resp_id,
                                     nom_filiere = '$nom'
-                                WHERE id_filiere = $id_filiere " );
+                                WHERE id_filiere = $id_filiere ");
+
+        mysqli_query($conn, " UPDATE Personnel
+                                SET role = 'enseignant'
+                                WHERE id = $oldResp     ");
+
+        mysqli_query($conn, " UPDATE Personnel
+                                SET role = 'responsable'
+                                WHERE id = $resp_id      ");
+                                
         header("location: ./?filiere=updated");
     }
 ?>

@@ -52,6 +52,7 @@
                             <button data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_filiere"] ?>" data-toggle="tooltip" class="item open_modifierModal" title="Modifier" >
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
+                            <!-- TODO: warning pour les modules de cette filiere -->
                         </div>
                     </td>
                 </tr>

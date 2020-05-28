@@ -36,6 +36,7 @@ $(document).ready(function() {
             success: function(data) {
                 $('#Modifier_inp').val(data.id_filiere);
                 $('#Responsable_modifier').val(data.id_responsable);
+                $('#oldResp').val(data.id_responsable);
                 $('#prix_modifier').val(data.prix_formation);
                 $('#Nom_modifier').val(data.nom_filiere);
                 $('#modifierModal').modal('show');

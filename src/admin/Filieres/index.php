@@ -147,14 +147,16 @@
                                                 <label for="Responsable_modifier">Responsable</label>
                                                 <select name="Responsable_modifier" id="Responsable_modifier" class="form-control">
                                                     <?php
-                                                        $sqlOptions = "SELECT Personnel.id, Utilisateur.nom, Utilisateur.prenom
+                                                        $sqlOptions = " SELECT Personnel.id, Utilisateur.nom, Utilisateur.prenom
                                                                         FROM Personnel
-                                                                        JOIN Utilisateur ON Personnel.id = Utilisateur.id ";
+                                                                        JOIN Utilisateur ON Personnel.id = Utilisateur.id
+                                                                        WHERE Personnel.id NOT IN ( SELECT id_responsable
+                                                                                                    FROM Filiere          )";
                                                         $resultat = mysqli_query($conn, $sqlOptions);
                                                         $resultatcheck = mysqli_num_rows($resultat);
                                                         while ($row = mysqli_fetch_assoc($resultat)) {
                                                             echo '<option value="'.$row["id"].'">
-                                                                     <strong>'.$row["nom"].' '.$row["nom"].'</strong>
+                                                                     <strong>'.$row["nom"].' '.$row["prenom"].'</strong>
                                                                  </option>';
                                                         }
                                                     ?>
@@ -164,6 +166,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <input type="hidden" name="Modifier_inp" id="Modifier_inp" value="" />
+                                        <input type="hidden" name="oldResp" id="oldResp" value="" />
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <input type="submit" id="Modifier" class="btn btn-primary" value="Modifier" name="Modifier">
                                     </div>
@@ -178,7 +181,7 @@
                 <div class="modal fade" id="confermationAle" role="dialog" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form action="../Filiere/supprimer_filiere.php" method="POST">
+                            <form action="./supprimer_filiere.php" method="POST">
                                 <div class="modal-header">
                                     <h4 style="color:#c0392b;" class="modal-title" id="exampleModalScrollableTitle">Tu vas supprimer tous ces Etudiants dans cette filière!</h6>
                                 </div>

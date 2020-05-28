@@ -42,7 +42,7 @@
                         <i class="fab fa-stack-overflow"></i>Modules
                     </a>
                 </li>
-                <li class="has-sub">
+                <!-- <li class="has-sub">
                     <a class="js-arrow" href="#">
                         <i class="fas fa-calendar-alt"></i>Examens <i class="fas fa-angle-down"></i> </a>
                     <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -53,7 +53,7 @@
                             <a href="./consulte_Examen.php">Liste Examens</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="has-sub">
                     <a class="js-arrow" href="#">
                         <i class="fas fa-copy"></i>Notes <i class="fas fa-angle-down"></i> </a>

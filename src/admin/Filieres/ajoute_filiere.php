@@ -7,7 +7,7 @@
 
         $sqltest = "SELECT id_filiere, nom_filiere
                     FROM Filiere 
-                    WHERE nom_filiere = '" . $nom."'";
+                    WHERE nom_filiere = '".$nom."'";
                         
         $resultatTest = mysqli_query($conn, $sqltest);
 
@@ -15,9 +15,13 @@
                 header('location: ./?inserting=failed');
                 exit();
         } else {
-                $sql = "INSERT INTO `Filiere`(`nom_filiere`, `id_responsable`, `prix_formation`)
-                                VALUES ('$nom', $resp, $prix)";
-                mysqli_query($conn, $sql);
+
+                mysqli_query($conn, "INSERT INTO `Filiere`(`nom_filiere`, `id_responsable`, `prix_formation`)
+                                        VALUES ('$nom', $resp, $prix)");
+
+                mysqli_query($conn, "UPDATE Personnel
+                                        SET role = 'responsable'
+                                        WHERE id = $resp        ");
                 header('location: ./?filiere=inserted');
         }
     }

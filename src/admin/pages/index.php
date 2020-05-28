@@ -8,7 +8,7 @@
         $username = $user->data()->username;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -42,7 +42,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
-                                <a href="../Enseignants">
+                                <a href="../Enseignants" title="Enseignants">
                                     <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
                                             <h2>
                                                 <?php
@@ -61,7 +61,7 @@
                                     </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
-                                <a href="../Responsables">
+                                <a href="../Responsables" title="Responsables">
                                     <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
                                             <h2>
                                                 <?php
@@ -80,7 +80,7 @@
                                     </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
-                                <a href="../Etudiants">
+                                <a href="../Etudiants" title="Etudiants">
                                     <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
                                             <h2>
                                                 <?php
@@ -98,7 +98,7 @@
                                     </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
-                                <a href="./Filiere.php">
+                                <a href="../Filieres"  title="Filières">
                                     <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
                                             <h2>
                                                 <?php
@@ -116,7 +116,7 @@
                                     </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
-                                <a href="./Modules.php">
+                                <a href="../Modules" title="Modules">
                                     <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
                                             <h2 class="number">
                                                 <?php

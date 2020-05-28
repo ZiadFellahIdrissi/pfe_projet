@@ -11,15 +11,13 @@
 		$coeffC=$_POST['coeffC'];
 		$coeffE=$_POST['coeffE'];
 		$oldFiliere=$_POST["Filiere"];
-		echo $oldFiliere;
-        $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT Module.intitule, dispose_de.id_filiere
+
+		$row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT Module.intitule
 						                             FROM Module
 													 JOIN dispose_de ON Module.id_module = dispose_de.id_module
 						                             WHERE Module.id_module != $id_module
 													 AND dispose_de.id_filiere = $id_filiere					"));
 													 
-		print_r($row);
-
         foreach ($row as $data)
 	    {
 	        if ($data == $intitule){

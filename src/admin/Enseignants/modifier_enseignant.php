@@ -2,34 +2,49 @@
     include '../../connection.php';
 
     if(isset($_POST["Modifier"])){
-        $id_enseignant=$_POST["id_enseignant"];
-        $nom=mysqli_real_escape_string($conn, $_POST["Nom"]);
-        $prenom=mysqli_real_escape_string($conn, $_POST["prenom"]);
+        $oldCin=$_POST["oldCin"];
+        $nom=mysqli_real_escape_string($conn, trim($_POST["Nom"]));
+        $prenom=mysqli_real_escape_string($conn, trim($_POST["prenom"]));
         $telephone=$_POST["numTel"];
-        $email=mysqli_real_escape_string($conn, $_POST["email"]);
+        $email=mysqli_real_escape_string($conn, trim($_POST["email"]));
+        $dateN=$_POST['dateN'];
+        $cin=$_POST['cin'];
 
         $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT *
-                                                     FROM enseignant
-                                                     WHERE id_enseignant=$id_enseignant"));
+                                                     FROM Personnel
+                                                     JOIN Utilisateur ON Personnel.id = Utilisateur.id
+                                                     WHERE Personnel.id = $oldCin"));
 
-        if ($row["email_enseignant"]==$email && $row["telephone_enseignant"]==$telephone)
+        if ($oldCin==$cin && $row["email"]==$email && $row["telephone"]==$telephone)
             goto success;
 
-        if ($row["telephone_enseignant"]==$telephone)
+        if ($oldCin==$cin && $row["telephone_enseignant"]==$telephone)
             goto verificationEmail;
-        
+
+        if($oldCin==$cin)
+            goto verificationTel;
+
+        include 'verificationCin.php';
+verificationTel:
         include 'verificationTel.php';
 verificationEmail:
         include 'verificationEmail.php';
 success:
-        $sql="UPDATE enseignant
-                SET nom_enseignant = '$nom',
-                    prenom_enseignant = '$prenom',
-                    telephone_enseignant = '$telephone',
-                    email_enseignant = '$email'
-                WHERE id_enseignant = $id_enseignant";
 
-        mysqli_query($conn, $sql);
-        header('location: ../Enseignants?enseignant=updated');
+
+        mysqli_query($conn, "UPDATE Utilisateur
+                                SET nom = '$nom',
+                                    prenom = '$prenom',
+                                    id = '$cin',
+                                    date_naissance = '$dateN',
+                                    telephone = '$telephone',
+                                    email = '$email'
+                                WHERE id = $oldCin");
+
+        mysqli_query($conn, "UPDATE Personnel
+                                SET id = '$cin'
+                                WHERE id = $oldCin");
+
+        header('location: ./?enseignant=updated');
     }
 ?>
