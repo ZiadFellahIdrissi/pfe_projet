@@ -1,14 +1,13 @@
 <div class="table-responsive-sm">
     <?php
-    
     $sql = "SELECT etudiant.nom,etudiant.prenom,filiere.nom_filiere,module.intitule,
-     avoir_note.note,module.id_module,avoir_note.id_etudiant 
-     FROM avoir_note join etudiant on avoir_note.id_etudiant=etudiant.code_apoge 
-     join examen on examen.id_examen=avoir_note.id_examen 
-     join module on examen.id_module=module.id_module 
-     JOIN filiere on module.id_filiere=filiere.id_filiere 
-     where examen.letype='Controle'
-    ORDER BY avoir_note.id";
+            avoir_note.note,module.id_module,avoir_note.id_etudiant 
+            FROM avoir_note join etudiant on avoir_note.id_etudiant=etudiant.code_apoge 
+            join examen on examen.id_examen=avoir_note.id_examen 
+            join module on examen.id_module=module.id_module 
+            JOIN filiere on module.id_filiere=filiere.id_filiere 
+            where examen.letype='Controle'
+            ORDER BY avoir_note.id";
 
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);
@@ -19,9 +18,9 @@
                 <tr>
                     <th>Etudiant</th>
                     <th>Filiere</th>
-                    <th>Modulet</th>
+                    <th>Module</th>
                     <th>Controle</th>
-                    <th>Exame Finale</th>
+                    <th>Examen Finale</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,10 +37,12 @@
                             <?php
                                 $etudiant=$row["id_etudiant"];
                                 $module=$row["id_module"];
-                                $sql2="SELECT * from avoir_note
-                                join examen on examen.id_examen=avoir_note.id_examen 
-                                join module on examen.id_module=module.id_module
-                                where id_etudiant= $etudiant and examen.letype='Exam Final' and module.id_module=$module;";
+                                $sql2 ="SELECT note
+                                        FROM avoir_note
+                                        JOIN examen on avoir_note.id_examen = examen.id_examen
+                                        WHERE avoir_note.id_etudiant = $etudiant
+                                        AND examen.id_module = $module
+                                        AND examen.letype = 'Exam Final' ";
                                 $row2=mysqli_fetch_assoc(mysqli_query($conn, $sql2));
                                 echo $row2["note"];
                             ?>

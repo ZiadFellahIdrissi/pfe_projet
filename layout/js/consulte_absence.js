@@ -65,18 +65,18 @@ $(document).ready(function() {
     function affiche() {
         var id_filiere = $("#filiere").val();
         var semester = $("#semester").val();
-            $.ajax({
-                url: "../Absences/afficheTableauAbsencesParFiliere.php",
-                method: "GET",
-                data: {
-                    id_filiere: id_filiere,
-                    semester: semester
-                },
-                dataType: "text",
-                success: function(data) {
-                    $('.absences').html(data);
-                }
-            });
+        $.ajax({
+            url: "../Absences/afficheTableauAbsencesParFiliere.php",
+            method: "GET",
+            data: {
+                id_filiere: id_filiere,
+                semester: semester
+            },
+            dataType: "text",
+            success: function(data) {
+                $('.absences').html(data);
+            }
+        });
     }
 });
 
@@ -99,8 +99,6 @@ $(document).ready(function() {
                 $('#nbHeurs_modifier').val(data.h_absence);
                 $('#date_modifier').val(data.date_absence);
                 $('#modul').val(data.id_module);
-                // $('#semesterBl').val(data.semester);  hadi kanet dayryha f lawle ms ma5shache tkone hitache 
-                //la bgha ibdale semster rahe ta l module aso imchi bdale lihe semester
                 $('#modifierAbsences').modal('show');
                 console.log(data.module);
             },
@@ -108,6 +106,6 @@ $(document).ready(function() {
                 alert('failure');
             }
         });
-
     });
+
 });

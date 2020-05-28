@@ -12,6 +12,6 @@
         $sql = "DELETE FROM absence
         		WHERE id_absence=$id_absence";
         mysqli_query($conn,$sql);
-        header("Location: ../pages/consulter_absences.php?absence=deleted&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
+        header("Location: ../pages/Absences.php?absence=deleted&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
     }
 ?>

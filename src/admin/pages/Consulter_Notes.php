@@ -47,13 +47,13 @@ if (!$user->isLoggedIn()) {
         }
     </style>
 
-    <body class="">
-        <!--animsition-->
+    <body>
         <div class="page-wrapper">
             <?php include 'header.php' ?>
             <div class="main-content ">
-                <?php include '../../DML_Commentator.php';
-                DMLCommentator("");
+                <?php
+                    include '../../DML_Commentator.php';
+                    DMLCommentator("");
                 ?>
                 <div class="container mb-3">
                     <nav aria-label="breadcrumb nov">
@@ -83,13 +83,15 @@ if (!$user->isLoggedIn()) {
                             </div>
                         </div>
                         <div class="modal-body notes">
-                            <?php include '../Notes/Tableau_consulter_Notes.php' ?>
+                            <?php
+                                include '../Notes/Tableau_consulter_Notes.php'
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div><!-- hade div daroori tb9a hitache dyal wahde dive ma7loola fl header   -->
+        </div>
 
         <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>

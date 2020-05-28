@@ -1,15 +1,14 @@
 <?php
-include '../../connection.php';
-include_once '../../../core/init.php';
-$user = new User_Admin();
-if (!$user->isLoggedIn()) {
-    header('Location: ./login.php');
-}else{
-    $nom=$user->data()->username;
-    $email=$user->data()->email;
+    include '../../connection.php';
+    include_once '../../../core/init.php';
+    $user = new User_Admin();
+    if (!$user->isLoggedIn()) {
+        header('Location: ./login.php');
+    }else{
+        $username = $user->data()->username;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -32,70 +31,107 @@ if (!$user->isLoggedIn()) {
     <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
 </head>
 
-
-<body class="">
+<body>
     <div class="page-wrapper">
-        <?php include './header.php' ?>
-        <div class="main-content ">
+        <?php
+            include './header.php'
+        ?>
+        <div class="main-content">
             <section class="statistic statistic2" style=" padding-top: 0%;">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item statistic__item--green" style="border-radius: 10px; cursor:pointer;" >
-                                <a href="./Enseignant.php"><h2 class="number">
-                                        <?php
-                                        $sql = "SELECT * FROM enseignant";
-                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                        ?>
-                                    </h2></a><br>
-                                    <span class="desc">Enseignants</span>
-                                    <div class="icon">
-                                        <i class="fas fa-chalkboard-teacher"></i></a>
+                                <a href="../Enseignants" title="Enseignants">
+                                    <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
+                                            <h2>
+                                                <?php
+                                                    $sql = "SELECT *
+                                                            FROM Personnel
+                                                            WHERE role = 'enseignant'";
+                                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                                ?>
+                                            </h2>
+                                        <br>
+                                        <span class="desc">Enseignants</span>
+                                        <div class="icon">
+                                            <i class="fas fa-chalkboard-teacher"></i>
+                                        </div>
+                                </a>
                                     </div>
-                                </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item statistic__item--orange" style="border-radius: 10px; cursor:pointer;">
-                                <a href="./Etudiants.php"><h2 class="number">
-                                        <?php
-                                        $sql = "SELECT * FROM etudiant";
-                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                        ?>
-                                    </h2></a><br>
-                                    <span class="desc">Etudiants</span>
-                                    <div class="icon">
-                                        <i class="fas fa-user-graduate"></i>
+                                <a href="../Responsables" title="Responsables">
+                                    <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
+                                            <h2>
+                                                <?php
+                                                    $sql = "SELECT *
+                                                            FROM Personnel
+                                                            WHERE role = 'responsable'";
+                                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                                ?>
+                                            </h2>
+                                        <br>
+                                        <span class="desc">Responsables</span>
+                                        <div class="icon">
+                                            <i class="fas fa-user-tie"></i>
+                                        </div>
+                                </a>
                                     </div>
-                                </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item statistic__item--blue " style="border-radius: 10px; cursor:pointer;">
-                                <a href="./Filiere.php"><h2 class="number">
-                                        <?php
-                                        $sql = "SELECT * FROM filiere";
-                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                        ?>
-                                    </h2></a><br>
-                                    <span class="desc">Filieres</span>
-                                    <div class="icon">
-                                        <i class="fas fa-university"></i>
+                                <a href="../Etudiants" title="Etudiants">
+                                    <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
+                                            <h2>
+                                                <?php
+                                                    $sql = "SELECT *
+                                                            FROM Etudiant";
+                                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                                ?>
+                                            </h2>
+                                        <br>
+                                        <span class="desc">Etudiants</span>
+                                        <div class="icon">
+                                            <i class="fas fa-user-graduate"></i>
+                                        </div>
+                                </a>
                                     </div>
-                                </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item statistic__item--red" style="border-radius: 10px; cursor:pointer;">
-                                <a href="./Modules.php"><h2 class="number">
-                                        <?php
-                                        $sql = "SELECT * FROM module";
-                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                        ?>
-                                    </h2></a><br>
-                                    <span class="desc">Modules</span>
-                                    <div class="icon">
-                                        <i class="fab fa-stack-overflow"></i>
+                                <a href="../Filieres"  title="Filières">
+                                    <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
+                                            <h2>
+                                                <?php
+                                                    $sql = "SELECT *
+                                                            FROM Filiere";
+                                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                                ?>
+                                            </h2>
+                                        <br>
+                                        <span class="desc">Filieres</span>
+                                        <div class="icon">
+                                            <i class="fas fa-university"></i>
+                                        </div>
+                                </a>
                                     </div>
-                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <a href="../Modules" title="Modules">
+                                    <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
+                                            <h2 class="number">
+                                                <?php
+                                                    $sql = "SELECT *
+                                                            FROM Module";
+                                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                                ?>
+                                            </h2>
+                                        <br>
+                                        <span class="desc">Modules</span>
+                                        <div class="icon">
+                                            <i class="fab fa-stack-overflow"></i>
+                                        </div>
+                                </a>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -103,7 +139,7 @@ if (!$user->isLoggedIn()) {
             </section>
         </div>
     </div>
-    </div> <!-- hade div daroori tb9a hitache dyal wahde dive ma7loola fl header   -->
+    </div>
 
     <script src="../../../layout/js/jquery-3.4.1.min.js"></script>
 

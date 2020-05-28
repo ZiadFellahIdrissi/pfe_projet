@@ -10,6 +10,10 @@
     font-size: 14px;
 }
 
+.mydatatable td{
+    text-align: center;
+}
+
 ul {
     margin: 0;
 }
