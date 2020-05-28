@@ -31,6 +31,7 @@ verificationEmail:
         include 'verificationEmail.php';
 success:
 
+        mysqli_query($conn, "SET FOREIGN_KEY_CHECKS = 0");
 
         mysqli_query($conn, "UPDATE Utilisateur
                                 SET nom = '$nom',
@@ -46,5 +47,7 @@ success:
                                 WHERE id = $oldCin");
 
         header('location: ./?enseignant=updated');
+
+		mysqli_query($conn, "SET FOREIGN_KEY_CHECKS = 1");
     }
 ?>
