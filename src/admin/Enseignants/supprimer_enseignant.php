@@ -5,7 +5,6 @@
         $id=$_GET["id"];
         mysqli_query($conn , "DELETE FROM Personnel
                               WHERE id = $id        ");
-
         mysqli_query($conn , "DELETE FROM Utilisateur
                               WHERE id = $id        ");
         header('location: ./?enseignant=deleted'); 

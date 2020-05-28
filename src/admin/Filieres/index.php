@@ -149,9 +149,7 @@
                                                     <?php
                                                         $sqlOptions = " SELECT Personnel.id, Utilisateur.nom, Utilisateur.prenom
                                                                         FROM Personnel
-                                                                        JOIN Utilisateur ON Personnel.id = Utilisateur.id
-                                                                        WHERE Personnel.id NOT IN ( SELECT id_responsable
-                                                                                                    FROM Filiere          )";
+                                                                        JOIN Utilisateur ON Personnel.id = Utilisateur.id         ";
                                                         $resultat = mysqli_query($conn, $sqlOptions);
                                                         $resultatcheck = mysqli_num_rows($resultat);
                                                         while ($row = mysqli_fetch_assoc($resultat)) {
