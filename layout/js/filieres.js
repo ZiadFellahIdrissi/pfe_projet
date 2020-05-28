@@ -18,7 +18,19 @@ $(document).ready(function() {
             },
             dataType: "text",
             success: function(data) {
-                $('#affiche_etudiant').html(data);
+                $('#affiche_etudiants').html(data);
+            }
+        });
+        // l'affichage des modules qui appartient à la filiere qu'on veut supprimer
+        $.ajax({
+            url: "fetching_modules.php",
+            method: "POST",
+            data: {
+                id_filiere: id_filiere
+            },
+            dataType: "text",
+            success: function(data) {
+                $('#affiche_modules').html(data);
             }
         });
     });
