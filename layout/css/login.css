@@ -13,14 +13,29 @@ body {
     background-size: cover;
     overflow-x: hidden;
 }
-    .x {
-        margin-top: 8%;
-        margin-right: 96%;
-	margin-bottom:0%;
-        font-size: 30px;
-        font-weight: bold;
-        color: black;
+
+#x {
+    animation: shake_ 1s alternate infinite;
+    margin: 5 5;
+    width: 35px;
+    position: fixed;
+}
+
+#x:hover {
+    animation: xshake 1s alternate;
+    transform-origin: center;
+    fill: red;
+    opacity: 0.8;
+}
+
+@keyframes xshake{
+    from{
+        transform: rotateZ(0deg);
     }
+    to{
+        transform: rotateZ(-180deg);
+    }
+}
 
 .container {
 	margin-top:0%
@@ -45,10 +60,6 @@ body {
     text-align: center;
 }
 
-.img img {
-    width: 500px;
-}
-
 form {
     width: 360px;
 }
@@ -61,7 +72,7 @@ form {
     margin: 15px 0;
     color: #333;
     text-transform: uppercase;
-    font-size: 2.9rem;
+    font-size: 2.3rem;
 }
 
 .login-content .input-div {
@@ -157,7 +168,6 @@ form {
 
 a {
     display: block;
-    text-align: right;
     text-decoration: none;
     color: #2d3436;
     font-size: 0.9rem;
@@ -221,5 +231,128 @@ a:hover {
     }
     .login-content {
         justify-content: center;
+    }
+}
+
+#pic1{
+    width: 90%;
+}
+
+#plant1{
+    animation: shake 1s linear infinite alternate;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+@keyframes shake{
+    from{
+        transform: rotateZ(-2deg);
+    }
+    to{
+        transform: rotateZ(3deg);
+    }
+}
+
+#plant2{
+    animation: shake_ 3s linear infinite alternate;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+@keyframes shake_{
+    from{
+        transform: rotateZ(3deg);
+    }
+    to{
+        transform: rotateZ(-2deg);
+    }
+}
+
+#head{
+    animation: bump 1s linear infinite alternate;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+@keyframes bump{
+    from{
+        transform: rotateZ(0deg);
+    }
+    to{
+        transform: rotateZ(3deg);
+    }
+}
+
+#righthand{
+    animation: move_ 1s linear infinite alternate;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+@keyframes move_{
+    from{
+        transform: rotateZ(4deg);
+    }
+    to{
+        transform: rotateZ(0deg);
+    }
+}
+
+ #train1{
+    animation: train 2s linear infinite alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes train{
+    from{
+        transform: rotateZ(-1deg);
+    }
+    to{
+        transform: rotateZ(1deg);
+    }
+}
+
+#train3{
+    animation: trainnn 2s linear infinite alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes trainnn{
+    from{
+        transform: rotateZ(-4deg);
+    }
+    to{
+        transform: rotateZ(4deg);
+    }
+}
+#train2{
+    animation: trainn 2s linear infinite alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes trainn{
+    from{
+        transform: rotateZ(0.8deg);
+    }
+    to{
+        transform: rotateZ(-0.8deg);
+    }
+}
+
+#rightfoot{
+    animation: foot 2s linear infinite alternate;
+    transform-origin: top;
+    transform-box: fill-box;
+}
+
+@keyframes foot{
+    from{
+        transform: rotateZ(1.5deg);
+    }
+    to{
+        transform: rotateZ(-1.5deg);
     }
 }

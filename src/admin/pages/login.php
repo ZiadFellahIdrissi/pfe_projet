@@ -1,17 +1,15 @@
 <?php
-include '../../connection.php';
-include_once '../../../core/init.php';
-$user = new User_Admin();
-if ($user->isLoggedIn()) {
-    header('Location: ./');
-}else{
-
+    include '../../connection.php';
+    include_once '../../../core/init.php';
+    $user = new User_Admin();
+    if ($user->isLoggedIn()) {
+        header("Location: ./");
+    } else {
 ?>
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Animated Login Form</title>
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" href="../../../layout/css/login.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
@@ -19,22 +17,29 @@ if ($user->isLoggedIn()) {
 </head>
 
 <body>
-<a href="../../../index.php"><span class="x">&times;</span></a>
+    <a href="../../../index.php">
+        <span>
+            <?php
+                include '../../../img/login/x.svg';
+            ?>
+        </span>
+    </a>
     <div class="container">
-    
         <div class="img">
-            <img src="../../../img/login/bg3.svg" height="320px">
+            <?php
+                include '../../../img/login/bg3.svg';
+            ?>
         </div>
         <div class="login-content">
-            <form action="" method="POST">
-                <img src="../../../img/login/avatar.svg">
-                <h2 class="title">Log In</h2>
+            <form action="login_verification.php" method="POST">
+                <img src="../../../img/login/avatar.svg" draggable="false">
+                <h2 class="title">S'identifier</h2>
                 <div class="input-div one">
                     <div class="i">
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="div">
-                        <h5>Username</h5>
+                        <h5>Nom d'utilisateur</h5>
                         <input type="text" name="username" class="input">
                     </div>
                 </div>
@@ -43,24 +48,20 @@ if ($user->isLoggedIn()) {
                         <i class="fas fa-lock"></i>
                     </div>
                     <div class="div">
-                        <h5>Password</h5>
+                        <h5>Mot de passe</h5>
                         <input type="password" name="password" class="input">
                     </div>
                 </div>
-                <a href="#">Forgot Password?</a>
+                <br>
                 <?php
-                    include_once '../../../core/init.php';
-                    if (isset($_POST["login"])) {
-                        $user = new User_Admin();
-                        $login = $user->login($_POST["username"], $_POST["password"]);
-
-                        if ($login) {
-                            header('Location: ./index.php');
-                        } else
-                            echo '<p style="color:#d63031;"><b>Email or password invalide</b></p>';
+                    if(isset($_GET['err'])){
+                ?>
+                        <strong style="color:#d63031;">Échec de l'authentification.</strong>
+                <?php
                     }
-                    ?>
-                <input type="submit" class="btn" name="login" value="Login">
+                ?>
+                <input type="submit" class="btn" name="login" value="Connexion">
+                <a href="#">Informations de compte oubliées?</a>
             </form>
         </div>
     </div>
@@ -68,6 +69,6 @@ if ($user->isLoggedIn()) {
 </body>
 
 </html>
-<?php 
+<?php
 }
 ?>
