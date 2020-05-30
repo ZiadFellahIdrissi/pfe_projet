@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php
+include_once '../../../core/init.php';
+$user = new User_Etudiant();
+if (!$user->isLoggedIn()) {
+    header('Location: ../../../login.php');
+} else {
+    $nom = $user->data()->nom;
+    $prenom = $user->data()->prenom;
+    $email = $user->data()->email;
+    $id = $user->data()->id;
+?>
 <html lang="en">
 
 <head>
@@ -150,3 +160,4 @@
 </body>
 
 </html>
+<?php }?>

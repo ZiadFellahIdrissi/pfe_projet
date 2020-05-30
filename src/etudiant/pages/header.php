@@ -10,8 +10,8 @@
             <div class="image img-cir img-120">
                 <img src="../../../img/etudiant/profile.svg" alt="John Doe" />
             </div>
-            <h4 class="name">Ziad Fellah-Idrissi</h4>
-            <a href="../../../">Sign out</a>
+            <h4 class="name"><?php echo $nom.' '.$prenom ?></h4>
+            <a href="logout.php">Sign out</a>
         </div>
         <nav class="navbar-sidebar2">
             <ul class="list-unstyled navbar__list">
@@ -39,11 +39,7 @@
                         <i class="fas fa-copy"></i>test
                     </a>
                 </li>
-                <li class="">
-                    <a class="js-arrow" href="#">
-                        <i class="fas fa-desktop"></i>test
-                    </a>
-                </li>
+
             </ul>
         </nav>
     </div>
@@ -135,10 +131,7 @@
                                     <a href="#">
                                         <i class="zmdi zmdi-globe"></i>Language</a>
                                 </div>
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-pin"></i>Location</a>
-                                </div>
+                     
                                 <div class="account-dropdown__item">
                                     <a href="#">
                                         <i class="zmdi zmdi-email"></i>Email</a>
@@ -165,8 +158,8 @@
                 <div class="image img-cir img-120">
                     <img src="../../../img/etudiant/profile.svg" alt="ziad" />
                 </div>
-                <h4 class="name">Ziad Fellah-Idrissi</h4>
-                <a href="../../../">Sign out</a>
+                <h4 class="name"><?php echo $nom.' '.$prenom ?></h4>
+                <a href="logout.php">Sign out</a>
             </div>
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
@@ -194,11 +187,7 @@
                             <i class="fas fa-copy"></i>test
                         </a>
                     </li>
-                    <li class="fas fa-copy">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-desktop"></i>test
-                        </a>
-                    </li>
+    
                 </ul>
             </nav>
         </div>
