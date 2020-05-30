@@ -1,0 +1,48 @@
+
+#holder{
+	animation: waveee 1s linear infinite alternate;
+	transform-origin: top;
+	transform-box: fill-box;
+}
+
+@keyframes waveee{
+	from{
+		transform: rotateZ(4deg);
+	}
+	to{
+		transform: rotateZ(-3deg);
+	}
+}
+
+#diploma{
+	animation: wavee 1s linear infinite alternate;
+	transform-origin: center;
+	transform-box: fill-box;
+}
+
+@keyframes wavee{
+	from{
+		transform: rotateZ(-2deg);
+	}
+	to{
+		transform: rotateZ(3deg);
+	}
+}
+
+#logo:hover{
+	.sparkles{
+		animation: getbig 1s ease alternate;
+		transform-origin: center;
+		transform-box: fill-box;
+	}
+}
+
+
+@keyframes getbig{
+	from{
+		transform: scale(1);
+	}
+	to{
+		transform: scale(2);
+	}
+}
