@@ -17,9 +17,10 @@ $GLOBALS['config'] = array(
 );
 
 spl_autoload_register('myAutoLoader02');
+
 function myAutoLoader02($className)
 {
-    $path = "Classes/";
+    $path = "/opt/lampp/htdocs/pfe_projet/Classes/";
     $ext = ".class.php";
     $fullPath = $path . $className . $ext;
     include_once $fullPath;

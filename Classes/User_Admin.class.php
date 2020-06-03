@@ -25,31 +25,26 @@
         }
 
         public function checkPassword($username = null ,$password=null ){
-            if($username){
-                if($password){
-                    $dataPas=$this->_db->query("SELECT *
-                                                FROM Administrateur
-                                                WHERE username = ?
-                                                AND password = ?",array($username,$password));
-                    if($dataPas->count()){
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-
+            if($username && $password){
+                $dataPas=$this->_db->getPDO()->query("SELECT username
+                                                      FROM Administrateur
+                                                      WHERE username = '$username'
+                                                      AND password = '$password'");
+                                                        
+                if(!empty($dataPas->fetch(PDO::FETCH_OBJ)))
+                    return true;
             }
+            return false;
         }
 
         public function find($username = null){
             if($username){
-                $data=$this->_db->query("SELECT *
-                                         FROM Administrateur
-                                         WHERE username = ?",array($username));
-                    if($data->count()){
-                        $this->_data=$data->first();
-                        return true;
-                    }
+                $data=$this->_db->getPDO()->query("SELECT *
+                                                   FROM Administrateur
+                                                   WHERE username = '$username'");
+                                                   
+                if(!empty($this->_data=$data->fetch(PDO::FETCH_OBJ)))
+                    return true;
             }
             return false;
         }
@@ -66,12 +61,13 @@
             $userPas =$this->checkPassword($username,$password);
             if($user){
                 if($userPas){
-                Session::put($this->_sessionName, $this->data()->username);
-                return true;
+                    Session::put($this->_sessionName, $this->data()->username);
+                    return true;
                 }
             }
             return false;
         }
+
         public function isLoggedIn(){
             return $this->_isLoggedIn;
         }

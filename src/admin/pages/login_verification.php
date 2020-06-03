@@ -4,9 +4,9 @@
     if (isset($_POST["login"])) {
         $user = new User_Admin();
         $login = $user->login($_POST["username"], $_POST["password"]);
-        if ($login) {
+        if ($login)
             header("Location: ./");
-        } else
-            header("Location: ./login.php?err=invalide");
+        
+        header("Location: ./login.php?err=invalide");
     }
 ?>

@@ -37,8 +37,17 @@ body {
     }
 }
 
+.retour {
+    width: 30px;
+    position: fixed;
+}
+
+.retour:hover {
+    fill: red;
+}
+
 .container {
-	margin-top:0%
+	margin-top:0%;
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -167,7 +176,6 @@ form {
 }
 
 a {
-    display: block;
     text-decoration: none;
     color: #2d3436;
     font-size: 0.9rem;
@@ -176,6 +184,14 @@ a {
 
 a:hover {
     color: #02a5b7;
+}
+
+span {
+    display: block;
+    text-decoration: none;
+    color: #2d3436;
+    font-size: 0.9rem;
+    transition: .3s;
 }
 
 .btn {
