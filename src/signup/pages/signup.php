@@ -1,5 +1,5 @@
 <?php
-    include_once '../../core/init01.php';
+    include_once '../../../core/init.php';
     if (isset($_POST["login"])) {
         $cin = $_POST["cin"];
         $email = $_POST["email"];
@@ -12,6 +12,6 @@
             exit();
         }
         $user->signup($cin, $email, $username, $password);
-        header("Location: ../../?actSuccess");
+        header("Location: ./welcom?cin=$cin");
     }
 ?>

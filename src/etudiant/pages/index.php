@@ -8,6 +8,7 @@ if (!$user->isLoggedIn()) {
     $prenom = $user->data()->prenom;
     $email = $user->data()->email;
     $id = $user->data()->id;
+    $imagepath = $user->data()->imagepath;
 ?>
 <html lang="en">
 

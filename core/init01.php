@@ -20,7 +20,7 @@ spl_autoload_register('myAutoLoader02');
 
 function myAutoLoader02($className)
 {
-    $path = "/opt/lampp/htdocs/pfe_projet/Classes/";
+    $path = "../Classes/";
     $ext = ".class.php";
     $fullPath = $path . $className . $ext;
     include_once $fullPath;

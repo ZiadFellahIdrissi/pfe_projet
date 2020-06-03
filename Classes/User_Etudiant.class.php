@@ -91,7 +91,7 @@
                 $dataPas=$this->_db->getPDO()->query("SELECT id
                                                       FROM Utilisateur
                                                       WHERE id = '$cin'
-                                                      AND password is not null"); 
+                                                      AND `password` is not null"); 
                 if(!empty($dataPas->fetch(PDO::FETCH_OBJ)))
                     return true;
             }
@@ -117,7 +117,6 @@
             Session::delete($this->_sessionName);
         }
 
-        
 
         public function isLoggedIn(){
             return $this->_isLoggedIn;

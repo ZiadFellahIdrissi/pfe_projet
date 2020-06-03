@@ -70,7 +70,7 @@
             <div style="margin-top: 150px;"></div>
             <h1>Nouveau ici?</h1>
             <p>Si vous êtes nouveau ici et vous faites partie de ce faculté, veuillez activer votre compte via ce button ci-dessous</p>
-            <p><a class="btn btn-lg btn-outline-primary" href="src/signup" role="button" title="Activer votre compte">Cliquez-moi!</a></p>
+            <p><a class="btn btn-lg btn-outline-primary" href="src/signup/pages/" role="button" title="Activer votre compte">Cliquez-moi!</a></p>
             <div class="go-about"></div>
           </div>
           <div class="col-lg-6">
