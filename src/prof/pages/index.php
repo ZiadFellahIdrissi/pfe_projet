@@ -2,7 +2,7 @@
 include_once '../../../core/init.php';
 $user = new User_Prof();
 if (!$user->isLoggedIn()) {
-    header('Location: ../../../login.php');
+    header('Location: ../../login.php');
 } else {
     $nom = $user->data()->nom;
     $prenom = $user->data()->prenom;

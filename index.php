@@ -48,10 +48,10 @@
             <a class="nav-link" href="#">Test</a>
           </li>
           <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="src/admin/pages/login.php">Espace Admin</a>
+            <a class="btn btn btn-outline-dark" href="./src/admin/pages/login.php">Espace Admin</a>
           </li>
           <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="login.php">Connexion</a>
+            <a class="btn btn btn-outline-dark" href="./src/login.php">Connexion</a>
           </li>
 
         </ul>
@@ -68,11 +68,9 @@
         <div class="row">
           <div class="col-lg-6">
             <div style="margin-top: 150px;"></div>
-            <h1>Procédure d'inscription</h1>
-            <p>
-              Les programmes de formation proposés sont payants et sont dispensés en temps aménagé le vendredi soir,
-              le samedi et le dimanche.</p>
-            <p><a class="btn btn-lg btn-outline-primary" href="#" role="button">S'inscrire maintenant</a></p>
+            <h1>Nouveau ici?</h1>
+            <p>Si vous êtes nouveau ici et vous faites partie de ce faculté, veuillez activer votre compte via ce button ci-dessous</p>
+            <p><a class="btn btn-lg btn-outline-primary" href="src/signup" role="button" title="Activer votre compte">Cliquez-moi!</a></p>
             <div class="go-about"></div>
           </div>
           <div class="col-lg-6">
@@ -84,17 +82,26 @@
     </div>
   </header>
 
-  <br><br><br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br><br><br><br><br>
-  <footer class="container">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2019-2020 FSAC<a class="nav-link" href="#"></p>
-  </footer>
+    <!-- inscription terminé -->
+    <?php
+      if(isset($_GET['actSuccess'])){
+    ?>
+      <div aria-live="polite" aria-atomic="false" style="position: absolute; top: 13%; right: 3%;  min-height: 200px; ">
+          <div class="toast" style=" width:700px; background-color: steelblue; color:white;">
+              <div class="toast-body">
+                  <b>Votre compte a été activé aves succès!</b>
+                  <br>
+                  Vous pouvez maintenant se connectez à votre espace numerique.
+              </div>
+          </div>
+      </div>
+    <?php
+      }
+    ?>
 
   <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>
-
+  <script type="text/javascript" src="./layout/js/index.js"></script>
 </body>
 
 </html>

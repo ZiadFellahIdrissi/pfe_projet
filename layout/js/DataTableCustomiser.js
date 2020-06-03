@@ -1,5 +1,5 @@
-if(document.querySelector(".mydatatable").querySelectorAll("tr").length<=10){
-    $(document.querySelector(".dataTables_paginate")).hide();
-	$(document.querySelector(".dataTables_length")).hide();
-	$(document.querySelector(".dataTables_info")).hide();
+if(document.getElementsByClassName("mydatatable")[0].querySelectorAll("tr").length<=10){
+    $(document.getElementsByClassName("dataTables_paginate")[0]).hide();
+	$(document.getElementsByClassName("dataTables_length")[0]).hide();
+	$(document.getElementsByClassName("dataTables_info")[0]).hide();
 }

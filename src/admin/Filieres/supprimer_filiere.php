@@ -4,16 +4,18 @@
 		if($_POST["confirmation"] !=''){
 			$id_filiere=$_POST["confirmation"];
 
-			//fetching all students of the "Filiere" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			// $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT id
-			// 											 FROM Etudiant
-			// 											 WHERE id_filiere = $id_filiere "));
-			// foreach($row as $data){
-			// 	mysqli_query($conn, "DELETE FROM Utilisateur
-			// 							WHERE id =  $id");
-			// }
+			// suppression des etudiants de la filiere
+			mysqli_query($conn, "SET FOREIGN_KEY_CHECKS = 0");
+
+			mysqli_query($conn, "DELETE FROM Utilisateur
+									WHERE id in ( SELECT id
+												  FROM Etudiant
+												  WHERE id_filiere = $id_filiere ) ");
+														  
 			mysqli_query($conn , "DELETE FROM Etudiant
 									WHERE id_filiere = $id_filiere ");
+
+			mysqli_query($conn, "SET FOREIGN_KEY_CHECKS = 1");
 			
 		} else {
 			$id_filiere=$_GET["id"];
@@ -29,21 +31,29 @@
                                 SET role = 'enseignant'
 								WHERE id = $resp         ");
 
-		//fetching all "Modules" of this "Filiere" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		// $row=mysqli_fetch_assoc(mysqli_query($conn, "SELECT id_module
-		// 											 FROM dispose_de
-		// 											 WHERE id_filiere = $id_filiere "));
-		// foreach($row as $data){
-		// 	mysqli_query($conn, "DELETE FROM Module
-		// 							WHERE id_module = $data");
-		// }
+
+		//save the ids of "Modules"
+		$row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT id_module
+														FROM dispose_de
+														WHERE id_filiere = $id_filiere "));
+
+		
+		// suppression des module de la filiere
+		mysqli_query($conn, "SET FOREIGN_KEY_CHECKS = 0");
+
+		mysqli_query($conn, "DELETE FROM Module
+								WHERE id_module in ( SELECT id_module
+													 FROM dispose_de
+													 WHERE id_filiere = $id_filiere ) ");
 
 		mysqli_query($conn, "DELETE FROM dispose_de
 								WHERE id_filiere = $id_filiere");
 
-		
+		// suppression de la filiere
 		mysqli_query($conn , "DELETE FROM Filiere
-							  WHERE id_filiere=$id_filiere");
+								 WHERE id_filiere = $id_filiere");
+								 
+		mysqli_query($conn, "SET FOREIGN_KEY_CHECKS = 1");
 		
 		header('location: ./?filiere=deleted');
 	}

@@ -149,9 +149,7 @@
                                                     <?php
                                                         $sqlOptions = " SELECT Personnel.id, Utilisateur.nom, Utilisateur.prenom
                                                                         FROM Personnel
-                                                                        JOIN Utilisateur ON Personnel.id = Utilisateur.id
-                                                                        WHERE Personnel.id NOT IN ( SELECT id_responsable
-                                                                                                    FROM Filiere          )";
+                                                                        JOIN Utilisateur ON Personnel.id = Utilisateur.id         ";
                                                         $resultat = mysqli_query($conn, $sqlOptions);
                                                         $resultatcheck = mysqli_num_rows($resultat);
                                                         while ($row = mysqli_fetch_assoc($resultat)) {
@@ -182,19 +180,31 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <form action="./supprimer_filiere.php" method="POST">
-                                <div class="modal-header">
-                                    <h4 style="color:#c0392b;" class="modal-title" id="exampleModalScrollableTitle">Tu vas supprimer tous ces Etudiants dans cette filière!</h6>
+                                <div class="modal-header container">
+                                    <h5 class="modal-title btn-dark text-center" id="exampleModalScrollableTitle">
+                                        En supprimant cette <span style="opacity: 0.8;">filière</span> Tu vas également supprimer tous ces
+                                    </h5>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="container mb-3 mt-3" id="affiche_etudiant">
+                                    <div class="container">
+                                        Etudiants
+                                    </div>
+                                    <div class="container mb-3 mt-3" id="affiche_etudiants">
                                         <!-- l'affichage des etudiants qui va être supprimé
+                                            si l'utilisateur veut supprimer leur filiere -->
+                                    </div>
+                                    <div class="container">
+                                        Modules
+                                    </div>
+                                    <div class="container mb-3 mt-3" id="affiche_modules">
+                                        <!-- l'affichage des modules qui va être supprimé
                                             si l'utilisateur veut supprimer leur filiere -->
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="hidden" name="confirmation" id="confirmation" value="" />
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
-                                    <button type="submit" class="btn btn-primary">Oui je confirme</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                    <button type="submit" class="btn btn-danger">Confirmer</button>
                                 </div>
                             </form>
                         </div>
