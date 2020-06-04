@@ -61,7 +61,6 @@
                     }
                 ?>
                 <input type="submit" class="btn" name="login" value="Connexion">
-                <a href="#">Informations de compte oubliées?</a>
             </form>
         </div>
     </div>

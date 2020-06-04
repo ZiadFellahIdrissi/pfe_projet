@@ -1,5 +1,5 @@
 <?php
-    include_once '../../../core/init.php';
+    include_once '../../core/init.php';
     if (isset($_POST["login"])) {
         $cin = $_POST['cin'];
         $date = $_POST['dateN'];

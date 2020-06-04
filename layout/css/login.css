@@ -28,11 +28,11 @@ body {
     opacity: 0.8;
 }
 
-@keyframes xshake {
-    from {
+@keyframes xshake{
+    from{
         transform: rotateZ(0deg);
     }
-    to {
+    to{
         transform: rotateZ(-180deg);
     }
 }
@@ -47,7 +47,7 @@ body {
 }
 
 .container {
-    margin-top: 0%;
+	margin-top:0%;
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -148,8 +148,8 @@ form {
 }
 
 .input-div.focus>div>h5 {
-    top: -5px;
-    font-size: 15px;
+    top: -0.2px;
+    font-size: 14px;
 }
 
 .input-div.focus>.i>i {
@@ -250,126 +250,125 @@ span {
     }
 }
 
-#pic1 {
+#pic1{
     width: 90%;
 }
 
-#plant1 {
+#plant1{
     animation: shake 1s linear infinite alternate;
     transform-origin: bottom;
     transform-box: fill-box;
 }
 
-@keyframes shake {
-    from {
+@keyframes shake{
+    from{
         transform: rotateZ(-2deg);
     }
-    to {
+    to{
         transform: rotateZ(3deg);
     }
 }
 
-#plant2 {
+#plant2{
     animation: shake_ 3s linear infinite alternate;
     transform-origin: bottom;
     transform-box: fill-box;
 }
 
-@keyframes shake_ {
-    from {
+@keyframes shake_{
+    from{
         transform: rotateZ(3deg);
     }
-    to {
+    to{
         transform: rotateZ(-2deg);
     }
 }
 
-#head {
+#head{
     animation: bump 1s linear infinite alternate;
     transform-origin: bottom;
     transform-box: fill-box;
 }
 
-@keyframes bump {
-    from {
+@keyframes bump{
+    from{
         transform: rotateZ(0deg);
     }
-    to {
+    to{
         transform: rotateZ(3deg);
     }
 }
 
-#righthand {
+#righthand{
     animation: move_ 1s linear infinite alternate;
     transform-origin: bottom;
     transform-box: fill-box;
 }
 
-@keyframes move_ {
-    from {
+@keyframes move_{
+    from{
         transform: rotateZ(4deg);
     }
-    to {
+    to{
         transform: rotateZ(0deg);
     }
 }
 
-#train1 {
+ #train1{
     animation: train 2s linear infinite alternate;
     transform-origin: center;
     transform-box: fill-box;
 }
 
-@keyframes train {
-    from {
+@keyframes train{
+    from{
         transform: rotateZ(-1deg);
     }
-    to {
+    to{
         transform: rotateZ(1deg);
     }
 }
 
-#train3 {
+#train3{
     animation: trainnn 2s linear infinite alternate;
     transform-origin: center;
     transform-box: fill-box;
 }
 
-@keyframes trainnn {
-    from {
+@keyframes trainnn{
+    from{
         transform: rotateZ(-4deg);
     }
-    to {
+    to{
         transform: rotateZ(4deg);
     }
 }
-
-#train2 {
+#train2{
     animation: trainn 2s linear infinite alternate;
     transform-origin: center;
     transform-box: fill-box;
 }
 
-@keyframes trainn {
-    from {
+@keyframes trainn{
+    from{
         transform: rotateZ(0.8deg);
     }
-    to {
+    to{
         transform: rotateZ(-0.8deg);
     }
 }
 
-#rightfoot {
+#rightfoot{
     animation: foot 2s linear infinite alternate;
     transform-origin: top;
     transform-box: fill-box;
 }
 
-@keyframes foot {
-    from {
+@keyframes foot{
+    from{
         transform: rotateZ(1.5deg);
     }
-    to {
+    to{
         transform: rotateZ(-1.5deg);
     }
 }

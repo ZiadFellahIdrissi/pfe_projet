@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,6 +8,7 @@
   <meta name="theme-color" content="#563d7c">
   <link href="./layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="./layout/css/index.css" rel="stylesheet" type="text/css" />
+  <link href="./layout/css/womanIndex.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <title>Welcome</title>
 </head>
@@ -51,7 +51,7 @@
             <a class="btn btn btn-outline-dark" href="./src/admin/pages/login.php">Espace Admin</a>
           </li>
           <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="./src/login.php">Connexion</a>
+            <a class="btn btn btn-outline-dark" href="./src/login">Connexion</a>
           </li>
 
         </ul>
@@ -70,34 +70,19 @@
             <div style="margin-top: 150px;"></div>
             <h1>Nouveau ici?</h1>
             <p>Si vous êtes nouveau ici et vous faites partie de ce faculté, veuillez activer votre compte via ce button ci-dessous</p>
-            <p><a class="btn btn-lg btn-outline-primary" href="src/signup/pages/" role="button" title="Activer votre compte">Cliquez-moi!</a></p>
+            <p><a class="btn btn-lg btn-outline-primary" href="src/signup" role="button" title="Activer votre compte">Cliquez-moi!</a></p>
             <div class="go-about"></div>
           </div>
           <div class="col-lg-6">
             <div style="margin-top: 150px;"></div>
-            <img src="img/index/teacher.svg" class="img-responsive" width="370px" height="270px">
+              <?php
+                include './img/index/teacher.svg';
+              ?>
           </div>
         </div>
       </div>
     </div>
   </header>
-
-    <!-- inscription terminé -->
-    <?php
-      if(isset($_GET['actSuccess'])){
-    ?>
-      <div aria-live="polite" aria-atomic="false" style="position: absolute; top: 13%; right: 3%;  min-height: 200px; ">
-          <div class="toast" style=" width:700px; background-color: steelblue; color:white;">
-              <div class="toast-body">
-                  <b>Votre compte a été activé aves succès!</b>
-                  <br>
-                  Vous pouvez maintenant se connectez à votre espace numerique.
-              </div>
-          </div>
-      </div>
-    <?php
-      }
-    ?>
 
   <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>

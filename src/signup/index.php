@@ -1,14 +1,13 @@
 <?php
-include_once '../../../core/init.php';
-include "../../connection.php";
+    include_once '../../core/init.php';
+    include "../connection.php";
 ?>
 <html>
 
 <head>
     <title>Signup</title>
-    <link rel="stylesheet" type="text/css" href="../../../layout/css/login.css">
+    <link rel="stylesheet" type="text/css" href="../../layout/css/login.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <link href="../../../layout/css/bootstrap.min.css" rel="stylesheet" media="all">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -26,17 +25,17 @@ include "../../connection.php";
     <?php
     }
     ?>
-    <a href="../../../index.php">
+    <a href="../../index.php">
         <span>
             <?php
-            include '../../../img/login/x.svg'; //todo: back botton to phase 1
+                include '../../img/login/x.svg'; //todo: back botton to phase 1
             ?>
         </span>
     </a>
     <div class="container">
         <div class="img">
             <?php
-            include '../../../img/login/bg3.svg';
+            include '../../img/login/bg3.svg';
             ?>
         </div>
         <?php
@@ -46,7 +45,7 @@ include "../../connection.php";
             <div class="login-content">
                 <form action="signup_verification.php" method="POST">
                     <br>
-                    <img src="../../../img/login/avatar.svg" draggable="false">
+                    <img src="../../img/login/avatar.svg" draggable="false">
                     <h2 class="title" style="color: #06b4c8;">Phase 1</h2>
                     <span class="title">Verification de l'existence du compte</span>
                     <br>
@@ -96,7 +95,7 @@ include "../../connection.php";
             <div class="login-content">
                 <form action="signup.php" method="POST" id="myform">
                     <br>
-                    <img src="../../../img/login/avatar.svg" draggable="false">
+                    <img src="../../img/login/avatar.svg" draggable="false">
                     <h2 class="title" style="color: #06b4c8;">Phase 2</h2>
                     <span class="title"><i class="fa fa-cog fa-spin"></i> Finalisation de la procédure</span>
                     <br>
@@ -105,14 +104,12 @@ include "../../connection.php";
                             <i class="fa fa-address-book"></i>
                         </div>
                         <div class="div">
-                            <!-- not finished yet! needs some php magic -->
-                            <input type="text" name="username" class="input" value="<?php
-                                                                                    $sql = "SELECT nom, prenom from utilisateur where id=" . $_GET["phase2"];
-                                                                                    $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-                                                                                    echo $row["prenom"] . "." . $row["nom"] . "-etu";
-
-
-                                                                                    ?>" readonly="readonly">
+                            <input type="text" name="username" class="input"
+                                        value="<?php
+                                                    $sql = "SELECT nom, prenom from Utilisateur where id=" . $_GET["phase2"];
+                                                    $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+                                                    echo $row["prenom"] . "." . $row["nom"] . "-etu";
+                                                ?>" readonly="readonly">
                         </div>
                     </div>
                     <div class="input-div one">
@@ -124,9 +121,7 @@ include "../../connection.php";
                             <input type="text" name="email" class="input" id="email">
                         </div>
                     </div>
-                     <!-- div pour error -->
-                     <div class="errorEmail" style="color:#d63031;"></div>
-                    
+                    <div class="errorEmail" style="color:#d63031;"></div>
                     <div class="input-div one">
                         <div class="i">
                             <i class="fas fas fa-lock"></i>
@@ -148,7 +143,6 @@ include "../../connection.php";
                             <input type="password" class="input" id="checkpass"><br>
                         </div>
                     </div>
-                    <!-- div pour error -->
                     <div class="errorCheckPass" style="color:#d63031;"></div>
 
                     <?php
@@ -167,35 +161,38 @@ include "../../connection.php";
         }
         ?>
     </div>
-
-
-
-    <script type="text/javascript" src="../../../layout/js/login.js"></script>
+    <script type="text/javascript" src="../../layout/js/login.js"></script>
     <script>
-        const checkpass = document.querySelector("#checkpass");
-        const pass = document.querySelector("#pass");
+        const checkpass      = document.querySelector("#checkpass");
+        const pass           = document.querySelector("#pass");
         const errorcheckpass = document.querySelector(".errorCheckPass");
-        const errorpass = document.querySelector(".errorPass");
-        const email = document.querySelector("#email");
-        const errorEmail = document.querySelector(".errorEmail");
+        const errorpass      = document.querySelector(".errorPass");
+        const email          = document.querySelector("#email");
+        const errorEmail     = document.querySelector(".errorEmail");
+        const form           = document.querySelector("#myform");
 
-        const form = document.querySelector("#myform");
-
-        form.addEventListener("submit", (event) => {          
+        form.addEventListener("submit", (event) => {
+            errorEmail.textContent     = "";
+            errorcheckpass.textContent = "";
+            errorpass.textContent      = "";
             if (email.value == "" || email.value == null) {
-                errorEmail.textContent = "darrooori";
+                errorEmail.textContent = "Veuillez remplir ce champ.";
+                event.preventDefault();
+            } else if (!email.value.includes("@")) {
+                errorEmail.textContent = "Format du mail est incorrect.";
                 event.preventDefault();
             }
+
             if (checkpass.value == "" || checkpass.value == null) {
-                errorcheckpass.textContent = "darrooori";
+                errorcheckpass.textContent = "Veuillez remplir ce champ.";
                 event.preventDefault();
             }
             if (pass.value == "" || pass.value == null) {
-                errorpass.textContent = "darrooori";
+                errorpass.textContent = "Veuillez remplir ce champ.";
                 event.preventDefault();
             }
             if (checkpass.value != pass.value) {
-                errorcheckpass.textContent = "password not match";
+                errorcheckpass.textContent = "Les mots de passe ne sont pas identiques.";
                 event.preventDefault();
             }
         });

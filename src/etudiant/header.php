@@ -8,7 +8,7 @@
     <div class="menu-sidebar2__content js-scrollbar1">
         <div class="account2">
             <div class="image img-cir img-120">
-                <img src="<?php echo $imagepath ?>" alt="" />
+                <img src="../../img/profiles/<?php echo $imagepath ?>" title="Photo de profile" draggable="false"/>
             </div>
             <h4 class="name"><?php echo $nom.' '.$prenom ?></h4>
             <a href="logout.php">Sign out</a>

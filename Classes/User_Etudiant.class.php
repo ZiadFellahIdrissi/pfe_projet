@@ -86,12 +86,24 @@
             return false;
         }
 
+        public function checkUserEmail($cin, $email){
+            if($cin && $email){
+                $dataPas=$this->_db->getPDO()->query("SELECT id
+                                                      FROM Utilisateur
+                                                      WHERE id = '$cin'
+                                                      AND email = '$email'"); 
+                if(!empty($dataPas->fetch(PDO::FETCH_OBJ)))
+                    return true;
+            }
+            return false;
+        }
+
         public function isAlreadyActivated($cin){
             if($cin){
                 $dataPas=$this->_db->getPDO()->query("SELECT id
                                                       FROM Utilisateur
                                                       WHERE id = '$cin'
-                                                      AND `password` is not null"); 
+                                                      AND password is not null"); 
                 if(!empty($dataPas->fetch(PDO::FETCH_OBJ)))
                     return true;
             }
@@ -108,6 +120,14 @@
             }
         }
         //end signup
+
+        public function setPassword($cin, $password){
+            if($cin && $password){
+                $data=$this->_db->getPDO()->query("UPDATE Utilisateur
+                                                    SET password = '$password'
+                                                    WHERE id = '$cin'");
+            }
+        }
 
         public function data(){
             return $this->_data;

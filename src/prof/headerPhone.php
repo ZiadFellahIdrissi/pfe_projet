@@ -102,7 +102,7 @@
         <div class="account-wrap">
             <div class="account-item account-item--style2 clearfix js-item-menu">
                 <div class="image">
-                    <img src="../../../img/Dashboard/profile.svg " alt="<?php echo $nom . ' ' . $prenom ?>" />
+                    <img src="../../img/Dashboard/profile.svg " alt="<?php echo $nom . ' ' . $prenom ?>" />
                 </div>
                 <div class="content">
                     <a class="js-acc-btn" href="#"><?php echo $nom . ' ' . $prenom ?></a>
@@ -111,7 +111,7 @@
                     <div class="info clearfix">
                         <div class="image">
                             <a href="#">
-                                <img src="../../../img/Dashboard/profile.svg " alt="<?php echo $nom . ' ' . $prenom ?>" />
+                                <img src="../../img/Dashboard/profile.svg " alt="<?php echo $nom . ' ' . $prenom ?>" />
                             </a>
                         </div>
                         <div class="content">

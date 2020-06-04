@@ -1,13 +1,13 @@
 <?php
-include_once '../../../core/init.php';
+include_once '../../core/init.php';
 $user = new User_Prof();
 if (!$user->isLoggedIn()) {
-    header('Location: ../../login.php');
+    header('Location: ../login');
 } else {
-    $nom = $user->data()->nom;
+    $nom    = $user->data()->nom;
     $prenom = $user->data()->prenom;
-    $email = $user->data()->email;
-    $id = $user->data()->id;
+    $email  = $user->data()->email;
+    $id     = $user->data()->id;
 ?>
     <html lang="en">
 
@@ -21,18 +21,18 @@ if (!$user->isLoggedIn()) {
 
         <!-- Fontfaces CSS-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-        <link href="../../../lib/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-        <link href="../../../lib/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+        <link href="../../lib/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+        <link href="../../lib/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
         <!-- Bootstrap CSS-->
-        <link href="../../../layout/css/bootstrap.min.css" rel="stylesheet" media="all">
+        <link href="../../layout/css/bootstrap.min.css" rel="stylesheet" media="all">
 
         <!-- lib CSS-->
-        <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
-        <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-        <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+        <link href="../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
+        <link href="../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+        <link href="../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
         <!-- Main CSS-->
-        <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
+        <link href="../../layout/css/theme.css" rel="stylesheet" media="all">
 
     </head>
 
@@ -89,7 +89,7 @@ if (!$user->isLoggedIn()) {
                                 <div class="au-breadcrumb-content">
                                     <div class="au-breadcrumb-left">
                                         <h1 class="title-4">Bienvenue
-                                            <span><?php echo $prenom . ' ! prof'; ?></span>
+                                            <span><?php echo strtoupper($nom).' '.$prenom; ?></span> 
                                         </h1>
                                         <hr class="line-seprate">
                                     </div>
@@ -133,7 +133,7 @@ if (!$user->isLoggedIn()) {
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item statistic__item--red">
-                                    <h2 class="number">1,060</h2>
+                                    <h2 class="number">1,544</h2>
                                     <span class="desc">test</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-money"></i>
@@ -148,19 +148,21 @@ if (!$user->isLoggedIn()) {
 
 
             <!-- Jquery JS-->
-            <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
+            <script src="../../layout/js/jquery-3.4.1.min.js "></script>
 
             <!-- Bootstrap JS-->
-            <script src="../../../layout/js/bootstrap.min.js "></script>
+            <script src="../../layout/js/bootstrap.min.js "></script>
 
             <!-- lib JS   -->
-            <script src="../../../lib/animsition/animsition.min.js "></script>
-            <script src="../../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
+            <script src="../../lib/animsition/animsition.min.js "></script>
+            <script src="../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
 
             <!-- Main JS-->
-            <script src="../../../layout/js/main.js "></script>
+            <script src="../../layout/js/main.js "></script>
 
     </body>
 
     </html>
-<?php } ?>
+<?php
+}
+?>
