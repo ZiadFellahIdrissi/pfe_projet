@@ -8,7 +8,8 @@
         $user1 = new User_Etudiant();
         // $user2 = new User_Prof(); ylh dirha aaa!
         if ($user1->checkUserExistence($cin, $date, $cne) && $user1->checkUserEmail($cin, $email)) {
-            $_SESSION['cin']=$cin;
+            $_sessionCin = Config::get('session/session_cin');
+            Session::put($_sessionCin , $cin);
             header("Location: ./?resetPassword");
             exit();
         }

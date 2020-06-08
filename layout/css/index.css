@@ -4,14 +4,13 @@ p {
     font-size: 20px;
 }
 
-.innerHeader{
+.innerHeader {
     background-color: red;
     margin: 0 20px;
     width: 1200px;
     display: flex;
     flex-wrap: nowrap;
 }
-
 
 .navbar-nav li {
     padding: 0 1.5rem;
@@ -21,17 +20,18 @@ nav {
     font-weight: bold;
 }
 
-body{
+body {
     overflow: hidden;
-    text-align: center; /* fix */
+    text-align: center;
+    /* fix */
     background: #AEACFB;
 }
 
 @media screen and (max-width: 1000px) {
-    .footer{
+    .footer {
         display: none;
     }
-    body{
+    body {
         overflow: scroll;
     }
 }

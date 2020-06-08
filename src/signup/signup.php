@@ -2,7 +2,7 @@
     include_once '../../core/init.php';
     if (isset($_POST["login"])) {
         $cin = $_POST["cin"];
-        $email = $_POST["email"];
+        $email = strtolower($_POST["email"]);
         $username = $_POST["username"];
         $password = $_POST["password"];
         $user = new User_Etudiant();
@@ -11,7 +11,9 @@
             header("Location: ./?phase2&emailerr");
             exit();
         }
-        $user->signup($cin, $email, $username, $password);
-        header("Location: ./welcome.php?cin=$cin");
+        if(!$user->signup($cin, $email, $username, $password))
+            header("Location: ./welcome.php?cin=$cin");
+        else    
+            header("Location: ./?phase2&err=true");
     }
 ?>
