@@ -112,20 +112,28 @@
 
         public function signup($cin, $email, $username, $password){
             if($cin && $email && $username && $password){
-                $data=$this->_db->getPDO()->query("UPDATE Utilisateur
-                                                    SET username = '$username',
-                                                        password = '$password',
-                                                        email = '$email'
-                                                    WHERE id = '$cin'");
+                $data=$this->_db->query("UPDATE Utilisateur
+                                            SET username = ?,
+                                                `password` = ?,
+                                                email = ?
+                                            WHERE id = ?",array($username,$password,$email,$cin));
+
+              return($data->error());
             }
         }
         //end signup
 
         public function setPassword($cin, $password){
+            // if($cin && $password){
+            //     $data=$this->_db->getPDO()->query("UPDATE Utilisateur
+            //                                         SET password = '$password'
+            //                                         WHERE id = '$cin'");
+            // }
             if($cin && $password){
-                $data=$this->_db->getPDO()->query("UPDATE Utilisateur
-                                                    SET password = '$password'
-                                                    WHERE id = '$cin'");
+                $data=$this->_db->query("UPDATE Utilisateur
+                                            SET `password` = ?
+                                            WHERE id = ?",array($password,$cin));
+                return($data->error());
             }
         }
 
