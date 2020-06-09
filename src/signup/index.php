@@ -108,7 +108,7 @@
                                         value="<?php
                                                     $sql = "SELECT nom, prenom from Utilisateur where id=" . $_GET["phase2"];
                                                     $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-                                                    echo $row["prenom"] . "." . $row["nom"] . "-etu";
+                                                    echo strtolower($row["prenom"] . "." . $row["nom"] . "-etu");
                                                 ?>" readonly="readonly">
                         </div>
                     </div>

@@ -5,7 +5,7 @@
                  AND id != $oldCin";
 
     if(mysqli_num_rows(mysqli_query($conn, $sqltest1))){
-        header("location: ./?inserting=failed&idUrlFiliere=$filiere");
+        header("location: ./?errcne&idUrlFiliere=$filiere");
         exit();
     }
 ?>

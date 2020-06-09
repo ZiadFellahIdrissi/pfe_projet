@@ -6,7 +6,7 @@
                 AND Personnel.id != '$oldCin'";
 
     if(mysqli_num_rows(mysqli_query($conn, $sqltest))){
-        header('location: ../Enseignants?inserting=failed');
+        header('location: ./?errtel');
         exit();
     }
 ?>

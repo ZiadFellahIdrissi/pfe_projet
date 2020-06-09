@@ -23,12 +23,12 @@ if (!empty($_GET['id_filiere'])) {
                                         <select name="mySemester" id="semesterB" class="form-control">
                                             <option value='<?php echo $_GET["semester"] ?>'>
                                                 <?php
-                                                    $sql01 = "SELECT semestre
+                                                    $sql = "SELECT semestre
                                                             FROM Semestre
                                                             WHERE id_semestre = ".$_GET["semester"];
-                                                            $resultat01 = mysqli_query($conn, $sql01);
-                                                            $row01 = mysqli_fetch_assoc($resultat01);
-                                                    echo $row01['semestre'];
+                                                    $resultat = mysqli_query($conn, $sql);
+                                                    $row = mysqli_fetch_assoc($resultat);
+                                                    echo $row['semestre'];
                                                 ?>
                                             </option>
                                         </select>
@@ -193,61 +193,60 @@ if (!empty($_GET['id_filiere'])) {
             </div>
         </div>
     </div>
-    </div>
-    <br>
-    <!-- =========feetcheing all data into a table ================= -->
+</div>
 
-    <div class="table-responsive-sm">
-        <?php
-        $id_filiere = $_GET["id_filiere"];
-        $semester = $_GET["semester"];
-        $sql = "SELECT *
-                FROM Module
-                JOIN Personnel ON Module.id_enseignant = Personnel.id
-                JOIN Utilisateur ON Personnel.id = Utilisateur.id
-                JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
-                JOIN dispose_de ON Module.id_module = dispose_de.id_module
-                WHERE dispose_de.id_filiere = $id_filiere
-                AND Semestre.id_semestre = $semester                           ";
+<div class="table-responsive-sm">
+<?php
+    $id_filiere = $_GET["id_filiere"];
+    $semester = $_GET["semester"];
+    $sql = "SELECT *
+            FROM Module
+            JOIN Personnel ON Module.id_enseignant = Personnel.id
+            JOIN Utilisateur ON Personnel.id = Utilisateur.id
+            JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
+            JOIN dispose_de ON Module.id_module = dispose_de.id_module
+            WHERE dispose_de.id_filiere = $id_filiere
+            AND Semestre.id_semestre = $semester                           ";
 
-        $resultat = mysqli_query($conn, $sql);
-        $resultatcheck = mysqli_num_rows($resultat);
-        if ($resultatcheck > 0) {
-        ?>
-            <table class="table table table-borderless table-data3 mydatatable">
-                <thead>
+    $resultat = mysqli_query($conn, $sql);
+    $resultatcheck = mysqli_num_rows($resultat);
+    if ($resultatcheck > 0) {
+?>
+        <table class="table table table-borderless table-data3 mydatatable">
+            <thead>
+                <tr>
+                    <th>Intitule</th>
+                    <th>Enseignant</th>
+                    <th>Options</th>
+
+                </tr>
+            </thead>
+            <tbody>
+<?php
+                while ($row = mysqli_fetch_assoc($resultat)) {
+?>
                     <tr>
-                        <th>Intitule</th>
-                        <th>Enseignant</th>
-                        <th>Heures</th>
-                        <th>Options</th>
-
+                        <td><?php echo $row["intitule"] ?></td>
+                        <td><?php echo $row["nom"].' '.$row["prenom"] ?></td>
+                        <td>
+                            <button onclick="location.href='supprimer_module.php?id=<?php echo $row["id_module"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                <i class="zmdi zmdi-delete"></i>
+                            </button>
+                            <button data-toggle="tooltip" id="<?php echo $row["id_module"] ?>" data-toggle="modal" class="item Open_modifierUnModule" data-placement="top" title="Modifier">
+                                <i class="zmdi zmdi-edit"></i>
+                            </button>
+                            <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id_module"] ?>"  title="More">
+                                <i class="zmdi zmdi-more"></i>
+                            </button> 
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    while ($row = mysqli_fetch_assoc($resultat)) {
-                    ?>
-                        <tr>
-                            <td><?php echo $row["intitule"] ?></td>
-                            <td><?php echo $row["nom"].' '.$row["prenom"] ?></td>
-                            <td><?php echo $row["heures_sem"] ?></td>
-                            <td>
-                                <button onclick="location.href='supprimer_module.php?id=<?php echo $row["id_module"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </button>
-                                <button data-toggle="tooltip" id="<?php echo $row["id_module"] ?>" data-toggle="modal" class="item Open_modifierUnModule" data-placement="top" title="Modifier">
-                                    <i class="zmdi zmdi-edit"></i>
-                                </button>
-                            </td>
-                        </tr>
-                <?php
-                    }
-                    echo "<tbody>";
-                    echo "</table>";
-                } 
-                ?>
-    </div>
+<?php
+                }
+            echo "<tbody>";
+        echo "</table>";
+    } 
+?>
+</div>
 <?php
 }
 ?>

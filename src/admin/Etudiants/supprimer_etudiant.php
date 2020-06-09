@@ -10,5 +10,5 @@
 							 WHERE id = $cin        ");
 		mysqli_query($conn, "DELETE FROM Utilisateur
 							 WHERE id = $cin		 ");
-		header("location: ./?etudiant=deleted&idUrlFiliere=$filiere");
+		header("location: ./?deleted&idUrlFiliere=$filiere");
 	}

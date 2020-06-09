@@ -51,10 +51,7 @@
                 include '../pages/header.php';
             ?>
             <div class="main-content ">
-                <?php
-                    include '../../DML_Commentator.php';
-                    DMLCommentator('module');
-                ?>
+                <?php include 'DML_Commentator.php'; ?>
                 <div class="container  mb-3">
                     <nav aria-label="breadcrumb nov">
                         <ol class="breadcrumb nov">
@@ -62,36 +59,44 @@
                             <li class="breadcrumb-item active" aria-current="page">Modules</li>
                         </ol>
                     </nav>
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="col-md-5 select">
-                                <select name="filiere" id="filiere" class="form-control">
-                                    <option value=''>Choisissez une filiere</option>
-                                    <?php
-                                        $sql = "SELECT id_filiere, nom_filiere
-                                                FROM Filiere";
-                                        $resultat = mysqli_query($conn, $sql);
-                                        while ($row = mysqli_fetch_assoc($resultat)) {
-                                    ?>
-                                            <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
-                                    <?php
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="col-md-3 semester">
-                                <select name="semester" id="semester" class="form-control">
-                                    <option value='1'>1er Semestre</option>
-                                    <option value='2'>2ème Semestre</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 offset-md-2">
-                                <a href="./"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
-                            </div>
+                    <div class="card">
+                        <div class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <div class="col-md-13">
+                                    <select name="filiere" id="filiere" class="form-control">
+                                        <option value=''>Choisissez une filière</option>
+                                        <?php
+                                            $sql = "SELECT id_filiere, nom_filiere
+                                                    FROM Filiere";
+                                            $resultat = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_assoc($resultat)) {
+                                        ?>
+                                                <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="col">
+                                    <div class="semester float-left">
+                                        <select name="semester" id="semester" class="form-control">
+                                            <option value='1'>1er Semestre</option>
+                                            <option value='2'>2ème Semestre</option>
+                                        </select>
+                                    </div>
+                                </div>
                         </div>
-                        <?php
-                            include 'afficheTableauModule.php';
-                        ?>
+                            <!-- <div class="col-md-4 offset-md-2">
+                                <a href="./"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
+                            </div> -->
+                        </div>
+                        <div class="card-body modules">
+                            <?php
+                                // include 'afficheTableauModule.php';
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,13 +1,13 @@
 <?php
     include '../../connection.php';
     if(isset($_POST["ajouter"])){
-        $Mysemester=$_POST['mySemester'];
-        $nom=mysqli_real_escape_string($conn, $_POST["Nom"]);
-        $id_enseignant=$_POST["Enseignant"];
-        $id_filiere=$_POST["Filiere"];
-        $heures=$_POST["Heures"];
-        $coeffC=$_POST["coeffC"];
-        $coeffE=$_POST["coeffE"];
+        $Mysemester    = $_POST['mySemester'];
+        $nom           = mysqli_real_escape_string($conn, trim($_POST["Nom"]));
+        $id_enseignant = $_POST["Enseignant"];
+        $id_filiere    = $_POST["Filiere"];
+        $heures        = $_POST["Heures"];
+        $coeffC        = $_POST["coeffC"];
+        $coeffE        = $_POST["coeffE"];
 
         $resultatcount = mysqli_num_rows(mysqli_query($conn, "SELECT *
                                                               FROM Module
@@ -16,7 +16,7 @@
                                                               AND dispose_de.id_filiere = $id_filiere                   "));
 
         if( $resultatcount>0 ){
-            header("location: ./?inserting=failed&idUrlFiliere=$id_filiere"); //doesnt redirect to the "filiere"
+            header("location: ./?errname&idUrlFiliere=$id_filiere"); //doesnt redirect to the "filiere"
                                                                               //despite the id being shown in the url
             exit();
         }
@@ -29,6 +29,6 @@
                                 FROM Module
                                 WHERE intitule='$nom'");
 
-        header("location: ./?module=inserted&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
+        header("location: ./?inserted&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
     }
 ?>

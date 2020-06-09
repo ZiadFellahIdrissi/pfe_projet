@@ -13,7 +13,7 @@
         ),
         'session' => array(
             'session_name'=>'user',
-            'cin' => ''
+            'session_cin' => 'cin'
         )
     );
 

@@ -26,42 +26,40 @@
         public function getPDO(){
             return $this->_pdo;
         }
-        // public function query($sql,$params=null){
-        //     $this->_error = false;
-        //     if($this->_query=$this->_pdo->prepare($sql)){
-        //         $x = 1;
-        //         if(count($params)){
-        //             foreach($params as $param){
-        //                 $this->_query->bindvalue($x,$param);
-        //                 $x++;
-        //             }
-        //         }
-        //         if($this->_query->execute()){
-        //             $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
-        //             $this->_count=$this->_query->rowCount();
-        //         }
-        //         else{
-        //             $this->_error = true;
-        //         }
-        //     }
-        //     return $this;
-        // }
+        public function query($sql,$params=null){
+            $this->_error = false;
+            if($this->_query=$this->_pdo->prepare($sql)){
+                $x = 1;
+                if(count($params)){
+                    foreach($params as $param){
+                        $this->_query->bindvalue($x,$param);
+                        $x++;
+                    }
+                }
+                if($this->_query->execute()){
+                    $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                    $this->_count=$this->_query->rowCount();
+                }
+                else{
+                    $this->_error = true;
+                }
+            }
+            return $this;
+        }
 
-        // public function first(){
-        //     return $this->results()[0];
-        // }
+        public function first(){
+            return $this->results()[0];
+        }
         
-        //gets
-        
-        // public function error(){
-        //     return $this->_error;
-        // }
-        // public function count(){
-        //     return $this->_count;
-        // }
-        // public function results(){
-        //     return $this->_results;
-        // }
+        public function error(){
+            return $this->_error;
+        }
+        public function count(){
+            return $this->_count;
+        }
+        public function results(){
+            return $this->_results;
+        }
 
     }
 ?>

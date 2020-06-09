@@ -1,5 +1,4 @@
 <?php
-
     include '../../connection.php';
     if(isset($_GET["id"])){
         $id=$_GET["id"];
@@ -7,6 +6,6 @@
                               WHERE id = $id        ");
         mysqli_query($conn , "DELETE FROM Utilisateur
                               WHERE id = $id        ");
-        header('location: ./?enseignant=deleted'); 
+        header('location: ./?deleted'); 
     }
 ?>
