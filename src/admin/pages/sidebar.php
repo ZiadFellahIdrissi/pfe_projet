@@ -13,8 +13,14 @@
                         <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="../Etudiants">
-                        <i class="fas fa-user-graduate"></i>Etudiants
+                    <a href="../Enseignants">
+                        <span><i class="fas fa-chalkboard-teacher"></i></span>Enseignants
+                    </a>
+                </li>
+                <li>
+                    <a href="../Responsables">
+                    <i class="fas fa-angle-down" style="color: #17a2b8;"></i>
+                        <span><i class="fas fa-user-tie"></i></span>Responsables
                     </a>
                 </li>
                 <li>
@@ -23,42 +29,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../Enseignants">
-                        <span><i class="fas fa-chalkboard-teacher"></i></span>Enseignants
+                    <a href="../Etudiants">
+                        <i class="fas fa-user-graduate"></i>Etudiants
                     </a>
                 </li>
                 <li>
                     <a href="../Modules">
                         <span><i class="fab fa-stack-overflow"></i></span>Modules
-                    </a>
-                </li>
-                <!-- <li class="has-sub">
-                    <a class="js-arrow" href="#">
-                        <i class="fas fa-calendar-alt"></i>Examens <i class="fas fa-angle-down"></i> </a>
-                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                        <li>
-                            <a href="../CalendrierExamens.php">Calendrier Exames</a>
-                        </li>
-                        <li>
-                            <a href="../consulte_Examen.php">Liste Examens</a>
-                        </li>
-                    </ul>
-                </li> -->
-                <li class="has-sub ">
-                    <a class="js-arrow " href="#"  style="color: red;">
-                        <i class="fas fa-copy "></i>Notes <i class="fas fa-angle-down "></i> </a>
-                    <ul class="list-unstyled navbar__sub-list js-sub-list">
-                        <li>
-                            <a href="../consulter_Notes.php ">Consulter Notes</a>
-                        </li>
-                        <li>
-                            <a href="../ajoute_notes">Gestion des Notes</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="../Absences.php"  style="color: red;">
-                        <i class="far fa-clock"></i>Absences
                     </a>
                 </li>
             </ul>

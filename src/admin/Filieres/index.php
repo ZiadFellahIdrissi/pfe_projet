@@ -44,16 +44,13 @@
     }
 </style>
 
-<body class=""> <!--animsition-->
+<body class="">
     <div class="page-wrapper">
         <?php
             include '../pages/header.php';
         ?>
         <div class="main-content ">
-            <?php
-                include '../../DML_Commentator.php';
-                DMLCommentator('filiere');
-            ?>
+            <?php include 'DML_Commentator.php'; ?>
             <div class="container mb-3">
                 <nav aria-label="breadcrumb nov ">
                     <ol class="breadcrumb nov ">
@@ -181,8 +178,8 @@
                         <div class="modal-content">
                             <form action="./supprimer_filiere.php" method="POST">
                                 <div class="modal-header container">
-                                    <h5 class="modal-title btn-dark text-center" id="exampleModalScrollableTitle">
-                                        En supprimant cette <span style="opacity: 0.8;">filière</span> Tu vas également supprimer tous ces
+                                    <h5 class="modal-title btn-danger text-center">
+                                        En supprimant cette <span style="opacity: 0.9;">Filière</span> Tu vas également supprimer tous ces
                                     </h5>
                                 </div>
                                 <div class="modal-body">

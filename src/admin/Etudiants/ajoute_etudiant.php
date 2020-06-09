@@ -1,30 +1,25 @@
 <?php
     include '../../connection.php';
     if(isset($_POST['ajouter'])){
-        $nom=mysqli_real_escape_string($conn, $_POST['Nom']);
-        $prenom=mysqli_real_escape_string($conn, $_POST['prenom']);
-        $cne=mysqli_real_escape_string($conn, $_POST['cne']);
-        $cin=$_POST['cin'];
-        $dateN=$_POST['dateN'];
-        $telephone=$_POST['telephone'];
-        $email=mysqli_real_escape_string($conn, $_POST['email']);
-        $filiere=$_POST['filiere'];
-
-        $oldCin = 0; //hada ghy3wna bch nkhdmo b dok les script dyl verification(modification)
+        $nom       = mysqli_real_escape_string($conn, trim($_POST['Nom']));
+        $prenom    = mysqli_real_escape_string($conn, trim($_POST['prenom']));
+        $cne       = mysqli_real_escape_string($conn, trim($_POST['cne']));
+        $telephone = mysqli_real_escape_string($conn, trim($_POST['telephone']));
+        $cin       = $_POST['cin'];
+        $dateN     = $_POST['dateN'];
+        $filiere   = $_POST['filiere'];
+        $oldCin    = 0;
+        
         include 'verificationCin.php';
         include 'verificationCne.php';
-        include 'verificationEmail.php';
         include 'verificationTel.php';
 
+        mysqli_query($conn , "INSERT INTO `Utilisateur`(`id`, `nom`, `prenom`, `date_naissance`, `email`, `telephone`, `imagepath`)
+                                VALUES ($cin, '$nom' , '$prenom' , '$dateN', '' , '$telephone', 'avatar.svg')");
 
-        $sql = "INSERT INTO `Utilisateur`(`id`, `nom`, `prenom`, `date_naissance`, `email`, `telephone`)
-                    VALUES ($cin, '$nom' , '$prenom' , '$dateN', '$email' , '$telephone')";
-        mysqli_query($conn , $sql);
+        mysqli_query($conn , "INSERT INTO `Etudiant`(`id`, `cne`, `id_filiere`)
+                                VALUES ($cin, '$cne' , $filiere)");
 
-        $sql = "INSERT INTO `Etudiant`(`id`, `cne`, `id_filiere`)
-                VALUES ($cin, '$cne' , $filiere)";
-        mysqli_query($conn , $sql);
-
-        header("location: ../Etudiants?etudiant=inserted&idUrlFiliere=$filiere");
+        header("location: ../Etudiants?inserted&idUrlFiliere=$filiere");
     }
 ?>

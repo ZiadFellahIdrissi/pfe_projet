@@ -58,12 +58,6 @@ if (!empty($_GET['id_filiere'])) {
                                 </div>
                             </div>
                         </div>
-
-                        <!-- ===================Email================== -->
-                        <div class="form-group">
-                            <label for="email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" name="email" id="date" required>
-                        </div>
                         
                         <!-- modal footer -->
                         <div class="modal-footer">
@@ -135,11 +129,6 @@ if (!empty($_GET['id_filiere'])) {
                                 </div>
                             </div>
                         </div>
-                        <!-- email -->
-                        <div class="form-group">
-                            <label for="email_modifier" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" name="email" id="email_modifier" value="" required>
-                        </div>
 
                         <!-- filiere -->
                         <div class="form-group">
@@ -179,8 +168,9 @@ if (!empty($_GET['id_filiere'])) {
 
     <div class="table-responsive-sm">
         <?php
-        $sql = "SELECT Etudiant.id cin, Etudiant.cne, Utilisateur.date_naissance, Utilisateur.email,
-                        Utilisateur.nom, Utilisateur.prenom, Utilisateur.id cin
+        $sql = "SELECT Utilisateur.id cin, Etudiant.cne, Utilisateur.nom, Utilisateur.prenom,
+                        Utilisateur.telephone, Utilisateur.email, Utilisateur.date_naissance,
+                        Etudiant.id_filiere, Utilisateur.imagepath
                 FROM Utilisateur 
                 join Etudiant ON Etudiant.id = Utilisateur.id
                 WHERE Etudiant.id_filiere=" . $_GET['id_filiere'];
@@ -191,12 +181,10 @@ if (!empty($_GET['id_filiere'])) {
             <table class="table table table-borderless table-data3 mydatatable">
                 <thead>
                     <tr>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-                        <th>Date Naissance</th>
-                        <th>Email</th>
+                        <th>CNE</th>
+                        <th>Nom Complet</th>
+                        <th>Telephone</th>
                         <th>Options</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -205,10 +193,9 @@ if (!empty($_GET['id_filiere'])) {
                     while ($row = mysqli_fetch_assoc($resultat)) {
                     ?>
                         <tr>
-                            <td><?php echo $row["nom"] ?></td>
-                            <td><?php echo $row["prenom"] ?></td>
-                            <td><?php echo $row["date_naissance"] ?></td>
-                            <td><?php echo $row["email"] ?></td>
+                            <td><?php echo $row["cne"] ?></td>
+                            <td><?php echo $row["nom"].' '.$row["prenom"] ?></td>
+                            <td><?php echo $row["telephone"] ?></td>
                             <td>
                                 <button onclick="location.href='supprimer_etudiant.php?id=<?php echo $row['cin'] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" >
                                     <i class="zmdi zmdi-delete"></i>
@@ -216,9 +203,9 @@ if (!empty($_GET['id_filiere'])) {
                                 <button data-toggle="tooltip" id="<?php echo $row['cin'] ?>" data-toggle="modal" class="item Open_modifierUnEtudiant" data-placement="top" title="Modifier" >
                                     <i class="zmdi zmdi-edit"></i>
                                 </button>
-                                <!-- <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["cin"] ?>"  title="More">
+                                <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["cin"] ?>"  title="More">
                                     <i class="zmdi zmdi-more"></i>
-                                </button>  -->
+                                </button> 
                             </td>
                         </tr>
                 <?php

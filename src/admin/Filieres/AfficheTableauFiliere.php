@@ -30,12 +30,17 @@
                     <td>
                         <div class="table-data-feature">
                             <?php
-                            $sql1 = " SELECT *
+                            $sql = " SELECT *
                                       FROM Etudiant
                                       WHERE id_filiere = '" . $row["id_filiere"] . "'";
-                            $resultat = mysqli_query($conn, $sql1);
+                            $resultat = mysqli_query($conn, $sql);
                             $check = mysqli_num_rows($resultat);
-                            if ($check > 0) {
+                            $sql = " SELECT *
+                                      FROM dispose_de
+                                      WHERE id_filiere = '" . $row["id_filiere"] . "'";
+                            $resultat = mysqli_query($conn, $sql);
+                            $check2 = mysqli_num_rows($resultat);
+                            if ($check > 0 || $check2 > 0) {
                             ?>
                                 <button data-id="<?php echo $row["id_filiere"] ?>" style="cursor:pointer;" class="item open-confirmation" data-toggle="modal" data-toggle="tooltip" title="Supprimer" >
                                     <i class="zmdi zmdi-delete"></i>
@@ -52,7 +57,6 @@
                             <button data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_filiere"] ?>" data-toggle="tooltip" class="item open_modifierModal" title="Modifier" >
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
-                            <!-- TODO: warning pour les modules de cette filiere -->
                         </div>
                     </td>
                 </tr>

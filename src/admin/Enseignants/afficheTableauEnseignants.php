@@ -44,11 +44,6 @@
 									<label for="numTel" class="col-form-label">Numéro du téléphone</label>
 									<input type="text" class="form-control" name="numTel" id="numTel" required>
 								</div>
-								<!-- =================== email ======================= -->
-								<div class="form-group">
-									<label for="email" class="col-form-label">Email</label>
-									<input type="email" class="form-control" name="email" id="email" required>
-								</div>
 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -101,11 +96,6 @@
 							<div class="form-group">
 								<label for="tel_modifier" class="col-form-label">Numéro du téléphone</label>
 								<input type="text" class="form-control" name="numTel" id="tel_modifier" required>
-							</div>
-
-							<div class="form-group">
-								<label for="email_modifier" class="col-form-label">Email</label>
-								<input type="email" class="form-control" name="email" id="email_modifier" required>
 							</div>
 
 							<div class="modal-footer">
@@ -169,10 +159,8 @@
 				<table class="table table table-borderless table-data3 mydatatable">
 					<thead>
 						<tr>
-							<th>Nom</th>
-							<th>Prenom</th>
+							<th>Nom Complet</th>
 							<th>Telephone</th>
-							<th>Email</th>
 							<th>Options</th>
 						</tr>
 					</thead>
@@ -182,10 +170,8 @@
 						while ($row = mysqli_fetch_assoc($resultat)) {
 						?>
 							<tr>
-								<td><?php echo $row["nom"] ?></t>
-								<td><?php echo $row["prenom"] ?></td>
+								<td><?php echo $row["nom"].' '.$row["prenom"] ?></td>
 								<td><?php echo $row["telephone"] ?></td>
-								<td><?php echo $row["email"] ?></td>
 								<td>
 									<div class="table-data-feature" style="text-align: center">
 										<?php

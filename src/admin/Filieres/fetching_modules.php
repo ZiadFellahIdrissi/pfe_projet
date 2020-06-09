@@ -10,7 +10,6 @@
 
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);
-    if($resultatcheck>0){
 ?>
     <table class="table table table-borderless table-data3 mydatatable">
         <thead class="thead-dark">
@@ -20,17 +19,17 @@
         </tr>
         </thead>
         <tbody>
-        <?php
-
+<?php
+    if($resultatcheck>0){
         while ($row = mysqli_fetch_assoc($resultat)) {
-        ?>
+?>
             <tr>
                 <td><?php echo $row["intitule"] ?></t>
                 <td><?php echo $row["semestre"] ?></td>
             </tr>
-    <?php
+<?php
         }
-        echo '</tbody>';
-        echo "</table>";
     }
+    echo '</tbody>';
+    echo "</table>";
 ?>

@@ -55,15 +55,7 @@
                 </nav>
 
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="col-md-6">
-                            <div>
-                                <a class="btn btn-primary text-white" id="afficheRespo" name="afficheRespo" href="../Enseignants">Afficher tous les enseignants
-                                </a><br>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="btn btn-info text-white" href="../Modules">Pour l'ajout des responsables, il faut désigner un enseignant à un module dans la section <span style="color: lightgrey;">Modules</span></a>
+                    <a style="opacity: 0.9;" class="btn btn-primary text-white" href="../Filieres">Pour l'ajout des responsables, il faut désigner un enseignant à un filière dans la section <span style="color: lightgrey;">Filières</span></a>
                     <?php
                         include 'affiche_responsables.php';
                     ?>

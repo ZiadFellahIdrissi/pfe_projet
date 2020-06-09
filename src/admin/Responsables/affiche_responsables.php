@@ -2,8 +2,7 @@
 <div class="table-responsive-sm">
     <?php
     include '../../connection.php';
-    $sql = "SELECT Utilisateur.id cin, Utilisateur.nom, Utilisateur.prenom, Utilisateur.email,
-                    Utilisateur.date_naissance, Utilisateur.telephone, Filiere.nom_filiere
+    $sql = "SELECT *
             FROM Personnel
             JOIN Utilisateur ON Personnel.id = Utilisateur.id
             JOIN Filiere ON Personnel.id = Filiere.id_responsable               ";
@@ -17,11 +16,9 @@
         <table class="table table table-borderless table-data3 mydatatable">
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Prenom</th>
+                    <th>Nom Complet</th>
                     <th>Telephone</th>
-                    <th>Email</th>
-                    <th>filiere</th>
+                    <th>Filière</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,18 +27,15 @@
                 while ($row = mysqli_fetch_assoc($resultat)) {
 ?>
                     <tr>
-                        <td><?php echo $row["nom"] ?></td>
-                        <td><?php echo $row["prenom"] ?></td>
+                        <td><?php echo $row["nom"].' '.$row["prenom"] ?></td>
                         <td><?php echo $row["telephone"] ?></td>
-                        <td><?php echo $row["email"] ?></td>
                         <td><?php echo $row["nom_filiere"] ?> </td>
                     </tr>
 <?php
                 }
                 echo "</tbody>";
                 echo "</table><br>";
-    } else
-            echo '<p style="text-align: center" >la vida loca</p>';
+    }
 ?>
 </div>
 <script>
