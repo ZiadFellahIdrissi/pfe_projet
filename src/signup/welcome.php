@@ -105,7 +105,7 @@ if (isset($_GET["cin"])) {
                             },
                             uploadProgress: function(event, position, total, percentageComplete) {
                                 $(".progress-bar").width(percentageComplete + '%');
-                                submit.style.display="none";
+                                
                             },
                             success: function() {
                                 let login = document.querySelector("#login");
