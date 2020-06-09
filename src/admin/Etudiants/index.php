@@ -53,10 +53,7 @@ if (!$user->isLoggedIn()) {
             include '../pages/header.php';
             ?>
             <div class="main-content ">
-                <?php
-                    include '../../DML_Commentator.php';
-                    DMLCommentator("etudiant");
-                ?>
+                <?php include 'DML_Commentator.php'; ?>
                 <div class="container mb-3">
                     <nav aria-label="breadcrumb nov">
                         <ol class="breadcrumb nov">
@@ -68,31 +65,35 @@ if (!$user->isLoggedIn()) {
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col-md-5" style="padding-top:6px;">
-                                        <select name="filiere" id="filiere" class="form-control">
-                                            <option value=''>Choisissez une filière</option>
-                                            <?php
-                                                $sql = "SELECT id_filiere, nom_filiere
-                                                        FROM Filiere";
-                                                $resultat = mysqli_query($conn, $sql);
-                                                while ($row = mysqli_fetch_assoc($resultat)) {
-                                            ?>
-                                                    <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
-                                            <?php
-                                                }
-                                            ?>
+                                    <div class="col">
+                                        <div class="col-md-13">
+                                            <select name="filiere" id="filiere" class="form-control">
+                                                <option value=''>Choisissez une filière</option>
+                                                <?php
+                                                    $sql = "SELECT id_filiere, nom_filiere
+                                                            FROM Filiere";
+                                                    $resultat = mysqli_query($conn, $sql);
+                                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                                ?>
+                                                        <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
+                                                <?php
+                                                    }
+                                                ?>
 
-                                        </select>
-                                        <div class="dropDownSelect2"></div>
+                                            </select>
+                                            <!-- <div class="dropDownSelect2"></div> -->
+                                        </div>
                                     </div>
-                                    <div class="col-md-0 offset-md-5">
-                                        <a href="./"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
+                                    <div class="col">
+                                        <!-- <div class="col-md-0 offset-md-5">
+                                            <a href="./"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body etudiants">
                                 <?php
-                                    include 'afficheTableauEtudiants.php';
+                                    // include 'afficheTableauEtudiants.php';
                                 ?>
                             </div>
                         </div>
@@ -125,7 +126,7 @@ if (!$user->isLoggedIn()) {
                 });
 
             });
-        </script> --> 
+        </script>  -->
         <!-- hta tzidhom f Etudiants.js -->
 
     </body>

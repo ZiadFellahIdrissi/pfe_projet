@@ -5,7 +5,7 @@
                 AND id != '$oldCin'";
 
     if(mysqli_num_rows(mysqli_query($conn, $sqltest))){
-        header('location: ./?inserting=failed');
+        header('location: ./?errcin');
         exit();
     }
 ?>

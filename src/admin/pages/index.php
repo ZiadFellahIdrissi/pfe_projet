@@ -30,115 +30,113 @@
     <!-- Main CSS-->
     <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
 </head>
-
+<style>
+    h2 {
+        opacity: 0.6;
+    }
+</style>
 <body>
     <div class="page-wrapper">
         <?php
             include './header.php'
         ?>
         <div class="main-content">
-            <section class="statistic statistic2" style=" padding-top: 0%;">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-3">
-                                <a href="../Enseignants" title="Enseignants">
-                                    <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
-                                            <h2>
-                                                <?php
-                                                    $sql = "SELECT *
-                                                            FROM Personnel
-                                                            WHERE role = 'enseignant'";
-                                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                                ?>
-                                            </h2>
-                                        <br>
-                                        <span class="desc">Enseignants</span>
-                                        <div class="icon">
-                                            <i class="fas fa-chalkboard-teacher"></i>
-                                        </div>
-                                </a>
+            <section class="statistic" style="padding-top: 0%;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <a href="../Enseignants" title="Enseignants">
+                                <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
+                                        <h2>
+                                            <?php
+                                                $sql = "SELECT *
+                                                        FROM Personnel
+                                                        WHERE role = 'enseignant'";
+                                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                            ?>
+                                        </h2>
+                                    <span class="desc">Enseignants</span>
+                                    <div class="icon">
+                                        <i class="fas fa-chalkboard-teacher"></i>
                                     </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <a href="../Responsables" title="Responsables">
-                                    <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
-                                            <h2>
-                                                <?php
-                                                    $sql = "SELECT *
-                                                            FROM Personnel
-                                                            WHERE role = 'responsable'";
-                                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                                ?>
-                                            </h2>
-                                        <br>
-                                        <span class="desc">Responsables</span>
-                                        <div class="icon">
-                                            <i class="fas fa-user-tie"></i>
-                                        </div>
-                                </a>
+                            </a>
+                                </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="../Responsables" title="Responsables">
+                                <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
+                                        <h2>
+                                            <?php
+                                                $sql = "SELECT *
+                                                        FROM Personnel
+                                                        WHERE role = 'responsable'";
+                                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                            ?>
+                                        </h2>
+                                    <span class="desc">Responsables</span>
+                                    <div class="icon">
+                                        <i class="fas fa-user-tie"></i>
                                     </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <a href="../Etudiants" title="Etudiants">
-                                    <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
-                                            <h2>
-                                                <?php
-                                                    $sql = "SELECT *
-                                                            FROM Etudiant";
-                                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                                ?>
-                                            </h2>
-                                        <br>
-                                        <span class="desc">Etudiants</span>
-                                        <div class="icon">
-                                            <i class="fas fa-user-graduate"></i>
-                                        </div>
-                                </a>
+                            </a>
+                                </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="../Etudiants" title="Etudiants">
+                                <div class="statistic__item" style="border-radius: 10px; cursor:pointer;" >
+                                        <h2>
+                                            <?php
+                                                $sql = "SELECT *
+                                                        FROM Etudiant";
+                                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                            ?>
+                                        </h2>
+                                    <span class="desc">Etudiants</span>
+                                    <div class="icon">
+                                        <i class="fas fa-user-graduate"></i>
                                     </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <a href="../Filieres"  title="Filières">
-                                    <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
-                                            <h2>
-                                                <?php
-                                                    $sql = "SELECT *
-                                                            FROM Filiere";
-                                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                                ?>
-                                            </h2>
-                                        <br>
-                                        <span class="desc">Filieres</span>
-                                        <div class="icon">
-                                            <i class="fas fa-university"></i>
-                                        </div>
-                                </a>
+                            </a>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <a href="../Filieres"  title="Filières">
+                                <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
+                                        <h2>
+                                            <?php
+                                                $sql = "SELECT *
+                                                        FROM Filiere";
+                                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                            ?>
+                                        </h2>
+                                    <span class="desc">Filieres</span>
+                                    <div class="icon">
+                                        <i class="fas fa-university"></i>
                                     </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <a href="../Modules" title="Modules">
-                                    <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
-                                            <h2 class="number">
-                                                <?php
-                                                    $sql = "SELECT *
-                                                            FROM Module";
-                                                    echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                                ?>
-                                            </h2>
-                                        <br>
-                                        <span class="desc">Modules</span>
-                                        <div class="icon">
-                                            <i class="fab fa-stack-overflow"></i>
-                                        </div>
-                                </a>
+                            </a>
+                                </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="../Modules" title="Modules">
+                                <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
+                                        <h2>
+                                            <?php
+                                                $sql = "SELECT *
+                                                        FROM Module";
+                                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                            ?>
+                                        </h2>
+                                    <span class="desc">Modules</span>
+                                    <div class="icon">
+                                        <i class="fab fa-stack-overflow"></i>
                                     </div>
-                            </div>
+                            </a>
+                                </div>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
-    </div>
     </div>
 
     <script src="../../../layout/js/jquery-3.4.1.min.js"></script>

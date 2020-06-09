@@ -45,10 +45,7 @@
     <div class="page-wrapper">
         <?php include '../pages/header.php' ?>
         <div class="main-content ">
-            <?php
-                include '../../DML_Commentator.php';
-                DMLCommentator('enseignant');
-            ?>
+            <?php include 'DML_Commentator.php'; ?>
             <div class="container  mb-3">
                 <nav aria-label="breadcrumb nov">
                     <ol class="breadcrumb nov aff">
@@ -57,15 +54,6 @@
                     </ol>
                 </nav>
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="col-md-6">
-                            <div>
-                                <a class="btn btn-primary text-white" href="../Responsables">Afficher seulement les responsables
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
                     <?php
                         include 'afficheTableauEnseignants.php';
                     ?>
