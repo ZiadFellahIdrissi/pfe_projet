@@ -1,7 +1,7 @@
 <?php
 include_once '../../core/init.php';
 include '../connection.php';
-if (isset($_POST["logindirect"])) {
+// if (isset($_POST["logindirect"])) {
     $User_Etudiant = new User_Etudiant();
     $loginEtudiant = $User_Etudiant->login($_POST["user"], $_POST["pass"]);
     $cin=$_POST["cin"];
@@ -26,30 +26,37 @@ if (isset($_POST["logindirect"])) {
                     $filenewname = uniqid('', true).".".$fileActualExt;
                     // 3tito smmiya 5ra bache ila bgha ida5le liya file b nafse smiya maytrache mochkil
                     $fileDistination = "../../img/profiles/$filenewname";
-                    move_uploaded_file($filetmp, $fileDistination); //returns 1 if success
+                    if(move_uploaded_file($filetmp, $fileDistination)){
+                         //returns 1 if success
                     // hna sf l9adiya mzyana ou tswira t uploadat donc n9dare 
                     //nsifto l espace dyalo ou insere l image f la base
+                    // $sqlSelect= ""
                     $sql="UPDATE Utilisateur
                             SET `imagepath`='$filenewname'
                           WHERE id=".$cin;
                     mysqli_query($conn, $sql);
-                    header("Location: ../etudiant/");
+                    echo "good";}
+                    // header("Location: ../etudiant/");}
 
                 } else {
-                    header("Location: ./welcome.php?uploadSize=Notgood");
+                    // header("Location: ./welcome.php?uploadSize=Notgood");
+                    echo "size problem";
                 }
             } else {
-                header("Location: ./welcome.php?uploadError=true");
+                // header("Location: ./welcome.php?uploadError=true");
+                echo "there is an error";
             }
         } else {
-            header("Location: ./welcome.php?uploadext=notAlowed");
+            // header("Location: ./welcome.php?uploadext=notAlowed");
+            echo "no alowed";
         }
     } else {
-        $sql="UPDATE Utilisateur
-                    SET `imagepath` = 'avatar.svg'
-                    WHERE id=".$cin;
-        mysqli_query($conn, $sql);
+        // $sql="UPDATE Utilisateur
+        //             SET `imagepath` = 'avatar.svg'
+        //             WHERE id=".$cin;
+        // mysqli_query($conn, $sql);
+        echo "nothing to show ";
     }
-    header("Location: ../etudiant/");
+    // header("Location: ../etudiant/");
         
-}
+// }

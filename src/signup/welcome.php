@@ -35,9 +35,9 @@ if (isset($_GET["cin"])) {
                 <div class="container">
                     <div class="login-wrap">
                         <div class="login-content">
-                            <form action="changePicture.php" method="POST" id="myform" enctype="multipart/form-data">
+                            <form id="myform" method="POST" action="changePicture.php" enctype="multipart/form-data">
                                 <div class="login-logo">
-                                    <div class="progress">
+                                    <div class="progress" style="display: none;">
                                         <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <a>
@@ -63,8 +63,8 @@ if (isset($_GET["cin"])) {
                                         </div>
                                     </div>
                                     <input type="hidden" name="cin" value="<?php if (isset($_GET["cin"])) echo $_GET["cin"]; ?>">
-                                    <input class="au-btn au-btn--block au-btn--green m-b-20" name="logindirect" type="submit" value="Cliquez ici pour acceder à votre compte" style="font-weight: bold;">
-                                    <a class="au-btn au-btn--block au-btn--blue m-b-20" href="./" type="button" style="font-weight: bold;">Cliquer ici pour retourner à l'accueil </a>
+                                    <input class="au-btn au-btn--block au-btn--green m-b-20" name="logindirect" type="submit" id="submit" value="Ok pour cette Photo" style="font-weight: bold; display:none;">
+                                    <input class="au-btn au-btn--block au-btn--blue m-b-20" id="login" type="button" value="Cliquer ici pour acceder a votre compte " style="font-weight: bold;">
                             </form>
                         </div>
                     </div>
@@ -92,36 +92,68 @@ if (isset($_GET["cin"])) {
                         input.attr("type", "password");
                 });
             });
-            // $(document).ready(function() {
-            //     $("#myform").submit(function(event) {
-            //         if ($("#profileImage").val()) {
-            //             event.preventDefault();
-            //             console.log(this);
-            //             $(this).ajaxSubmit({
-            //                 target: "#profileDisplay",
-            //                 beforeSubmit:function() {
-            //                     $(".progress-bar").width('0%');
-            //                 },
-            //                 uploadProgress:function(event, position, total, percentageComplete) {
-            //                     $(".progress-bar").animate({
-            //                         width: percentageComplete + '%'
-            //                     }, {
-            //                         duration: 1000
-            //                     });
-            //                 },
-            //                 success:function() {
-            //                     alert("your profile picture has been uploadod");
-            //                     event.preventDefault = false;
-            //                 },
-            //                 error:function() {
-            //                     alert("wait a min there is an error");
-            //                 },
-                            
-            //             });
-            //         } else
-            //             return false;
+            const submit = document.querySelector("#submit");
+            $(document).ready(function() {
+                $("#myform").submit(function(event) {
+                    if ($("#profileImage").val()) {
+                        $(".progress").show();
+                        event.preventDefault();
+                        $(this).ajaxSubmit({
+                            target: "#profileDisplay",
+                            beforeSubmit: function() {
+                                $(".progress-bar").width('0%');
+                            },
+                            uploadProgress: function(event, position, total, percentageComplete) {
+                                $(".progress-bar").width(percentageComplete + '%');
+                                submit.style.display="none";
+                            },
+                            success: function() {
+                                let login = document.querySelector("#login");
+                                
+                                login.style.display = "block";
+                                submit.style.display = "none";
+
+
+                            },
+                            error: function() {
+                                alert("wait a min there is an error");
+                            },
+                            resetForm: true
+                        });
+                    } else
+                    if (confirm("don't you wanna change your picture")) {
+                        <?php
+                        $sql = "UPDATE Utilisateur
+                        SET `imagepath` = 'avatar.svg'
+                        WHERE id=" . $_GET["cin"];
+                        mysqli_query($conn, $sql);
+                        ?>
+                        location.href = "../login/";
+                    }
+                    return false;
+                });
+            });
+
+
+            // const form=document.getElementById("myform");
+            // const inptPict= document.getElementById("profileImage");
+            // const progresse=document.querySelector(".progress-bar");
+
+            // form.addEventListener("submit",uploadPictuter);
+
+            // function uploadPictuter(e){
+            //     e.preventDefault();
+            //     const xhr = new XMLHttpRequest();
+            //     xhr.open("POST","changePicture.php");
+            //     xhr.upload.addEventListener("progress" , e => {
+            //         const percent = e.lengthComputable ? (e.loaded / e.total)*100 : 0;
+            //         progresse.style.width = percent.toFixed(2)+'%';
+            //         progresse.textContent = percent.toFixed(2)+'%';
             //     });
-            // });
+            //     xhr.setRequestHeader("Content-Type", "multipart/form-data");
+            //     xhr.send(new FormData(form));
+            //     // alert("done");
+            // }
 
             function chooseMyPicture() {
                 document.querySelector("#profileImage").click();
@@ -132,10 +164,33 @@ if (isset($_GET["cin"])) {
                     var reader = new FileReader();
                     reader.onload = function(event) {
                         document.querySelector("#profileDisplay").setAttribute('src', event.target.result);
+                        let submit = document.querySelector("#submit");
+                        let login = document.querySelector("#login");
+                        submit.style.display = "block";
+                        login.style.display = "none";
+
                     }
                     reader.readAsDataURL(event.files[0]);
                 }
             }
+            const login = document.querySelector("#login");
+            const profileImagee=document.querySelector("#profileDisplay");
+            login.addEventListener("click", () => {
+                if (profileImagee.src === "<?php echo "http://".$_SERVER['HTTP_HOST']."/nz/img/login/avatar.svg" ?>" ) {
+                    if (confirm("do you wanna keep the default picture")) {
+                        <?php
+                        $sql = "UPDATE Utilisateur
+                        SET `imagepath` = 'avatar.svg'
+                        WHERE id=" . $_GET["cin"];
+                        mysqli_query($conn, $sql);
+                        ?>
+                        location.href = "../login/";
+                    }
+                } else {
+                    location.href = "../login/";
+                }
+
+            });
         </script>
 
     </html>
