@@ -28,32 +28,38 @@
                         <span class="bot-line"></span>Etudiants
                     </a>
                 </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span class="bot-line"></span>Enseignants
-                    </a>
-                </li>
                 <li class="has-sub">
-                    <a class="js-arrow" href="#">
-                        <i class="fas fa-university"></i>test</a>
-                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                    <a href="#">
+                        <i class="fas fa-copy"></i>
+                        <span class="bot-line"></span>Notes</a>
+                    <ul class="header3-sub-list list-unstyled">
                         <li>
-                            <a href="#">test</a>
+                            <a href="">Afficher Notes</a>
                         </li>
                         <li>
-                            <a href="#">test</a>
+                            <a href="">Affecter Notes</a>
                         </li>
                     </ul>
                 </li>
                 <li class="has-sub">
                     <a href="#">
+                        <i class="far fa-clock"></i>
+                        <span class="bot-line"></span>Absence</a>
+                    <ul class="header3-sub-list list-unstyled">
+                        <li>
+                            <a href="">Afficher Absences</a>
+                        </li>
+                        <li>
+                            <a href="">Affecter Absences</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="./Module/">
                         <i class="fab fa-stack-overflow"></i>
-
                         <span class="bot-line"></span>Modules
                     </a>
                 </li>
-
             </ul>
         </div>
     </nav>

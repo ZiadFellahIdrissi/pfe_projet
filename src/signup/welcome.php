@@ -105,15 +105,12 @@ if (isset($_GET["cin"])) {
                             },
                             uploadProgress: function(event, position, total, percentageComplete) {
                                 $(".progress-bar").width(percentageComplete + '%');
-                                
+                                submit.style.display = "none";
                             },
                             success: function() {
                                 let login = document.querySelector("#login");
-                                
                                 login.style.display = "block";
                                 submit.style.display = "none";
-
-
                             },
                             error: function() {
                                 alert("wait a min there is an error");
@@ -176,7 +173,7 @@ if (isset($_GET["cin"])) {
             const login = document.querySelector("#login");
             const profileImagee=document.querySelector("#profileDisplay");
             login.addEventListener("click", () => {
-                if (profileImagee.src === "<?php echo "http://".$_SERVER['HTTP_HOST']."/nz/img/login/avatar.svg" ?>" ) {
+                if (profileImagee.src === "<?php echo "http://".$_SERVER['HTTP_HOST']."/pfe_projet/img/login/avatar.svg" ?>" ) {
                     if (confirm("do you wanna keep the default picture")) {
                         <?php
                         $sql = "UPDATE Utilisateur
