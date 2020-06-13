@@ -67,8 +67,15 @@ if (!$user->isLoggedIn()) {
         </section>
         <br><br>
         <div class="au-card">
-            <div id="calendar">
-
+            <div id="Notes">
+                <?php 
+                    $sql="SELECT * FROM passe
+                        join Controle on passe.id_controle=Controle.id_constrol
+                        join Module on Controle.id_module=Module.id_module
+                        join semester on semester.id_semester=Module.id_semester
+                        where passe.id_etudiant=? and semester=?";
+                            
+                ?>
             </div>
         </div>
 
@@ -87,7 +94,7 @@ if (!$user->isLoggedIn()) {
 
         <!-- Main JS-->
         <script src="../../layout/js/main.js "></script>
-        <script>
+        <!-- <script>
             $(document).ready(function(){
                 var calendar= $('#calendar').fullCalendar({
                     editable: true,
@@ -99,7 +106,7 @@ if (!$user->isLoggedIn()) {
                     events: 'loadSeance.php?id=<?php echo $id?>'
                 });
             });
-        </script>
+        </script> -->
 
 
     </body>

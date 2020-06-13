@@ -8,9 +8,9 @@
     <div class="menu-sidebar2__content js-scrollbar1">
         <div class="account2">
             <div class="image img-cir img-120">
-                <img src="../../img/profiles/<?php echo $imagepath ?>" title="Photo de profile" draggable="false"/>
+                <img src="../../img/profiles/<?php echo $imagepath ?>" title="Photo de profile" draggable="false" />
             </div>
-            <h4 class="name"><?php echo $nom.' '.$prenom ?></h4>
+            <h4 class="name"><?php echo $nom . ' ' . $prenom ?></h4>
             <a href="logout.php">Sign out</a>
         </div>
         <nav class="navbar-sidebar2">
@@ -27,19 +27,23 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-copy"></i>test</a>
+                        <i class="fas fa-copy"></i>Examens</a>
                 </li>
                 <li class="">
                     <a class="js-arrow" href="#">
-                        <i class="fas fa-copy"></i>test
+                        <i class="fas fa-copy"></i>Notes et resultats
                     </a>
                 </li>
                 <li class="">
                     <a class="js-arrow" href="#">
-                        <i class="fas fa-copy"></i>test
+                        <i class="fas fa-copy"></i>Inscription
                     </a>
                 </li>
-
+                <li class="">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-copy"></i>Stages
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -131,7 +135,7 @@
                                     <a href="#">
                                         <i class="zmdi zmdi-globe"></i>Language</a>
                                 </div>
-                     
+
                                 <div class="account-dropdown__item">
                                     <a href="#">
                                         <i class="zmdi zmdi-email"></i>Email</a>
@@ -158,12 +162,12 @@
                 <div class="image img-cir img-120">
                     <img src="<?php echo $imagepath ?>" alt="ziad" />
                 </div>
-                <h4 class="name"><?php echo $nom.' '.$prenom ?></h4>
+                <h4 class="name"><?php echo $nom . ' ' . $prenom ?></h4>
                 <a href="logout.php">Sign out</a>
             </div>
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
-                    <li class="active ">
+                    <li class="active">
                         <a class="js-arrow" href="#">
                             <i class="fas fa-tachometer-alt"></i>Dashboard
                         </a>
@@ -175,22 +179,25 @@
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fas fa-copy"></i>test</a>
+                            <i class="fas fa-copy"></i>Examens</a>
                     </li>
                     <li class="">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-copy"></i>test
+                        <a class="js-arrow" href="notesResultat.php">
+                            <i class="fas fa-copy"></i>Notes et resultats
                         </a>
                     </li>
                     <li class="">
                         <a class="js-arrow" href="#">
-                            <i class="fas fa-copy"></i>test
+                            <i class="fas fa-copy"></i>Inscription
                         </a>
                     </li>
-    
+                    <li class="">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-copy"></i>Stages
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
     </aside>
     <!-- END HEADER DESKTOP-->
-
