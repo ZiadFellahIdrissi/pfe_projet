@@ -3,7 +3,7 @@ include_once '../../core/init.php';
 $db = DB::getInstance();
 if (isset($_GET["id"])) {
     $id=$_GET["id"];
-    $sql = "SELECT Seance.date_seance, Seance.h_debut, Seance.h_fin,Seance.id_seance,Module.intitule
+    $sql = "SELECT Seance.date_seance, Seance.h_debut, Seance.h_fin, Seance.id_seance, Module.intitule
         FROM Module
         JOIN associe_a ON Module.id_module = associe_a.id_module
         JOIN Seance ON associe_a.id_seance = Seance.id_seance
@@ -22,7 +22,5 @@ if (isset($_GET["id"])) {
             'end' => $row->date_seance . ' ' . $row->h_fin
         );
     }
-    // var_dump($data);
-    // // exit();
     echo json_encode($data);
 }

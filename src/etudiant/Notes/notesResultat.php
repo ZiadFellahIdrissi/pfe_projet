@@ -3,24 +3,26 @@
     <?php
     function sqlStatment($semester)
     {
-        $sql = "SELECT module.id_module,intitule FROM Module
-                    join dispose_de on dispose_de.id_module=Module.id_module
-                    join semestre on module.id_semestre=semestre.id_semestre
-                    where semestre.semestre='$semester'
-                    and dispose_de.id_filiere in (select id_filiere 
-                                                    from Etudiant 
-                                                        where id=?)";
+        $sql = "SELECT Module.id_module,intitule
+                FROM Module
+                JOIN dispose_de ON Module.id_module = dispose_de.id_module
+                JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
+                WHERE Semestre.semestre='$semester'
+                AND dispose_de.id_filiere = (SELECT id_filiere 
+                                              FROM Etudiant 
+                                              WHERE id = ?      )";
         return $sql;
     }
     function getMarks($type, $module, $etudiant)
     {
         $db1 = DB::getInstance();
-        $sql = "SELECT note FROM passe
-                            join controle on controle.id_controle=passe.id_controle
-                            where passe.id_etudiant=?
-                            and controle.type=?
-                            and controle.id_module=?
-                            order by controle.date";
+        $sql = "SELECT note
+                FROM passe
+                JOIN Controle ON Controle.id_controle = passe.id_controle
+                WHERE passe.id_etudiant = ?
+                AND Controle.type = ?
+                AND Controle.id_module = ?
+                ORDER BY Controle.date";
 
         $resultats = $db1->query($sql, [$etudiant, $type, $module]);
         return $resultats->results();
@@ -28,14 +30,18 @@
     function getCoiffissient($module)
     {
         $db2 = DB::getInstance();
-        $sql = "SELECT * from dispose_de where id_module=?";
+        $sql = "SELECT *
+                FROM dispose_de
+                WHERE id_module = ?";
         $resultats = $db2->query($sql, [$module]);
         return $resultats->first();
     }
     function getSemestre()
     {
         $db3 = DB::getInstance();
-        $sql = "SELECT date_fin from semestre order by semestre";
+        $sql = "SELECT date_fin
+                FROM Semestre
+                ORDER BY semestre";
         $resultats = $db3->query($sql, []);
         return $resultats->first();
     }
