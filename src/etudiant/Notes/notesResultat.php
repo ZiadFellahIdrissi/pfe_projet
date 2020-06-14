@@ -8,7 +8,7 @@
                     join semestre on module.id_semestre=semestre.id_semestre
                     where semestre.semestre='$semester'
                     and dispose_de.id_filiere in (select id_filiere 
-                                                    from etudiant 
+                                                    from Etudiant 
                                                         where id=?)";
         return $sql;
     }
