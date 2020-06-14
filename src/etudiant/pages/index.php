@@ -1,8 +1,8 @@
 <?php
-include_once '../../core/init.php';
+include_once '../../../core/init.php';
 $user = new User_Etudiant();
 if (!$user->isLoggedIn()) {
-    header('Location: ../login.php');
+    header('Location: ../../login/');
 } else {
     $nom = $user->data()->nom;
     $prenom = $user->data()->prenom;
@@ -22,20 +22,20 @@ if (!$user->isLoggedIn()) {
 
         <!-- Fontfaces CSS-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-        <link href="../../lib/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-        <link href="../../lib/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+        <link href="../../../lib/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+        <link href="../../../lib/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
         <!-- Bootstrap CSS-->
-        <link href="../../layout/css/bootstrap.min.css" rel="stylesheet" media="all">
+        <link href="../../../layout/css/bootstrap.min.css" rel="stylesheet" media="all">
         
 
         <!-- lib CSS-->
-        <link href="../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
-        <link href="../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-        <link href="../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-        <link href='../../lib/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
+        <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
+        <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+        <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+        <link href='../../../lib/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
         <!-- Main CSS-->
-        <link href="../../layout/css/theme.css" rel="stylesheet" media="all">
+        <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
 
     </head>
 
@@ -67,34 +67,26 @@ if (!$user->isLoggedIn()) {
         </section>
         <br><br>
         <div class="au-card">
-            <div id="Notes">
-                <?php 
-                    $sql="SELECT * FROM passe
-                        join Controle on passe.id_controle=Controle.id_constrol
-                        join Module on Controle.id_module=Module.id_module
-                        join semester on semester.id_semester=Module.id_semester
-                        where passe.id_etudiant=? and semester=?";
-                            
-                ?>
+            <div id="calendar">
+
             </div>
         </div>
 
         <!-- Jquery JS-->
-        <script src="../../layout/js/jquery-3.4.1.min.js "></script>
+        <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
 
         <!-- Bootstrap JS-->
-        <script src="../../layout/js/bootstrap.min.js "></script>
+        <script src="../../../layout/js/bootstrap.min.js "></script>
 
         <!-- lib JS   -->
-        <script src="../../lib/animsition/animsition.min.js "></script>
-        <script src="../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
-        <script src="../../lib/fullcalendar-3.10.0/lib/moment.min.js"></script>
-        <script src="../../lib/fullcalendar-3.10.0/fullcalendar.js"></script>
-
+        <script src="../../../lib/animsition/animsition.min.js "></script>
+        <script src="../../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="../../../lib/fullcalendar-3.10.0/lib/moment.min.js"></script>
+        <script src="../../../lib/fullcalendar-3.10.0/fullcalendar.js"></script>
 
         <!-- Main JS-->
-        <script src="../../layout/js/main.js "></script>
-        <!-- <script>
+        <script src="../../../layout/js/main.js "></script>
+        <script>
             $(document).ready(function(){
                 var calendar= $('#calendar').fullCalendar({
                     editable: true,
@@ -103,10 +95,10 @@ if (!$user->isLoggedIn()) {
                         center: 'title',
                         right: 'month,agendaWeek,list'
                     },
-                    events: 'loadSeance.php?id=<?php echo $id?>'
+                    events: '../loadSeance.php?id=<?php echo $id?>'
                 });
             });
-        </script> -->
+        </script>
 
 
     </body>
