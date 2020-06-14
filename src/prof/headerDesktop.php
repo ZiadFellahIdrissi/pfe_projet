@@ -20,30 +20,34 @@
                             <span class="bot-line"></span>Etudiants
                         </a>
                     </li>
-                    <li>
-                        <a href="">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <span class="bot-line"></span>Enseignants
-                        </a>
-                    </li>
                     <li class="has-sub">
                         <a href="#">
-                            <i class="fas fa-university"></i>
-                            <span class="bot-line"></span>test</a>
+                            <i class="fas fa-copy"></i>
+                            <span class="bot-line"></span>Notes</a>
                         <ul class="header3-sub-list list-unstyled">
                             <li>
-                                <a href="">test</a>
+                                <a href="">Afficher Notes</a>
                             </li>
                             <li>
-                                <a href="">test</a>
-                            </li>
-                            <li>
-                                <a href="">test</a>
+                                <a href="">Affecter Notes</a>
                             </li>
                         </ul>
                     </li>
                     <li class="has-sub">
                         <a href="#">
+                            <i class="far fa-clock"></i>
+                            <span class="bot-line"></span>Absence</a>
+                        <ul class="header3-sub-list list-unstyled">
+                            <li>
+                                <a href="">Afficher Absences</a>
+                            </li>
+                            <li>
+                                <a href="">Affecter Absences</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <a href="./Module/">
                             <i class="fab fa-stack-overflow"></i>
                             <span class="bot-line"></span>Modules
                         </a>
@@ -92,7 +96,7 @@
                 <div class="account-wrap">
                     <div class="account-item account-item--style2 clearfix js-item-menu">
                         <div class="image">
-                            <img src="../../img/Dashboard/profile.svg " alt=" <?php echo $nom.' '.$prenom ?>" />
+                            <img src="../../../img/Dashboard/profile.svg " alt=" <?php echo $nom.' '.$prenom ?>" />
                         </div>
                         <div class="content">
                             <a class="js-acc-btn" href="#">
@@ -103,7 +107,7 @@
                             <div class="info clearfix">
                                 <div class="image">
                                     <a href="#">
-                                        <img src="../../img/Dashboard/profile.svg " alt=" <?php echo $nom.' '.$prenom ?>" />
+                                        <img src="../../../img/Dashboard/profile.svg " alt=" <?php echo $nom.' '.$prenom ?>" />
                                     </a>
                                 </div>
                                 <div class="content">

@@ -8,38 +8,42 @@
     <div class="menu-sidebar2__content js-scrollbar1">
         <div class="account2">
             <div class="image img-cir img-120">
-                <img src="../../img/profiles/<?php echo $imagepath ?>" title="Photo de profile" draggable="false"/>
+                <img src="../../../img/profiles/<?php echo $imagepath ?>" title="Photo de profile" draggable="false" />
             </div>
-            <h4 class="name"><?php echo $nom.' '.$prenom ?></h4>
-            <a href="logout.php">Sign out</a>
+            <h4 class="name"><?php echo $nom . ' ' . $prenom ?></h4>
+            <a href="../pages/logout.php">Sign out</a>
         </div>
         <nav class="navbar-sidebar2">
             <ul class="list-unstyled navbar__list">
                 <li class="active">
-                    <a class="js-arrow" href="#">
+                    <a href="../pages/">
                         <i class="fas fa-tachometer-alt"></i>Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="inbox.html">
+                    <a href="../Notes/">
                         <i class="fas fa-chart-bar"></i>Inbox</a>
                     <span class="inbox-num">3</span>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-copy"></i>test</a>
+                        <i class="fas fa-copy"></i>Examens</a>
                 </li>
                 <li class="">
-                    <a class="js-arrow" href="#">
-                        <i class="fas fa-copy"></i>test
+                    <a href="../Notes/">
+                        <i class="fas fa-copy"></i>Notes et resultats
                     </a>
                 </li>
                 <li class="">
-                    <a class="js-arrow" href="#">
-                        <i class="fas fa-copy"></i>test
+                    <a  href="#">
+                        <i class="fas fa-copy"></i>Inscription
                     </a>
                 </li>
-
+                <li class="">
+                    <a  href="#">
+                        <i class="fas fa-copy"></i>Stages
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -131,7 +135,7 @@
                                     <a href="#">
                                         <i class="zmdi zmdi-globe"></i>Language</a>
                                 </div>
-                     
+
                                 <div class="account-dropdown__item">
                                     <a href="#">
                                         <i class="zmdi zmdi-email"></i>Email</a>
@@ -156,41 +160,44 @@
         <div class="menu-sidebar2__content js-scrollbar2">
             <div class="account2">
                 <div class="image img-cir img-120">
-                    <img src="<?php echo $imagepath ?>" alt="ziad" />
+                    <img src="../../../img/profiles/<?php echo $imagepath ?>" alt="ziad" />
                 </div>
-                <h4 class="name"><?php echo $nom.' '.$prenom ?></h4>
+                <h4 class="name"><?php echo $nom . ' ' . $prenom ?></h4>
                 <a href="logout.php">Sign out</a>
             </div>
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
-                    <li class="active ">
-                        <a class="js-arrow" href="#">
+                    <li class="active">
+                        <a href="../pages/">
                             <i class="fas fa-tachometer-alt"></i>Dashboard
                         </a>
                     </li>
                     <li>
-                        <a href="inbox.html">
+                        <a href="">
                             <i class="fas fa-chart-bar"></i>Inbox</a>
                         <span class="inbox-num">3</span>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fas fa-copy"></i>test</a>
+                            <i class="fas fa-copy"></i>Examens</a>
                     </li>
                     <li class="">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-copy"></i>test
+                        <a  href="../Notes/">
+                            <i class="fas fa-copy"></i>Notes et resultats
                         </a>
                     </li>
                     <li class="">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-copy"></i>test
+                        <a  href="#">
+                            <i class="fas fa-copy"></i>Inscription
                         </a>
                     </li>
-    
+                    <li class="">
+                        <a  href="#">
+                            <i class="fas fa-copy"></i>Stages
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
     </aside>
     <!-- END HEADER DESKTOP-->
-

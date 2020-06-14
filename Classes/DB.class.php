@@ -2,10 +2,10 @@
     class DB{
         private static $_instance = null;
         private $_pdo;
-        // private $_query,
-        //         $_error = false,
-        //         $_results = '',
-        //         $_count = 0;
+        private $_query,
+                $_error = false,
+                $_results = '',
+                $_count = 0;
 
         private function __construct(){
             try{
