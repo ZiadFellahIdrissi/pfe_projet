@@ -23,9 +23,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../Controle/">
                         <i class="fas fa-user-graduate"></i>
-                        <span class="bot-line"></span>Etudiants
+                        <span class="bot-line"></span>Controles
                     </a>
                 </li>
                 <li class="has-sub">
@@ -55,7 +55,7 @@
                     </ul>
                 </li>
                 <li class="has-sub">
-                    <a href="./Module/">
+                    <a href="../Module/">
                         <i class="fab fa-stack-overflow"></i>
                         <span class="bot-line"></span>Modules
                     </a>

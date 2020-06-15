@@ -11,7 +11,6 @@ if (!$user->isLoggedIn()) {
 ?>
     <html lang="en">
 
-
     <head>
         <!-- Required meta tags-->
         <meta charset="UTF-8">
@@ -38,17 +37,16 @@ if (!$user->isLoggedIn()) {
     </head>
 
     <body>
-
         <!-- HEADER DESKTOP-->
-        <?php include '../pages/headerDesktop.php' ?>
+        <?php include 'headerDesktop.php' ?>
         <!-- END HEADER DESKTOP-->
 
         <!-- HEADER MOBILE-->
-        <?php include '../pages/headerPhone.php' ?>
+        <?php include 'headerPhone.php' ?>
         <!-- END HEADER MOBILE -->
 
         <!-- PAGE CONTENT-->
-        <!-- <div class="page-content--bgf7"> -->
+
         <!-- BREADCRUMB-->
         <section class="au-breadcrumb2">
             <div class="container">
@@ -58,10 +56,13 @@ if (!$user->isLoggedIn()) {
                             <div class="au-breadcrumb-left">
                                 <span class="au-breadcrumb-span">You are here:</span>
                                 <ul class="list-unstyled list-inline au-breadcrumb__list">
-                                    <li class="list-inline-item seprate">
-                                        <a href="../">Dashboard</a> <span>/</span>
+                                    <li class="list-inline-item active">
+                                        <a href="#">Home</a>
                                     </li>
-                                    <li class="list-inline-item">Modules</li>
+                                    <li class="list-inline-item seprate">
+                                        <span>/</span>
+                                    </li>
+                                    <li class="list-inline-item">Dashboard</li>
                                 </ul>
                             </div>
                             <form class="au-form-icon--sm" action="" method="post">
@@ -77,48 +78,73 @@ if (!$user->isLoggedIn()) {
         </section>
         <!-- END BREADCRUMB-->
 
-        <!-- MODULES-->
-        <section class="statistic statistic2">
+
+
+        <!-- WELCOME-->
+        <section class="welcome p-t-10">
             <div class="container">
-                <div class="table-responsive-sm">
-                    <?php
-                    $sql = "SELECT *
-                            FROM Module
-                            JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
-                            JOIN dispose_de ON Module.id_module = dispose_de.id_module
-                            JOIN Filiere ON dispose_de.id_filiere = Filiere.id_filiere where id_enseignant = ?";
-                    $query = DB::getInstance()->query($sql, array($id));
-                    ?>
-                    <table class="table table-hover table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Module</th>
-                                <th>Filiere</th>
-                                <th>Semester</th>
-                            </tr>
-                        </thead>
-                        <?php
-                        if ($query->count()) {
-                        ?>
-                            <tbody>
-                                <?php
-                                foreach ($query->results() as $row) {
-                                ?>
-                                    <tr>
-                                        <td style="font-weight: bold;"><?php echo $row->intitule ?></td>
-                                        <td><?php echo $row->nom_filiere ?></td>
-                                        <td><?php echo $row->semestre ?></td>
-                                    </tr>
-                            <?php
-                                }
-                                echo "<tbody>";
-                                echo "</table>";
-                            }
-                            ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="au-breadcrumb-content">
+                            <div class="au-breadcrumb-left">
+                                <h1 class="title-4">Bienvenue
+                                    <span><?php echo strtoupper($nom) . ' ' . $prenom; ?></span>
+                                </h1>
+                                <hr class="line-seprate">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <!-- Modules -->
+        <!-- END WELCOME-->
+
+        <!-- STATISTIC-->
+        <section class="statistic statistic2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="statistic__item statistic__item--green">
+                            <h2 class="number">10,368</h2>
+                            <span class="desc">test</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-account-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="statistic__item statistic__item--orange">
+                            <h2 class="number">388,688</h2>
+                            <span class="desc">test</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="statistic__item statistic__item--blue">
+                            <h2 class="number">1,086</h2>
+                            <span class="desc">test</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-calendar-note"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="statistic__item statistic__item--red">
+                            <h2 class="number">1,060</h2>
+                            <span class="desc">test</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-money"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
 
         <!-- Jquery JS-->
         <script src="../../../layout/js/jquery-3.4.1.min.js "></script>

@@ -21,13 +21,21 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../Notes/">
-                        <i class="fas fa-chart-bar"></i>Inbox</a>
+                    <a href="../messages/">
+                        <i class="fa fa-envelope"></i>Inbox</a>
                     <span class="inbox-num">3</span>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fas fa-copy"></i>Examens</a>
+                    <a href="../Examens">
+                        <i class="fa fa-file"></i>Controles</a>
+                    <?php
+                    include_once '../fonctions/tools.function.php';
+                    $resultat = controles($id);
+                    $count = $resultat->count();
+                    if ($count) {
+                        echo '<span class="inbox-num">' . $count . '</span>';
+                    }
+                    ?>
                 </li>
                 <li class="">
                     <a href="../Notes/">
@@ -35,12 +43,12 @@
                     </a>
                 </li>
                 <li class="">
-                    <a  href="#">
+                    <a href="#">
                         <i class="fas fa-copy"></i>Inscription
                     </a>
                 </li>
                 <li class="">
-                    <a  href="#">
+                    <a href="#">
                         <i class="fas fa-copy"></i>Stages
                     </a>
                 </li>
@@ -174,25 +182,30 @@
                     </li>
                     <li>
                         <a href="">
-                            <i class="fas fa-chart-bar"></i>Inbox</a>
+                            <i class="fa fa-envelope"></i>Inbox</a>
                         <span class="inbox-num">3</span>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fas fa-copy"></i>Examens</a>
+                        <a href="../Examens">
+                            <i class="fa fa-file-text"></i>Controles</a>
+                        <?php
+                        if ($count) {
+                            echo '<span class="inbox-num">' . $count . '</span>';
+                        }
+                        ?>
                     </li>
                     <li class="">
-                        <a  href="../Notes/">
+                        <a href="../Notes/">
                             <i class="fas fa-copy"></i>Notes et resultats
                         </a>
                     </li>
                     <li class="">
-                        <a  href="#">
+                        <a href="#">
                             <i class="fas fa-copy"></i>Inscription
                         </a>
                     </li>
                     <li class="">
-                        <a  href="#">
+                        <a href="#">
                             <i class="fas fa-copy"></i>Stages
                         </a>
                     </li>

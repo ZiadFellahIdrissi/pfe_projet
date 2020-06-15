@@ -28,12 +28,12 @@ if (!$user->isLoggedIn()) {
         <!-- Bootstrap CSS-->
         <link href="../../../layout/css/bootstrap.min.css" rel="stylesheet" media="all">
         
-
         <!-- lib CSS-->
         <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
         <link href='../../../lib/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
+        
         <!-- Main CSS-->
         <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
 
@@ -65,7 +65,7 @@ if (!$user->isLoggedIn()) {
                 </div>
             </div>
         </section>
-        <br><br>
+
         <div class="au-card">
             <div id="calendar">
 

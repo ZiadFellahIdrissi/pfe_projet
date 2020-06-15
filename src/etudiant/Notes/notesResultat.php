@@ -13,38 +13,7 @@
                                               WHERE id = ?      )";
         return $sql;
     }
-    function getMarks($type, $module, $etudiant)
-    {
-        $db1 = DB::getInstance();
-        $sql = "SELECT note
-                FROM passe
-                JOIN Controle ON Controle.id_controle = passe.id_controle
-                WHERE passe.id_etudiant = ?
-                AND Controle.type = ?
-                AND Controle.id_module = ?
-                ORDER BY Controle.date";
-
-        $resultats = $db1->query($sql, [$etudiant, $type, $module]);
-        return $resultats->results();
-    }
-    function getCoiffissient($module)
-    {
-        $db2 = DB::getInstance();
-        $sql = "SELECT *
-                FROM dispose_de
-                WHERE id_module = ?";
-        $resultats = $db2->query($sql, [$module]);
-        return $resultats->first();
-    }
-    function getSemestre()
-    {
-        $db3 = DB::getInstance();
-        $sql = "SELECT date_fin
-                FROM Semestre
-                ORDER BY semestre";
-        $resultats = $db3->query($sql, []);
-        return $resultats->first();
-    }
+    include_once '../fonctions/tools.function.php';
     ?>
     <div class="table-responsive-sm">
         <table class="table table-hover">
@@ -56,7 +25,7 @@
                     <th>Moyenne Generale</th>
                 </tr>
             </thead>
-            <tr style="background: rgba(0, 0, 0, 0.1); font-weight: bold; font-size:large;">
+            <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
                 <td>Semestre 1</td>
                 <td></td>
                 <td></td>
@@ -124,7 +93,7 @@
                 echo '</table>';
             } else {
                 ?>
-                    <tr style="background: rgba(0, 0, 0, 0.1); font-weight: bold; font-size:large;">
+                    <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
                         <td>Semestre 2</td>
                         <td></td>
                         <td></td>
