@@ -22,7 +22,7 @@
         }
 
         mysqli_query($conn, "INSERT INTO `Module`(`intitule`, `id_enseignant`, `heures_sem`, `id_semestre`)
-                                VALUES ('$nom', $id_enseignant, $heures, $Mysemester)                       ");
+                                VALUES ('$nom', '$id_enseignant', $heures, $Mysemester)                       ");
 
         mysqli_query($conn, "INSERT INTO `dispose_de`(`id_filiere`, `id_module`, `coeff_examen`, `coeff_controle`)
                                 SELECT $id_filiere, id_module, $coeffE, $coeffC

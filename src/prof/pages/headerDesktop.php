@@ -26,7 +26,7 @@
                             <span class="bot-line"></span>Notes</a>
                         <ul class="header3-sub-list list-unstyled">
                             <li>
-                                <a href="">Afficher Notes</a>
+                                <a href="../Notes/">Afficher Notes</a>
                             </li>
                             <li>
                                 <a href="">Affecter Notes</a>

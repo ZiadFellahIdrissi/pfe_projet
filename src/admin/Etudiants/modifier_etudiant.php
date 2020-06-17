@@ -12,7 +12,7 @@
         $row       = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *
                                                              FROM Etudiant
                                                              JOIN Utilisateur ON Etudiant.id = Utilisateur.id
-                                                             WHERE Etudiant.id = $oldCin                      "));
+                                                             WHERE Etudiant.id = '$oldCin'                      "));
 
         if($oldCin==$cin && $row["cne"]==$cne &&$row["telephone"]==$telephone)
             goto success;
@@ -38,13 +38,13 @@ success:
                                     prenom = '$prenom',
                                     date_naissance = '$dateN',
                                     telephone = '$telephone'
-                                WHERE id = $oldCin");
+                                WHERE id = '$oldCin'");
 
         mysqli_query($conn, "UPDATE Etudiant
                                 SET id = '$cin',
                                     cne = '$cne',
                                     id_filiere = $filiere
-                                WHERE id = $oldCin");
+                                WHERE id = '$oldCin'");
 
         mysqli_query($conn, "SET FOREIGN_KEY_CHECKS = 1");
         

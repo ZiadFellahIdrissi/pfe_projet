@@ -5,11 +5,11 @@ function controles($id){
     $sql = "SELECT Module.intitule, Controle.date, Controle.h_debut, TIMEDIFF(Controle.h_fin,Controle.h_debut) as duree
             from Controle 
             JOIN Module on Controle.id_module = Module.id_module 
-            JOIN dispose_de on dispose_de.id_module = module.id_module
+            JOIN dispose_de on dispose_de.id_module = Module.id_module
             WHERE Controle.type = ?
             AND concat(Controle.date,' ',Controle.h_debut) >= ( SELECT SYSDATE() )
-            AND dispose_de.id_filiere in (SELECT etudiant.id_filiere
-                                            FROM etudiant
+            AND dispose_de.id_filiere in (SELECT Etudiant.id_filiere
+                                            FROM Etudiant
                                                 WHERE id = ?);";
     $resultat = $db->query($sql, ['controle', $id]);
     return $resultat;
