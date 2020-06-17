@@ -25,17 +25,14 @@
                     <th>Moyenne Generale</th>
                 </tr>
             </thead>
-            <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
-                <td>Semestre 1</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <tbody>
+                <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
+                    <td colspan=4>1ère Semestre</td>
+                </tr>
             <?php
-            $db->query(sqlStatment('Semestre 1'), [$id]);
+            $db->query(sqlStatment('1ère Semestre'), [$id]);
             foreach ($db->results() as $row) {
             ?>
-                <tbody>
                     <tr>
                         <td><?php echo $row->intitule ?></td>
 
@@ -94,13 +91,10 @@
             } else {
                 ?>
                     <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
-                        <td>Semestre 2</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan=4>2ème Semestre</td>
                     </tr>
                     <?php
-                    $db->query(sqlStatment('Semestre 2'), [$id]);
+                    $db->query(sqlStatment('2ème Semestre'), [$id]);
                     foreach ($db->results() as $row0) {
                     ?>
                         <tr>
@@ -161,4 +155,3 @@
 <div style="text-align: right; margin-right:2%; margin-top:1%;">
     <button type="button" class="btn btn-outline-info imprimer "><span><i class="fa fa-print"></i></span> Imprimer </button>
 </div>
-<!-- btn btn-outline-success -->

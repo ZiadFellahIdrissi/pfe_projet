@@ -27,15 +27,16 @@ include '../connection.php';
                     // 3tito smmiya 5ra bache ila bgha ida5le liya file b nafse smiya maytrache mochkil
                     $fileDistination = "../../img/profiles/$filenewname";
                     if(move_uploaded_file($filetmp, $fileDistination)){
-                         //returns 1 if success
-                    // hna sf l9adiya mzyana ou tswira t uploadat donc n9dare 
-                    //nsifto l espace dyalo ou insere l image f la base
-                    // $sqlSelect= ""
-                    $sql="UPDATE Utilisateur
-                            SET `imagepath`='$filenewname'
-                          WHERE id=".$cin;
-                    mysqli_query($conn, $sql);
-                    echo "good";}
+                            //returns 1 if success
+                        // hna sf l9adiya mzyana ou tswira t uploadat donc n9dare 
+                        //nsifto l espace dyalo ou insere l image f la base
+                        // $sqlSelect= ""
+                        $sql="UPDATE Utilisateur
+                                SET `imagepath` = '$filenewname'
+                            WHERE id = '$cin'";
+                        mysqli_query($conn, $sql);
+                        echo "good";
+                    }
                     // header("Location: ../etudiant/");}
 
                 } else {
@@ -48,7 +49,7 @@ include '../connection.php';
             }
         } else {
             // header("Location: ./welcome.php?uploadext=notAlowed");
-            echo "no alowed";
+            echo "not allowed";
         }
     } else {
         // $sql="UPDATE Utilisateur
