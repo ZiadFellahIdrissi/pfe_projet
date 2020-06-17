@@ -1,44 +1,60 @@
 <?php
-    include_once '../../../core/init.php';
-    $db = DB::getInstance();
-    $module = $_GET['module'];
-    $id = $_GET['id'];
+include_once '../../../core/init.php';
+$module = $_GET['module'];
+$id = $_GET['id'];
 ?>
 <?php
-$sql = "SELECT Utilisateur.nom, Utilisateur.prenom, passe.note
-        FROM passe
-        JOIN Controle ON passe.id_controle = Controle.id_controle
-        JOIN Utilisateur ON passe.id_etudiant = Utilisateur.id
-        JOIN Etudiant ON Utilisateur.id = Etudiant.id
-        WHERE Controle.type = ?
-        AND Controle.id_module = ?
-        AND Etudiant.id_filiere in (SELECT dispose_de.id_filiere
-                                    FROM dispose_de
-                                    JOIN Module ON dispose_de.id_module = Module.id_module
-                                    WHERE Module.id_module = ?
-                                    AND Module.id_enseignant = ?                          ) ";
-$results = $db->query($sql, ['finale', $module, $module, $id]);
+include_once '../../etudiant/fonctions/tools.function.php';
 ?>
 <div class="table-responsive-sm">
-<table class="table table-hover table-bordered">
-    <thead class="thead-dark">
-        <th>Etudiant</th>
-        <th>Examen finale</th>
-    </thead>
-    <tbody>
-<?php
-    foreach ($results->results() as $row) {
-?>
-        <tr>
-            <td><?php echo $row->prenom.' '.$row->nom ?></td>
-            <td><?php echo $row->note ?></td>
-        </tr>
-<?php
-    }
-?>
-
-    </tbody>
-</table>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Etudiant</th>
+                <th>Controles</th>
+                <th>Exame finale</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $results = fetchStudents($module);
+            foreach ($results->results() as $myRow) {
+            ?>
+                <tr>
+                    <td><?php echo $myRow->prenom . ' ' . $myRow->nom ?></td>
+                    <td style="padding:0%">
+                        <table class="table">
+                            <?php
+                            $markcontrole = getMarks('controle', $module, $myRow->id);
+                            $i = 1;
+                            foreach ($markcontrole as $row) {
+                            ?>
+                                <tr>
+                                    <td style="font-weight:bold;">Controle <?php echo $i ?></td>
+                                    <td width="50%" style="text-align: center;"><?php echo $row->note ?></td>
+                                </tr>
+                            <?php
+                                $i++;
+                            }
+                            ?>
+                        </table>
+                    </td>
+                    <td>
+                        <?php
+                        $noteExamFinale = -1;
+                        $markFinale = getMarks('finale',$module, $myRow->id);
+                        foreach ($markFinale as $roww) {
+                            echo $roww->note;
+                            $noteExamFinale = $roww->note;
+                        }
+                        ?>
+                    </td>
+                </tr>
+            <?php
+            }
+            ?>
+        </tbody>
+    </table>
 </div>
 <?php
 

@@ -30,7 +30,7 @@
                     <td colspan=4>1ère Semestre</td>
                 </tr>
             <?php
-            $db->query(sqlStatment('1ère Semestre'), [$id]);
+            $db->query(sqlStatment('1ere Semestre'), [$id]);
             foreach ($db->results() as $row) {
             ?>
                     <tr>
@@ -94,7 +94,7 @@
                         <td colspan=4>2ème Semestre</td>
                     </tr>
                     <?php
-                    $db->query(sqlStatment('2ème Semestre'), [$id]);
+                    $db->query(sqlStatment('2eme Semestre'), [$id]);
                     foreach ($db->results() as $row0) {
                     ?>
                         <tr>

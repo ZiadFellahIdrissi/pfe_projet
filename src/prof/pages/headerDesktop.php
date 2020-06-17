@@ -29,7 +29,7 @@
                                 <a href="../Notes/">Afficher Notes</a>
                             </li>
                             <li>
-                                <a href="">Affecter Notes</a>
+                                <a href="../Notes/affecterNote.php">Affecter Notes</a>
                             </li>
                         </ul>
                     </li>
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="account-dropdown__footer">
-                                <a href="logout.php">
+                                <a href="../pages/logout.php">
                                     <i class="zmdi zmdi-power"></i>Logout</a>
                             </div>
                         </div>

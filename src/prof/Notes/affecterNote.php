@@ -1,6 +1,7 @@
 <?php
 include_once '../../../core/init.php';
 $user = new User_Prof();
+$db = DB::getInstance();
 if (!$user->isLoggedIn()) {
     header('Location: ../../login');
 } else {
@@ -18,7 +19,7 @@ if (!$user->isLoggedIn()) {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Title Page-->
-        <title>Dashboard</title>
+        <title>Notes</title>
 
         <!-- Fontfaces CSS-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -61,7 +62,7 @@ if (!$user->isLoggedIn()) {
                                     <li class="list-inline-item seprate">
                                         <a href="../">Dashboard</a> <span>/</span>
                                     </li>
-                                    <li class="list-inline-item">Modules</li>
+                                    <li class="list-inline-item">Affectation des Notes</li>
                                 </ul>
                             </div>
                             <form class="au-form-icon--sm" action="" method="post">
@@ -78,47 +79,34 @@ if (!$user->isLoggedIn()) {
         <!-- END BREADCRUMB-->
 
         <!-- MODULES-->
-        <section class="statistic statistic2">
-            <div class="container shadow-lg bg-white rounded" style="padding: 0%;">
-                <div class="table-responsive-sm">
-                    <?php
-                    $sql = "SELECT *
-                            FROM Module
-                            JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
-                            JOIN dispose_de ON Module.id_module = dispose_de.id_module
-                            JOIN Filiere ON dispose_de.id_filiere = Filiere.id_filiere
-                            WHERE id_enseignant = ?";
-                    $query = DB::getInstance()->query($sql, array($id));
-                    ?>
-                    <table class="table table-hover table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Module</th>
-                                <th>Filiere</th>
-                                <th>Semester</th>
-                            </tr>
-                        </thead>
-                        <?php
-                        if ($query->count()) {
-                        ?>
-                            <tbody>
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <select name="module" id="module" class="form-control">
+                                <option value=''>Choisissez un Module</option>
                                 <?php
-                                foreach ($query->results() as $row) {
+                                $sql = "SELECT intitule, id_module
+                                            FROM Module
+                                            WHERE id_enseignant = '$id'";
+                                $resultat = $db->query($sql, [$id]);
+                                foreach ($resultat->results() as $row) {
                                 ?>
-                                    <tr>
-                                        <td style="font-weight: bold;"><?php echo $row->intitule ?></td>
-                                        <td><?php echo $row->nom_filiere ?></td>
-                                        <td><?php echo $row->semestre ?></td>
-                                    </tr>
-                            <?php
+                                    <option value=<?php echo $row->id_module ?>><?php echo $row->intitule ?></option>
+                                <?php
                                 }
-                                echo "<tbody>";
-                                echo "</table>";
-                            }
-                            ?>
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body notes shadow-lg bg-white rounded">
+
                 </div>
             </div>
-        </section>
+        </div>
+
         <!-- Modules -->
 
         <!-- Jquery JS-->
@@ -133,6 +121,25 @@ if (!$user->isLoggedIn()) {
 
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
+        <script>
+            $(document).ready(function() {
+                $('#module').change(function() {
+                    var module = $("#module").val();
+                    console.log(module);
+                    $.ajax({
+                        url: 'affectiontionNotesParModule.php?id=<?php echo $id ?>',
+                        method: "GET",
+                        data: {
+                            module: module
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $('.notes').html(data);
+                        }
+                    });
+                });
+            });
+        </script>
 
     </body>
 

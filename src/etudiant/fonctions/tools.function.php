@@ -14,6 +14,17 @@ function controles($id){
     $resultat = $db->query($sql, ['controle', $id]);
     return $resultat;
 }
+function fetchStudents($module)
+{
+    $db = DB::getInstance();
+    $sql = "SELECT Utilisateur.nom,Utilisateur.prenom,Utilisateur.id
+            FROM Utilisateur
+            join Etudiant ON Etudiant.id = Utilisateur.id
+            JOIN dispose_de ON dispose_de.id_filiere=Etudiant.id_filiere
+            where dispose_de.id_module=? ";
+    $results = $db->query($sql, [$module]);
+    return $results;
+}
 function getMarks($type, $module, $etudiant)
 {
     $db1 = DB::getInstance();
