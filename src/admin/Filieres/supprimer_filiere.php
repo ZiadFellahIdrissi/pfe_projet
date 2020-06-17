@@ -45,7 +45,7 @@
 		$resp = $row['id'];
 		mysqli_query($conn, "UPDATE Personnel
                                 SET role = 'enseignant'
-								WHERE id = $resp         ");
+								WHERE id = '$resp'         ");
 
 		// suppression de la filiere
 		mysqli_query($conn , "DELETE FROM Filiere

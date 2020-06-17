@@ -103,11 +103,9 @@ if (!$user->isLoggedIn()) {
                             <label for="module" class="col-form-label">Module</label>
                             <select class="form-control" id="module" name="module">
                                 <?php
-                                $sql = "SELECT Module.intitule,Module.id_module
-                                                FROM Module
-                                                JOIN dispose_de ON Module.id_module = dispose_de.id_module
-                                                JOIN Filiere ON dispose_de.id_filiere = Filiere.id_filiere 
-                                                where Module.id_enseignant = ?";
+                                $sql = "SELECT Module.intitule, Module.id_module
+                                        FROM Module
+                                        WHERE Module.id_enseignant = ?";
                                 $resultat = $db->query($sql, [$id]);
                                 foreach ($resultat->results() as $row) {
                                 ?>
@@ -120,7 +118,7 @@ if (!$user->isLoggedIn()) {
 
                         <!-- date controle -->
                         <div class="form-group">
-                            <label for="date_controle" class="col-form-label">Date Controle</label>
+                            <label for="date_controle" class="col-form-label">Date du Controle</label>
                             <input type="date" class="form-control" name="date_controle" id="date_controle" required>
                         </div>
 
@@ -128,13 +126,13 @@ if (!$user->isLoggedIn()) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="heur_debut" class="col-form-label">heur debut</label>
+                                    <label for="heur_debut" class="col-form-label">Heure Debut</label>
                                     <input type="time" class="form-control" name="heur_debut" id="heur_debut" required>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="heur_fin" class="col-form-label">heur Fin </label>
+                                    <label for="heur_fin" class="col-form-label">Heure Fin </label>
                                     <input type="time" class="form-control" name="heur_fin" id="heur_fin" required>
                                 </div>
                             </div>
@@ -143,7 +141,7 @@ if (!$user->isLoggedIn()) {
 
                     <!-- modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                         <button type="button" class="btn btn-primary" id="ajouterControle" name="ajouter">Ajouter</button>
                     </div>
                 </div>
@@ -207,25 +205,34 @@ if (!$user->isLoggedIn()) {
                         var heur_debut = $.fullCalendar.formatDate(e.start, 'HH:mm');
                         var heur_fin = $.fullCalendar.formatDate(e.end, 'HH:mm');
                         var id_controle = e.id;
-                        $.ajax({
-                            url: 'modifierControles.php',
-                            type: 'GET',
-                            data: {
-                                dateControle: dateControle,
-                                heur_debut: heur_debut,
-                                heur_fin: heur_fin,
-                                id_controle: id_controle
+                        //test de la durée du controle
+                        var d1 = new Date(dateControle+' '+heur_debut);
+                        var d2 = new Date(dateControle+' '+heur_fin);
+                        var diff = (d2.getHours()*60 + d2.getMinutes() - d1.getHours()*60 + d1.getMinutes())/60;
+                        console.log(diff);
+                        if (diff < 1) {
+                            alert("La durée du controle doit être égale à une heure au minimum!");
+                            calendar.fullCalendar("refetchEvents");
+                        } else {
+                            $.ajax({
+                                url: 'modifierControles.php',
+                                type: 'GET',
+                                data: {
+                                    dateControle: dateControle,
+                                    heur_debut: heur_debut,
+                                    heur_fin: heur_fin,
+                                    id_controle: id_controle
 
-                            },
-                            success: function() {
-                                alert("tmodifat");
-                                calendar.fullCalendar("refetchEvents");
-                            },
-                            error: function() {
-                                alert('failure');
-                            }
-
-                        })
+                                },
+                                success: function() {
+                                    alert("tmodifat");
+                                    calendar.fullCalendar("refetchEvents");
+                                },
+                                error: function() {
+                                    alert('failure');
+                                }
+                            })
+                        }
                     },
                     eventDrop: function(e) {
                         var dateControle = $.fullCalendar.formatDate(e.start, 'Y-MM-DD');
@@ -251,7 +258,24 @@ if (!$user->isLoggedIn()) {
                             }
 
                         })
+                    },
+                    eventClick: function(event) {
+                        if (confirm("Vous êtes sure de supprimer cet examen !!")) {
+                            var id = event.id;
+                            $.ajax({
+                                url: 'supprimerExamen.php',
+                                type: "GET",
+                                data: {
+                                    id_controle: id
+                                },
+                                success: function() {
+                                    //modal
+                                    calendar.fullCalendar("refetchEvents");
+                                }
+                            })
+                        }
                     }
+                            
 
                 });
                 $(document).on('click', '#ajouterControle', function() {
@@ -259,9 +283,14 @@ if (!$user->isLoggedIn()) {
                     var dateControle = $("#date_controle").val();
                     var heur_debut = $("#heur_debut").val();
                     var heur_fin = $("#heur_fin").val();
-                    // if (heur_fin < heur_debut + 1) {
-                    //     alert("impossible");
-                    // } else {
+                    //test de la durée du controle
+                    var d1 = new Date(dateControle+' '+heur_debut);
+                    var d2 = new Date(dateControle+' '+heur_fin);
+                    var diff = (d2.getHours()*60 + d2.getMinutes() - d1.getHours()*60 + d1.getMinutes())/60;
+                    console.log(diff);
+                    if (diff < 1) {
+                        alert("La durée du controle doit être égale à une heure au minimum!");
+                    } else {
                         $.ajax({
                             url: "ajoute_controle.php",
                             method: 'GET',
@@ -275,7 +304,7 @@ if (!$user->isLoggedIn()) {
                             dataType: 'json',
                             success: function(data) {
                                 if (data.error) {
-                                    alert("impossible");
+                                    alert(data.error);
                                 } else {
                                     calendar.fullCalendar("refetchEvents");
                                     $("#addControle").modal('hide');
@@ -285,12 +314,15 @@ if (!$user->isLoggedIn()) {
                                 alert('failure');
                             }
                         });
-                    // }
+                    }
                 });
+
             });
         </script>
 
     </body>
 
     </html>
-<?php } ?>
+<?php
+}
+?>

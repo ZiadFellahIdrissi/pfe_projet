@@ -8,10 +8,10 @@ if(isset($_GET["id_controle"])){
     $id_controle=$_GET["id_controle"];
 
     $sql="UPDATE Controle
-            SET `date`=?,
-                h_debut=?,
-                h_fin=?
-                WHERE id_controle=?";
+            SET `date` = ?,
+                h_debut = ?,
+                h_fin = ?
+            WHERE id_controle = ?";
     $db->query($sql,[$dateControle,$heur_debut,$heur_fin,$id_controle]);
     echo json_encode("");
 }

@@ -5,7 +5,7 @@
         $prenom    = mysqli_real_escape_string($conn, trim($_POST['prenom']));
         $cne       = mysqli_real_escape_string($conn, trim($_POST['cne']));
         $telephone = mysqli_real_escape_string($conn, trim($_POST['telephone']));
-        $cin       = $_POST['cin'];
+        $cin       = mysqli_real_escape_string($conn, trim($_POST['cin']));
         $dateN     = $_POST['dateN'];
         $filiere   = $_POST['filiere'];
         $oldCin    = 0;
@@ -14,11 +14,11 @@
         include 'verificationCne.php';
         include 'verificationTel.php';
 
-        mysqli_query($conn , "INSERT INTO `Utilisateur`(`id`, `nom`, `prenom`, `date_naissance`, `email`, `telephone`, `imagepath`)
-                                VALUES ($cin, '$nom' , '$prenom' , '$dateN', '' , '$telephone', 'avatar.svg')");
+        mysqli_query($conn , "INSERT INTO `Utilisateur`(`id`, `nom`, `prenom`, `date_naissance`, `telephone`, `imagepath`)
+                                VALUES ('$cin', '$nom' , '$prenom' , '$dateN', '$telephone', 'avatar.svg')");
 
         mysqli_query($conn , "INSERT INTO `Etudiant`(`id`, `cne`, `id_filiere`)
-                                VALUES ($cin, '$cne' , $filiere)");
+                                VALUES ('$cin', '$cne' , $filiere)");
 
         header("location: ../Etudiants?inserted&idUrlFiliere=$filiere");
     }

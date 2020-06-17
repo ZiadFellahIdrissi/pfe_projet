@@ -25,17 +25,17 @@
         }
 
         mysqli_query($conn , "UPDATE Filiere
-                                SET id_responsable = $resp_id,
+                                SET id_responsable = '$resp_id',
                                     nom_filiere = '$nom'
                                 WHERE id_filiere = $id_filiere ");
 
         mysqli_query($conn, "UPDATE Personnel
                                 SET role = 'enseignant'
-                                WHERE id = $oldResp     ");
+                                WHERE id = '$oldResp'     ");
 
         mysqli_query($conn, "UPDATE Personnel
                                 SET role = 'responsable'
-                                WHERE id = $resp_id      ");
+                                WHERE id = '$resp_id'      ");
                                 
         header("location: ./?updated");
     }
