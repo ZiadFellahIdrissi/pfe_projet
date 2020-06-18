@@ -33,6 +33,7 @@ if (!$user->isLoggedIn()) {
         <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+        <link href="../../../layout/css/datatables.min.css" rel="stylesheet" type="text/css" media="all" />
         <!-- Main CSS-->
         <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
 
@@ -84,7 +85,7 @@ if (!$user->isLoggedIn()) {
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-5">
-                            <select name="module" id="module" class="form-control">
+                            <select id="module" class="form-control">
                                 <option value=''>Choisissez un Module</option>
                                 <?php
                                     $sql = "SELECT intitule, id_module
@@ -97,6 +98,10 @@ if (!$user->isLoggedIn()) {
                                 <?php
                                     }
                                 ?>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <select id="id_controle" class="form-control">
                             </select>
                         </div>
                     </div>
@@ -118,29 +123,61 @@ if (!$user->isLoggedIn()) {
         <!-- lib JS   -->
         <script src="../../../lib/animsition/animsition.min.js "></script>
         <script src="../../../lib/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="../../../lib/tabledit/jquery.tabledit.js"></script>
+        <script src="../../../lib/tabledit/jquery.tabledit.min.js"></script>
 
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
+
         <script>
 
 
             $(document).ready(function() {
-                $('#module').change(function() {
+                $('#module').change(fetchNotes);
+                function fetchNotes() {
+                    $('.notes').hide();
                     var module = $("#module").val();
-                    console.log(module);
                     $.ajax({
-                        url: 'fetch_notes.php?id=<?php echo $id ?>',
+                        url: 'fetchControleType.php',
                         method: "GET",
                         data: {
                             module: module
                         },
                         dataType: "text",
                         success: function(data) {
-                            $('.notes').html(data);
+                            $('#id_controle').html(data);
                         }
                     });
-                });
+                }
+
+                $('#id_controle').change(afficheNotes);
+                function afficheNotes() {
+                    var module = $("#module").val();
+                    var id_controle = $("#id_controle").val();
+                    $.ajax({
+                        url: 'fetch_notes.php',
+                        method: "GET",
+                        data: {
+                            module: module,
+                            id_controle : id_controle
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $('.notes').html(data);
+                            $('.notes').show();
+                        }
+                    });
+                }
+
+                $('#id_controle').hide();
+                $('#module').change(affiche);
+                function affiche() {
+                    if(!isNaN($('#module').val()))
+                        $('#id_controle').show();
+    }
             });
+
+            
 
         </script>
 

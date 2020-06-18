@@ -17,7 +17,7 @@ function controles($id){
 function fetchStudents($module)
 {
     $db = DB::getInstance();
-    $sql = "SELECT Utilisateur.nom,Utilisateur.prenom,Utilisateur.id
+    $sql = "SELECT Utilisateur.nom, Utilisateur.prenom, Utilisateur.id, Etudiant.cne
             FROM Utilisateur
             join Etudiant ON Etudiant.id = Utilisateur.id
             JOIN dispose_de ON dispose_de.id_filiere=Etudiant.id_filiere
@@ -56,5 +56,14 @@ function getSemestre()
             ORDER BY semestre";
     $resultats = $db3->query($sql, []);
     return $resultats->first();
+}
+function getMarksByControle($id_controle, $id_etudiant){
+    $db = DB::getInstance();
+    $sql = "SELECT note
+            FROM passe
+            WHERE id_controle = ?
+            AND id_etudiant = ?";
+    $resultats = $db->query($sql, [$id_controle, $id_etudiant]);
+    return $resultats->results();
 }
 ?>
