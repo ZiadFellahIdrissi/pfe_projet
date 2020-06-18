@@ -2,6 +2,7 @@
 include_once '../../core/init.php';
 ob_start();
 if (isset($_GET["cin"])) {
+    $cin=$_GET["cin"];
 ?>
     <html lang="en">
 
@@ -27,8 +28,10 @@ if (isset($_GET["cin"])) {
 
     <body class="">
         <?php
-        $sql = "SELECT username,`password`,nom,prenom from Utilisateur where id=" . $_GET["cin"];
+        $sql = "SELECT username,`password`,nom,prenom from Utilisateur where id='$cin'";
         $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+        $username=$row["username"];
+        $password=$row["password"];
         ?>
         <div class="page-wrapper">
             <div class="page-content--bge5">
@@ -50,10 +53,10 @@ if (isset($_GET["cin"])) {
                                 </div>
                                 <div class="login-form">
                                     <div class="form-group">
-                                        <input id="user" class="form-control" type="text" value="<?php if (isset($_GET["cin"])) echo $row["username"]; ?>" name="user" placeholder="Username" readonly="redonly">
+                                        <input id="user" class="form-control" type="text" value="<?php if (isset($_GET["cin"])) echo $username; ?>" name="user" placeholder="Username" readonly="redonly">
                                     </div>
                                     <div class="form-group input-group">
-                                        <input name="pass" class="form-control " id="pass" type="password" value="<?php if (isset($_GET["cin"])) echo $row["password"]; ?>" placeholder="Password" readonly="redonly">
+                                        <input name="pass" class="form-control " id="pass" type="password" value="<?php if (isset($_GET["cin"])) echo $password; ?>" placeholder="Password" readonly="redonly">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <a class="text-dark" id="icon-click">
@@ -92,6 +95,7 @@ if (isset($_GET["cin"])) {
                         input.attr("type", "password");
                 });
             });
+
             const submit = document.querySelector("#submit");
             $(document).ready(function() {
                 $("#myform").submit(function(event) {
@@ -105,7 +109,7 @@ if (isset($_GET["cin"])) {
                             },
                             uploadProgress: function(event, position, total, percentageComplete) {
                                 $(".progress-bar").width(percentageComplete + '%');
-                                // submit.style.display = "none";
+                                submit.style.display = "none";
                             },
                             success: function() {
                                 let login = document.querySelector("#login");
@@ -118,19 +122,9 @@ if (isset($_GET["cin"])) {
                             resetForm: true
                         });
                     } else
-                    if (confirm("don't you wanna change your picture")) {
-                        <?php
-                        $sql = "UPDATE Utilisateur
-                        SET `imagepath` = 'avatar.svg'
-                        WHERE id=" . $_GET["cin"];
-                        mysqli_query($conn, $sql);
-                        ?>
-                        location.href = "../login/";
-                    }
                     return false;
                 });
             });
-
 
             // const form=document.getElementById("myform");
             // const inptPict= document.getElementById("profileImage");
@@ -173,12 +167,14 @@ if (isset($_GET["cin"])) {
             const login = document.querySelector("#login");
             const profileImagee=document.querySelector("#profileDisplay");
             login.addEventListener("click", () => {
-                if (profileImagee.src === "<?php echo "http://".$_SERVER['HTTP_HOST']."/pfe_projet/img/login/avatar.svg" ?>" ) {
-                    if (confirm("do you wanna keep the default picture")) {
+                if (profileImagee.src.includes('avatar')) {
+                    if (confirm("Voulez-vous vraiment garder l'image par défaut !!!!")) {
                         <?php
+                        $User_Etudiant = new User_Etudiant();
+                        $loginEtudiant = $User_Etudiant->login($username, $password);
                         $sql = "UPDATE Utilisateur
-                        SET `imagepath` = 'avatar.svg'
-                        WHERE id=" . $_GET["cin"];
+                                SET `imagepath` = 'avatar.svg'
+                                WHERE id='$cin'";
                         mysqli_query($conn, $sql);
                         ?>
                         location.href = "../login/";

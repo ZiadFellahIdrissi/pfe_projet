@@ -107,7 +107,7 @@
                             <input type="text" name="username" class="input"
                                         value="<?php
                                                     $id = $_GET["phase2"];
-                                                    $sql = "SELECT nom, prenom from Utilisateur where id = $id";
+                                                    $sql = "SELECT nom, prenom from Utilisateur where id = '$id'";
                                                     $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
                                                     echo strtolower($row["prenom"] . "." . $row["nom"] . "-etu");
                                                 ?>" readonly="readonly">

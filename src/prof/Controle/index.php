@@ -172,7 +172,7 @@ if (!$user->isLoggedIn()) {
                     editable: true,
                     customButtons: {
                         ajouteControle: {
-                            text: 'ajoute un Controle',
+                            text: 'Ajoute un Controle',
                             click: function() {
                                 $("#addControle").modal('show');
                             }
@@ -185,7 +185,6 @@ if (!$user->isLoggedIn()) {
                     },
                     theme: true,
                     themeSystem: 'bootstrap4',
-                    themeName: 'Lux',
                     events: 'loadControles.php?id=<?php echo $id ?>',
                     selectable: true,
                     selectHelper: true,
@@ -206,9 +205,9 @@ if (!$user->isLoggedIn()) {
                         var heur_fin = $.fullCalendar.formatDate(e.end, 'HH:mm');
                         var id_controle = e.id;
                         //test de la durée du controle
-                        var d1 = new Date(dateControle+' '+heur_debut);
-                        var d2 = new Date(dateControle+' '+heur_fin);
-                        var diff = (d2.getHours()*60 + d2.getMinutes() - d1.getHours()*60 + d1.getMinutes())/60;
+                        var d1 = new Date(dateControle + ' ' + heur_debut);
+                        var d2 = new Date(dateControle + ' ' + heur_fin);
+                        var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
                         console.log(diff);
                         if (diff < 1) {
                             alert("La durée du controle doit être égale à une heure au minimum!");
@@ -260,33 +259,49 @@ if (!$user->isLoggedIn()) {
                         })
                     },
                     eventClick: function(event) {
-                        if (confirm("Vous êtes sure de supprimer cet examen !!")) {
-                            var id = event.id;
-                            $.ajax({
-                                url: 'supprimerExamen.php',
-                                type: "GET",
-                                data: {
-                                    id_controle: id
-                                },
-                                success: function() {
-                                    //modal
-                                    calendar.fullCalendar("refetchEvents");
-                                }
-                            })
+                        var dateControle = $.fullCalendar.formatDate(event.start, 'Y-MM-DD');
+                        var dateNow = GetFormattedDate();
+                        var d1 = new Date(dateControle);
+                        var d2 = new Date(dateNow);
+
+                        if (d1.getDate() <= d2.getDate()) {
+                            alert("Imposible de supprimier cette Controle");
+                            return false;
+                        } else {
+                            if (confirm("Vous êtes sure de supprimer cet examen !!")) {
+                                var id = event.id;
+                                $.ajax({
+                                    url: 'supprimerExamen.php',
+                                    type: "GET",
+                                    data: {
+                                        id_controle: id
+                                    },
+                                    success: function() {
+                                        //modal
+                                        calendar.fullCalendar("refetchEvents");
+                                    }
+                                })
+                            }
                         }
                     }
-                            
-
                 });
+                function GetFormattedDate() {
+                    var todayTime = new Date();
+                    var month = todayTime.getMonth();
+                    var day = todayTime.getDate();
+                    var year = todayTime.getFullYear();
+                    return year + "-" + month + "-" + day;
+
+                }
                 $(document).on('click', '#ajouterControle', function() {
                     var module = $("#module").val();
                     var dateControle = $("#date_controle").val();
                     var heur_debut = $("#heur_debut").val();
                     var heur_fin = $("#heur_fin").val();
                     //test de la durée du controle
-                    var d1 = new Date(dateControle+' '+heur_debut);
-                    var d2 = new Date(dateControle+' '+heur_fin);
-                    var diff = (d2.getHours()*60 + d2.getMinutes() - d1.getHours()*60 + d1.getMinutes())/60;
+                    var d1 = new Date(dateControle + ' ' + heur_debut);
+                    var d2 = new Date(dateControle + ' ' + heur_fin);
+                    var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
                     console.log(diff);
                     if (diff < 1) {
                         alert("La durée du controle doit être égale à une heure au minimum!");
@@ -316,12 +331,9 @@ if (!$user->isLoggedIn()) {
                         });
                     }
                 });
-
             });
         </script>
-
     </body>
-
     </html>
 <?php
 }

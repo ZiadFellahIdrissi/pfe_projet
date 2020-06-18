@@ -88,30 +88,40 @@ if (!$user->isLoggedIn()) {
                             <select id="module" class="form-control">
                                 <option value=''>Choisissez un Module</option>
                                 <?php
-                                    $sql = "SELECT intitule, id_module
+                                $sql = "SELECT intitule, id_module
                                             FROM Module
                                             WHERE id_enseignant = '$id'";
-                                    $resultat = $db->query($sql, [$id]);
-                                    foreach ($resultat->results() as $row) {
+                                $resultat = $db->query($sql, [$id]);
+                                foreach ($resultat->results() as $row) {
                                 ?>
-                                        <option value=<?php echo $row->id_module ?>><?php echo $row->intitule ?></option>
+                                    <option value=<?php echo $row->id_module ?>><?php echo $row->intitule ?></option>
                                 <?php
-                                    }
+                                }
                                 ?>
                             </select>
                         </div>
                         <div class="col-md-5">
                             <select id="id_controle" class="form-control">
+                                <option>
+                                    <!-- <div class="spinner-border m-5" role="status" > -->
+                                        <span class="sr-only" id="spinner2">Loading...</span>
+                                    <!-- </div> -->
+                                </option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="card-body notes shadow-lg bg-white rounded" >
-                    
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border m-5" role="status" id="spinner">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <div class="card-body notes shadow-lg bg-white rounded">
+
                 </div>
             </div>
         </div>
-                
+
         <!-- Modules -->
 
         <!-- Jquery JS-->
@@ -130,10 +140,11 @@ if (!$user->isLoggedIn()) {
         <script src="../../../layout/js/main.js "></script>
 
         <script>
-
-
             $(document).ready(function() {
+                $("#spinner").hide();
+                $("#spinner2").hide();
                 $('#module').change(fetchNotes);
+
                 function fetchNotes() {
                     $('.notes').hide();
                     var module = $("#module").val();
@@ -144,6 +155,12 @@ if (!$user->isLoggedIn()) {
                             module: module
                         },
                         dataType: "text",
+                        beforeSend: function() {
+                            $("#spinner2").show();
+                        },
+                        complete: function() {
+                            $("#spinner2").hide();
+                        },
                         success: function(data) {
                             $('#id_controle').html(data);
                         }
@@ -151,6 +168,7 @@ if (!$user->isLoggedIn()) {
                 }
 
                 $('#id_controle').change(afficheNotes);
+
                 function afficheNotes() {
                     var module = $("#module").val();
                     var id_controle = $("#id_controle").val();
@@ -159,9 +177,17 @@ if (!$user->isLoggedIn()) {
                         method: "GET",
                         data: {
                             module: module,
-                            id_controle : id_controle
+                            id_controle: id_controle
                         },
                         dataType: "text",
+                        beforeSend: function() {
+                            $("#spinner").show();
+                            $(".notes").hide();
+                        },
+                        complete: function() {
+                            $("#spinner").hide();
+                            $(".notes").show();
+                        },
                         success: function(data) {
                             $('.notes').html(data);
                             $('.notes').show();
@@ -171,14 +197,12 @@ if (!$user->isLoggedIn()) {
 
                 $('#id_controle').hide();
                 $('#module').change(affiche);
+
                 function affiche() {
-                    if(!isNaN($('#module').val()))
+                    if (!isNaN($('#module').val()))
                         $('#id_controle').show();
-    }
+                }
             });
-
-            
-
         </script>
 
     </body>
