@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 17, 2020 at 12:16 AM
+-- Generation Time: Jun 18, 2020 at 03:50 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -59,7 +59,7 @@ CREATE TABLE `assiste` (
 
 CREATE TABLE `Controle` (
   `id_controle` int(11) NOT NULL,
-  `type` varchar(8) NOT NULL,
+  `type` varchar(10) NOT NULL,
   `date` date NOT NULL,
   `h_debut` time NOT NULL,
   `h_fin` time NOT NULL,
@@ -71,10 +71,12 @@ CREATE TABLE `Controle` (
 --
 
 INSERT INTO `Controle` (`id_controle`, `type`, `date`, `h_debut`, `h_fin`, `id_module`) VALUES
-(1, 'controle', '2020-06-17', '01:30:00', '03:00:00', 16),
-(2, 'controle', '2020-06-18', '03:00:00', '04:00:00', 16),
-(3, 'controle', '2020-06-17', '05:00:00', '06:00:00', 16),
-(4, 'controle', '2020-06-19', '06:00:00', '08:00:00', 16);
+(89, 'controle', '2020-06-19', '08:00:00', '10:00:00', 13),
+(90, 'controle', '2020-06-20', '08:00:00', '09:00:00', 13),
+(91, 'controle', '2020-06-17', '05:00:00', '06:00:00', 17),
+(92, 'controle', '2020-06-16', '04:00:00', '05:00:00', 17),
+(93, 'controle', '2020-06-21', '06:00:00', '08:00:00', 17),
+(94, 'controle', '2020-06-15', '08:00:00', '09:00:00', 13);
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,8 @@ INSERT INTO `Etudiant` (`id`, `somme`, `cne`, `id_filiere`) VALUES
 ('69420', NULL, 'K661518440', 3),
 ('770159', NULL, 'R100174009', 4),
 ('9785', NULL, 'M007600088', 3),
-('WA111510', NULL, 'F130000116', 1);
+('WA111510', NULL, 'F130000116', 1),
+('WA15556666', NULL, 'F13255444444', 4);
 
 -- --------------------------------------------------------
 
@@ -195,6 +198,28 @@ CREATE TABLE `passe` (
   `id_controle` int(11) NOT NULL,
   `note` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `passe`
+--
+
+INSERT INTO `passe` (`id_etudiant`, `id_controle`, `note`) VALUES
+('1', 91, 5),
+('1', 92, 15),
+('1', 94, 4),
+('124', 91, 5),
+('124', 92, 18),
+('124', 94, 5),
+('12555', 91, 6),
+('12555', 92, 1),
+('12555', 94, 5),
+('14523', 91, 1),
+('14523', 94, 6),
+('55', 91, 8),
+('55', 92, 2),
+('55', 94, 1),
+('WA111510', 91, 2),
+('WA111510', 94, 8);
 
 -- --------------------------------------------------------
 
@@ -301,12 +326,13 @@ INSERT INTO `Utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `password`, 
 ('18236', 'Marwani', 'Nourdine', '1960-05-06', '1234', '0781006419', 'Mar_Nourdine@fsac.ac.ma', 'ens1', ''),
 ('2', 'Azize', 'Raiss', '1976-05-11', '1234', '0154899710', 'aziz_raiss@fsac.ma', 'res0', ''),
 ('50', 'Meriem', 'El mandouri', '2020-05-07', '1234', '0654112100', 'meriem_elmandouri@fsaccom', 'res1', ''),
-('55', 'Fellah-idrissi', 'Ziad', '1999-05-06', '1234', '0693986210', 'ziad.fe.zf@gmail.com', 'ziad.fellah-idrissi-etu', '5edfcaad1eac00.20268770.jpg'),
+('55', 'Fellah-idrissi', 'Ziad', '1999-05-06', '1234', '0693986210', 'ziad.fe.zf@gmail.com', 'ziad.fellah-idrissi-etu', '5ee9464fa4b880.43999751.png'),
 ('69', 'Mohamed', 'Abghoure', '2020-05-18', '1234', '0698521410', 'mohamed@fsac.ma', 'res2', ''),
 ('69420', 'Karim', 'Sinbati', '2020-05-14', 'karim147852', '0622224015', 'sinbati_01_karim@gmail.com', 'Sinbati.Karim-etu', 'avatar.svg'),
 ('770159', 'leyla', 'marin', '1999-06-09', 'ziad', '0685412500', 'marina_leyla@gmail.com', 'marin.leyla-etu', '5ee585f3687317.07377185.jpg'),
 ('9785', 'Choroq', 'Houda', '1999-12-15', 'houda12358', '0687595410', 'Houda@gmail.com', 'Houda.Choroq-etu', 'avatar.svg'),
-('WA111510', 'rabii', 'sissi', '1999-12-02', 'ziad', '06451098', 'sisi@rabi.com', 'sisi.rabi3-etu', 'avatar.svg');
+('WA111510', 'rabii', 'sissi', '1999-12-02', 'ziad', '06451098', 'sisi@rabi.com', 'sisi.rabi3-etu', 'avatar.svg'),
+('WA15556666', 'Yahya', 'Khalid', '2020-06-25', NULL, '061115', NULL, NULL, 'avatar.svg');
 
 --
 -- Indexes for dumped tables
@@ -413,7 +439,7 @@ ALTER TABLE `Utilisateur`
 -- AUTO_INCREMENT for table `Controle`
 --
 ALTER TABLE `Controle`
-  MODIFY `id_controle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_controle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `Filiere`
