@@ -23,7 +23,7 @@ $id_controle = $_GET['id_controle'];
                     <td><?php echo $myRow->id ?></td>
                     <td><?php echo $myRow->cne ?></td>
                     <td><?php echo $myRow->prenom . ' ' . $myRow->nom ?></td>
-                    <td>
+                    <td style="width: 15%;">
                         <?php
                         $noteExamFinale = -1;
                         $markFinale = getMarksByControle($id_controle, $myRow->id);

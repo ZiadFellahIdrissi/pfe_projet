@@ -196,11 +196,15 @@ if (!$user->isLoggedIn()) {
                 }
 
                 $('#id_controle').hide();
+
                 $('#module').change(affiche);
 
                 function affiche() {
-                    if (!isNaN($('#module').val()))
+                    console.log($('#module').val());
+                    if ($('#module').val()!="")
                         $('#id_controle').show();
+                    else
+                        $('#id_controle').hide();
                 }
             });
         </script>
