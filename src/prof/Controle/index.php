@@ -87,17 +87,17 @@ if (!$user->isLoggedIn()) {
         </div>
 
         <!-- Calendar-->
-        <section class="statistic statistic2 ">
+        <section class="statistic statistic2 calendareContainer">
             <div class="container ">
                 <div class="container ">
                     <div class="container ">
                         <div class="au-card shadow-lg bg-white rounded" style=" border:1px solid black">
                             <div id="calendar">
-                                <div class="d-flex justify-content-center">
+                                <!-- <div class="d-flex justify-content-center">
                                     <div class="spinner-border m-5" role="status" id="spinner0">
                                         <span class="sr-only">Loading...</span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
@@ -186,12 +186,14 @@ if (!$user->isLoggedIn()) {
             $(document).ready(function() {
                 var calendar = $('#calendar').fullCalendar({
                     loading: function(bool) {
-                        $('#spinner0').show();
+                        // $('#spinner0').show();
                         $('#spinner1').show();
+                        $('.calendareContainer').hide();
                     },
                     eventAfterAllRender: function(view) {
-                        $('#spinner0').hide();
+                        // $('#spinner0').hide();
                         $('#spinner1').hide();
+                        $('.calendareContainer').show();
                     },
                     locale: 'fr-ch',
                     editable: true,
