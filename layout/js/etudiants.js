@@ -57,7 +57,6 @@ $(document).ready(function() {
 $(document).ready(function() {
     $(document).on('click', '.Open_modifierUnEtudiant', function() {
         var cin = $(this).attr("id");
-        console.log(cin);
         $('#oldCin').val(cin);
         $.ajax({
             url: "fetching_students_for_editing.php",

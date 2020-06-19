@@ -23,9 +23,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../Controle/">
                         <i class="fas fa-user-graduate"></i>
-                        <span class="bot-line"></span>Etudiants
+                        <span class="bot-line"></span>Controles
                     </a>
                 </li>
                 <li class="has-sub">
@@ -55,7 +55,7 @@
                     </ul>
                 </li>
                 <li class="has-sub">
-                    <a href="./Module/">
+                    <a href="../Module/">
                         <i class="fab fa-stack-overflow"></i>
                         <span class="bot-line"></span>Modules
                     </a>
@@ -108,7 +108,7 @@
         <div class="account-wrap">
             <div class="account-item account-item--style2 clearfix js-item-menu">
                 <div class="image">
-                    <img src="../../img/Dashboard/profile.svg " alt="<?php echo $nom . ' ' . $prenom ?>" />
+                    <img src="../../../img/Dashboard/profile.svg " alt="<?php echo $nom . ' ' . $prenom ?>" />
                 </div>
                 <div class="content">
                     <a class="js-acc-btn" href="#"><?php echo $nom . ' ' . $prenom ?></a>
@@ -117,7 +117,7 @@
                     <div class="info clearfix">
                         <div class="image">
                             <a href="#">
-                                <img src="../../img/Dashboard/profile.svg " alt="<?php echo $nom . ' ' . $prenom ?>" />
+                                <img src="../../../img/Dashboard/profile.svg " alt="<?php echo $nom . ' ' . $prenom ?>" />
                             </a>
                         </div>
                         <div class="content">

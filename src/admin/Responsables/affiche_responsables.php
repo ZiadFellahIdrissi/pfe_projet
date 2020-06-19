@@ -5,7 +5,7 @@
     $sql = "SELECT *
             FROM Personnel
             JOIN Utilisateur ON Personnel.id = Utilisateur.id
-            JOIN Filiere ON Personnel.id = Filiere.id_responsable               ";
+            JOIN Filiere ON Personnel.id = Filiere.id_responsable";
 
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);

@@ -28,7 +28,7 @@
         mysqli_query($conn , "UPDATE `Module` 
 							  SET `intitule` = '$intitule' ,
 								  `heures_sem` = $heures,
-								  `id_enseignant` = $id_enseignant,
+								  `id_enseignant` = '$id_enseignant',
 								  `id_semestre` =$Mysemester
 							  WHERE `Module`.`id_module` = $id_module");
 

@@ -9,15 +9,15 @@
             <div class="header__navbar">
                 <ul class="list-unstyled">
                     <li class="has-sub">
-                        <a href="#">
+                        <a href="../pages/">
                             <i class="fas fa-tachometer-alt"></i>Dashboard
                             <span class="bot-line"></span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="../Controle/">
                             <i class="fas fa-user-graduate"></i>
-                            <span class="bot-line"></span>Etudiants
+                            <span class="bot-line"></span>Controles
                         </a>
                     </li>
                     <li class="has-sub">
@@ -26,10 +26,10 @@
                             <span class="bot-line"></span>Notes</a>
                         <ul class="header3-sub-list list-unstyled">
                             <li>
-                                <a href="">Afficher Notes</a>
+                                <a href="../Notes/">Afficher Notes</a>
                             </li>
                             <li>
-                                <a href="">Affecter Notes</a>
+                                <a href="../Notes/affecterNote.php">Affecter Notes</a>
                             </li>
                         </ul>
                     </li>
@@ -47,7 +47,7 @@
                         </ul>
                     </li>
                     <li class="has-sub">
-                        <a href="./Module/">
+                        <a href="../Module/">
                             <i class="fab fa-stack-overflow"></i>
                             <span class="bot-line"></span>Modules
                         </a>
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="account-dropdown__footer">
-                                <a href="logout.php">
+                                <a href="../pages/logout.php">
                                     <i class="zmdi zmdi-power"></i>Logout</a>
                             </div>
                         </div>

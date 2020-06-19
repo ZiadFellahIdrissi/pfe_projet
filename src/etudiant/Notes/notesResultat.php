@@ -3,42 +3,17 @@
     <?php
     function sqlStatment($semester)
     {
-        $sql = "SELECT module.id_module,intitule FROM Module
-                    join dispose_de on dispose_de.id_module=Module.id_module
-                    join semestre on module.id_semestre=semestre.id_semestre
-                    where semestre.semestre='$semester'
-                    and dispose_de.id_filiere in (select id_filiere 
-                                                    from Etudiant 
-                                                        where id=?)";
+        $sql = "SELECT Module.id_module,intitule
+                FROM Module
+                JOIN dispose_de ON Module.id_module = dispose_de.id_module
+                JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
+                WHERE Semestre.semestre='$semester'
+                AND dispose_de.id_filiere = (SELECT id_filiere 
+                                              FROM Etudiant 
+                                              WHERE id = ?      )";
         return $sql;
     }
-    function getMarks($type, $module, $etudiant)
-    {
-        $db1 = DB::getInstance();
-        $sql = "SELECT note FROM passe
-                            join controle on controle.id_controle=passe.id_controle
-                            where passe.id_etudiant=?
-                            and controle.type=?
-                            and controle.id_module=?
-                            order by controle.date";
-
-        $resultats = $db1->query($sql, [$etudiant, $type, $module]);
-        return $resultats->results();
-    }
-    function getCoiffissient($module)
-    {
-        $db2 = DB::getInstance();
-        $sql = "SELECT * from dispose_de where id_module=?";
-        $resultats = $db2->query($sql, [$module]);
-        return $resultats->first();
-    }
-    function getSemestre()
-    {
-        $db3 = DB::getInstance();
-        $sql = "SELECT date_fin from semestre order by semestre";
-        $resultats = $db3->query($sql, []);
-        return $resultats->first();
-    }
+    include_once '../fonctions/tools.function.php';
     ?>
     <div class="table-responsive-sm">
         <table class="table table-hover">
@@ -50,17 +25,14 @@
                     <th>Moyenne Generale</th>
                 </tr>
             </thead>
-            <tr style="background: rgba(0, 0, 0, 0.1); font-weight: bold; font-size:large;">
-                <td>Semestre 1</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <tbody>
+                <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
+                    <td colspan=4>1ère Semestre</td>
+                </tr>
             <?php
-            $db->query(sqlStatment('Semestre 1'), [$id]);
+            $db->query(sqlStatment('1ere Semestre'), [$id]);
             foreach ($db->results() as $row) {
             ?>
-                <tbody>
                     <tr>
                         <td><?php echo $row->intitule ?></td>
 
@@ -118,14 +90,11 @@
                 echo '</table>';
             } else {
                 ?>
-                    <tr style="background: rgba(0, 0, 0, 0.1); font-weight: bold; font-size:large;">
-                        <td>Semestre 2</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
+                        <td colspan=4>2ème Semestre</td>
                     </tr>
                     <?php
-                    $db->query(sqlStatment('Semestre 2'), [$id]);
+                    $db->query(sqlStatment('2eme Semestre'), [$id]);
                     foreach ($db->results() as $row0) {
                     ?>
                         <tr>
@@ -186,4 +155,3 @@
 <div style="text-align: right; margin-right:2%; margin-top:1%;">
     <button type="button" class="btn btn-outline-info imprimer "><span><i class="fa fa-print"></i></span> Imprimer </button>
 </div>
-<!-- btn btn-outline-success -->

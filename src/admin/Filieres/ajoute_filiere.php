@@ -15,11 +15,11 @@
         }
 
         mysqli_query($conn, "INSERT INTO `Filiere`(`nom_filiere`, `id_responsable`, `prix_formation`)
-                                VALUES ('$nom', $resp, $prix)");
+                                VALUES ('$nom', '$resp', $prix)");
                                 
         mysqli_query($conn, "UPDATE Personnel
                                 SET role = 'responsable'
-                                WHERE id = $resp        ");
+                                WHERE id = '$resp'        ");
 
         header('location: ./?inserted');
     }
