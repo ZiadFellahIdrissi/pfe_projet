@@ -12,7 +12,6 @@ if (!$user->isLoggedIn()) {
 ?>
     <html lang="en">
 
-
     <head>
         <!-- Required meta tags-->
         <meta charset="UTF-8">
@@ -34,9 +33,9 @@ if (!$user->isLoggedIn()) {
         <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
         <link href="../../../layout/css/datatables.min.css" rel="stylesheet" type="text/css" media="all" />
+
         <!-- Main CSS-->
         <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
-
     </head>
 
     <body>
@@ -49,8 +48,6 @@ if (!$user->isLoggedIn()) {
         <?php include '../pages/headerPhone.php' ?>
         <!-- END HEADER MOBILE -->
 
-        <!-- PAGE CONTENT-->
-        <!-- <div class="page-content--bgf7"> -->
         <!-- BREADCRUMB-->
         <section class="au-breadcrumb2">
             <div class="container">
@@ -79,11 +76,13 @@ if (!$user->isLoggedIn()) {
         </section>
         <!-- END BREADCRUMB-->
 
-        <!-- MODULES-->
+        <!-- TABLEAU DE GESTION DES NOTES -->
         <div class="container">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
+
+                        <!-- MODULES-->
                         <div class="col-md-5">
                             <select id="module" class="form-control">
                                 <option value=''>Choisissez un Module</option>
@@ -100,30 +99,36 @@ if (!$user->isLoggedIn()) {
                                 ?>
                             </select>
                         </div>
+
+                        <!-- TYEPE D'EXAMENS -->
                         <div class="col-md-5">
                             <select id="id_controle" class="form-control">
                                 <option>
-                                    <!-- <div class="spinner-border m-5" role="status" > -->
-                                        <span class="sr-only" id="spinner2">Loading...</span>
-                                    <!-- </div> -->
+                                    <span class="sr-only" id="spinner2">Loading...</span>
                                 </option>
                             </select>
                         </div>
+
                     </div>
                 </div>
+
+                <!-- SPINNER -->
                 <div class="d-flex justify-content-center">
                     <div class="spinner-border m-5" role="status" id="spinner">
                         <span class="sr-only">Loading...</span>
                     </div>
                 </div>
+
+                <!-- NOTES -->
                 <div class="card-body notes shadow-lg bg-white rounded">
 
                 </div>
+
             </div>
         </div>
+        <!-- FIN TABLEAU DE GESTION DES NOTES -->
 
-        <!-- Modules -->
-
+        
         <!-- Jquery JS-->
         <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
 
@@ -138,6 +143,7 @@ if (!$user->isLoggedIn()) {
 
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
+        <!-- <script scr="../../../layout/js/espace_enseignant/gestionDesNotes.js"></script> -->
 
         <script>
             $(document).ready(function() {
@@ -200,6 +206,7 @@ if (!$user->isLoggedIn()) {
                 $('#module').change(affiche);
 
                 function affiche() {
+                    if (!isNaN($('#module').val()))
                     console.log($('#module').val());
                     if ($('#module').val()!="")
                         $('#id_controle').show();
@@ -210,6 +217,5 @@ if (!$user->isLoggedIn()) {
         </script>
 
     </body>
-
     </html>
 <?php } ?>

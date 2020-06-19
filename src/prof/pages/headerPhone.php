@@ -16,8 +16,8 @@
     <nav class="navbar-mobile">
         <div class="container-fluid">
             <ul class="navbar-mobile__list list-unstyled">
-                <li class="has-sub">
-                    <a href="#">
+                <li>
+                    <a href="../pages/">
                         <i class="fas fa-tachometer-alt"></i>Dashboard
                         <span class="bot-line"></span>
                     </a>
@@ -28,18 +28,11 @@
                         <span class="bot-line"></span>Controles
                     </a>
                 </li>
-                <li class="has-sub">
-                    <a href="#">
+                <li>
+                    <a href="../Notes/">
                         <i class="fas fa-copy"></i>
-                        <span class="bot-line"></span>Notes</a>
-                    <ul class="header3-sub-list list-unstyled">
-                        <li>
-                            <a href="">Afficher Notes</a>
-                        </li>
-                        <li>
-                            <a href="">Affecter Notes</a>
-                        </li>
-                    </ul>
+                        <span class="bot-line"></span>Gestion Des Notes
+                    </a>
                 </li>
                 <li class="has-sub">
                     <a href="#">
@@ -54,7 +47,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="has-sub">
+                <li>
                     <a href="../Module/">
                         <i class="fab fa-stack-overflow"></i>
                         <span class="bot-line"></span>Modules
