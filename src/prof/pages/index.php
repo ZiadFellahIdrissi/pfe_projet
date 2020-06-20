@@ -1,6 +1,7 @@
 <?php
 include_once '../../../core/init.php';
 $user = new User_Prof();
+$db = DB::getInstance();
 if (!$user->isLoggedIn()) {
     header('Location: ../../login');
 } else {
@@ -10,7 +11,6 @@ if (!$user->isLoggedIn()) {
     $id     = $user->data()->id;
 ?>
     <html lang="en">
-
     <head>
         <!-- Required meta tags-->
         <meta charset="UTF-8">
@@ -31,9 +31,9 @@ if (!$user->isLoggedIn()) {
         <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
         <!-- Main CSS-->
         <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
-
     </head>
 
     <body>
@@ -57,12 +57,9 @@ if (!$user->isLoggedIn()) {
                                 <span class="au-breadcrumb-span">You are here:</span>
                                 <ul class="list-unstyled list-inline au-breadcrumb__list">
                                     <li class="list-inline-item active">
-                                        <a href="#">Home</a>
+                                        <a href="./">Dashboard</a>
                                     </li>
-                                    <li class="list-inline-item seprate">
-                                        <span>/</span>
-                                    </li>
-                                    <li class="list-inline-item">Dashboard</li>
+
                                 </ul>
                             </div>
                             <form class="au-form-icon--sm" action="" method="post">
@@ -105,8 +102,12 @@ if (!$user->isLoggedIn()) {
                 <div class="row">
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--green">
-                            <h2 class="number">10,368</h2>
-                            <span class="desc">test</span>
+                            <h2 class="number">
+                                <?php
+                                echo $db->query("SELECT id_module from module where id_enseignant=?", [$id])->count();
+                                ?>
+                            </h2>
+                            <span class="desc">Modules</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-account-o"></i>
                             </div>
@@ -141,9 +142,8 @@ if (!$user->isLoggedIn()) {
                     </div>
                 </div>
             </div>
-        </section>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+        </section> <br>
+        <!--END STATISTIC-->
 
 
         <!-- Jquery JS-->
@@ -158,7 +158,6 @@ if (!$user->isLoggedIn()) {
 
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
-
     </body>
 
     </html>

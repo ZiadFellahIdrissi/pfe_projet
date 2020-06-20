@@ -20,18 +20,11 @@
                             <span class="bot-line"></span>Controles
                         </a>
                     </li>
-                    <li class="has-sub">
-                        <a href="#">
+                    <li>
+                        <a href="../Notes/">
                             <i class="fas fa-copy"></i>
-                            <span class="bot-line"></span>Notes</a>
-                        <ul class="header3-sub-list list-unstyled">
-                            <li>
-                                <a href="../Notes/">Afficher Notes</a>
-                            </li>
-                            <li>
-                                <a href="../Notes/affecterNote.php">Affecter Notes</a>
-                            </li>
-                        </ul>
+                            <span class="bot-line"></span>Gestion Des Notes
+                        </a>
                     </li>
                     <li class="has-sub">
                         <a href="#">

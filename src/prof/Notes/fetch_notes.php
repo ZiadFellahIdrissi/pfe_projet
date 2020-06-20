@@ -23,7 +23,7 @@ $id_controle = $_GET['id_controle'];
                     <td><?php echo $myRow->id ?></td>
                     <td><?php echo $myRow->cne ?></td>
                     <td><?php echo $myRow->prenom . ' ' . $myRow->nom ?></td>
-                    <td style="width: 15%;">
+                    <td style="width:15%">
                         <?php
                         $noteExamFinale = -1;
                         $markFinale = getMarksByControle($id_controle, $myRow->id);
@@ -41,7 +41,6 @@ $id_controle = $_GET['id_controle'];
     </table>
 </div>
 <script>
-
     $(document).ready(function() {
         $('.mydatatable').Tabledit({
             url: 'editNotes.php?id_controle=<?php echo $id_controle; ?>&module=<?php echo $module; ?>',
@@ -50,22 +49,27 @@ $id_controle = $_GET['id_controle'];
             hideIdentifier: true,
             columns: {
                 identifier: [0, 'CIN'],
-                editable: [[3, 'moyenne']]
+                editable: [
+                    [3, 'moyenne']
+                ]
             }
         });
 
         $('#del').click(function() {
-            $.ajax({
-                url: 'deleteNotes.php?id_controle=<?php echo $id_controle; ?>',
-                method: "GET",
-                dataType: "text",
-                success: function(data) {
-                    window.location.reload(false);
-                }
-            });
+            if (!confirm("vous avez sure peux suprimer tout les notes")) {
+                return false;
+            } else {
+                $.ajax({
+                    url: 'deleteNotes.php?id_controle=<?php echo $id_controle; ?>',
+                    method: "GET",
+                    dataType: "text",
+                    success: function(data) {
+                        window.location.reload(false);
+                    }
+                });
+            }
         });
     });
-
 </script>
 <script src="../../../layout/js/jquery.dataTables.min.js"></script>
 <script>
