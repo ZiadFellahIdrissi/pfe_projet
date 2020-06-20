@@ -23,57 +23,51 @@ if (isset($_GET["cin"])) {
         <link href="../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
         <!-- Main CSS-->
         <link href="../../layout/css/theme.css" rel="stylesheet" media="all">
+        <link rel="stylesheet" type="text/css" href="../../layout/css/welcome.css">
     </head>
 
 
-    <body class="">
+    <body>
         <?php
         $sql = "SELECT username,`password`,nom,prenom from Utilisateur where id='$cin'";
         $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
         $username=$row["username"];
         $password=$row["password"];
         ?>
-        <div class="page-wrapper">
-            <div class="page-content--bge5">
-                <div class="container">
-                    <div class="login-wrap">
-                        <div class="login-content">
-                            <form id="myform" method="POST" action="changePicture.php" enctype="multipart/form-data">
-                                <div class="login-logo">
-                                    <div class="progress" style="display: none;">
-                                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <a>
-                                        <img type="submit" src="../../img/login/avatar.svg" onclick="chooseMyPicture();" id="profileDisplay" alt="etudiant" style="border-radius: 50%; width:230px; height:220px;">
-                                    </a>
-                                    <input type="file" name="file" id="profileImage" onchange="displayImage(this)" style="display: none;">
-                                    <br>
-                                    <br>
-                                    <h2 class="title">Bienvenue, <?php echo strtoupper($row["nom"]) . ' ' . $row["prenom"]; ?></h2>
-                                </div>
-                                <div class="login-form">
-                                    <div class="form-group">
-                                        <input id="user" class="form-control" type="text" value="<?php if (isset($_GET["cin"])) echo $username; ?>" name="user" placeholder="Username" readonly="redonly">
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <input name="pass" class="form-control " id="pass" type="password" value="<?php if (isset($_GET["cin"])) echo $password; ?>" placeholder="Password" readonly="redonly">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <a class="text-dark" id="icon-click">
-                                                    <i class="fa fa-eye" id="icon"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" name="cin" value="<?php if (isset($_GET["cin"])) echo $_GET["cin"]; ?>">
-                                    <input class="au-btn au-btn--block au-btn--green m-b-20" name="logindirect" type="submit" id="submit" value="Ok pour cette Photo" style="font-weight: bold; display:none;">
-                                    <input class="au-btn au-btn--block au-btn--blue m-b-20" id="login" type="button" value="Cliquer ici pour acceder a votre compte " style="font-weight: bold;">
-                            </form>
+        <div class="login-wrap">
+                <form id="myform" method="POST" action="changePicture.php" enctype="multipart/form-data">
+                    <div class="login-logo">
+                        <br>
+                        <div class="progress" style="display: none;">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
+                        <br>
+                        <img src="../../img/login/avatar.svg" id="profileDisplay" style="border-radius: 50%; width:230px; height:220px;">
+                        <img type="submit" src="../../img/signup/modify.png" id="changePicture" onclick="chooseMyPicture();" title="Changer Votre photo de profile">
+                        <input type="file" name="file" id="profileImage" onchange="displayImage(this)" style="display: none;">
+                        <br>
+                        <br>
+                        <h3>Bienvenue, <?php echo strtoupper($row["nom"]) . ' ' . $row["prenom"]; ?></h3>
+                        <p>Voici votre crédentiels dont vous utiliserez dorenavant afin de s'authentifier à cet application.</p>
                     </div>
-                </div>
+                    <div class="login-form">
+                        <div class="form-group">
+                            <input id="user" class="form-control" type="text" value="<?php if (isset($_GET["cin"])) echo $username; ?>" name="user" placeholder="Username" readonly="redonly">
+                        </div>
+                        <div class="form-group input-group">
+                            <input name="pass" class="form-control " id="pass" type="password" value="<?php if (isset($_GET["cin"])) echo $password; ?>" placeholder="Password" readonly="redonly">
+                            <div class="input-group-prepend" id="icon-click">
+                                <div class="input-group-text">
+                                    <a class="text-dark">
+                                        <i class="fa fa-eye" id="icon"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="cin" value="<?php if (isset($_GET["cin"])) echo $_GET["cin"]; ?>">
+                        <input type="submit" name="logindirect" class="btn login" id="submit" value="Connexion">
+                </form>
             </div>
-        </div>
         </div>
         <script type="text/javascript" src="../../layout/js/jquery-3.4.1.min.js"></script>
         <!-- Bootstrap JS-->
@@ -96,7 +90,6 @@ if (isset($_GET["cin"])) {
                 });
             });
 
-            const submit = document.querySelector("#submit");
             $(document).ready(function() {
                 $("#myform").submit(function(event) {
                     if ($("#profileImage").val()) {
@@ -108,16 +101,14 @@ if (isset($_GET["cin"])) {
                                 $(".progress-bar").width('0%');
                             },
                             uploadProgress: function(event, position, total, percentageComplete) {
+                                $('.login').hide();
                                 $(".progress-bar").width(percentageComplete + '%');
-                                submit.style.display = "none";
                             },
                             success: function() {
-                                let login = document.querySelector("#login");
-                                login.style.display = "block";
-                                submit.style.display = "none";
+
                             },
                             error: function() {
-                                alert("wait a min there is an error");
+                                alert("Une erreur s'est produite.");
                             },
                             resetForm: true
                         });
@@ -126,25 +117,7 @@ if (isset($_GET["cin"])) {
                 });
             });
 
-            // const form=document.getElementById("myform");
-            // const inptPict= document.getElementById("profileImage");
-            // const progresse=document.querySelector(".progress-bar");
-
-            // form.addEventListener("submit",uploadPictuter);
-
-            // function uploadPictuter(e){
-            //     e.preventDefault();
-            //     const xhr = new XMLHttpRequest();
-            //     xhr.open("POST","changePicture.php");
-            //     xhr.upload.addEventListener("progress" , e => {
-            //         const percent = e.lengthComputable ? (e.loaded / e.total)*100 : 0;
-            //         progresse.style.width = percent.toFixed(2)+'%';
-            //         progresse.textContent = percent.toFixed(2)+'%';
-            //     });
-            //     xhr.setRequestHeader("Content-Type", "multipart/form-data");
-            //     xhr.send(new FormData(form));
-            //     // alert("done");
-            // }
+            const login = document.querySelector(".login");
 
             function chooseMyPicture() {
                 document.querySelector("#profileImage").click();
@@ -155,34 +128,28 @@ if (isset($_GET["cin"])) {
                     var reader = new FileReader();
                     reader.onload = function(event) {
                         document.querySelector("#profileDisplay").setAttribute('src', event.target.result);
-                        let submit = document.querySelector("#submit");
-                        let login = document.querySelector("#login");
-                        submit.style.display = "block";
-                        login.style.display = "none";
-
+                        event.preventDefault();
                     }
                     reader.readAsDataURL(event.files[0]);
                 }
             }
-            const login = document.querySelector("#login");
-            const profileImagee=document.querySelector("#profileDisplay");
+
             login.addEventListener("click", () => {
-                if (profileImagee.src.includes('avatar')) {
-                    if (confirm("Voulez-vous vraiment garder l'image par défaut !!!!")) {
+                if (document.querySelector("#profileDisplay").src.includes('avatar')) {
+                    if (confirm("Voulez-vous utiliser l'image par défaut?")) {
                         <?php
-                        $User_Etudiant = new User_Etudiant();
-                        $loginEtudiant = $User_Etudiant->login($username, $password);
-                        $sql = "UPDATE Utilisateur
-                                SET `imagepath` = 'avatar.svg'
-                                WHERE id='$cin'";
-                        mysqli_query($conn, $sql);
+                            $User_Etudiant = new User_Etudiant();
+                            $loginEtudiant = $User_Etudiant->login($username, $password);
+                            $sql = "UPDATE Utilisateur
+                                    SET `imagepath` = 'avatar.svg'
+                                    WHERE id='$cin'";
+                            mysqli_query($conn, $sql);
                         ?>
                         location.href = "../login/";
                     }
                 } else {
                     location.href = "../login/";
                 }
-
             });
         </script>
 

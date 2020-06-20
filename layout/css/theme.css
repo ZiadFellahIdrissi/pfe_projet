@@ -333,7 +333,6 @@ section {
 
 .login-wrap {
     max-width: 540px;
-    padding-top: 8vh;
     margin: 0 auto;
 }
 
@@ -2158,7 +2157,7 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background: #365cad;
+    background: #393939;
     padding: 0 35px;
 }
 
@@ -2602,7 +2601,7 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    height: 76px;
+    height: 75px;
     position: -webkit-sticky;
     position: sticky;
     top: 0;

@@ -83,7 +83,7 @@
                     <?php
                     }
                     ?>
-                    <input type="submit" class="btn" name="login" value="Connexion">
+                    <input type="submit" class="btn" name="login" value="Soumettre">
                     <span href="#">Compte déja activé? <a href="../login.php">Connectez-vous</a></span>
                     <br>
                 </form>
@@ -154,7 +154,7 @@
                     }
                     ?>
                     <input type="text" name="cin" value="<?php echo $_GET['phase2'] ?>" hidden>
-                    <input type="submit" class="btn" name="login" value="Connexion">
+                    <input type="submit" class="btn" name="login" value="Soumettre">
                     <br>
                 </form>
             </div>
