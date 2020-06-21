@@ -66,4 +66,16 @@ function getMarksByControle($id_controle, $id_etudiant){
     $resultats = $db->query($sql, [$id_controle, $id_etudiant]);
     return $resultats->results();
 }
+function getPersonInfo($id){
+    $db = DB::getInstance();
+    $sql = "SELECT * from Utilisateur where id=?";
+    $resultats = $db->query($sql, [$id]);
+    return $resultats->first();
+}
+function getStudentsInfo($id){
+    $db = DB::getInstance();
+    $sql = "SELECT cne,nom_filiere from Etudiant Join Filiere on Etudiant.id_filiere=Filiere.id_filiere where id=?";
+    $resultats = $db->query($sql, [$id]);
+    return $resultats->first();
+}
 ?>

@@ -124,11 +124,6 @@
         //end signup
 
         public function setPassword($cin, $password){
-            // if($cin && $password){
-            //     $data=$this->_db->getPDO()->query("UPDATE Utilisateur
-            //                                         SET password = '$password'
-            //                                         WHERE id = '$cin'");
-            // }
             if($cin && $password){
                 $data=$this->_db->query("UPDATE Utilisateur
                                             SET `password` = ?

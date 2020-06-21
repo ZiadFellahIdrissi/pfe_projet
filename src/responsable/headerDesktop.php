@@ -28,26 +28,22 @@
                     </li>
                     <li class="has-sub">
                         <a href="#">
-                            <i class="fas fa-university"></i>
-                            <span class="bot-line"></span>test</a>
-                        <ul class="header3-sub-list list-unstyled">
-                            <li>
-                                <a href="">test</a>
-                            </li>
-                            <li>
-                                <a href="">test</a>
-                            </li>
-                            <li>
-                                <a href="">test</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a href="#">
                             <i class="fab fa-stack-overflow"></i>
                             <span class="bot-line"></span>Modules
                         </a>
                     </li>
+                    <?php
+                    if ($user->data()->role == 'responsable') {
+                    ?>
+                        <li>
+                            <a href="../prof/pages">
+                                <i class="fab fa-stack-overflow"></i>
+                                <span class="bot-line"></span>Esapce Enseignant
+                            </a>
+                        </li>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
             <div class="header__tool">

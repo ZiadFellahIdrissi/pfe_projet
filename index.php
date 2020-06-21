@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,11 +26,24 @@
     font-weight: 300;
     text-transform: capitalize;
   }
+
+  #font {
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: 0.028em;
+    font-style: italic;
+  }
+
+  #hrStyling {
+    width: 40%;
+    text-align: left;
+    margin-left: 0
+  }
 </style>
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top ">
+    <nav class="navbar navbar-expand-md navbar-light">
       <a class="navbar-brand" href="#">Our Logo</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,15 +52,15 @@
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
+          <!-- <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">Test</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Test</a>
-          </li>
+          </li> -->
           <li class="nav-item text-nowrap ">
             <a class="btn btn btn-outline-dark" href="./src/admin/pages/login.php">Espace Admin</a>
           </li>
@@ -66,23 +80,53 @@
     <div class="container">
       <div class="header-content">
         <div class="row">
-          <div class="col-lg-6">
-            <div style="margin-top: 150px;"></div>
+          <div class="col-lg-7" style="text-align: center;">
+            <div style="margin-top: 80px;"></div>
             <h1>Nouveau ici?</h1>
-            <p>Si vous êtes nouveau ici et vous faites partie de ce faculté, veuillez activer votre compte via ce button ci-dessous</p>
-            <p><a class="btn btn-lg btn-outline-primary" href="src/signup" role="button" title="Activer votre compte">Cliquez-moi!</a></p>
+            <p id="font">Si vous êtes nouveau ici et vous faites partie de ce faculté,<br> veuillez activer votre compte via ce button ci-dessous</p>
+            <p><a class="btn btn-lg btn-outline-primary" href="src/signup/whoAreYou.php" role="button" title="Activer votre compte">Cliquez-moi!</a></p>
             <div class="go-about"></div>
           </div>
-          <div class="col-lg-6">
-            <div style="margin-top: 150px;"></div>
-              <?php
-                include './img/index/teacher.svg';
-              ?>
+          <div class="col-lg-5">
+            <div style="margin-top: 80px;"></div>
+            <?php
+            include './img/index/teacher.svg';
+            ?>
           </div>
         </div>
       </div>
     </div>
-  </header>
+
+  </header><br><br>
+  <hr style="width: 80%;"><br>
+
+  <div class="main0">
+    <div class="row justify-content-around">
+      <div class="col-sm-5">
+        <h1 style="letter-spacing: 0.079em;font-weight: 600;font-style: italic;">Bienveunu</h1>
+        <hr id="hrStyling"><br>
+        <p id="font">
+          l'yes est un espace numérique de travail conçu pour répondre aux besoins spécifiques des membres de la communauté de l'Université Hassan II de Casablanca.
+
+          C'est un espace sécurisé accessible depuis tout ordinateur connecté à Internet (chez soi, dans une salle équipée de l'Université, etc.).
+
+          Chaque utilisateur dispose d'un compte qui, à partir d'une seule identification, ouvre sur un ensemble d'applications et services adaptés au profil et aux fonctions de chacun.
+        </p>
+
+      </div>
+      <div class="col-sm-5">
+        <h1 style="letter-spacing: 0.079em;font-weight: 600;font-style: italic;">Connexion</h1>
+        <hr id="hrStyling"><br>
+        <p id="font">
+          La connexion s'effectue à l'aide de <a href="src/signup/whoAreYou.php">comptes</a><br>
+          Pour se connecter, utiliser le bouton "Connexion", en haut à droite de l'écran.
+          Pour des questions de sécurité, il est conseillé de se déconnecter en fin de séance de travail en cliquant sur le bouton "Déconnexion" (situé également en haut à droite dans l'environnement de travail) puis de fermer toutes ses fenêtres de navigateur.
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <br> <br>
 
   <script type="text/javascript" src="./layout/js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="./layout/js/bootstrap.min.js"></script>

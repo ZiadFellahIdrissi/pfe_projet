@@ -84,9 +84,17 @@ if (!$user->isLoggedIn()) {
                     <div class="col-md-12">
                         <div class="au-breadcrumb-content">
                             <div class="au-breadcrumb-left">
+                                <?php if($user->data()->role!='responsable'){ ?>
                                 <h1 class="title-4">Bienvenue
-                                    <span><?php echo strtoupper($nom) . ' ' . $prenom; ?></span>
+                                    <span><?php echo strtoupper($nom) . ' ' . $prenom;?></span>
                                 </h1>
+                                <?php
+                                }else 
+                                    echo '<h1 class="title-4">
+                                            <span>Vous êtes maintenant dans lespace ensenginant</span>
+                                          </h1>';
+                                ?>
+
                                 <hr class="line-seprate">
                             </div>
                         </div>

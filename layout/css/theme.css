@@ -2602,7 +2602,7 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    height: 76px;
+    height: 72px;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
@@ -2651,7 +2651,7 @@ section {
 .header3-wrap .header__navbar {
     width: 100%;
     position: absolute;
-    left: 50%;
+    left: 46%;
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);

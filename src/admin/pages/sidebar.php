@@ -38,6 +38,11 @@
                         <span><i class="fab fa-stack-overflow"></i></span>Modules
                     </a>
                 </li>
+                <li>
+                    <a href="../Notes">
+                        <span><i class="fab fa-stack-overflow"></i></span>Notes
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
