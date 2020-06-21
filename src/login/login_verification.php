@@ -14,6 +14,7 @@
         if ($loginEtudiant) 
             header("Location: ../etudiant/");
 
-        header("Location: ../login?err=invalide");
+        header("Location: ../login?err");
     }
+?>
     

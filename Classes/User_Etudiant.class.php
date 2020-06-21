@@ -23,7 +23,7 @@
             }
 
         }
-        public function checkPassword($username = null ,$password=null ){
+        public function checkPassword($username, $password){
             if($username && $password){
                 $dataPas=$this->_db->getPDO()->query("SELECT Etudiant.id
                                                     FROM Etudiant JOIN Utilisateur ON Etudiant.id = Utilisateur.id 
@@ -103,7 +103,7 @@
                 $dataPas=$this->_db->getPDO()->query("SELECT id
                                                       FROM Utilisateur
                                                       WHERE id = '$cin'
-                                                      AND password is not null"); 
+                                                      AND password is not null");
                 if(!empty($dataPas->fetch(PDO::FETCH_OBJ)))
                     return true;
             }
@@ -116,7 +116,7 @@
                                             SET username = ?,
                                                 `password` = ?,
                                                 email = ?
-                                            WHERE id = ?",array($username,$password,$email,$cin));
+                                        WHERE id = ?",array($username,$password,$email,$cin));
 
               return($data->error());
             }
@@ -124,11 +124,6 @@
         //end signup
 
         public function setPassword($cin, $password){
-            // if($cin && $password){
-            //     $data=$this->_db->getPDO()->query("UPDATE Utilisateur
-            //                                         SET password = '$password'
-            //                                         WHERE id = '$cin'");
-            // }
             if($cin && $password){
                 $data=$this->_db->query("UPDATE Utilisateur
                                             SET `password` = ?

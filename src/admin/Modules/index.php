@@ -26,7 +26,6 @@
         <!-- lib CSS-->
         <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-        <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
         <!-- Main CSS-->
         <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
     </head>
@@ -51,33 +50,36 @@
                 include '../pages/header.php';
             ?>
             <div class="main-content ">
-                <?php include 'DML_Commentator.php'; ?>
+                <?php
+                    include 'DML_Commentator.php';
+                ?>
                 <div class="container  mb-3">
                     <nav aria-label="breadcrumb nov">
                         <ol class="breadcrumb nov">
-                            <li class="breadcrumb-item"><a href="./">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="../pages">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Modules</li>
                         </ol>
                     </nav>
                     <div class="card">
                         <div class="card-header">
-                        <div class="row">
-                            <div class="col">
-                                <div class="col-md-13">
-                                    <select name="filiere" id="filiere" class="form-control">
-                                        <option value=''>Choisissez une filière</option>
-                                        <?php
-                                            $sql = "SELECT id_filiere, nom_filiere
-                                                    FROM Filiere";
-                                            $resultat = mysqli_query($conn, $sql);
-                                            while ($row = mysqli_fetch_assoc($resultat)) {
-                                        ?>
-                                                <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
-                                        <?php
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="col-md-13">
+                                        <select name="filiere" id="filiere" class="form-control">
+                                            <option value=''>Choisissez une filière</option>
+                                            <?php
+                                                $sql = "SELECT id_filiere, nom_filiere
+                                                        FROM Filiere
+                                                        WHERE etat = 1";
+                                                $resultat = mysqli_query($conn, $sql);
+                                                while ($row = mysqli_fetch_assoc($resultat)) {
+                                            ?>
+                                                    <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
+                                            <?php
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <div class="semester float-left">
@@ -87,32 +89,24 @@
                                         </select>
                                     </div>
                                 </div>
+                            </div>
                         </div>
-                            <!-- <div class="col-md-4 offset-md-2">
-                                <a href="./"><button type="button" class="btn btn-primary">Afficher Tous</button></a>
-                            </div> -->
-                        </div>
+                    
                         <div class="card-body modules">
-                            <?php
-                                // include 'afficheTableauModule.php';
-                            ?>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="../../../layout/js/bootstrap.min.js "></script>
         <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
         <script type="text/javascript" src="../../../layout/js/main.js "></script>
-        <!-- <script type="text/javascript" src="../../../layout/js/animation.js"></script> -->
         <script type="text/javascript" src="../../../layout/js/modules.js"></script>
-        <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
     </body>
-
-    </html>
+</html>
 <?php
 }
 ?>

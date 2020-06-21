@@ -35,20 +35,30 @@ if (id && id2) {
                 success: function(data) {
                     $('.modules').html(data);
                     $('#semester').show();
+                    $(".modules").show();
                 }
             });
         }
     });
 }
 
+
 $(document).ready(function() {
+    $('.modules').hide();
     $('#semester').hide();
     $('#filiere').change(affiche);
     function affiche() {
-        if(isNaN($('#affiche').val()))
+        if($('#filiere').val()!=""){
             $('#semester').show();
+            $(".modules").show();
+        }
+        else{
+            $('#semester').hide();
+            $('.modules').hide();
+        }
     }
 });
+
 
 var id_f = $("#filiere").val();
 
@@ -111,6 +121,25 @@ $(document).ready(function() {
                 alert('failure');
             }
         });
+    });
 
+    $(".open_confirmationAct").click(function() {
+        var id_module = $(this).attr("id");
+        console.log(id_module);
+        $.ajax({
+            url: "../Modules/fetch_module_infos.php",
+            method: 'GET',
+            data: {
+                id_module: id_module
+            },
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(data) {
+                $('#actModal').modal('show');
+            },
+            error: function() {
+                alert('failure');
+            }
+        });
     });
 });

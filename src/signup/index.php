@@ -1,6 +1,6 @@
 <?php
     include_once '../../core/init.php';
-    include "../connection.php";
+    include_once '../etudiant/fonctions/tools.function.php';
 ?>
 <html>
 
@@ -13,7 +13,6 @@
 </head>
 
 <body>
-
     <?php
     if (isset($_GET['activated'])) {
     ?>
@@ -83,7 +82,7 @@
                     <?php
                     }
                     ?>
-                    <input type="submit" class="btn" name="login" value="Connexion">
+                    <input type="submit" class="btn" name="login" value="Soumettre">
                     <span href="#">Compte déja activé? <a href="../login.php">Connectez-vous</a></span>
                     <br>
                 </form>
@@ -106,10 +105,8 @@
                         <div class="div">
                             <input type="text" name="username" class="input"
                                         value="<?php
-                                                    $id = $_GET["phase2"];
-                                                    $sql = "SELECT nom, prenom from Utilisateur where id = '$id'";
-                                                    $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-                                                    echo strtolower($row["prenom"] . "." . $row["nom"] . "-etu");
+                                                    $info = getInfos($_GET["phase2"]);
+                                                    echo str_replace(" ", "",$info->prenom.'.'.$info->nom.' -etu');
                                                 ?>" readonly="readonly">
                         </div>
                     </div>
@@ -154,7 +151,7 @@
                     }
                     ?>
                     <input type="text" name="cin" value="<?php echo $_GET['phase2'] ?>" hidden>
-                    <input type="submit" class="btn" name="login" value="Connexion">
+                    <input type="submit" class="btn" name="login" value="Soumettre">
                     <br>
                 </form>
             </div>

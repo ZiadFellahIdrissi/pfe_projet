@@ -1,5 +1,4 @@
 <?php
-include_once '../../../core/init.php';
 function controles($id){
     $db=DB::getInstance();
     $sql = "SELECT Module.intitule, Controle.date, Controle.h_debut, TIMEDIFF(Controle.h_fin,Controle.h_debut) as duree
@@ -10,7 +9,7 @@ function controles($id){
             AND concat(Controle.date,' ',Controle.h_debut) >= ( SELECT SYSDATE() )
             AND dispose_de.id_filiere in (SELECT Etudiant.id_filiere
                                             FROM Etudiant
-                                                WHERE id = ?);";
+                                                WHERE id = ?)";
     $resultat = $db->query($sql, ['controle', $id]);
     return $resultat;
 }
@@ -65,5 +64,15 @@ function getMarksByControle($id_controle, $id_etudiant){
             AND id_etudiant = ?";
     $resultats = $db->query($sql, [$id_controle, $id_etudiant]);
     return $resultats->results();
+}
+function getInfos($id){
+    $db = DB::getInstance();
+    $sql = "SELECT *
+            FROM Etudiant
+            JOIN Utilisateur ON Etudiant.id = Utilisateur.id
+            JOIN Filiere ON Etudiant.id_filiere = Filiere.id_filiere
+            WHERE Etudiant.id = ?";
+    $resultats = $db->query($sql, [$id]);
+    return $resultats->first();
 }
 ?>

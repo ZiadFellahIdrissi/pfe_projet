@@ -48,10 +48,10 @@
             <a class="nav-link" href="#">Test</a>
           </li>
           <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="./src/admin/pages/login.php">Espace Admin</a>
+            <a class="btn btn-outline-dark" href="./src/admin/pages/login.php">Espace Admin</a>
           </li>
           <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="./src/login">Connexion</a>
+            <a class="btn btn-outline-dark" href="./src/login">Connexion</a>
           </li>
 
         </ul>
@@ -66,11 +66,11 @@
     <div class="container">
       <div class="header-content">
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-6" style="text-align: left;">
             <div style="margin-top: 150px;"></div>
             <h1>Nouveau ici?</h1>
-            <p>Si vous êtes nouveau ici et vous faites partie de ce faculté, veuillez activer votre compte via ce button ci-dessous</p>
-            <p><a class="btn btn-lg btn-outline-primary" href="src/signup" role="button" title="Activer votre compte">Cliquez-moi!</a></p>
+            <p>Si vous êtes nouveau ici et vous faites partie de ce faculté, veuillez activer votre compte via ce button ci-dessous.</p>
+            <p><a class="btn btn-lg btn-outline-dark" href="src/signup" title="Activer votre compte">Activer votre compte</a></p>
             <div class="go-about"></div>
           </div>
           <div class="col-lg-6">

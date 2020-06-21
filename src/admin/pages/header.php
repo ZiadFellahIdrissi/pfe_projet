@@ -56,10 +56,10 @@
                         <div class="account-wrap ">
                             <div class="account-item clearfix js-item-menu ">
                                 <div class="image ">
-                                    <img src="../../../img/Dashboard/profile.svg "/>
+                                    <img src="../../../img/profiles/enseignant.svg "/>
                                 </div>
-                                <div class="content ">
-                                    <a class="js-acc-btn " href="# ">
+                                <div class="content">
+                                    <a class="js-acc-btn " href="">
                                         <?php echo $username; ?>
                                     </a>
                                 </div>
@@ -67,7 +67,7 @@
                                     <div class="info clearfix ">
                                         <div class="image ">
                                             <a href="# ">
-                                                <img src="../../../img/Dashboard/profile.svg "/>
+                                                <img src="../../../img/profiles/enseignant.svg "/>
                                             </a>
                                         </div>
                                         <div class="content ">
@@ -79,12 +79,6 @@
                                             <span class="email ">
                                                 admin@h2c.fsac
                                             </span>
-                                        </div>
-                                    </div>
-                                    <div class="account-dropdown__body ">
-                                        <div class="account-dropdown__item ">
-                                            <a href="#"> <!-- hani raje3 -->
-                                                <i class="zmdi zmdi-account "></i>Account</a>
                                         </div>
                                     </div>
                                     <div class="account-dropdown__footer ">

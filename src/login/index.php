@@ -23,8 +23,19 @@ if ($User_Etudiant->isLoggedIn()) {
         <script src="https://kit.fontawesome.com/a81368914c.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-
+    
     <body>
+        <?php
+        if (isset($_GET['resetsuccess'])) {
+        ?>
+            <div aria-live="polite" aria-atomic="false" style="position: absolute; top: 13%; text-align: center;  min-height: 200px; ">
+                <div class="toast" style=" width:700px; background-color: #06b4c8; opacity: 0.8; color:white;">
+                    Votre mot de passe a étè bien modifié.
+                </div>
+            </div>
+        <?php
+        }
+        ?>
         <a href="../../index.php">
             <span>
                 <?php

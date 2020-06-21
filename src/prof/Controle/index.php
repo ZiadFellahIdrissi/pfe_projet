@@ -91,7 +91,7 @@ if (!$user->isLoggedIn()) {
             <div class="container ">
                 <div class="container ">
                     <div class="container ">
-                        <div class="au-card shadow-lg bg-white rounded" style=" border:1px solid black">
+                        <div class="au-card shadow-lg bg-white rounded">
                             <div id="calendar">
                                 <!-- <div class="d-flex justify-content-center">
                                     <div class="spinner-border m-5" role="status" id="spinner0">
@@ -196,6 +196,7 @@ if (!$user->isLoggedIn()) {
                         $('.calendareContainer').show();
                     },
                     locale: 'fr-ch',
+                    height: 650,
                     editable: true,
                     customButtons: {
                         ajouteControle: {

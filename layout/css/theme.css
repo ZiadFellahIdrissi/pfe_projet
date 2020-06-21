@@ -333,7 +333,6 @@ section {
 
 .login-wrap {
     max-width: 540px;
-    padding-top: 8vh;
     margin: 0 auto;
 }
 
@@ -2158,7 +2157,7 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background: #365cad;
+    background: #393939;
     padding: 0 35px;
 }
 
@@ -2602,7 +2601,7 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    height: 76px;
+    height: 75px;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
@@ -4694,7 +4693,6 @@ section {
     font-weight: 400;
     text-transform: capitalize;
     padding: 18px 40px;
-    padding-right: 10px;
 }
 
 .table-data3 thead tr th:first-child {
@@ -4707,16 +4705,6 @@ section {
     -webkit-border-top-right-radius: 3px;
     -moz-border-radius-topright: 3px;
     border-top-right-radius: 3px;
-}
-
-.table-data3 thead tr th:last-child {
-    text-align: right;
-    padding-right: 50px;
-}
-
-.table-data3 tbody tr td:last-child {
-    text-align: right;
-    padding-right: 50px;
 }
 
 .table-data3 tbody tr {
@@ -4742,7 +4730,6 @@ section {
     font-size: 14px;
     color: #808080;
     padding: 12px 40px;
-    padding-right: 10px;
 }
 
 .table-data3 tbody td.process {

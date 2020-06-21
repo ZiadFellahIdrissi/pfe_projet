@@ -7,6 +7,6 @@
         if ($login)
             header("Location: ./");
         
-        header("Location: ./login.php?err=invalide");
+        header("Location: ./login.php?err");
     }
 ?>
