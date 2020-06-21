@@ -28,13 +28,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="cne" class="col-form-label">Cne</label>
-                                <input type="text" class="form-control" name="cne" id="cne" required>
+                                <input type="text" class="form-control" name="cne" id="cne" pattern="[A-Za-z][0-9]{8}" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="cin" class="col-form-label">Cin</label>
-                                <input type="text" class="form-control" name="cin" id="cin" required>
+                                <input type="text" class="form-control" name="cin" id="cin" pattern="[A-Za-z][A-Za-z0-9][0-9]{6}" required>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="telephone" class="col-form-label">Telephone</label>
-                                <input type="text" class="form-control" name="telephone" id="telephone" required>
+                                <input type="text" class="form-control" name="telephone" id="telephone" pattern="[0-9]{10}" required>
                             </div>
                         </div>
                     </div>
@@ -97,13 +97,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="codeapoge_modifier" class="col-form-label">Cne</label>
-                                <input type="text" class="form-control" name="cne" id="cne_modifier" required>
+                                <input type="text" class="form-control" name="cne" id="cne_modifier" pattern="[A-Za-z][0-9]{8}" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="cin_modifier" class="col-form-label">Cin</label>
-                                <input type="text" class="form-control" name="cin" id="cin_modifier" required>
+                                <input type="text" class="form-control" name="cin" id="cin_modifier" pattern="[A-Za-z][A-Za-z0-9][0-9]{6}" required>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="tel_modifier" class="col-form-label">Telephone</label>
-                                <input type="text" class="form-control" name="tel" id="tel_modifier" required>
+                                <input type="text" class="form-control" name="tel" id="tel_modifier" pattern="[0-9]{10}" required>
                             </div>
                         </div>
                     </div>

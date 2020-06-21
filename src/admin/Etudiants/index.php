@@ -71,7 +71,8 @@ if (!$user->isLoggedIn()) {
                                                 <option value=''>Choisissez une filière</option>
                                                 <?php
                                                     $sql = "SELECT id_filiere, nom_filiere
-                                                            FROM Filiere";
+                                                            FROM Filiere
+                                                            WHERE etat = 1";
                                                     $resultat = mysqli_query($conn, $sql);
                                                     while ($row = mysqli_fetch_assoc($resultat)) {
                                                 ?>

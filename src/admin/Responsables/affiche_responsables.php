@@ -14,7 +14,7 @@
     ?>
         <br>
         <table class="table table table-borderless table-data3 mydatatable">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>Nom Complet</th>
                     <th>Telephone</th>

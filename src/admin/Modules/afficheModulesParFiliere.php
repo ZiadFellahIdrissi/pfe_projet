@@ -13,14 +13,15 @@
             JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
             JOIN dispose_de ON Module.id_module = dispose_de.id_module
             WHERE dispose_de.id_filiere = $id_filiere
-            AND Semestre.id_semestre = $semester                           ";
+            AND Semestre.id_semestre = $semester
+            AND Module.etat = 1";
 
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);
     if ($resultatcheck > 0) {
 ?>
         <table class="table table-borderless table-data3 mydatatable">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>Intitule</th>
                     <th>Enseignant</th>
@@ -38,9 +39,9 @@
                         <td><?php echo $row["heures_sem"] ?></td>
                         <td>
                             <div class="table-data-feature">
-                                <button onclick="location.href='supprimer_module.php?id=<?php echo $row["id_module"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                <!-- <button onclick="location.href='supprimer_module.php?id=<?php echo $row["id_module"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
                                     <i class="zmdi zmdi-delete"></i>
-                                </button>
+                                </button> -->
                                 <button data-toggle="tooltip" id="<?php echo $row["id_module"] ?>" data-toggle="modal" class="item Open_modifierUnModule" data-placement="top" title="Modifier">
                                     <i class="zmdi zmdi-edit"></i>
                                 </button>
@@ -54,10 +55,59 @@
                 }
             echo "<tbody>";
         echo "</table>";
+    }
+    $sql = "SELECT *
+            FROM Module
+            JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
+            JOIN dispose_de ON Module.id_module = dispose_de.id_module
+            WHERE dispose_de.id_filiere = $id_filiere
+            AND Semestre.id_semestre = $semester
+            AND Module.etat = 0";
+
+    $resultat = mysqli_query($conn, $sql);
+    $resultatcheck = mysqli_num_rows($resultat);
+    if ($resultatcheck > 0) {
+?>
+        <br>
+        <p>Modules désactivés.</p>
+        <table class="table table-borderless table-data3 mydatatable2">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Intitule</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+<?php
+                while ($row = mysqli_fetch_assoc($resultat)) {
+?>
+                    <tr>
+                        <td><?php echo $row["intitule"] ?></td>
+                        <td>
+                            <div class="table-data-feature">
+                                <button onclick="location.href='supprimer_module.php?id=<?php echo $row["id_module"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                                <!-- <button data-toggle="tooltip" id="<?php echo $row["id_module"] ?>" data-toggle="modal" class="item Open_modifierUnModule" data-placement="top" title="Modifier">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button> -->
+                                <button class="item open_confirmationAct" data-toggle="modal" data-toggle="tooltip" id=<?php echo $row["id_module"] ?> title="Activer" >
+                                    <i class="zmdi zmdi-check-circle"></i>
+                                </button>
+                                <!-- <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id_module"] ?>"  title="More">
+                                    <i class="zmdi zmdi-more"></i>
+                                </button> -->
+                            </div>
+                        </td>
+                    </tr>
+<?php
+                }
+            echo "<tbody>";
+        echo "</table>";
     } 
 ?>
 </div>
 <script>
-    $('.mydatatable').DataTable();
+    // $('.mydatatable').DataTable();
 </script>
-<script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
+<!-- <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script> -->

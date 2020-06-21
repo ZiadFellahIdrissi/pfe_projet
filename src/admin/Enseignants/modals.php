@@ -28,7 +28,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="cin" class="col-form-label">Cin</label>
-                                    <input type="text" class="form-control" name="cin" id="cin" required>
+                                    <input type="text" class="form-control" name="cin" id="cin" pattern="[A-Za-z][A-Za-z0-9][0-9]{6}" required>
                                 </div>
                                 <div class="col">
                                     <label for="dateN" class="col-form-label">Date Naissance</label>
@@ -40,7 +40,7 @@
                         <!-- =================== telephone ======================= -->
                         <div class="form-group">
                             <label for="numTel" class="col-form-label">Numéro du téléphone</label>
-                            <input type="text" class="form-control" name="numTel" id="numTel" pattern="{10}" required>
+                            <input type="text" class="form-control" name="numTel" id="numTel" pattern="[0-9]{10}" required>
                         </div>
 
                         <div class="modal-footer">
@@ -82,7 +82,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="cin_modifier" class="col-form-label">Cin</label>
-                                <input type="text" class="form-control" name="cin" id="cin_modifier" required>
+                                <input type="text" class="form-control" name="cin" id="cin_modifier" pattern="[A-Za-z][A-Za-z0-9][0-9]{6}" required>
                             </div>
                             <div class="col">
                                 <label for="dateN_modifier" class="col-form-label">Date Naissance</label>
@@ -93,7 +93,7 @@
 
                     <div class="form-group">
                         <label for="tel_modifier" class="col-form-label">Numéro du téléphone</label>
-                        <input type="text" class="form-control" name="numTel" id="tel_modifier" required>
+                        <input type="text" class="form-control" name="numTel" id="tel_modifier" pattern="[0-9]{10}" required>
                     </div>
 
                     <div class="modal-footer">

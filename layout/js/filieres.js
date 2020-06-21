@@ -57,6 +57,27 @@ $(document).ready(function() {
                 alert('failure');
             }
         });
-        
+    });
+
+    $(".open_confirmationAct").click(function() {
+        var id_filiere = $(this).attr("id");
+        $.ajax({
+            url: "fetching_filieres_for_editing.php",
+            method: 'GET',
+            data: {
+                id_filiere: id_filiere
+            },
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(data) {
+                $('#fil_act').val(data.nom_filiere);
+                $('#tarif').val(data.prix_formation);
+                $('#filiere').val(data.id_filiere);
+                $('#actModal').modal('show');
+            },
+            error: function() {
+                alert('failure');
+            }
+        });
     });
 });

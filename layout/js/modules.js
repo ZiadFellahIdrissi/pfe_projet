@@ -121,6 +121,25 @@ $(document).ready(function() {
                 alert('failure');
             }
         });
+    });
 
+    $(".open_confirmationAct").click(function() {
+        var id_module = $(this).attr("id");
+        console.log(id_module);
+        $.ajax({
+            url: "../Modules/fetch_module_infos.php",
+            method: 'GET',
+            data: {
+                id_module: id_module
+            },
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(data) {
+                $('#actModal').modal('show');
+            },
+            error: function() {
+                alert('failure');
+            }
+        });
     });
 });

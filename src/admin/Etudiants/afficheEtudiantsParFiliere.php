@@ -4,18 +4,19 @@
 ?>
 <div class="table-responsive-sm">
     <?php
+    $id_filiere = $_GET['id_filiere'];
     $sql = "SELECT Utilisateur.id cin, Etudiant.cne, Utilisateur.nom, Utilisateur.prenom,
                     Utilisateur.telephone, Utilisateur.email, Utilisateur.date_naissance,
                     Etudiant.id_filiere, Utilisateur.imagepath
             FROM Utilisateur 
             join Etudiant ON Etudiant.id = Utilisateur.id
-            WHERE Etudiant.id_filiere=" . $_GET['id_filiere'];
+            WHERE Etudiant.id_filiere = $id_filiere";
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);
     if ($resultatcheck > 0) {
     ?>
         <table class="table table table-borderless table-data3 mydatatable">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>CNE</th>
                     <th>Nom Complet</th>

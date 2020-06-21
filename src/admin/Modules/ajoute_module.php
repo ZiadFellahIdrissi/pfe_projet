@@ -9,7 +9,7 @@
         $coeffC        = $_POST["coeffC"];
         $coeffE        = $_POST["coeffE"];
 
-        $resultatcount = mysqli_num_rows(mysqli_query($conn, "SELECT *
+        $resultatcount = mysqli_num_rows(mysqli_query($conn, "SELECT id_module
                                                               FROM Module
                                                               JOIN dispose_de ON Module.id_module = dispose_de.id_module
                                                               WHERE Module.intitule = '$nom'
@@ -20,13 +20,13 @@
             exit();
         }
 
-        mysqli_query($conn, "INSERT INTO `Module`(`intitule`, `id_enseignant`, `heures_sem`, `id_semestre`)
-                                VALUES ('$nom', '$id_enseignant', $heures, $Mysemester)                       ");
+        mysqli_query($conn, "INSERT INTO `Module`(`intitule`, `id_enseignant`, `heures_sem`, `id_semestre`, `etat`)
+                                VALUES ('$nom', '$id_enseignant', $heures, $Mysemester, 1)");
 
+        $id_module = mysqli_insert_id($conn);
+        
         mysqli_query($conn, "INSERT INTO `dispose_de`(`id_filiere`, `id_module`, `coeff_examen`, `coeff_controle`)
-                                SELECT $id_filiere, id_module, $coeffE, $coeffC
-                                FROM Module
-                                WHERE intitule='$nom'");
+                                VALUES($id_filiere, $id_module, $coeffE, $coeffC)");
 
         header("location: ./?inserted&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
     }

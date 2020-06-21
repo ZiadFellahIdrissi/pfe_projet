@@ -69,7 +69,8 @@
                                             <option value=''>Choisissez une filière</option>
                                             <?php
                                                 $sql = "SELECT id_filiere, nom_filiere
-                                                        FROM Filiere";
+                                                        FROM Filiere
+                                                        WHERE etat = 1";
                                                 $resultat = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($resultat)) {
                                             ?>
@@ -104,7 +105,6 @@
         <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
         <script type="text/javascript" src="../../../layout/js/main.js "></script>
         <script type="text/javascript" src="../../../layout/js/modules.js"></script>
-        <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
     </body>
 </html>
 <?php

@@ -189,3 +189,58 @@
         </div>
     </div>
 </div>
+
+<!-- activation filiere -->
+<div class="modal fade" id="actModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- =============================================== -->
+                <form action="activer_module.php" method="POST">
+                    <!-- <div class="form-group">
+                        <label for="fil_act" class="col-form-label">Nom de la filière</label>
+                        <input type="text" class="form-control" name="nom_filiere" id="fil_act" disabled>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="tarif" class="col-form-label">Tarif</label>
+                                <input type="number" class="form-control" name="tarif" id="tarif" required>
+                            </div>
+                            <div class="col">
+                                <label>Responsable</label>
+                                <select for="res_act" name="responsable" class="form-control" id="res_act" required>
+                                    <option value=""></option>
+                                    <?php
+                                        $sql = "SELECT Personnel.id, Utilisateur.nom, Utilisateur.prenom
+                                                FROM Personnel
+                                                JOIN Utilisateur ON Personnel.id = Utilisateur.id
+                                                WHERE Personnel.role = 'enseignant'
+                                                AND Personnel.id not in ( SELECT id_responsable
+                                                                            FROM Filiere          )";
+                                        $resultat = mysqli_query($conn, $sql);
+                                        if (mysqli_num_rows($resultat) > 0) {
+                                            while ($row = mysqli_fetch_assoc($resultat)) {
+                                    ?>
+                                                <option value="<?php echo $row['id'] ?>">
+                                                    <strong><?php echo $row['nom'] . " " . $row["prenom"] ?></strong>
+                                                </option>';
+                                    <?php
+                                            }
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>             
+                    <div class="modal-footer">
+                        <input type="hidden" name="filiere" id="filiere" value="" />
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" id="Activer" class="btn btn-primary" value="Activer" name="Activer" required>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end activation filiere -->

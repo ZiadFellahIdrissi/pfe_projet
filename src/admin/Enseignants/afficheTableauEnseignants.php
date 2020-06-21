@@ -16,7 +16,7 @@
 		if ($resultatcheck > 0) {
 	?>
 			<table class="table table table-borderless table-data3 mydatatable">
-				<thead>
+				<thead class="thead-dark">
 					<tr>
 						<th>Nom Complet</th>
 						<th>Telephone</th>
@@ -31,7 +31,7 @@
 							<td><?php echo $row["nom"].' '.$row["prenom"] ?></td>
 							<td><?php echo $row["telephone"] ?></td>
 							<td>
-								<div class="table-data-feature" style="text-align: center">
+								<div class="table-data-feature">
 									<?php
 										$sqlF = "SELECT *
 												FROM Filiere
@@ -70,6 +70,9 @@
 									<button data-toggle="tooltip" id="<?php echo $row["id"] ?>" data-toggle="modal" class="item Open_modifierEnseignant" data-placement="top" title="Modifier" >
 										<i class="zmdi zmdi-edit"></i>
 									</button>
+									<button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["cin"] ?>"  title="More">
+										<i class="zmdi zmdi-more"></i>
+									</button> 
 								</div>
 							</td>
 						</tr>
