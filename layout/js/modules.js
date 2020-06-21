@@ -35,20 +35,30 @@ if (id && id2) {
                 success: function(data) {
                     $('.modules').html(data);
                     $('#semester').show();
+                    $(".modules").show();
                 }
             });
         }
     });
 }
 
+
 $(document).ready(function() {
+    $('.modules').hide();
     $('#semester').hide();
     $('#filiere').change(affiche);
     function affiche() {
-        if(isNaN($('#affiche').val()))
+        if($('#filiere').val()!=""){
             $('#semester').show();
+            $(".modules").show();
+        }
+        else{
+            $('#semester').hide();
+            $('.modules').hide();
+        }
     }
 });
+
 
 var id_f = $("#filiere").val();
 

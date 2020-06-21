@@ -16,8 +16,7 @@
                                                               AND dispose_de.id_filiere = $id_filiere                   "));
 
         if( $resultatcount>0 ){
-            header("location: ./?errname&idUrlFiliere=$id_filiere"); //doesnt redirect to the "filiere"
-                                                                              //despite the id being shown in the url
+            header("location: ./?errname&idUrlFiliere=$id_filiere&idUrlSem=$Mysemester");
             exit();
         }
 

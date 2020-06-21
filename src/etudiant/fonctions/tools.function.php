@@ -1,5 +1,4 @@
 <?php
-include_once '../../../core/init.php';
 function controles($id){
     $db=DB::getInstance();
     $sql = "SELECT Module.intitule, Controle.date, Controle.h_debut, TIMEDIFF(Controle.h_fin,Controle.h_debut) as duree

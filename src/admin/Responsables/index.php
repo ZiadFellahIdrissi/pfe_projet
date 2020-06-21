@@ -45,20 +45,20 @@
     <div class="page-wrapper">
         <?php include '../pages/header.php' ?>
         <div class="main-content ">
-            <div class="container  mb-3">
+            <div class="container mb-3">
                 <nav aria-label="breadcrumb nov">
                     <ol class="breadcrumb nov">
                         <li class="breadcrumb-item"><a href="../">Dashboard</a></li>
-                        <li class="breadcrumb-item" aria-current="page"><a href="../Enseignants">Enseignants</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Responsables</li>
                     </ol>
                 </nav>
-
                 <div class="modal-content">
                     <a style="opacity: 0.9;" class="btn btn-primary text-white" href="../Filieres">Pour l'ajout des responsables, il faut désigner un enseignant à un filière dans la section <span style="color: lightgrey;">Filières</span></a>
-                    <?php
-                        include 'affiche_responsables.php';
-                    ?>
+                    <div class="modal-body">
+                        <?php
+                            include 'affiche_responsables.php';
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

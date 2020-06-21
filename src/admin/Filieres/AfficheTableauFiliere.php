@@ -1,6 +1,9 @@
+<?php
+    include '../../connection.php';
+    include 'modals.php';
+?>
 <div class="table-responsive-sm">
     <?php
-    include '../../connection.php';
     $sqlQuery = "SELECT Filiere.id_filiere, Filiere.id_responsable, Filiere.nom_filiere,
                             Utilisateur.nom, Utilisateur.prenom
                  FROM Filiere

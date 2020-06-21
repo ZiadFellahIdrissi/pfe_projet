@@ -54,9 +54,11 @@
                     </ol>
                 </nav>
                 <div class="modal-content">
-                    <?php
-                        include 'afficheTableauEnseignants.php';
-                    ?>
+	                <div class="modal-body">
+                        <?php
+                            include 'afficheTableauEnseignants.php';
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@
         <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
                 <li class="active ">
-                    <a href="./">
+                    <a href="../pages">
                         <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
                 <li>
@@ -19,7 +19,6 @@
                 </li>
                 <li>
                     <a href="../Responsables">
-                    <i class="fas fa-angle-down" style="color: #17a2b8;"></i>
                         <span><i class="fas fa-user-tie"></i></span>Responsables
                     </a>
                 </li>
@@ -29,13 +28,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../Etudiants">
-                        <i class="fas fa-user-graduate"></i>Etudiants
+                    <a href="../Modules">
+                        <span><i class="fab fa-stack-overflow"></i></span>Modules
                     </a>
                 </li>
                 <li>
-                    <a href="../Modules">
-                        <span><i class="fab fa-stack-overflow"></i></span>Modules
+                    <a href="../Etudiants">
+                        <i class="fas fa-user-graduate"></i>Etudiants
                     </a>
                 </li>
             </ul>

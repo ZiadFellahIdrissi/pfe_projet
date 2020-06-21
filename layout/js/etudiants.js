@@ -1,4 +1,5 @@
 $('.mydatatable').DataTable();
+
 $(document).ready(function() {
     $('.toast').toast({
         delay: 5000
@@ -32,12 +33,21 @@ if (id = getParam("Filiere")) {
     });
 }
 
-$('.mydatatable').DataTable();
+$('.etudiants').hide();
+
+$(document).ready(function() {
+    $('#filiere').change(affiche);
+    function affiche() {
+        if($('#filiere').val()!="")
+            $('.etudiants').show();
+        else
+            $('.etudiants').hide();
+    }
+});
 
 $(document).ready(function() {
     $('#filiere').change(function() {
         var id_filiere = $(this).val();
-
         if (id_filiere) {
             $.ajax({
                 url: "afficheEtudiantsParFiliere.php",

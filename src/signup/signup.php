@@ -12,7 +12,7 @@
             exit();
         }
         if(!$user->signup($cin, $email, $username, $password))
-            header("Location: ./welcome.php?cin=$cin");
+            header("Location: ./bienvenue?cin=$cin");
         else    
             header("Location: ./?phase2&err=true");
     }

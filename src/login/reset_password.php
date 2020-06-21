@@ -5,6 +5,6 @@
         $password = $_POST['password'];
         $user     = new User_Etudiant();
         $user->setPassword($cin, $password);
-        header("Location: ../../?hhhyk");
+        header("Location: ../?resetsuccess");
     }
 ?>
