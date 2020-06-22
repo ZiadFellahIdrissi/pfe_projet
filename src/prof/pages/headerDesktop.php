@@ -8,7 +8,7 @@
             </div>
             <div class="header__navbar">
                 <ul class="list-unstyled">
-                    <li class="has-sub">
+                    <li >
                         <a href="../pages/">
                             <i class="fas fa-tachometer-alt"></i>Dashboard
                             <span class="bot-line"></span>
@@ -23,7 +23,7 @@
                     <li>
                         <a href="../Notes/">
                             <i class="fas fa-copy"></i>
-                            <span class="bot-line"></span>Gestion Des Notes
+                            <span class="bot-line"></span>Notes
                         </a>
                     </li>
                     <li class="has-sub">
@@ -39,12 +39,24 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="has-sub">
+                    <li >
                         <a href="../Module/">
                             <i class="fab fa-stack-overflow"></i>
                             <span class="bot-line"></span>Modules
                         </a>
                     </li>
+                    <?php
+                    if ($user->data()->role == 'responsable') {
+                    ?>
+                        <li>
+                            <a href="../../responsable/">
+                                <i class="fab fa-stack-overflow"></i>
+                                <span class="bot-line"></span>Esapce Responsable
+                            </a>
+                        </li>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
             <div class="header__tool">

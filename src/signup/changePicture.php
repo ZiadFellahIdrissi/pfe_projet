@@ -2,8 +2,8 @@
 include_once '../../core/init.php';
 include '../connection.php';
 // if (isset($_POST["logindirect"])) {
-    $User_Etudiant = new User_Etudiant();
-    $loginEtudiant = $User_Etudiant->login($_POST["user"], $_POST["pass"]);
+    // $User_Etudiant = new User_Etudiant();
+    // $loginEtudiant = $User_Etudiant->login($_POST["user"], $_POST["pass"]);
     $cin=$_POST["cin"];
   
     //===================charge l'image====================================

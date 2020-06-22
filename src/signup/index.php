@@ -1,6 +1,6 @@
 <?php
-    include_once '../../core/init.php';
-    include_once '../etudiant/fonctions/tools.function.php';
+include_once '../../core/init.php';
+include_once '../etudiant/fonctions/tools.function.php';
 ?>
 <html>
 
@@ -27,7 +27,7 @@
     <a href="../../index.php">
         <span>
             <?php
-                include '../../img/login/x.svg'; //todo: back botton to phase 1
+            include '../../img/login/x.svg'; //todo: back botton to phase 1
             ?>
         </span>
     </a>
@@ -61,10 +61,23 @@
                         <div class="i">
                             <i class="fas fa-address-book"></i>
                         </div>
-                        <div class="div">
-                            <h5>Cne</h5>
-                            <input type="text" name="cne" class="input">
-                        </div>
+                        <?php
+                        if ($_GET['role'] == 'etudiant') {
+                        ?>
+                            <div class="div">
+                                <h5>Cne</h5>
+                                <input type="text" name="cne" class="input" value="">
+                            </div>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="div">
+                                <h5>SOM</h5>
+                                <input type="text" name="som" class="input" value="">
+                            </div>
+                        <?php
+                        }
+                        ?>
                     </div>
                     <div class="input-div one">
                         <div class="i">
@@ -83,6 +96,14 @@
                     }
                     ?>
                     <input type="submit" class="btn" name="login" value="Soumettre">
+
+                    <!-- HADE L INPUT DARTO BACHE ILA MAKNCHE SOM TKONE CNE OU HTA L3AKSE (gha ikono khawin)  -->
+                    <input type="hidden" name="<?php
+                                                if ($_GET['role'] == 'etudiant')
+                                                    echo 'som';
+                                                else
+                                                    echo 'cne'
+                                                ?>">
                     <span href="#">Compte déja activé? <a href="../login.php">Connectez-vous</a></span>
                     <br>
                 </form>
@@ -103,11 +124,18 @@
                             <i class="fa fa-address-book"></i>
                         </div>
                         <div class="div">
-                            <input type="text" name="username" class="input"
-                                        value="<?php
-                                                    $info = getInfos($_GET["phase2"]);
-                                                    echo str_replace(" ", "",$info->prenom.'.'.$info->nom.' -etu');
-                                                ?>" readonly="readonly">
+                            <input type="text" name="username" class="input" value="<?php
+                                                                                    $info = getPersonInfo($_GET["phase2"]);
+                                                                                    if ($_GET['role'] == 'etudiant') {
+                                                                                        echo str_replace(" ", "", $info->prenom . '.' . $info->nom . ' -etu');
+                                                                                    } else {
+                                                                                        $role = getPersonnelInfo($_GET["phase2"]);
+                                                                                        if ($role->first()->role == 'enseignant')
+                                                                                            echo str_replace(" ", "", $info->prenom . '.' . $info->nom . ' -ens');
+                                                                                        else
+                                                                                            echo str_replace(" ", "", $info->prenom . '.' . $info->nom . ' -res');
+                                                                                    }
+                                                                                    ?>" readonly="readonly">
                         </div>
                     </div>
                     <div class="input-div one">
@@ -131,7 +159,7 @@
                     </div>
                     <!-- div pour error -->
                     <div class="errorPass" style="color:#d63031;"></div>
-                    
+
                     <div class="input-div one">
                         <div class="i">
                             <i class="fas fas fa-lock"></i>
@@ -161,18 +189,18 @@
     </div>
     <script type="text/javascript" src="../../layout/js/login.js"></script>
     <script>
-        const checkpass      = document.querySelector("#checkpass");
-        const pass           = document.querySelector("#pass");
+        const checkpass = document.querySelector("#checkpass");
+        const pass = document.querySelector("#pass");
         const errorcheckpass = document.querySelector(".errorCheckPass");
-        const errorpass      = document.querySelector(".errorPass");
-        const email          = document.querySelector("#email");
-        const errorEmail     = document.querySelector(".errorEmail");
-        const form           = document.querySelector("#myform");
+        const errorpass = document.querySelector(".errorPass");
+        const email = document.querySelector("#email");
+        const errorEmail = document.querySelector(".errorEmail");
+        const form = document.querySelector("#myform");
 
         form.addEventListener("submit", (event) => {
-            errorEmail.textContent     = "";
+            errorEmail.textContent = "";
             errorcheckpass.textContent = "";
-            errorpass.textContent      = "";
+            errorpass.textContent = "";
             if (email.value == "" || email.value == null) {
                 errorEmail.textContent = "Veuillez remplir ce champ.";
                 event.preventDefault();

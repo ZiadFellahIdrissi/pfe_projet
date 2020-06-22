@@ -1,8 +1,8 @@
-p {
+/* p {
     color: black;
     font-weight: bold;
     font-size: 20px;
-}
+} */
 
 .innerHeader {
     background-color: red;
@@ -21,8 +21,8 @@ nav {
 }
 
 body {
-    overflow: hidden;
-    text-align: center;
+    overflow-x: hidden;
+    /* text-align: center; */
     /* fix */
     background: #AEACFB;
 }
