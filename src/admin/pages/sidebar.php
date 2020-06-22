@@ -37,6 +37,11 @@
                         <i class="fas fa-user-graduate"></i>Etudiants
                     </a>
                 </li>
+                <li>
+                    <a href="../Notes">
+                        <i class="fas fa-user-graduate"></i>Notes
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
