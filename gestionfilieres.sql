@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 22, 2020 at 01:14 AM
+-- Generation Time: Jun 23, 2020 at 12:55 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -94,6 +94,15 @@ CREATE TABLE `dispose_de` (
   `coeff_controle` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `dispose_de`
+--
+
+INSERT INTO `dispose_de` (`id_filiere`, `id_module`, `coeff_examen`, `coeff_controle`) VALUES
+(1, 39, 0.04, 0.03),
+(11, 38, 0.03, 0.03),
+(18, 40, 0.4, 0.6);
+
 -- --------------------------------------------------------
 
 --
@@ -117,7 +126,9 @@ INSERT INTO `Etudiant` (`id`, `somme`, `cne`, `id_filiere`) VALUES
 ('12555', NULL, 'F131547880', 1),
 ('14523', NULL, 'R151700203', 1),
 ('55', NULL, 'R131238116', 1),
-('WA111510', NULL, 'F130000116', 1);
+('WA111510', NULL, 'F130000116', 1),
+('WA156510', NULL, 'R13568116', 1),
+('WA699569', NULL, 'F134322310', 11);
 
 -- --------------------------------------------------------
 
@@ -139,7 +150,8 @@ CREATE TABLE `Filiere` (
 
 INSERT INTO `Filiere` (`id_filiere`, `prix_formation`, `nom_filiere`, `id_responsable`, `etat`) VALUES
 (1, 30000, 'Développement & Admin des BD (DAB)', 'BK121212', 1),
-(11, 30000, 'CCNP Route', '18236', 1);
+(11, 30000, 'CCNP Route', '69', 1),
+(18, 39, 'Administration Réseaux & Systémes (ARS)', '50', 1);
 
 -- --------------------------------------------------------
 
@@ -155,6 +167,15 @@ CREATE TABLE `Module` (
   `id_semestre` int(11) NOT NULL,
   `etat` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Module`
+--
+
+INSERT INTO `Module` (`id_module`, `heures_sem`, `intitule`, `id_enseignant`, `id_semestre`, `etat`) VALUES
+(38, 5, 'Administration Réseaux & Systémes (ARS)', 'BK121212', 1, 1),
+(39, 5, 'Développement Mobile & Multimédia (DMM)', '69', 1, 1),
+(40, 69, 'Développement Mobile & Multimédia (DMM)', '18236', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -193,6 +214,7 @@ INSERT INTO `passe` (`id_etudiant`, `id_controle`, `note`) VALUES
 
 CREATE TABLE `Personnel` (
   `id` varchar(8) NOT NULL,
+  `som` varchar(10) DEFAULT NULL,
   `role` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -200,13 +222,13 @@ CREATE TABLE `Personnel` (
 -- Dumping data for table `Personnel`
 --
 
-INSERT INTO `Personnel` (`id`, `role`) VALUES
-('1', 'enseignant'),
-('18236', 'responsable'),
-('50', 'enseignant'),
-('69', 'enseignant'),
-('BK121212', 'responsable'),
-('WA111588', 'enseignant');
+INSERT INTO `Personnel` (`id`, `som`, `role`) VALUES
+('1', 'H145', 'enseignant'),
+('18236', '', 'enseignant'),
+('50', '', 'responsable'),
+('69', '', 'responsable'),
+('BK121212', '', 'responsable'),
+('WA111588', '', 'enseignant');
 
 -- --------------------------------------------------------
 
@@ -268,7 +290,7 @@ CREATE TABLE `Utilisateur` (
 --
 
 INSERT INTO `Utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `password`, `telephone`, `email`, `username`, `imagepath`) VALUES
-('1', 'Motazee', 'Nadori', '1968-05-17', '1234', '0614445169', 'Motazee_nadori@fsac.ma', 'ens0', ''),
+('1', 'Motazee', 'Nadori', '1968-05-17', '1234', '0614445169', 'lerespectful@gmail.com', 'nadori.motazee-ens', '5ef0f906dba214.14924669.png'),
 ('124', 'Reda', 'Ahmed', '1999-12-15', NULL, '0790002010', '', NULL, ''),
 ('12555', 'Khalid', 'Yahya', '2020-05-21', 'yahya012', '0554100105', 'yahya_khalid@gmail.com', 'Yahya.Khalid-etu', '5eefc5545608f5.45794724.png'),
 ('14523', 'Gouchgache', 'Hajar', '1999-09-08', 'ziad', '0645874120', 'hajar01@gmail.com', 'Hajar.Gouchgache-etu', 'avatar.svg'),
@@ -278,7 +300,9 @@ INSERT INTO `Utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `password`, 
 ('69', 'Mohamed', 'Abghoure', '2020-05-18', '1234', '0698521419', 'mohamed@fsac.ma', 'res2', ''),
 ('BK121212', 'Chakouri', 'Safaa', '1968-05-07', '1234', '0600154199', 'Chakouri_safaa_01@fsac.ac.ma', 'ens2', ''),
 ('WA111510', 'rabii', 'sissi', '1999-12-02', 'ziad', '06451098', 'sisi@rabi.com', 'sisi.rabi3-etu', 'avatar.svg'),
-('WA111588', 'Azize', 'Raiss', '1976-05-11', '1234', '0154899710', 'aziz_raiss@fsac.ma', 'res0', '');
+('WA111588', 'Azize', 'Raiss', '1976-05-11', '1234', '0154899710', 'aziz_raiss@fsac.ma', 'res0', ''),
+('WA156510', 'CCNP Route', 'Route', '2020-06-25', NULL, '0687595999', NULL, NULL, 'avatar.svg'),
+('WA699569', 'CCNP', 'Route', '2020-06-19', NULL, '0687595699', NULL, NULL, 'avatar.svg');
 
 --
 -- Indexes for dumped tables
@@ -383,13 +407,13 @@ ALTER TABLE `Controle`
 -- AUTO_INCREMENT for table `Filiere`
 --
 ALTER TABLE `Filiere`
-  MODIFY `id_filiere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_filiere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `Module`
 --
 ALTER TABLE `Module`
-  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `Semestre`
