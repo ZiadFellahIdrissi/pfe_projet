@@ -67,6 +67,9 @@
                             <button data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_filiere"] ?>" data-toggle="tooltip" class="item open_modifierModal" title="Modifier" >
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
+                            <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id_module"] ?>"  title="More">
+                                <i class="zmdi zmdi-more"></i>
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -77,7 +80,7 @@
     }
         $sqlQuery = "SELECT Filiere.id_filiere, Filiere.nom_filiere
                         FROM Filiere
-                        WHERE Filiere.etat = 0";
+                     WHERE Filiere.etat = 0";
         $resultatOfQuery = mysqli_query($conn, $sqlQuery);
         $resultatcheck = mysqli_num_rows($resultatOfQuery);
         if($resultatcheck>0){

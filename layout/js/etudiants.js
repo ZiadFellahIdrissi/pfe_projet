@@ -27,6 +27,7 @@ if (id = getParam("Filiere")) {
                 dataType: "text",
                 success: function(data) {
                     $('.etudiants').html(data);
+                    $('.etudiants').show();
                 }
             });
         }

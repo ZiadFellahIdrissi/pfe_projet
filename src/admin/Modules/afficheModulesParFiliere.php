@@ -2,6 +2,7 @@
     include '../../connection.php';
     include 'modals.php';
 ?>
+<br>
 <div class="table-responsive-sm">
 <?php
     $id_filiere = $_GET["id_filiere"];
@@ -70,7 +71,7 @@
 ?>
         <br>
         <p>Modules désactivés.</p>
-        <table class="table table-borderless table-data3 mydatatable2">
+        <table class="table table-borderless table-data3 ">
             <thead class="thead-dark">
                 <tr>
                     <th>Intitule</th>
@@ -91,7 +92,7 @@
                                 <!-- <button data-toggle="tooltip" id="<?php echo $row["id_module"] ?>" data-toggle="modal" class="item Open_modifierUnModule" data-placement="top" title="Modifier">
                                     <i class="zmdi zmdi-edit"></i>
                                 </button> -->
-                                <button class="item open_confirmationAct" data-toggle="modal" data-toggle="tooltip" id=<?php echo $row["id_module"] ?> title="Activer" >
+                                <button class="item open_confirmationActModule" data-toggle="modal" data-toggle="tooltip" id=<?php echo $row["id_module"] ?> title="Activer" >
                                     <i class="zmdi zmdi-check-circle"></i>
                                 </button>
                                 <!-- <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id_module"] ?>"  title="More">
@@ -108,6 +109,35 @@
 ?>
 </div>
 <script>
-    // $('.mydatatable').DataTable();
+    $('.mydatatable').DataTable();
+    $(document).ready(function() {
+        $(document).on('click', '.open_confirmationActModule', function() {
+            var code = $(this).attr("id");
+            console.log(code);
+            $.ajax({
+                url: "../Modules/fetch_module_infos.php",
+                method: 'GET',
+                data: {
+                    code: code
+                },
+                contentType: "application/json",
+                dataType: 'json',
+                success: function(data) {
+                    $('#intitule').val(data.intitule);
+                    $('#displaySem').val(data.semestre);
+                    $('#sem_act').val(data.id_semestre);
+                    $('#heure_act').val(data.heures_sem);
+                    $('#coeffC_act').val(data.coeff_controle);
+                    $('#coeffE_act').val(data.coeff_examen);
+                    $('#fil_act').val(data.id_filiere);
+                    $('#id_mod_act').val(data.id_module);
+                    $('#actModal').modal('show');
+                },
+                error: function() {
+                    alert('failure');
+                }
+            });
+        });
+    });
 </script>
-<!-- <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script> -->
+<script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
