@@ -183,64 +183,98 @@
                             <button type="submit" class="btn btn-primary" name="modifier">Modifier</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- activation filiere -->
+<!-- activation module -->
 <div class="modal fade" id="actModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <!-- =============================================== -->
                 <form action="activer_module.php" method="POST">
-                    <!-- <div class="form-group">
-                        <label for="fil_act" class="col-form-label">Nom de la filière</label>
-                        <input type="text" class="form-control" name="nom_filiere" id="fil_act" disabled>
-                    </div>
-                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="intitule" class="col-form-label">Intitule</label>
+                            <input type="text" class="form-control" id="intitule" disabled>
+                        </div>
                         <div class="row">
                             <div class="col">
-                                <label for="tarif" class="col-form-label">Tarif</label>
-                                <input type="number" class="form-control" name="tarif" id="tarif" required>
+                                <div class="form-group">
+                                    <label for="sem_act" class="col-form-label">Semestre</label>
+                                    <input id="displaySem" class="form-control" readonly="readonly">
+                                    <input id="sem_act" name="sem_act" class="form-control" hidden>
+                                </div>
                             </div>
                             <div class="col">
-                                <label>Responsable</label>
-                                <select for="res_act" name="responsable" class="form-control" id="res_act" required>
-                                    <option value=""></option>
-                                    <?php
-                                        $sql = "SELECT Personnel.id, Utilisateur.nom, Utilisateur.prenom
-                                                FROM Personnel
-                                                JOIN Utilisateur ON Personnel.id = Utilisateur.id
-                                                WHERE Personnel.role = 'enseignant'
-                                                AND Personnel.id not in ( SELECT id_responsable
-                                                                            FROM Filiere          )";
-                                        $resultat = mysqli_query($conn, $sql);
-                                        if (mysqli_num_rows($resultat) > 0) {
-                                            while ($row = mysqli_fetch_assoc($resultat)) {
-                                    ?>
-                                                <option value="<?php echo $row['id'] ?>">
-                                                    <strong><?php echo $row['nom'] . " " . $row["prenom"] ?></strong>
-                                                </option>';
-                                    <?php
-                                            }
-                                        }
-                                    ?>
-                                </select>
+                                <div class="form-group">
+                                    <label for="heure_act" class="col-form-label">Heures de la semaine</label>
+                                    <input type="number" class="form-control" name="heure_act" id="heure_act" required>
+                                </div>
                             </div>
                         </div>
-                    </div>             
-                    <div class="modal-footer">
-                        <input type="hidden" name="filiere" id="filiere" value="" />
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" id="Activer" class="btn btn-primary" value="Activer" name="Activer" required>
-                    </div> -->
-                </form>
+                        <div class="form-group">
+                            <b>Coefficients</b>
+                            <table class="table-bordered table">
+                                <tr>
+                                    <td>
+                                        <label for="coeffC_act" class="col-form-label">Coefficient du Controle</label>
+                                        <input type="number" step="0.01" max=1 min=0 class="form-control" name="coeffC_act" id="coeffC_act" required>
+                                    </td>
+                                    <td>
+                                        <label for="coeffE_act" class="col-form-label">Coefficient d'Examen</label>
+                                        <input type="number" step="0.01" max=1 min=0 class="form-control" name="coeffE_act" id="coeffE_act" required>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <label for="ens_act" class="col-form-label">Enseignant du Module</label>
+                            <select name="ens_act" id="ens_act" class="form-control" required>
+                                <option value=''></option>
+                                <?php
+                                    $sql = "SELECT Personnel.id, Utilisateur.nom, Utilisateur.prenom
+                                            FROM Personnel
+                                            JOIN Utilisateur ON Personnel.id = Utilisateur.id";
+                                    $resultat = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                ?>
+                                        <option value='<?php echo $row["id"] ?>'>
+                                            <?php echo $row["nom"].' '.$row["prenom"] ?>
+                                        </option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fil_act" class="col-form-label">Filière</label>
+                            <select id="fil_act" name="fil_act" class="form-control" readonly="readonly">
+                                <option value=''></option>
+                                <?php
+                                    $sql = "SELECT id_filiere, nom_filiere
+                                            FROM Filiere                    ";
+                                    $resultat = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                ?>
+                                        <option value='<?php echo $row["id_filiere"] ?>'>
+                                            <?php echo $row["nom_filiere"] ?>
+                                        </option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id_mod_act" id="id_mod_act">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary" name="Activer">Activer</button>
+                        </div>
+                    </form>
             </div>
         </div>
     </div>
 </div>
-<!-- end activation filiere -->
+<!-- end activation module -->

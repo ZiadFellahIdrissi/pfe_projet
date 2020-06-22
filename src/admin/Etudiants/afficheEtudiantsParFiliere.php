@@ -2,6 +2,7 @@
     include '../../connection.php';
     include 'modals.php';
 ?>
+<br>
 <div class="table-responsive-sm">
     <?php
     $id_filiere = $_GET['id_filiere'];
