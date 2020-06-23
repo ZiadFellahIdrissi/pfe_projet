@@ -1,11 +1,11 @@
 <?php 
     include '../../connection.php';
-    if(isset($_POST["Modifier_inp"])){
-        $id_filiere = $_POST["Modifier_inp"];
+    if(isset($_POST['Modifier_inp'])){
+        $id_filiere = $_POST['Modifier_inp'];
         $nom        = trim(mysqli_real_escape_string($conn, trim($_POST["Nom"])));
-        $resp_id    = $_POST["Responsable_modifier"];
+        $resp_id    = $_POST['Responsable_modifier'];
         $oldResp    = $_POST['oldResp'];
-        $prix       = $_POST['prix_modifier'];
+        $prix       = $_POST['prix'];
         $sql        = mysqli_query($conn, "SELECT nom_filiere, id_responsable
                                            FROM Filiere
                                            WHERE id_filiere != $id_filiere    ");
@@ -26,9 +26,9 @@
 
         mysqli_query($conn , "UPDATE Filiere
                                 SET id_responsable = '$resp_id',
-                                    nom_filiere = '$nom'
+                                    nom_filiere = '$nom',
+                                    prix_formation = $prix
                                 WHERE id_filiere = $id_filiere ");
-
         mysqli_query($conn, "UPDATE Personnel
                                 SET role = 'enseignant'
                                 WHERE id = '$oldResp'     ");

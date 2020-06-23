@@ -28,7 +28,7 @@
 ?>
                     <tr>
                         <td><?php echo $row["nom"].' '.$row["prenom"] ?></td>
-                        <td><?php echo $row["telephone"] ?></td>
+                        <td style="text-align: center;"><?php echo $row["telephone"] ?></td>
                         <td><?php echo $row["nom_filiere"] ?> </td>
                     </tr>
 <?php

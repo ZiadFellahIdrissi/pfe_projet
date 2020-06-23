@@ -1,4 +1,4 @@
-INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `password`, `telephone`, `email`, `username`, `imagepath`) VALUES
+INSERT INTO `Utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `password`, `telephone`, `email`, `username`, `imagepath`) VALUES
 ('AA555555', 'Fellah-Idrissi', 'Ziad', '1999-06-18', 'ziad1999', '0610111000', 'ziad.fe1999@gmail.com', 'ziad.fellah-idrissi-etu', '5ef158e67c7408.29165174.jpg'),
 ('AB629501', 'Khalid', 'Yhaya', '1999-03-03', NULL, '0610012301', '', NULL, ''),
 ('AC639502', 'Gouchgache', 'Hajar', '1999-08-09', NULL, '0610985002', '', NULL, ''),
@@ -28,7 +28,7 @@ INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `password`, 
 ('CD699525', 'Rehmi', 'Youssef', '1968-05-17', NULL, '0513695167', '', NULL, ''),
 ('WA111588', 'Azize', 'Raiss', '1976-05-11', 'res1234', '0154899710', 'raiss.azize@fsac.ma', 'raiss.azize-res', '5ef15873361741.94909092.jpg');
 
-INSERT INTO `personnel` (`id`, `som`, `role`) VALUES
+INSERT INTO `Personnel` (`id`, `som`, `role`) VALUES
 ('BA699512', 'P331010101', 'enseignant'),
 ('BB699513', 'S331010101', 'enseignant'),
 ('BC699514', 'L331055501', 'enseignant'),
@@ -45,13 +45,13 @@ INSERT INTO `personnel` (`id`, `som`, `role`) VALUES
 ('WA111588', 'Z141010199', 'responsable');
 
 
-INSERT INTO `filiere` (`id_filiere`, `prix_formation`, `nom_filiere`, `id_responsable`, `etat`) VALUES
+INSERT INTO `Filiere` (`id_filiere`, `prix_formation`, `nom_filiere`, `id_responsable`, `etat`) VALUES
 (1, 30000, 'Developpement & Admin des BD (DAB)', 'CC101524', 1),
 (2, 35000, 'Administration Reseaux & Systemes (ARS)\r\n', 'WA111588', 1),
 (3, 40000, 'Developpement Mobile & Multimedia (DMM)', 'CD699525', 1),
 (4, 25000, 'filiere pour test', 'BJ121221', 1);
 
-INSERT INTO `etudiant` (`id`, `somme`, `cne`, `id_filiere`) VALUES
+INSERT INTO `Etudiant` (`id`, `somme`, `cne`, `id_filiere`) VALUES
 ('AA555555', NULL, 'R131238116', 1),
 ('AB629501', NULL, 'R131238119', 1),
 ('AC639502', NULL, 'R131238117', 1),
@@ -67,7 +67,7 @@ INSERT INTO `etudiant` (`id`, `somme`, `cne`, `id_filiere`) VALUES
 
 
 
-INSERT INTO `module` (`id_module`, `heures_sem`, `intitule`, `id_enseignant`, `id_semestre`, `etat`) VALUES
+INSERT INTO `Module` (`id_module`, `heures_sem`, `intitule`, `id_enseignant`, `id_semestre`, `etat`) VALUES
 (1, 65, 'HTML5/CSS3', 'BA699512', 1, 1),
 (2, 68, 'Traitement des elements 2D et 3D', 'BA699512', 1, 1),
 (3, 70, 'Techniques de traitement d images et de la video', 'BB699513', 1, 1),
@@ -121,4 +121,3 @@ INSERT INTO `dispose_de` (`id_filiere`, `id_module`, `coeff_examen`, `coeff_cont
 (3, 9, 0.5, 0.5),
 (4, 42, 0.7, 0.3),
 (4, 43, 0.6, 0.4);
-

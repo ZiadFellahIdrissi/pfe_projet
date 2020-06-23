@@ -12,7 +12,7 @@ if (!$user->isLoggedIn()) {
     <html lang="en">
 
     <head>
-        <title>Etudiants</title>
+        <title>Notes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="../../../layout/css/animation.css" rel="stylesheet" type="text/css" />
@@ -53,7 +53,7 @@ if (!$user->isLoggedIn()) {
                     <nav aria-label="breadcrumb nov">
                         <ol class="breadcrumb nov">
                             <li class="breadcrumb-item"><a href="../pages">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Etudiants</li>
+                            <li class="breadcrumb-item active" aria-current="page">Notes</li>
                         </ol>
                     </nav>
                     <div class="col-md-14">
@@ -123,6 +123,18 @@ if (!$user->isLoggedIn()) {
                     }
                 });
             });
+            
+            $(document).ready(function() {
+                $('.etudiants').hide();
+                $('#filiere').change(affiche);
+                function affiche() {
+                    if($('#filiere').val()!="")
+                        $(".etudiants").show();
+                    else
+                        $('.etudiants').hide();
+                }
+            });
+
             $(document).ready(function() {
                 $(document).on('click', '.openModalNotes', function() {
                     var cin = $(this).attr("id");

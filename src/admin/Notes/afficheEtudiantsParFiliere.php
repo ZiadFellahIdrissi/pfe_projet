@@ -52,38 +52,35 @@ if (!empty($_GET['id_filiere'])) {
                 WHERE Etudiant.id_filiere=" . $_GET['id_filiere'];
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
-        if ($resultatcheck > 0) {
         ?>
-            <table class="table table table-borderless table-data3 mydatatable">
-                <thead>
+            <table class="table table-borderless table-data3 mydatatable">
+                <thead class="thead-dark">
                     <tr>
                         <th>CIN</th>
-                        <th>CIN</th>
+                        <th>CNE</th>
                         <th>Nom Complet</th>
-                        <th>Relvet De Note</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-
-                    while ($row = mysqli_fetch_assoc($resultat)) {
+                    if ($resultatcheck > 0) {
+                        while ($row = mysqli_fetch_assoc($resultat)) {
+                        ?>
+                            <tr style="cursor: pointer; *cursor: hand;" class="item openModalNotes" data-toggle="tooltip" data-placement="top" id="<?php echo $row["cin"] ?>" title="Relevé de notes de <?php echo $row["nom"].' '.$row["prenom"] ?>">
+                                <td><?php echo $row["cin"] ?></td>
+                                <td><?php echo $row["cne"] ?></td>
+                                <td><?php echo $row["nom"] . ' ' . $row["prenom"] ?></td>
+                            </tr>
+                    <?php
+                        } 
+                    } else {
                     ?>
-                        <tr>
-                            <td><?php echo $row["cin"] ?></td>
-                            <td><?php echo $row["cne"] ?></td>
-                            <td><?php echo $row["nom"] . ' ' . $row["prenom"] ?></td>
-                            <td style="font-size: large; width:20%">
-                                <button class="item openModalNotes" data-toggle="tooltip" data-placement="top" id="<?php echo $row["cin"] ?>" title="More">
-                                    <i class="zmdi zmdi-more"></i>
-                                </button>
-                            </td>
-                        </tr>
-                <?php
+                        <tr><td colspan="4" style="text-align: center;">Aucun etudiant n'est inscrit à cette filière.</td></tr>
+                    <?php
                     }
                     echo "<tbody>";
-                    echo "</table>";
-                }
-                ?>
+                echo "</table>";
+                    ?>
     </div>
     <script>
         $('.mydatatable').DataTable();

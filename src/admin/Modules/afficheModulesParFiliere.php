@@ -19,7 +19,6 @@
 
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);
-    if ($resultatcheck > 0) {
 ?>
         <table class="table table-borderless table-data3 mydatatable">
             <thead class="thead-dark">
@@ -32,12 +31,13 @@
             </thead>
             <tbody>
 <?php
+            if ($resultatcheck > 0) {
                 while ($row = mysqli_fetch_assoc($resultat)) {
 ?>
                     <tr>
                         <td><?php echo $row["intitule"] ?></td>
                         <td><?php echo $row["nom"].' '.$row["prenom"] ?></td>
-                        <td><?php echo $row["heures_sem"] ?></td>
+                        <td style="text-align: center;"><?php echo $row["heures_sem"] ?></td>
                         <td>
                             <div class="table-data-feature">
                                 <!-- <button onclick="location.href='supprimer_module.php?id=<?php echo $row["id_module"] ?>'" class="item" data-toggle="tooltip" data-placement="top" title="Supprimer">
@@ -54,9 +54,18 @@
                     </tr>
 <?php
                 }
+            } else {
+            ?>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            <?php
+            }
             echo "<tbody>";
         echo "</table>";
-    }
     $sql = "SELECT *
             FROM Module
             JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
@@ -71,7 +80,7 @@
 ?>
         <br>
         <p>Modules désactivés.</p>
-        <table class="table table-borderless table-data3 ">
+        <table class="table table-borderless table-data3 mydatatable2">
             <thead class="thead-dark">
                 <tr>
                     <th>Intitule</th>
@@ -110,6 +119,9 @@
 </div>
 <script>
     $('.mydatatable').DataTable();
+
+    $('.mydatatable2').DataTable();
+    
     $(document).ready(function() {
         $(document).on('click', '.open_confirmationActModule', function() {
             var code = $(this).attr("id");
@@ -129,6 +141,7 @@
                     $('#heure_act').val(data.heures_sem);
                     $('#coeffC_act').val(data.coeff_controle);
                     $('#coeffE_act').val(data.coeff_examen);
+                    $('#displayFil').val(data.nom_filiere);
                     $('#fil_act').val(data.id_filiere);
                     $('#id_mod_act').val(data.id_module);
                     $('#actModal').modal('show');

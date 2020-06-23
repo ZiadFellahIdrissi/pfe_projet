@@ -251,21 +251,8 @@
                         </div>
                         <div class="form-group">
                             <label for="fil_act" class="col-form-label">Filière</label>
-                            <select id="fil_act" name="fil_act" class="form-control" readonly="readonly">
-                                <option value=''></option>
-                                <?php
-                                    $sql = "SELECT id_filiere, nom_filiere
-                                            FROM Filiere                    ";
-                                    $resultat = mysqli_query($conn, $sql);
-                                    while ($row = mysqli_fetch_assoc($resultat)) {
-                                ?>
-                                        <option value='<?php echo $row["id_filiere"] ?>'>
-                                            <?php echo $row["nom_filiere"] ?>
-                                        </option>
-                                <?php
-                                    }
-                                ?>
-                            </select>
+                            <input id="fil_act" name="fil_act" class="form-control" hidden>
+                            <input id="displayFil" class="form-control" readonly="readonly">
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id_mod_act" id="id_mod_act">
