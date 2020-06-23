@@ -39,7 +39,7 @@ if (isset($_GET["cin"])) {
                 </div>
                 <div class="col-md-6">
                     <p>
-                        <?php echo 'CNE: ' . $resultStudentInfo->cne ?>
+                        <?php echo 'CNE: ' . $resultStudentInfo->first()->cne ?>
                     </p>
                 </div>
             </div>
@@ -57,7 +57,7 @@ if (isset($_GET["cin"])) {
             </div>
 
             <p>
-                <?php echo 'Inscrit en: ' . '<b>' . $resultStudentInfo->nom_filiere . '</b>' ?>
+                <?php echo 'Inscrit en: ' . '<b>' . $resultStudentInfo->first()->nom_filiere . '</b>' ?>
             </p>
             <p>
                 <?php echo 'a obtenu les notes suivants :' ?>

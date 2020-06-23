@@ -8,7 +8,7 @@
             </div>
             <div class="header__navbar">
                 <ul class="list-unstyled">
-                    <li>
+                    <li >
                         <a href="../pages/">
                             <i class="fas fa-tachometer-alt"></i>Dashboard
                             <span class="bot-line"></span>
@@ -39,7 +39,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li >
                         <a href="../Module/">
                             <i class="fab fa-stack-overflow"></i>
                             <span class="bot-line"></span>Modules
@@ -101,28 +101,28 @@
                 <div class="account-wrap">
                     <div class="account-item account-item--style2 clearfix js-item-menu">
                         <div class="image">
-                            <img src="../../../img/Dashboard/profile.svg " alt=" <?php echo $nom . ' ' . $prenom ?>" />
+                            <img src="../../../img/profiles/<?php echo $imagepath ?>" alt=" <?php echo $nom.' '.$prenom ?>" />
                         </div>
                         <div class="content">
                             <a class="js-acc-btn" href="#">
-                                <?php echo $nom . ' ' . $prenom ?>
+                                <?php echo $nom.' '.$prenom ?>
                             </a>
                         </div>
                         <div class="account-dropdown js-dropdown">
                             <div class="info clearfix">
                                 <div class="image">
                                     <a href="#">
-                                        <img src="../../../img/Dashboard/profile.svg " alt=" <?php echo $nom . ' ' . $prenom ?>" />
+                                        <img src="../../../img/profiles/<?php echo $imagepath ?>" alt=" <?php echo $nom.' '.$prenom ?>" />
                                     </a>
                                 </div>
                                 <div class="content">
                                     <h5 class="name">
                                         <a href="#">
-                                            <?php echo $nom . ' ' . $prenom ?>
+                                            <?php echo $nom.' '.$prenom ?>
                                         </a>
                                     </h5>
                                     <span class="email">
-                                        <?php echo $email ?>
+                                        <?php echo $email?>
                                     </span>
                                 </div>
                             </div>

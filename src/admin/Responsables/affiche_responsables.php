@@ -14,7 +14,7 @@
     ?>
         <br>
         <table class="table table table-borderless table-data3 mydatatable">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>Nom Complet</th>
                     <th>Telephone</th>
@@ -28,7 +28,7 @@
 ?>
                     <tr>
                         <td><?php echo $row["nom"].' '.$row["prenom"] ?></td>
-                        <td><?php echo $row["telephone"] ?></td>
+                        <td style="text-align: center;"><?php echo $row["telephone"] ?></td>
                         <td><?php echo $row["nom_filiere"] ?> </td>
                     </tr>
 <?php

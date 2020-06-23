@@ -18,6 +18,6 @@
         //     header("Location: ./?success?$cin"); haanta biyen liya!
         // }
 
-        header("Location: ./?restore&err=invalide");
+        header("Location: ./?restore&err");
     }
 ?>

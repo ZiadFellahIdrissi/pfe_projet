@@ -42,6 +42,11 @@
                         <i class="fab fa-stack-overflow"></i>Modules
                     </a>
                 </li>
+                <li>
+                    <a href="../Notes">
+                        <i class="fas fa-copy"></i>Notes
+                    </a>
+                </li>
                 <!-- <li class="has-sub">
                     <a class="js-arrow" href="#">
                         <i class="fas fa-calendar-alt"></i>Examens <i class="fas fa-angle-down"></i> </a>

@@ -35,35 +35,47 @@ if (id && id2) {
                 success: function(data) {
                     $('.modules').html(data);
                     $('#semester').show();
+                    $(".modules").show();
                 }
             });
         }
     });
 }
 
+
 $(document).ready(function() {
+    $('.modules').hide();
     $('#semester').hide();
     $('#filiere').change(affiche);
+
     function affiche() {
-        if(isNaN($('#affiche').val()))
+        if ($('#filiere').val() != "") {
             $('#semester').show();
+            $(".modules").show();
+        } else {
+            $('#semester').hide();
+            $('.modules').hide();
+        }
     }
 });
+
 
 var id_f = $("#filiere").val();
 
 $(document).ready(function() {
-     $('#filiere').change(affiche);
-      function affiche() {
-        if(id_f != $('#filiere').val()){
-            $('#semester').prop('selectedIndex',0);
+    $('#filiere').change(affiche);
+
+    function affiche() {
+        if (id_f != $('#filiere').val()) {
+            $('#semester').prop('selectedIndex', 0);
         }
-      }
+    }
 });
 
 $(document).ready(function() {
     $('#filiere').change(affiche);
     $("#semester").change(affiche);
+
     function affiche() {
         var id_filiere = $("#filiere").val();
         var semester = $("#semester").val();
@@ -111,6 +123,5 @@ $(document).ready(function() {
                 alert('failure');
             }
         });
-
     });
 });

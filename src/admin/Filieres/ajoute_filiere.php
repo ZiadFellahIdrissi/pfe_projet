@@ -5,17 +5,18 @@
         $resp    = $_POST['Responsable'];
         $prix    = $_POST['prix'];
 
-        $sqltest = mysqli_query($conn, "SELECT id_filiere, nom_filiere
-                                        FROM Filiere 
-                                        WHERE nom_filiere = '".$nom."'");
+        $sqltest = mysqli_query($conn, "SELECT nom_filiere
+                                        FROM Filiere");
 
-        if (mysqli_num_rows($sqltest) > 0) {
+        while($row = mysqli_fetch_assoc($sqltest)){
+            if($row["nom_filiere"] === $nom){
                 header('location: ./?errname');
                 exit();
+            }
         }
 
-        mysqli_query($conn, "INSERT INTO `Filiere`(`nom_filiere`, `id_responsable`, `prix_formation`)
-                                VALUES ('$nom', '$resp', $prix)");
+        mysqli_query($conn, "INSERT INTO `Filiere`(`nom_filiere`, `id_responsable`, `prix_formation`, `etat`)
+                                VALUES ('$nom', '$resp', $prix, 1)");
                                 
         mysqli_query($conn, "UPDATE Personnel
                                 SET role = 'responsable'

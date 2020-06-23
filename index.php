@@ -54,18 +54,18 @@
         <ul class="navbar-nav ml-auto">
           <!-- <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li> -->
-          <!-- <li class="nav-item">
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#">Test</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Test</a>
           </li> -->
           <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="./src/admin/pages/login.php">Espace Admin</a>
+            <a class="btn btn-outline-dark" href="./src/admin/pages/login.php">Espace Admin</a>
           </li>
           <li class="nav-item text-nowrap ">
-            <a class="btn btn btn-outline-dark" href="./src/login">Connexion</a>
+            <a class="btn btn-outline-dark" href="./src/login">Connexion</a>
           </li>
 
         </ul>
@@ -96,7 +96,6 @@
         </div>
       </div>
     </div>
-
   </header><br><br>
   <hr style="width: 80%;"><br>
 

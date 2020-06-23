@@ -13,6 +13,7 @@
                                                              FROM Etudiant
                                                              JOIN Utilisateur ON Etudiant.id = Utilisateur.id
                                                              WHERE Etudiant.id = '$oldCin'                      "));
+        $id_fil    = $row["id_filiere"];
 
         if($oldCin==$cin && $row["cne"]==$cne &&$row["telephone"]==$telephone)
             goto success;
@@ -48,6 +49,6 @@ success:
 
         mysqli_query($conn, "SET FOREIGN_KEY_CHECKS = 1");
         
-        header("location: ./?updated&idUrlFiliere=$filiere");
+        header("location: ./?updated&idUrlFiliere=$id_fil");
     }
 ?>

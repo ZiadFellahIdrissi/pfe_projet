@@ -22,17 +22,16 @@ nav {
 
 body {
     overflow-x: hidden;
-    /* text-align: center;
+    /* text-align: center; */
     /* fix */
     background: #AEACFB;
 }
 
-
-/* @media screen and (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
     .footer {
         display: none;
     }
     body {
         overflow: scroll;
     }
-} */
+}

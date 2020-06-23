@@ -9,8 +9,10 @@ if (!$user->isLoggedIn()) {
     $prenom = $user->data()->prenom;
     $email  = $user->data()->email;
     $id     = $user->data()->id;
+    $imagepath = $user->data()->imagepath;
 ?>
     <html lang="en">
+
     <head>
         <!-- Required meta tags-->
         <meta charset="UTF-8">
@@ -84,12 +86,12 @@ if (!$user->isLoggedIn()) {
                     <div class="col-md-12">
                         <div class="au-breadcrumb-content">
                             <div class="au-breadcrumb-left">
-                                <?php if($user->data()->role!='responsable'){ ?>
-                                <h1 class="title-4">Bienvenue
-                                    <span><?php echo strtoupper($nom) . ' ' . $prenom;?></span>
-                                </h1>
+                                <?php if ($user->data()->role != 'responsable') { ?>
+                                    <h1 class="title-4">Bienvenue
+                                        <span><?php echo strtoupper($nom) . ' ' . $prenom; ?></span>
+                                    </h1>
                                 <?php
-                                }else 
+                                } else
                                     echo '<h1 class="title-4">
                                             <span>Vous êtes maintenant dans lespace ensenginant</span>
                                           </h1>';
