@@ -92,8 +92,8 @@ INSERT INTO `module` (`id_module`, `heures_sem`, `intitule`, `id_enseignant`, `i
 (22, 70, 'Configuration dune infrastructure Active Directory avec Windows Server', 'WA111588', 1, 1),
 (24, 68, 'CCNP Switch&Tshoot', 'BE699516', 2, 1),
 (25, 50, 'Administration Linux & Virtualisation', 'BF699517', 2, 1),
-(42, 70, 'module test_0', '', 1, 0),
-(43, 68, 'module test_1', '', 1, 0);
+(42, 70, 'module test_0', 'BJ121221', 1, 1),
+(43, 68, 'module test_1', 'BJ121221', 1, 1);
 
 INSERT INTO `dispose_de` (`id_filiere`, `id_module`, `coeff_examen`, `coeff_controle`) VALUES
 (1, 10, 0.6, 0.4),
