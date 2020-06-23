@@ -33,9 +33,10 @@
                     <td>
                         <div class="table-data-feature">
                             <?php
+                            $id_filiere=$row["id_filiere"];
                             $sql = " SELECT *
                                       FROM Etudiant
-                                      WHERE id_filiere = '" . $row["id_filiere"] . "'";
+                                      WHERE id_filiere = $id_filiere";
                             $resultat = mysqli_query($conn, $sql);
                             $check = mysqli_num_rows($resultat);
                             // $sql = " SELECT *
@@ -67,7 +68,7 @@
                             <button data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_filiere"] ?>" data-toggle="tooltip" class="item open_modifierModal" title="Modifier" >
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
-                            <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id_module"] ?>"  title="More">
+                            <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id_filiere"] ?>"  title="More">
                                 <i class="zmdi zmdi-more"></i>
                             </button>
                         </div>

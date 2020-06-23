@@ -39,7 +39,7 @@
                 </li>
                 <li>
                     <a href="../Notes">
-                        <i class="fas fa-user-graduate"></i>Notes
+                        <i class="fas fa-copy"></i>Notes
                     </a>
                 </li>
             </ul>
