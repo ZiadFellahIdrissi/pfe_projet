@@ -96,7 +96,7 @@ h1 {
 
 .split.right {
     right: 0;
-    background: url('../../img/signup/te.jpg') center center no-repeat;
+    background: url('../../img/signup/te1.jpg') center center no-repeat;
     background-size: cover;
 }
 
@@ -145,6 +145,9 @@ h1 {
     }
     .button {
         width: 12rem;
+    }
+    .container {
+        margin-top: 35%;
     }
 }
 
