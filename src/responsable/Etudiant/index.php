@@ -1,6 +1,5 @@
 <?php
 include_once '../../../core/init.php';
-
 $user = new User_Prof();
 $db = DB::getInstance();
 if (!$user->isLoggedIn()) {
@@ -23,7 +22,7 @@ if (!$user->isLoggedIn()) {
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
             <!-- Title Page-->
-            <title>Dashboard</title>
+            <title>Etudiants</title>
 
             <!-- Fontfaces CSS-->
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -37,13 +36,13 @@ if (!$user->isLoggedIn()) {
             <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
             <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
             <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+            <link href="../../../layout/css/datatables.min.css" rel="stylesheet" type="text/css" media="all" />
+
             <!-- Main CSS-->
             <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
-
         </head>
 
         <body>
-
             <!-- HEADER DESKTOP-->
             <?php include '../pages/headerDesktop.php' ?>
             <!-- END HEADER DESKTOP-->
@@ -51,8 +50,6 @@ if (!$user->isLoggedIn()) {
             <!-- HEADER MOBILE-->
             <?php include '../pages/headerPhone.php' ?>
             <!-- END HEADER MOBILE -->
-
-            <!-- PAGE CONTENT-->
 
             <!-- BREADCRUMB-->
             <section class="au-breadcrumb2">
@@ -66,7 +63,7 @@ if (!$user->isLoggedIn()) {
                                         <li class="list-inline-item">
                                             <a href="../pages/">Dashboard </a><span> /</span>
                                         </li>
-                                        <li class="list-inline-item">Enseignants</li>
+                                        <li class="list-inline-item">Etudiants</li>
                                     </ul>
                                 </div>
                                 <form class="au-form-icon--sm" action="" method="post">
@@ -81,75 +78,82 @@ if (!$user->isLoggedIn()) {
                 </div>
             </section>
 
-            <!-- END BREADCRUMB-->
-            <div class="info">
+            <!-- MODAL INFORMATION FILL BY AJAX  -->
+            <div class="modalInfo">
             </div>
+
+            <!-- LES ETUDIANTS -->
             <section class="statistic statistic2">
                 <div class="container shadow-lg bg-white rounded" style="padding: 0%;">
-                    <div class="table-responsive-sm">
-                        <?php
-                        $sql = "SELECT Utilisateur.id cin, Etudiant.cne, Utilisateur.nom, Utilisateur.prenom,
+                    <div class="card">
+                        <div class="card-header">
+                        </div>
+                        <div class="card-body modules">
+                            <div class="table-responsive-sm">
+                                <?php
+                                $sql = "SELECT Utilisateur.id cin, Etudiant.cne, Utilisateur.nom, Utilisateur.prenom,
                                         Utilisateur.telephone, Utilisateur.email, Utilisateur.date_naissance,
                                         Etudiant.id_filiere, Utilisateur.imagepath
                                         FROM Utilisateur 
                                         join Etudiant ON Etudiant.id = Utilisateur.id
                                         WHERE Etudiant.id_filiere = (select Filiere.id_filiere FROM Filiere WHERE Filiere.id_responsable=?)";
-                        $resultat = $db->query($sql, [$id]);
-                        ?>
-                        <table class="table table table-borderless table-data3 mydatatable">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>CNE</th>
-                                    <th>Nom Complet</th>
-                                    <th>Telephone</th>
-                                    <th>Options</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                if ($resultat->count() > 0) {
-                                    foreach ($resultat->results() as $row) {
+                                $resultat = $db->query($sql, [$id]);
                                 ?>
+                                <table class="table table-hover table-data mydatatable">
+                                    <thead class="thead-dark">
                                         <tr>
-                                            <td><?php echo $row->cne ?></td>
-                                            <td><?php echo $row->nom . ' ' . $row->prenom ?></td>
-                                            <td style="text-align: center;"><?php echo $row->telephone ?></td>
-                                            <td>
-                                                <div class="table-data-feature">
-                                                    <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row->cin ?>" title="More">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
+                                            <th>CNE</th>
+                                            <th>Nom Complet</th>
+                                            <th>Telephone</th>
+                                            <th>Inforamtions</th>
                                         </tr>
-                                    <?php
-                                    }
-                                } else {
-                                    ?>
-                                    <tr>
-                                        <td colspan="4" style="text-align: center;">Aucun etudiant n'est inscrit à cette filière.</td>
-                                    </tr>
-                                <?php
-                                }
-                                echo "<tbody>";
-                                echo "</table>";
-                                ?>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if ($resultat->count() > 0) {
+                                            foreach ($resultat->results() as $row) {
+                                        ?>
+                                                <tr>
+                                                    <td style="font-weight: bold;"><?php echo $row->cne ?></td>
+                                                    <td><?php echo $row->nom . ' ' . $row->prenom ?></td>
+                                                    <td style="text-align: center;"><?php echo $row->telephone ?></td>
+                                                    <td>
+                                                        <span class="more openModalInformation" id="<?php echo $row->cin ?>" title="More">
+                                                            <i class="zmdi zmdi-more"></i>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            }
+                                        } else {
+                                            ?>
+                                            <tr>
+                                                <td colspan="4" style="text-align: center;">Aucun etudiant n'est inscrit à cette filière.</td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        echo "<tbody>";
+                                        echo "</table>";
+                                        ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-            <!-- spinner -->
+            <!-- END -->
+
+            <!-- SPINNER -->
             <div class="d-flex justify-content-center">
                 <div class="spinner-border m-5 spinner" role="status" id="spinner">
                     <span class="sr-only">Loading...</span>
                 </div>
-            </div>
-            <br><br>
-            <!-- <?php //include_once './info.php'; 
-                    ?> -->
-
+            </div><br><br>
+            <!-- END SPINNER -->
+            
 
             <!-- Jquery JS-->
             <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
+            <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
 
             <!-- Bootstrap JS-->
             <script src="../../../layout/js/bootstrap.min.js "></script>
@@ -161,6 +165,7 @@ if (!$user->isLoggedIn()) {
             <!-- Main JS-->
             <script src="../../../layout/js/main.js "></script>
             <script>
+                $('.mydatatable').DataTable();
                 $(document).ready(function() {
                     $(".spinner").hide();
                     $(document).on('click', '.openModalInformation', function() {
@@ -180,7 +185,7 @@ if (!$user->isLoggedIn()) {
                                 $(".spinner").hide();
                             },
                             success: function(data) {
-                                $('.info').html(data);
+                                $('.modalInfo').html(data);
                                 $('.studentInfo').modal({
                                     backdrop: 'static',
                                     keyboard: false
@@ -196,14 +201,14 @@ if (!$user->isLoggedIn()) {
                     $(document).on('click', '#closeModal', function() {
                         $('.modal-backdrop').remove();
                         $('.modal-backdrop').remove();
-                        $('.studentInfo').delay(1000).queue(function() {
+                        $('.studentInfo').delay(400).queue(function() {
                             $(this).remove();
                         });
                     });
 
                 });
             </script>
-
+            <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
         </body>
 
         </html>
@@ -211,5 +216,4 @@ if (!$user->isLoggedIn()) {
     }
 }
 ?>
-<!-- ======================================================== -->
-<!-- //================================================================================== -->
+<!-- ========================================================================================================================================== -->

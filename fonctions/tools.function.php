@@ -88,9 +88,8 @@ function getStudentsInfo($id){
     return $resultats;
 }
 function getPersonnelInfo($id){
-    $db = DB::getInstance();
-    $sql = "SELECT som,`role` from Personnel where id=?";
-    $resultats = $db->query($sql, [$id]);
-    return $resultats;
+    $db1 = DB::getInstance();
+    $sql2 = "SELECT som,`role` from Personnel where id=?";
+    $resultats0 = $db1->query($sql2, [$id]);
+    return $resultats0;
 }
-?>

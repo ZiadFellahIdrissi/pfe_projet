@@ -7,7 +7,7 @@
 }
 
 .mydatatable {
-    font-size: 14px;
+    font-size: 18px;
 }
 
 
@@ -4367,7 +4367,7 @@ section {
 }
 
 .table-data {
-    height: 472px;
+    /* height: 472px; */
     overflow-y: auto;
 }
 
@@ -4389,6 +4389,14 @@ section {
 
 .table-data .table tr td:last-child {
     padding-right: 24px;
+}
+
+.table-data3 tbody tr:hover td .more {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
 }
 
 .table-data tbody tr:hover td .more {

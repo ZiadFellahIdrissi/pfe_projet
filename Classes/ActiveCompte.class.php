@@ -64,14 +64,14 @@ class ActiveCompte
         return false;
     }
 
-    public function isAlreadyActivated($cin)
+    public static function  isAlreadyActivated($cin)
     {
         if ($cin) {
             $sql = "SELECT id
                     FROM Utilisateur
                     WHERE id = ?
                     AND `password` is not null";
-            $dataPas = $this->_db->query($sql, [$cin]);
+            $dataPas = DB::getInstance()->query($sql, [$cin]);
             return $dataPas->count() ? true : false;
         }
         return false;

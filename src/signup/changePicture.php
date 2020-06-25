@@ -35,7 +35,7 @@ include '../connection.php';
                                 SET `imagepath` = '$filenewname'
                             WHERE id = '$cin'";
                         mysqli_query($conn, $sql);
-                        echo "good";
+                        echo 'good';
                     }
                     // header("Location: ../etudiant/");}
 

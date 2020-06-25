@@ -59,6 +59,9 @@ if (isset($_GET["cin"])) {
 
             </form>
         </div>
+        </div><br><br><br>
+        <div class="error">
+
         </div>
         <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
         <!-- Bootstrap JS-->
@@ -94,10 +97,12 @@ if (isset($_GET["cin"])) {
                                 $(".progress-bar").width(percentageComplete + '%');
                                 submit.style.display = "none";
                             },
-                            success: function() {
+                            data:{},
+                            success: function(data) {
                                 let login = document.querySelector("#login");
                                 login.style.display = "block";
                                 submit.style.display = "none";
+                                $(".error").html(data);
                             },
                             error: function() {
                                 alert("wait a min there is an error");
