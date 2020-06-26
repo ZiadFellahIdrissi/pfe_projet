@@ -20,7 +20,7 @@ include 'modals.php';
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);
     ?>
-    <table class="table table-borderless table-data3 mydatatable">
+    <table class="table table-borderless table-hover mydatatable">
         <thead class="thead-dark">
             <tr>
                 <th>Intitule</th>
@@ -46,7 +46,7 @@ include 'modals.php';
                                 <button data-toggle="tooltip" id="<?php echo $row["id_module"] ?>" data-toggle="modal" class="item Open_modifierUnModule" data-placement="top" title="Modifier">
                                     <i class="zmdi zmdi-edit"></i>
                                 </button>
-                                <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id_module"] ?>" title="More">
+                                <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id_module"] ?>" title="Plus d'informations">
                                     <i class="zmdi zmdi-more"></i>
                                 </button>
                             </div>
@@ -82,7 +82,7 @@ include 'modals.php';
             ?>
                 <br>
                 <p>Modules désactivés.</p>
-                <table class="table table-borderless table-data3 mydatatable2">
+                <table class="table table-borderless table-hover mydatatable2">
                     <thead class="thead-dark">
                         <tr>
                             <th>Intitule</th>
@@ -127,7 +127,7 @@ include 'modals.php';
             var code = $(this).attr("id");
             console.log(code);
             $.ajax({
-                url: "../Modules/fetch_module_infos.php",
+                url: "fetch_module_infos.php",
                 method: 'GET',
                 data: {
                     code: code

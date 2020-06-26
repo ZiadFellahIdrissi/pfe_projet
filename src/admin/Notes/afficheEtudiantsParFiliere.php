@@ -5,7 +5,7 @@ if (!empty($_GET['id_filiere'])) {
 ?>
     <!-- relvet de notes -->
     <div class="modal fade" id="RelvetDesNotes" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
 
                 <!-- MODAL HEADER -->
@@ -53,10 +53,9 @@ if (!empty($_GET['id_filiere'])) {
         $resultat = mysqli_query($conn, $sql);
         $resultatcheck = mysqli_num_rows($resultat);
         ?>
-            <table class="table table-borderless table-data3 mydatatable">
+            <table class="table table-borderless table-hover mydatatable">
                 <thead class="thead-dark">
                     <tr>
-                        <th>CIN</th>
                         <th>CNE</th>
                         <th>Nom Complet</th>
                     </tr>
@@ -66,8 +65,7 @@ if (!empty($_GET['id_filiere'])) {
                     if ($resultatcheck > 0) {
                         while ($row = mysqli_fetch_assoc($resultat)) {
                         ?>
-                            <tr style="cursor: pointer; *cursor: hand;" class="item openModalNotes" data-toggle="tooltip" data-placement="top" id="<?php echo $row["cin"] ?>" title="Relevé de notes de <?php echo $row["nom"].' '.$row["prenom"] ?>">
-                                <td><?php echo $row["cin"] ?></td>
+                            <tr class="openModalNotes" style="cursor: pointer" data-toggle="tooltip" data-placement="top" id='<?php echo $row["cin"] ?>' title='Relevé de notes de <?php echo $row["nom"].' '.$row["prenom"] ?>'>
                                 <td><?php echo $row["cne"] ?></td>
                                 <td><?php echo $row["nom"] . ' ' . $row["prenom"] ?></td>
                             </tr>

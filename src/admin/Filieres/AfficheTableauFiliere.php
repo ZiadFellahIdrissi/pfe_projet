@@ -14,7 +14,7 @@
     $resultatOfQuery = mysqli_query($conn, $sqlQuery);
     $resultatcheck = mysqli_num_rows($resultatOfQuery);
     ?>
-        <table class="table table table-borderless table-data3 mydatatable">
+        <table class="table table table-borderless table-hover mydatatable">
             <thead class="thead-dark">
                 <tr>
                     <th>Nom de la filière</th>
@@ -68,7 +68,7 @@
                                 <button data-id="<?php echo $row["nom_filiere"] ?>" id="<?php echo $row["id_filiere"] ?>" data-toggle="tooltip" class="item open_modifierModal" title="Modifier" >
                                     <i class="zmdi zmdi-edit"></i>
                                 </button>
-                                <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id_filiere"] ?>"  title="More">
+                                <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id_filiere"] ?>"  title="Plus d'informations">
                                     <i class="zmdi zmdi-more"></i>
                                 </button>
                             </div>

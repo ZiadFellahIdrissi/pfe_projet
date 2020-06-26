@@ -84,3 +84,30 @@ $(document).ready(function() {
         });
     });
 });
+
+$(document).ready(function() {
+    $(document).on('click', '.openModalInformation', function() {
+        $('.filiereInfo').modal('show');
+        var id = $(this).attr("id");
+        $.ajax({
+            url: "info.php",
+            method: 'GET',
+            data: {
+                id: id
+            },
+            dataType: 'text',
+            beforeSend: function() {
+                $("#spinner").show();
+            },
+            complete: function() {
+                $("#spinner").hide();
+            },
+            success: function(data) {
+                $('.modalInfo').html(data);
+            },
+            error: function() {
+                alert('failure');
+            }
+        });
+    });
+});

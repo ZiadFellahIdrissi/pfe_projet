@@ -13,7 +13,7 @@
     if ($resultatcheck > 0) {
     ?>
         <br>
-        <table class="table table table-borderless table-data3 mydatatable">
+        <table class="table table table-borderless table-hover mydatatable">
             <thead class="thead-dark">
                 <tr>
                     <th>Nom Complet</th>
@@ -26,19 +26,15 @@
 
                 while ($row = mysqli_fetch_assoc($resultat)) {
 ?>
-                    <tr>
+                    <tr class="openModalInformation" style="cursor: pointer" data-toggle="tooltip" data-placement="top" id="<?php echo $row["id"] ?>"  title="Plus d'informations">
                         <td><?php echo $row["nom"].' '.$row["prenom"] ?></td>
                         <td style="text-align: center;"><?php echo $row["telephone"] ?></td>
                         <td><?php echo $row["nom_filiere"] ?> </td>
                     </tr>
 <?php
                 }
-                echo "</tbody>";
-                echo "</table><br>";
+            echo "</tbody>";
+        echo "</table>";
     }
 ?>
 </div>
-<script>
-    $('.mydatatable').dataTable();
-</script>
-<script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>

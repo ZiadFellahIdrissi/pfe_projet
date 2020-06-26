@@ -4,7 +4,6 @@ $idResponsable = $_GET["idResponsable"];
 include 'modal.php';
 $db = DB::getInstance();
 ?>
-<br>
 <div class="table-responsive-sm">
     <?php
     $semester = $_GET["semester"];

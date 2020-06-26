@@ -16,7 +16,7 @@
     $resultat = mysqli_query($conn, $sql);
     $resultatcheck = mysqli_num_rows($resultat);
     ?>
-        <table class="table table table-borderless table-data3 mydatatable">
+        <table class="table table table-borderless table-hover mydatatable">
             <thead class="thead-dark">
                 <tr>
                     <th>CNE</th>
@@ -42,7 +42,7 @@
                                     <button data-toggle="tooltip" id="<?php echo $row['cin'] ?>" data-toggle="modal" class="item Open_modifierUnEtudiant" data-placement="top" title="Modifier" >
                                         <i class="zmdi zmdi-edit"></i>
                                     </button>
-                                    <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["cin"] ?>"  title="More">
+                                    <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row["cin"] ?>"  title="Plus d'informations">
                                         <i class="zmdi zmdi-more"></i>
                                     </button> 
                                 </div>
@@ -59,7 +59,4 @@
         echo "</table>";
             ?>
 </div>
-<script>
-    $('.mydatatable').DataTable();
-</script>
 <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>

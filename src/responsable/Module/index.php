@@ -96,7 +96,7 @@ if (!$user->isLoggedIn()) {
                                         <select name="semester" id="semester" class="form-control">
                                             <?php
                                             $se = getSemestre()->date_fin;
-                                            if (date('yy/m/d', time()) < $se) {
+                                            if (date('yy/m/d', time()) <= $se) {
                                             ?>
                                                 <option value='1'>1er Semestre</option>
                                                 <option value='2'>2ème Semestre</option>

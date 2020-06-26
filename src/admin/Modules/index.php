@@ -95,6 +95,24 @@
                         <div class="card-body modules">
                             
                         </div>
+
+                        <!-- MODAL INFORMATION FILL BY AJAX  -->
+                        <div class="modal fade moduleInfo" tabindex="-1" role="dialog" aria-labelledby="moduleInfoLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modalInfo">
+                                        <!-- SPINNER -->
+                                        <div class="d-flex justify-content-center">
+                                            <div class="spinner-border m-5" role="status" id="spinner">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                        <!-- END SPINNER -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
