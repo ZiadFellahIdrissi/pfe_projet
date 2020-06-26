@@ -1,13 +1,3 @@
-$('.mydatatable').DataTable();
-
-$(document).ready(function() {
-    $('.toast').toast({
-        delay: 5000
-    });
-    $('.toast').toast('show');
-
-});
-
 function getParam(id) {
     string = window.location.href;
     var url = new URL(string);
@@ -42,8 +32,12 @@ if (id && id2) {
     });
 }
 
-
 $(document).ready(function() {
+    $('.toast').toast({
+        delay: 5000
+    });
+    $('.toast').toast('show');
+
     $('.modules').hide();
     $('#semester').hide();
     $('#filiere').change(affiche);
@@ -57,26 +51,20 @@ $(document).ready(function() {
             $('.modules').hide();
         }
     }
-});
 
+    var id_f = $("#filiere").val();
+    $('#filiere').change(affiche1);
 
-var id_f = $("#filiere").val();
-
-$(document).ready(function() {
-    $('#filiere').change(affiche);
-
-    function affiche() {
+    function affiche1() {
         if (id_f != $('#filiere').val()) {
             $('#semester').prop('selectedIndex', 0);
         }
     }
-});
 
-$(document).ready(function() {
-    $('#filiere').change(affiche);
-    $("#semester").change(affiche);
+    $('#filiere').change(affiche2);
+    $("#semester").change(affiche2);
 
-    function affiche() {
+    function affiche2() {
         var id_filiere = $("#filiere").val();
         var semester = $("#semester").val();
         if (id_filiere) {
@@ -94,9 +82,7 @@ $(document).ready(function() {
             });
         }
     }
-});
 
-$(document).ready(function() {
     $(document).on('click', '.Open_modifierUnModule', function() {
         var code = $(this).attr("id");
         $.ajax({
@@ -124,4 +110,31 @@ $(document).ready(function() {
             }
         });
     });
+
+    $(document).on('click', '.openModalInformation', function() {
+        $('.moduleInfo').modal('show');
+        var id = $(this).attr("id");
+        $.ajax({
+            url: "info.php",
+            method: 'GET',
+            data: {
+                id: id
+            },
+            dataType: 'text',
+            beforeSend: function() {
+                $("#spinner").show();
+            },
+            complete: function() {
+                $("#spinner").hide();
+            },
+            success: function(data) {
+                $('.modalInfo').html(data);
+            },
+            error: function() {
+                alert('failure');
+            }
+        });
+    });
 });
+
+    

@@ -3,7 +3,7 @@
     + Ajouter
 </button>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <form action="ajoute_etudiant.php" method="POST">
@@ -70,7 +70,7 @@
 
 <!-- ===============formulaire pour modifier un etudiant=============== -->
 <div class="modal fade" id="modifierUnEtudiant" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
 
             <div class="modal-body">

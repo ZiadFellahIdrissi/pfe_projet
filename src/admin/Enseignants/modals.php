@@ -37,10 +37,18 @@
                             </div>
                         </div>
 
-                        <!-- =================== telephone ======================= -->
+                        <!-- =================== telephone, som ======================= -->
                         <div class="form-group">
-                            <label for="numTel" class="col-form-label">Numéro du téléphone</label>
-                            <input type="text" class="form-control" name="numTel" id="numTel" pattern="[0-9]{10}" required>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="tel_modifier" class="col-form-label">Numéro du téléphone</label>
+                                    <input type="text" class="form-control" name="numTel" id="numTel" pattern="[0-9]{10}" required>
+                                </div>
+                                <div class="col">
+                                    <label for="som" class="col-form-label">Numéro de SOM</label>
+                                    <input type="text" class="form-control" name="som" id="som" pattern="[a-zA-Z][0-9]{9}" required>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="modal-footer">
@@ -82,7 +90,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="cin_modifier" class="col-form-label">Cin</label>
-                                <input type="text" class="form-control" name="cin" id="cin_modifier" pattern="[A-Za-z][A-Za-z0-9][0-9]{6}" required>
+                                <input type="text" class="form-control" id="cin_modifier" readonly="readonly">
                             </div>
                             <div class="col">
                                 <label for="dateN_modifier" class="col-form-label">Date Naissance</label>
@@ -92,8 +100,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="tel_modifier" class="col-form-label">Numéro du téléphone</label>
-                        <input type="text" class="form-control" name="numTel" id="tel_modifier" pattern="[0-9]{10}" required>
+                        <div class="row">
+                            <div class="col">
+                                <label for="tel_modifier" class="col-form-label">Numéro du téléphone</label>
+                                <input type="text" class="form-control" name="numTel" id="tel_modifier" pattern="[0-9]{10}" required>
+                            </div>
+                            <div class="col">
+                                <label for="som" class="col-form-label">Numéro de SOM</label>
+                                <input type="text" class="form-control" id="som_modifier" readonly="readonly">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="modal-footer">

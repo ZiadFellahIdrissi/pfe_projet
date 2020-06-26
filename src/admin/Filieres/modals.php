@@ -2,7 +2,7 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">+ Ajouter</button>
 <br><br>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <!-- =============================================== -->
@@ -56,7 +56,7 @@
 
 <!-- =======================modification============================ -->
 <div class="modal fade" id="modifierModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <form action="modifier_filiere.php" method="POST">
@@ -104,7 +104,7 @@
 
 <!-- ====================asking for permission Modal==================== -->
 <div class="modal fade" id="confermationAle" role="dialog" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <form action="./supprimer_filiere.php" method="POST">
                 <div class="modal-header" style="background-color: #dc3545">
@@ -142,7 +142,7 @@
 
 <!-- activation filiere -->
 <div class="modal fade" id="actModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <!-- =============================================== -->

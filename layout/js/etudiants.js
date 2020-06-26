@@ -1,4 +1,3 @@
-$('.mydatatable').DataTable();
 
 $(document).ready(function() {
     $('.toast').toast({
@@ -70,7 +69,7 @@ $(document).ready(function() {
         var cin = $(this).attr("id");
         $('#oldCin').val(cin);
         $.ajax({
-            url: "fetching_students_for_editing.php",
+            url: "fetching_students.php",
             method: 'GET',
             data: {
                 cin: cin
@@ -95,3 +94,33 @@ $(document).ready(function() {
 
     });
 });
+
+$(document).ready(function() {
+    $(document).on('click', '.openModalInformation', function() {
+        $('.studentInfo').modal('show');
+        var cin = $(this).attr("id");
+        $.ajax({
+            url: "info.php",
+            method: 'GET',
+            data: {
+                cin: cin
+            },
+            dataType: 'text',
+            beforeSend: function() {
+                $("#spinner").show();
+            },
+            complete: function() {
+                $("#spinner").hide();
+            },
+            success: function(data) {
+                $('.modalInfo').html(data);
+            },
+            error: function() {
+                alert('failure');
+            }
+        });
+
+    });
+});
+
+$('.mydatatable').DataTable();

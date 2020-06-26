@@ -53,11 +53,28 @@
                     </ol>
                 </nav>
                 <div class="modal-content">
-                    <a style="opacity: 0.9;" class="btn btn-primary text-white" href="../Filieres">Pour l'ajout des responsables, il faut désigner un enseignant à un filière dans la section <span style="color: lightgrey;">Filières</span></a>
+                    <a style="opacity: 0.9;" class="btn btn-primary text-white" href="../Filieres">Pour l'ajout des responsables, il faut désigner un enseignant à un filière dans la section <span style="color: lightgrey;">Filières</span>.</a>
                     <div class="modal-body">
                         <?php
                             include 'affiche_responsables.php';
                         ?>
+                    </div>
+
+                    <!-- MODAL INFORMATION FILL BY AJAX  -->
+                    <div class="modal fade responsableInfo" tabindex="-1" role="dialog" aria-labelledby="responsableInfoLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modalInfo">
+                                    <!-- SPINNER -->
+                                    <div class="d-flex justify-content-center">
+                                        <div class="spinner-border m-5" role="status" id="spinner">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                    <!-- END SPINNER -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,7 +90,7 @@
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
     <script type="text/javascript" src="../../../layout/js/animation.js"></script>
     <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../../../layout/js/enseignants.js"></script>
+    <script type="text/javascript" src="../../../layout/js/responsable.js"></script>
     <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 </body>
 </html>

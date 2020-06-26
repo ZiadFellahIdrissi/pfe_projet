@@ -78,78 +78,82 @@ if (!$user->isLoggedIn()) {
                 </div>
             </section>
 
-            <!-- MODAL INFORMATION FILL BY AJAX  -->
-            <div class="modalInfo">
-            </div>
+            
 
             <!-- LES ETUDIANTS -->
-            <section class="statistic statistic2">
-                <div class="container shadow-lg bg-white rounded" style="padding: 0%;">
-                    <div class="card">
-                        <div class="card-header">
-                        </div>
-                        <div class="card-body modules">
-                            <div class="table-responsive-sm">
-                                <?php
-                                $sql = "SELECT Utilisateur.id cin, Etudiant.cne, Utilisateur.nom, Utilisateur.prenom,
-                                        Utilisateur.telephone, Utilisateur.email, Utilisateur.date_naissance,
-                                        Etudiant.id_filiere, Utilisateur.imagepath
-                                        FROM Utilisateur 
-                                        join Etudiant ON Etudiant.id = Utilisateur.id
-                                        WHERE Etudiant.id_filiere = (select Filiere.id_filiere FROM Filiere WHERE Filiere.id_responsable=?)";
-                                $resultat = $db->query($sql, [$id]);
-                                ?>
-                                <table class="table table-hover table-data mydatatable">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>CNE</th>
-                                            <th>Nom Complet</th>
-                                            <th>Telephone</th>
-                                            <th>Inforamtions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        if ($resultat->count() > 0) {
-                                            foreach ($resultat->results() as $row) {
-                                        ?>
-                                                <tr>
-                                                    <td style="font-weight: bold;"><?php echo $row->cne ?></td>
-                                                    <td><?php echo $row->nom . ' ' . $row->prenom ?></td>
-                                                    <td style="text-align: center;"><?php echo $row->telephone ?></td>
-                                                    <td>
-                                                        <span class="more openModalInformation" id="<?php echo $row->cin ?>" title="More">
-                                                            <i class="zmdi zmdi-more"></i>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                            <?php
-                                            }
-                                        } else {
-                                            ?>
-                                            <tr>
-                                                <td colspan="4" style="text-align: center;">Aucun etudiant n'est inscrit à cette filière.</td>
+            <div class="container shadow-lg bg-white rounded" style="padding: 0%;">
+                <div class="card">
+                    <div class="card-header">
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive-sm">
+                            <?php
+                            $sql = "SELECT Utilisateur.id cin, Etudiant.cne, Utilisateur.nom, Utilisateur.prenom,
+                                    Utilisateur.telephone, Utilisateur.email, Utilisateur.date_naissance,
+                                    Etudiant.id_filiere, Utilisateur.imagepath
+                                    FROM Utilisateur 
+                                    join Etudiant ON Etudiant.id = Utilisateur.id
+                                    WHERE Etudiant.id_filiere = (select Filiere.id_filiere FROM Filiere WHERE Filiere.id_responsable=?)";
+                            $resultat = $db->query($sql, [$id]);
+                            ?>
+                            <table class="table table-hover table-data mydatatable">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>CNE</th>
+                                        <th>Nom Complet</th>
+                                        <th>Telephone</th>
+                                        <!-- <th>Inforamtions</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    if ($resultat->count() > 0) {
+                                        foreach ($resultat->results() as $row) {
+                                    ?>
+                                            <tr class="openModalInformation" style="cursor: pointer" id="<?php echo $row->cin ?>" title="Plus d'informations">
+                                                <td style="font-weight: bold;"><?php echo $row->cne ?></td>
+                                                <td><?php echo $row->nom . ' ' . $row->prenom ?></td>
+                                                <td style="text-align: center;"><?php echo $row->telephone ?></td>
+                                                <!-- <td>
+                                                    <span class="more openModalInformation" id="<?php echo $row->cin ?>" title="More">
+                                                        <i class="zmdi zmdi-more"></i>
+                                                    </span>
+                                                </td> -->
                                             </tr>
                                         <?php
                                         }
-                                        echo "<tbody>";
-                                        echo "</table>";
+                                    } else {
                                         ?>
-                            </div>
+                                        <tr>
+                                            <td colspan="4" style="text-align: center;">Aucun etudiant n'est inscrit à cette filière.</td>
+                                        </tr>
+                                    <?php
+                                    }
+                                echo "<tbody>";
+                            echo "</table>";
+                                    ?>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
             <!-- END -->
 
-            <!-- SPINNER -->
-            <div class="d-flex justify-content-center">
-                <div class="spinner-border m-5 spinner" role="status" id="spinner">
-                    <span class="sr-only">Loading...</span>
+            <!-- MODAL INFORMATION FILL BY AJAX  -->
+            <div class="modal fade studentInfo" tabindex="-1" role="dialog" aria-labelledby="studentInfoLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modalInfo">
+                            <!-- SPINNER -->
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border m-5" role="status" id="spinner">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <!-- END SPINNER -->
+                        </div>
+                    </div>
                 </div>
-            </div><br><br>
-            <!-- END SPINNER -->
-            
+            </div>
 
             <!-- Jquery JS-->
             <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
@@ -167,8 +171,8 @@ if (!$user->isLoggedIn()) {
             <script>
                 $('.mydatatable').DataTable();
                 $(document).ready(function() {
-                    $(".spinner").hide();
                     $(document).on('click', '.openModalInformation', function() {
+                        $('.studentInfo').modal('show');
                         var cin = $(this).attr("id");
                         console.log(cin);
                         $.ajax({
@@ -179,17 +183,18 @@ if (!$user->isLoggedIn()) {
                             },
                             dataType: 'text',
                             beforeSend: function() {
-                                $(".spinner").show();
+                                $("#spinner").show();
                             },
                             complete: function() {
-                                $(".spinner").hide();
+                                $("#spinner").hide();
                             },
                             success: function(data) {
+                                $("#spinner").show();
                                 $('.modalInfo').html(data);
-                                $('.studentInfo').modal({
-                                    backdrop: 'static',
-                                    keyboard: false
-                                });
+                                //     {
+                                //     backdrop: 'static',
+                                //     keyboard: false
+                                // });
                             },
                             error: function() {
                                 alert('failure');
@@ -198,13 +203,13 @@ if (!$user->isLoggedIn()) {
 
                     });
 
-                    $(document).on('click', '#closeModal', function() {
-                        $('.modal-backdrop').remove();
-                        $('.modal-backdrop').remove();
-                        $('.studentInfo').delay(400).queue(function() {
-                            $(this).remove();
-                        });
-                    });
+                    // $(document).on('click', '#closeModal', function() {
+                    //     $('.modal-backdrop').remove();
+                    //     $('.modal-backdrop').remove();
+                    //     $('.studentInfo').delay(400).queue(function() {
+                    //         $(this).remove();
+                    //     });
+                    // });
 
                 });
             </script>

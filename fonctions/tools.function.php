@@ -20,7 +20,7 @@ function fetchStudents($module)
             FROM Utilisateur
             join Etudiant ON Etudiant.id = Utilisateur.id
             JOIN dispose_de ON dispose_de.id_filiere=Etudiant.id_filiere
-            where dispose_de.id_module=? ";
+            where dispose_de.id_module = ? ";
     $results = $db->query($sql, [$module]);
     return $results;
 }
@@ -52,7 +52,7 @@ function getSemestre()
     $db3 = DB::getInstance();
     $sql = "SELECT date_fin
             FROM Semestre
-            ORDER BY semestre";
+            ORDER BY id_semestre";
     $resultats = $db3->query($sql, []);
     return $resultats->first();
 }
@@ -92,4 +92,53 @@ function getPersonnelInfo($id){
     $sql2 = "SELECT som,`role` from Personnel where id=?";
     $resultats0 = $db1->query($sql2, [$id]);
     return $resultats0;
+}
+function getResponsableInfos($id_responsable){
+    $db = DB::getInstance();
+    $sql = "SELECT *
+            FROM Personnel
+            JOIN Utilisateur ON Personnel.id = Utilisateur.id
+            JOIN Filiere ON Utilisateur.id = Filiere.id_responsable
+            WHERE Personnel.id = ?";
+    $resultats = $db->query($sql, [$id_responsable]);
+    return $resultats->first();
+}
+function getEnseignantInfos($id_enseignant){
+    $db = DB::getInstance();
+    $sql = "SELECT *
+            FROM Personnel
+            JOIN Utilisateur ON Personnel.id = Utilisateur.id
+            WHERE Personnel.id = ?";
+    $resultats = $db->query($sql, [$id_enseignant]);
+    return $resultats->first();
+}
+function getFiliereInfos($id_filiere){
+    $db = DB::getInstance();
+    $sql = "SELECT *
+            FROM Filiere
+            JOIN Utilisateur ON Filiere.id_responsable = Utilisateur.id
+            JOIN Personnel ON Utilisateur.id = Personnel.id
+            WHERE Filiere.id_filiere = ?";
+    $resultats = $db->query($sql, [$id_filiere]);
+    return $resultats->first();
+}
+function getModuleInfos($id_module){
+    $db = DB::getInstance();
+    $sql = "SELECT *
+            FROM Module
+            JOIN Utilisateur ON Module.id_enseignant = Utilisateur.id
+            JOIN Personnel ON Utilisateur.id = Personnel.id
+            JOIN dispose_de ON Module.id_module = dispose_de.id_module
+            JOIN Filiere ON dispose_de.id_filiere = Filiere.id_filiere
+            WHERE Module.id_module = ?";
+    $resultats = $db->query($sql, [$id_module]);
+    return $resultats->first();
+}
+function countFiliereStudents($id_filiere){
+    $db = DB::getInstance();
+    $sql = "SELECT *
+            FROM Etudiant
+            WHERE id_filiere = ?";
+    $resultats = $db->query($sql, [$id_filiere]);
+    return $resultats->count();
 }
