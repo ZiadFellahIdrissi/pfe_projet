@@ -1,17 +1,17 @@
 <!-- MENU SIDEBAR-->
-<aside class="menu-sidebar2">
-    <div class="logo">
+<aside class="menu-sidebar2" style="background-color: #2f3542" >
+    <div class="logo" style="background-color: #2f3542;">
         <a href="#">
-            <!-- <img src="mylogo.png" alt="Cool Admin" /> -->
+            <!-- <img src="mylogo.png" alt="" /> -->
         </a>
     </div>
-    <div class="menu-sidebar2__content js-scrollbar1">
+    <div class="menu-sidebar2__content js-scrollbar1" >
         <div class="account2">
             <div class="image img-cir img-120">
                 <img src="../../../img/profiles/<?php echo $imagepath ?>" title="Photo de profile" draggable="false" />
             </div>
-            <h4 class="name"><?php echo strtoupper($nom) . ' ' . $prenom ?></h4>
-            <a href="../pages/logout.php">Sign out</a>
+            <h4 class="name" style="color: white;"><?php echo strtoupper($nom) . ' ' . $prenom ?></h4>
+            <a href="../pages/logout.php" style="color: white;">Sign out</a>
         </div>
         <nav class="navbar-sidebar2">
             <ul class="list-unstyled navbar__list">
@@ -75,7 +75,7 @@
                     <img src="../../../img/profiles/<?php echo $imagepath ?>" alt="ziad" />
                 </div>
                 <h4 class="name"><?php echo $nom . ' ' . $prenom ?></h4>
-                <a href="logout.php">Sign out</a>
+                <a href="../pages/logout.php">Sign out</a>
             </div>
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">

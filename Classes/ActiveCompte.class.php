@@ -91,10 +91,10 @@ class ActiveCompte
     }
     //end signup
 
-    public function setPassword($cin, $password)
+    public static function setPassword($cin, $password)
     {
         if ($cin && $password) {
-            $data = $this->_db->query("UPDATE Utilisateur
+            $data = DB::getInstance()->query("UPDATE Utilisateur
                                             SET `password` = ?
                                             WHERE id = ?", array($password, $cin));
             return ($data->error());
