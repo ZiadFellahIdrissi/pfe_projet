@@ -1,5 +1,5 @@
 <?php
-    $sqltest1 = "SELECT Utilisateur.email
+    $sqltest1 = "SELECT Utilisateur.telephone
                  FROM Etudiant
                  JOIN Utilisateur on Etudiant.id = Utilisateur.id
                  WHERE Utilisateur.telephone = '$telephone'

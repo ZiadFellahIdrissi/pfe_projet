@@ -5,9 +5,19 @@ include '../../connection.php';
 $email = $_POST["email"];
 $cin = $_POST["cin"];
 
+$sqltest = "SELECT Utilisateur.email
+            FROM Utilisateur
+            WHERE Utilisateur.email = '$email'
+            AND Utilisateur.id != '$cin'";
+
+if(mysqli_num_rows(mysqli_query($conn,$sqltest))){
+    header("location: ./?errmail");
+    exit();
+}
+
 $sql = "UPDATE Utilisateur
-SET `email` = '$email'
-WHERE id = '$cin'";
+        SET `email` = '$email'
+        WHERE id = '$cin'";
 mysqli_query($conn, $sql);
 
 

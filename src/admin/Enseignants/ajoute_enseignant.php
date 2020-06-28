@@ -11,6 +11,7 @@ if(isset($_POST['ajouter'])){
         $oldCin    = 0;
 
         include 'verificationCin.php';
+        include 'verificationSom.php';
         include 'verificationTel.php';
 
         mysqli_query($conn , "INSERT INTO `Utilisateur`(`id`, `nom`, `prenom`, `date_naissance`, `telephone`, `imagepath`)

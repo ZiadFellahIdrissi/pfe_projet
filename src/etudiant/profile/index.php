@@ -52,62 +52,59 @@ if (!$user->isLoggedIn()) {
         <?php include '../pages/headerDesktop.php' ?>
         <div class="container" style="margin-top: 5.5%; margin-left:2.5%">
             <br>
-            <div class="container rounded text-white" style="background-color: #393939; width: 70%">
+            <div class="container rounded text-white" style="background-color: #2f3542; width: 70%">
                 <br>
-                <div class="account d-flex justify-content-center">
-                    <div class="image img-cir img-120">
-                        <img src="../../../img/profiles/<?php echo $imagepath ?>" />
-                    </div>
-                </div>
-                <br>
-                <?php
-                $info = getInfos($id);
-                ?>
-                <div class="row d-flex justify-content-center">
-                    <div class="form-group">
-                        <h4 class="text-white"><?php echo '<b>'.strtoupper($nom) . ' ' . $prenom.'</b>' ?></h4>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                Cne: <?php echo '<b>'.$info->cne.'</b>'; ?>
+                <div class="row" style="margin-top: 18px">
+                    <div class="col col-sm-3" style="padding: 0px 0px">
+                        <div class="form-group d-flex justify-content-center">
+                            <div class="image img-cir img-120">
+                                <img src="../../../img/profiles/<?php echo $imagepath; ?>" />
                             </div>
                         </div>
-                        <div class="col ">
-                            <div class="form-group float-left">
-                                Cin: <?php echo '<b>'.$id.'</b>'; ?>
-                            </div>
+                        <div class="form-group d-flex justify-content-center">
+                            <h4 class="text text-white" style="text-align: center"><?php echo '<b>' . strtoupper($nom) . ' ' . $prenom . '</b>' ?></h4>
                         </div>
                     </div>
+                    <br>
+                    <?php
+                        $info = getInfos($id);
+                    ?>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    Cne: <?php echo '<b>'.$info->cne.'</b>'; ?>
+                                </div>
+                            </div>
+                            <div class="col ">
+                                <div class="form-group float-left">
+                                    Cin: <?php echo '<b>'.$id.'</b>'; ?>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                Date Naissance: <?php echo '<b>'.$info->date_naissance.'</b>'; ?>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    Date Naissance: <?php echo '<b>'.$info->date_naissance.'</b>'; ?>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    Telephone: <?php echo '<b>'.$info->telephone.'</b>'; ?>
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                Telephone: <?php echo '<b>'.$info->telephone.'</b>'; ?>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                Email: <?php echo '<b>'.$info->email.'</b>'; ?>
-                            </div>
+                        <div class="form-group">
+                            Email: <?php echo '<b>'.$info->email.'</b>'; ?>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                Filière: <?php echo '<b>'.$info->nom_filiere.'</b>'; ?>
-                            </div>
+                                
+                        <div class="form-group">
+                            Filière: <?php echo '<b>'.$info->nom_filiere.'</b>'; ?>
                         </div>
+                        
                     </div>
-                    
                 </div>
                 <br>
             </div>

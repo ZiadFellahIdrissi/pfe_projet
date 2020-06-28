@@ -4,7 +4,7 @@ if (isset($_GET["cin"])) {
     $db = DB::getInstance();
     include_once '../../etudiant/fonctions/tools.function.php';
     $id = $_GET["cin"];
-    echo $date = date('yy/m/d h:i', time()); ?>
+?>
     <div class=" notes " style="border-radius:5%;">
         <?php
         function sqlStatment($semester)
@@ -65,124 +65,172 @@ if (isset($_GET["cin"])) {
         </div>
         <div class="table-responsive-sm">
             <table class="table table-hover">
-                <thead class="thead-dark">
-                    <tr style="text-align: center;">
+                <thead class="thead-dark" style="text-align: center">
+                    <tr>
                         <th>Module</th>
-                        <th>Controles</th>
-                        <th>Exame Finale</th>
+                        <!-- <th>Controles</th> -->
+                        <!-- <th>Exame Finale</th> -->
                         <th>Moyenne Generale</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                        $db->query(sqlStatment('1ere Semestre'), [$id]);
+                    ?>
                     <tr style="background: rgba(0, 0, 0, 0.1); font-weight: bold; font-size:large;">
-                        <td colspan=4>1ère Semestre</td>
+                        <td colspan=2>1ère Semestre</td>
                     </tr>
                     <?php
-                    $db->query(sqlStatment('1ere Semestre'), [$id]);
+                    $countModule = 0;
+                    $examCount = 0;
                     foreach ($db->results() as $row) {
+                        // coefficients
+                        $results_coeff = getCoiffissient($row->id_module);
+                        $coeff_controle = $results_coeff->coeff_controle;
+                        $coeff_examen = $results_coeff->coeff_examen;
+                        // controles
+                        $markcontrole = getMarks('controle', $row->id_module, $id);
+                        $controleCount = count($markcontrole);
+                        $sommeControle = 0;
+                        foreach ($markcontrole as $obj) {
+                            $sommeControle += $obj->note;
+                        }
+                        // examens
+                        $noteExamFinale = -1;
+                        $markFinale = getMarks('finale', $row->id_module, $id);
+                        foreach ($markFinale as $roww) {
+                            $noteExamFinale = $roww->note;
+                        }
                     ?>
                         <tr>
                             <td><?php echo $row->intitule ?></td>
 
-                            <!-- Controles -->
-                            <td style="font-weight:bold; text-align: center">
+                            <!-- hado khelithom f 7alat ma bghiti trej3 l examens finale yban o l controls -->
+                            <!-- Controles --> 
+                            <!-- <td style="font-weight:bold; text-align: center">
                                 <?php
-                                $results_coeff = getCoiffissient($row->id_module);
-                                $coeff_controle = $results_coeff->coeff_controle;
-                                $coeff_examen = $results_coeff->coeff_examen;
-
-                                $markcontrole = getMarks('controle', $row->id_module, $id); //db hada tableau dyl les objets!
-                                $controleCount = count($markcontrole);
-                                $sommeControle = 0;
-                                foreach ($markcontrole as $obj) {
-                                    $sommeControle += $obj->note;
-                                }
-                                if($sommeControle!=0)
+                                
+                                if($controleCount != 0)
                                     echo ($sommeControle / $controleCount) * $coeff_controle;
                                 ?>
-                            </td>
+                            </td> -->
 
                             <!-- Examen Final -->
-                            <td id='bold'>
+                            <!-- <td id='bold'>
                                 <?php
-                                $noteExamFinale = -1;
-                                $markFinale = getMarks('finale', $row->id_module, $id);
-                                foreach ($markFinale as $roww) {
-                                    echo $roww->note;
-                                    $noteExamFinale = $roww->note;
-                                }
+                                    echo $noteExamFinale;
                                 ?>
-                            </td>
+                            </td> -->
 
                             <!-- Moyenne Genrale -->
-                            <td id='bold'>
+                            <td id='bold' style="text-align: center">
                                 <?php
-
-                                if ($noteExamFinale != -1) {
-                                    echo ($noteExamFinale * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
-                                }
+                                    $countModule++;
+                                    if ($noteExamFinale != -1) {
+                                        if($controleCount != 0)
+                                            $moyModule = ($noteExamFinale * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
+                                        else
+                                            $moyModule = $noteExamFinale;
+                                        
+                                        $examCount++;
+                                        echo $moyModule;
+                                    }
                                 ?>
                             </td>
                         </tr>
+                        
                     <?php
                     }
+                        if($countModule && $examCount == $countModule){
+                    ?>
+                        <!-- l moyenne dyl semestre 1 -->
+                        <tr>
+                            <td class="float-right">Moyenne Generale dyl semestre 1: <?php echo $moySem1=$moyModule/$countModule ?></td>
+                        </tr>
+                    <?php
+                        }
                     $se = getSemestre()->date_fin;
                     if (date('yy/m/d', time()) < $se) {
-                        echo '</tbody>';
-                        echo '</table>';
+                    echo '</tbody>';
+                echo '</table>';
                     } else {
+                        $db->query(sqlStatment('2eme Semestre'), [$id]);
                     ?>
                         <tr style="background: rgba(0, 0, 0, 0.1); font-weight: bold; font-size:large;">
-                            <td colspan=4>2ème Semestre</td>
+                            <td colspan=2>2ème Semestre</td>
                         </tr>
                         <?php
-                        $db->query(sqlStatment('2eme Semestre'), [$id]);
+                        $countModule = 0;
+                        $examCount = 0;
                         foreach ($db->results() as $row0) {
+                            // coefficients
+                            $results_coeff = getCoiffissient($row0->id_module);
+                            $coeff_controle = $results_coeff->coeff_controle;
+                            $coeff_examen = $results_coeff->coeff_examen;
+                            // controles
+                            $markcontrole = getMarks('controle', $row0->id_module, $id); //db hada tableau dyl les objets!
+                            $controleCount = count($markcontrole);
+                            $sommeControle = 0;
+                            foreach ($markcontrole as $obj) {
+                                $sommeControle += $obj->note;
+                            }
+                            // examens
+                            $noteExamFinale = -1;
+                            $markFinale = getMarks('finale', $row0->id_module, $id);
+                            foreach ($markFinale as $roww) {
+                                $noteExamFinale = $roww->note;
+                            }
                         ?>
                             <tr>
                                 <td><?php echo $row0->intitule ?></td>
 
                                 <!-- Controles -->
-                                <td style="font-weight:bold; text-align: center">
+                                <!-- <td style="font-weight:bold; text-align: center">
                                     <?php
-                                    $results_coeff = getCoiffissient($row0->id_module);
-                                    $coeff_controle = $results_coeff->coeff_controle;
-                                    $coeff_examen = $results_coeff->coeff_examen;
-
-                                    $markcontrole = getMarks('controle', $row0->id_module, $id); //db hada tableau dyl les objets!
-                                    $controleCount = count($markcontrole);
-                                    $sommeControle = 0;
-                                    foreach ($markcontrole as $obj) {
-                                        $sommeControle += $obj->note;
-                                    }
-                                    if($sommeControle!=0)
-                                    echo ($sommeControle / $controleCount) * $coeff_controle;
+                                        if($sommeControle!=0)
+                                        echo ($sommeControle / $controleCount) * $coeff_controle;
                                     ?>
-                                </td>
+                                </td> -->
 
                                 <!-- Examen Final -->
-                                <td id='bold'>
+                                <!-- <td id='bold'>
                                     <?php
-                                    $noteExamFinale = -1;
-                                    $markFinale = getMarks('finale', $row0->id_module, $id);
-                                    foreach ($markFinale as $roww) {
-                                        echo $roww->note;
-                                        $noteExamFinale = $roww->note;
-                                    }
+                                        echo $noteExamFinale;
                                     ?>
-                                </td>
+                                </td> -->
 
                                 <!-- Moyenne Genrale -->
-                                <td id='bold'>
+                                <td id='bold'  style="text-align: center">
                                     <?php
-                                    if ($noteExamFinale != -1) {
-                                        echo ($noteExamFinale * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
-                                    }
+                                        $countModule++;
+                                        if ($noteExamFinale != -1) {
+                                            if($controleCount != 0)
+                                                $moyModule = ($noteExamFinale * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
+                                            else
+                                                $moyModule = $noteExamFinale;
+
+                                            $examCount++;
+                                            echo $moyModule;
+                                        }
                                     ?>
                                 </td>
                             </tr>
                     <?php
                         }
+                        if($countModule && $examCount == $countModule){
+                    ?>
+                        <!-- l moyenne dyl semestre 2 -->
+                        <tr>
+                            <td class="float-right">Moyenne Generale dyl semestre 2: <?php echo $moySem2=$moyModule/$countModule ?></td>
+                        </tr>
+                    <?php
+                        }
+                    }
+                    if(isset($moySem1) && isset($moySem2)){
+                    ?>
+                        <!-- l moyenne dyl 3am kaml -->
+                        <div class="float-right"><?php echo "Moyenne Generale Dyl 3am: ".($moySem1+$moySem2)/2 ?></div>
+                    <?php
                     }
                     ?>
                 </tbody>

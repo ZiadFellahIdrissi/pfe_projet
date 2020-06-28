@@ -1,7 +1,7 @@
 <?php
 include_once '../../../core/init.php';
 include_once '../fonctions/tools.function.php';
-// hnaa zide if isset b roooooooooooooooojola
+// hnaa zide if isset b roooooooooooooooojola, hh la
 $cin = $_GET["cin"];
 $currentPassword = $_GET["currentPassword"];
 $newPassword = $_GET["newPassword"];
@@ -10,12 +10,13 @@ $passfromdatabase = getPersonInfo($cin)->password;
 
 if ($currentPassword === $passfromdatabase) {
     if (!ActiveCompte::setPassword($cin, $newPassword))
-        echo '<br>' . '<div class="alert alert-success" style="text-align: center;" role="alert">
-                            mdp ete changer
-                        </div>';
+        echo '<div class="alert alert-success" style="text-align: center;" role="alert">
+                Mot de passe à étè bien changé.
+                </div>
+                <script>$("#buttonsubmit").hide();</script>';
     else
-        echo '<h2>try again</h2>';
+        echo "<h2>Une erreur s'est produite, Essayer encore.</h2>";
 } else
-    echo '<br>' . '<div class="alert alert-danger" style="text-align: center;" role="alert">
-                        mdp inccorect
-                    </div>';
+    echo '<div class="alert alert-danger checkpassowrdError" style="text-align: center;" role="alert">
+                Mot de passe entré est incorrect.
+        </div>';
