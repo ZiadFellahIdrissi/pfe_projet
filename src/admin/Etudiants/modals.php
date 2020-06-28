@@ -97,7 +97,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="codeapoge_modifier" class="col-form-label">Cne</label>
-                                <input type="text" class="form-control" name="cne" id="cne_modifier" pattern="[A-Za-z][0-9]{8}" required>
+                                <input type="text" class="form-control" name="cne" id="cne_modifier" pattern="[A-Za-z][0-9]{9}" required>
                             </div>
                         </div>
                         <div class="col">

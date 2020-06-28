@@ -26,11 +26,10 @@
                     }
                     if (strpos($fullurl, "som")) { ?>
                         <div class="toast-body">
-                            <strong>Numéro SOM</strong> déjà existe.
+                            <strong>Numéro de SOM</strong> déjà existe.
                         </div>
                 <?php
                     }
-                ?>
                 ?>
             </div>
         </div>

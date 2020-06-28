@@ -7,18 +7,6 @@ if (!empty($_GET['id_filiere'])) {
     <div class="modal fade" id="RelvetDesNotes" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
-
-                <!-- MODAL HEADER -->
-                <div class="modal-header">
-                    <!-- <div class="image">
-                        <img style="width: 10%; border-radius:50%" id="studentPicture" />
-                    </div> -->
-                    <h5 class="modal-title" id="largeModalLabel">Relve de notes</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
                 <!-- MODAL BODY -->
                 <div class="modal-body">
                     <div class="notes">
@@ -29,10 +17,7 @@ if (!empty($_GET['id_filiere'])) {
                         </div>
 
                     </div>
-
-
                 </div>
-
                 <!-- MODAL FOOTER -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
