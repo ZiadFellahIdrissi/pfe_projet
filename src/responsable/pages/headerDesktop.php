@@ -32,12 +32,6 @@
                             <span class="bot-line"></span>Modules
                         </a>
                     </li>
-                    <li>
-                        <a href="../../prof/pages">
-                            <i class="fab fa-stack-overflow"></i>
-                            <span class="bot-line"></span>Esapce Enseignant
-                        </a>
-                    </li>
                 </ul>
             </div>
             <div class="header__tool">
@@ -82,32 +76,36 @@
                 <div class="account-wrap">
                     <div class="account-item account-item--style2 clearfix js-item-menu">
                         <div class="image">
-                            <img src="../../../img/profiles/<?php echo $imagepath ?>" alt="<?php echo $nom.' '.$prenom ?>" />
+                            <img src="../../../img/profiles/<?php echo $imagepath ?>" alt="<?php echo $nom . ' ' . $prenom ?>" />
                         </div>
                         <div class="content">
                             <a class="js-acc-btn" href="#">
-                                <?php echo $nom.' '.$prenom ?>
+                                <?php echo $nom . ' ' . $prenom ?>
                             </a>
                         </div>
                         <div class="account-dropdown js-dropdown">
                             <div class="info clearfix">
                                 <div class="image">
                                     <a href="#">
-                                        <img src="../../../img/profiles/<?php echo $imagepath ?>" alt="<?php echo $nom.' '.$prenom ?>" />
+                                        <img src="../../../img/profiles/<?php echo $imagepath ?>" alt="<?php echo $nom . ' ' . $prenom ?>" />
                                     </a>
                                 </div>
                                 <div class="content">
                                     <h5 class="name">
                                         <a href="#">
-                                            <?php echo $nom.' '.$prenom ?>
+                                            <?php echo $nom . ' ' . $prenom ?>
                                         </a>
                                     </h5>
                                     <span class="email">
-                                        <?php echo $email?>
+                                        <?php echo $email ?>
                                     </span>
                                 </div>
                             </div>
                             <div class="account-dropdown__body">
+                                <div class="account-dropdown__item">
+                                    <a href="../../prof/pages">
+                                        <i class="fas fa-chalkboard-teacher"></i>Esapce Enseignant</a>
+                                </div>
                                 <div class="account-dropdown__item">
                                     <a href="#">
                                         <i class="zmdi zmdi-account"></i>Account</a>

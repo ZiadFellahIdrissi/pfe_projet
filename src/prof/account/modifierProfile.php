@@ -5,12 +5,22 @@ include '../../connection.php';
 $email = $_POST["email"];
 $cin = $_POST["cin"];
 
+$sqltest = "SELECT Utilisateur.email
+            FROM Utilisateur
+            WHERE Utilisateur.email = '$email'
+            AND Utilisateur.id != '$cin'";
+
+$numrow = mysqli_num_rows(mysqli_query($conn, $sqltest));
+if ($numrow) {
+    goto checkpicture;
+}
+
 $sql = "UPDATE Utilisateur
-SET `email` = '$email'
-WHERE id = '$cin'";
+        SET `email` = '$email'
+        WHERE id = '$cin'";
 mysqli_query($conn, $sql);
 
-
+checkpicture: 
 $imagepath = getPersonInfo($cin)->imagepath;
 //CHANGEMENT DE IMAGE
 $file = $_FILES['file'];
@@ -40,16 +50,24 @@ if ($fileName != '') {
                                 SET `imagepath` = '$filenewname'
                             WHERE id = '$cin'";
                     mysqli_query($conn, $sql);
-                    echo 'good';
+                    if ($numrow)
+                        echo 'email';
+                    else
+                        echo 'good';
                 }
             } else {
                 echo 'taille';
             }
         } else {
-            echo 'essai une autre photo '.' '.$fileError;
+            echo 'essai une autre photo ' . ' ' . $fileError;
         }
     } else {
         echo "file not allowed";
     }
 } else
+if ($numrow){
+    header("Location: ./?errmail");
+}
+else
     header("Location: ./");
+

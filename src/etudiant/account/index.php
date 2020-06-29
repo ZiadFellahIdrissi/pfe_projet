@@ -79,7 +79,7 @@ if (!$user->isLoggedIn()) {
                     $info = getInfos($id);
                     ?>
                     <div class="">
-                        <div class="row">
+                        <div class=" form-group row">
                             <div class="col">
                                 <div class="form-group">
                                     Nom: <input type="text" class="form-control" value="<?php echo strtoupper($nom) . ' ' . $prenom ?>" readonly="readonly">
@@ -94,20 +94,14 @@ if (!$user->isLoggedIn()) {
                         <br>
                         <div class="row">
                             <div class="col">
-                                    Email:
+                                Email:
                                 <div class="form-group input-group">
                                     <input type="text" class="form-control" name="email" id="email" value="<?php echo $info->email ?>">
-                                    <div class="input-group-prepend errmail">
-                                        <div class="input-group-text">
-                                            <a tabindex="0" class="popover-dismiss" role="button" data-toggle="popover" data-trigger="hover" data-content="l'Email qu'était saisit est déja utilisé!">
-                                                <span style="color: red"><i class="fa fa-exclamation-triangle"></i></span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <div class="errmail"></div>
                                 </div>
                             </div>
                             <div class="col">
-                                    Password:
+                                Password:
                                 <div class="form-group input-group">
                                     <input type="password" class="form-control" name="password" value="********" readonly="readonly">
                                     <div class="input-group-prepend" id="changePasword">
@@ -137,9 +131,15 @@ if (!$user->isLoggedIn()) {
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="container">
-                            <input type="password" class="form-control" id="currentPassword" placeholder="Mot de passe courant"><br>
-                            <!-- <div class="form-group input-group" style="width: 80%;"> -->
-                            <input type="password" class="form-control" id="newPassword" placeholder="Nouveau mot de passe">
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="currentPassword" placeholder="Mot de passe courant">
+                                <div class="currentPasswordError"></div>
+                            </div><br>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="newPassword" placeholder="Nouveau mot de passe">
+                                <div class="pass"></div>
+                            </div>
+
                             <!-- <div class="input-group-prepend" id="icon-click">
                                     <div class="input-group-text">
                                         <a class="text-dark">
@@ -149,12 +149,12 @@ if (!$user->isLoggedIn()) {
                                 </div>
                             </div> -->
                             <br>
-                            <input type="password" class="form-control" id="0password" placeholder="Répéter le mot de passe">
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="0password" placeholder="Répéter le mot de passe">
+                                <div class="rewritepass"></div>
+                            </div>
                         </div>
-                        <br>
-                        <div class="checkpassowrdError" style="text-align: center;" role="alert">
 
-                        </div>
                         <div class="return">
 
                         </div>
@@ -172,6 +172,9 @@ if (!$user->isLoggedIn()) {
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="test">
+
         </div>
 
 
@@ -194,83 +197,104 @@ if (!$user->isLoggedIn()) {
         <script src="http://malsup.github.com/jquery.form.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
-                $("#icon-click").click(function() {
-                    $("#icon").toggleClass('fa-eye-slash');
-                    let input0 = $("#newPassword");
-                    // let input1 = $("#0password");
-                    if (input0.attr("type") === "password") {
-                        input0.attr("type", "text");
-                        // input1.attr("type", "text");
-                    } else
-                        input0.attr("type", "password");
-                    // input1.attr("type", "password");
+            function hideRedBorderForError(id, classError) {
+                $('#' + id).removeClass("is-invalid");
+                $('.' + classError).removeClass("invalid-feedback");
+                $('.' + classError).hide();
+            }
 
-                });
-            });
+            function showRedBorderForError(id, classError, msg) {
+                $('#' + id).addClass("is-invalid");
+                $('.' + classError).addClass("invalid-feedback");
+                $('.' + classError).html(msg);
+                $('.' + classError).show();
+            }
+
+            // $(document).ready(function() {
+            //     $("#icon-click").click(function() {
+            //         $("#icon").toggleClass('fa-eye-slash');
+            //         let input0 = $("#newPassword");
+            //         // let input1 = $("#0password");
+            //         if (input0.attr("type") === "password") {
+            //             input0.attr("type", "text");
+            //             // input1.attr("type", "text");
+            //         } else
+            //             input0.attr("type", "password");
+            //         // input1.attr("type", "password");
+
+            //     });
+            // });
+
             $(document).ready(function() {
                 $("#spinner").hide();
                 $("#buttonsubmit").click(function(e) {
-                    $('.checkpassowrdError').hide();
                     var currentPassword = $("#currentPassword").val();
                     var newPassword = $("#newPassword").val();
                     var checkPassword = $("#0password").val();
                     let cin = $("#cin").val();
-                    if (currentPassword != "" && newPassword!= "" && checkPassword!= "") {
+                    if (currentPassword != "" && newPassword != "" && checkPassword != "") {
                         if (newPassword === checkPassword) {
-                                $.ajax({
-                                    url: "changerMdp.php",
-                                    method: "GET",
-                                    data: {
-                                        newPassword: newPassword,
-                                        currentPassword: currentPassword,
-                                        cin: cin
-                                    },
-                                    dataType: "text",
-                                    beforeSend: function() {
-                                        $('.checkpassowrdError').hide();
-                                        $(".modal-footer").hide();
-                                        $("#spinner").show();
-                                    },
-                                    complete: function() {
-                                        $("#spinner").hide();
-                                        $('.errorr').show();
-                                        $(".modal-footer").show();
-                                    },
-                                    success: function(data) {
-                                        $('.return').html(data);
-                                    }
-                                });
-                            } else {
-                                $('.checkpassowrdError').show();
-                                $('.checkpassowrdError').addClass('alert alert-danger');
-                                $('.checkpassowrdError').html("Les mots de passe ne sont pas identiques.");
-                            }
+                            $.ajax({
+                                url: "changerMdp.php",
+                                method: "GET",
+                                data: {
+                                    newPassword: newPassword,
+                                    currentPassword: currentPassword,
+                                    cin: cin
+                                },
+                                dataType: "text",
+                                beforeSend: function() {
+                                    $(".modal-footer").hide();
+                                    $("#spinner").show();
+                                },
+                                complete: function() {
+                                    $("#spinner").hide();
+                                    $('.errorr').show();
+                                    $(".modal-footer").show();
+                                },
+                                success: function(data) {
+                                    $('.return').html(data);
+                                }
+                            });
+                        } else {
+                            $("#newPassword").addClass("is-invalid");
+                            showRedBorderForError("0password", "rewritepass", "Les mots de passe ne sont pas identiques.");
+                        }
                     } else {
-                        $('.checkpassowrdError').show();
-                        $('.checkpassowrdError').addClass('alert alert-danger');
-                        $('.checkpassowrdError').html("Veuillez remplir tous les champs");
+                        if (currentPassword === "") {
+                            showRedBorderForError("currentPassword", "currentPasswordError", "Veuillez remplir ce champ");
+                        } else if (newPassword === "") {
+                            showRedBorderForError("newPassword", "pass", "Veuillez remplir ce champ");
+                        } else {
+                            showRedBorderForError("0password", "rewritepass", "Veuillez remplir ce champ");
+                        }
+
+
                     }
                 });
             });
-
-            // mail check
-            $('.errmail').hide();
-            if (window.location.href.indexOf("errmail")>0){
-                $("#email").css('border-color', 'red');
-                $('.errmail').show();
-                $('.popover-dismiss').popover({
-                    trigger: 'hover',
-                    placement: 'bottom',
-                })
+            if (window.location.href.indexOf("errmail") > 0) {
+                showRedBorderForError("email", "errmail", "l'Email qu'était saisit est déja utilisé!");
+                $('.errmail').delay(5000).queue(function() {
+                    hideRedBorderForError("email", "errmail");
+                });
             }
-
             $(document).ready(function() {
                 $("#changePasword").click(function() {
                     $("#changermdp").modal("show");
                 });
                 $("#email").on('input', function(e) {
                     $("#submit").show();
+                    hideRedBorderForError("email", "errmail")
+                });
+                $("#currentPassword").on('input', function(e) {
+                    hideRedBorderForError('currentPassword', 'currentPasswordError');
+                });
+                $("#newPassword").on('input', function(e) {
+                    hideRedBorderForError('newPassword', 'pass');
+                });
+                $("#0password").on('input', function(e) {
+                    hideRedBorderForError('0password', 'rewritepass');
                 });
 
             });
@@ -293,11 +317,17 @@ if (!$user->isLoggedIn()) {
                             dataType: "text",
                             success: function(data) {
                                 $(".progress").hide();
-                                if (data != 'good') {
+                                if (data == 'email') {
+                                    showRedBorderForError("email", "errmail", "l'Email qu'était saisit est déja utilisé!");
+                                    $('.errmail').delay(5000).queue(function() {
+                                        hideRedBorderForError("email", "errmail");
+                                    });
+                                } else if (data == 'good')
+                                    location.reload();
+                                else {
                                     if (!confirm(data))
                                         location.reload();
-                                } else
-                                    location.reload();
+                                }
 
                             },
                             error: function() {
@@ -329,6 +359,7 @@ if (!$user->isLoggedIn()) {
             }
         </script>
     </body>
+
     </html>
 <?php
 }

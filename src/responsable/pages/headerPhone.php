@@ -40,12 +40,6 @@
                         <span class="bot-line"></span>Modules
                     </a>
                 </li>
-                <li>
-                    <a href="../../prof/pages">
-                        <i class="fab fa-stack-overflow"></i>
-                        <span class="bot-line"></span>Esapce Enseignant
-                    </a>
-                </li>
             </ul>
         </div>
     </nav>
@@ -114,6 +108,10 @@
                         </div>
                     </div>
                     <div class="account-dropdown__body">
+                        <div class="account-dropdown__item">
+                            <a href="../../prof/pages">
+                                <i class="fas fa-chalkboard-teacher"></i>Esapce Enseignant</a>
+                        </div>
                         <div class="account-dropdown__item">
                             <a href="#">
                                 <i class="zmdi zmdi-account"></i>Account</a>

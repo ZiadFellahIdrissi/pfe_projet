@@ -69,9 +69,10 @@ if (!$user->isLoggedIn()) {
         <!-- HEADER MOBILE-->
         <?php include '../pages/headerPhone.php' ?>
         <!-- END HEADER MOBILE -->
-        <div class="container" style="margin-top: 2.5%; margin-left:2.5%">
+
+        <div class="container" style="margin-top: 0.5%; margin-left:1.2%">
             <br>
-            <div class="container rounded text-white" style="background-color: #393939; width: 70%">
+            <div class="container rounded text-white" style="background-color: #2f3542; width: 70%">
                 <br>
                 <form id="myform" method="POST" action="modifierProfile.php" enctype="multipart/form-data">
                     <div class="progress" style="display:none">
@@ -88,9 +89,8 @@ if (!$user->isLoggedIn()) {
                     <?php
                     $info = getPersonInfo($id);
                     ?>
-
-                    <div class="container">
-                        <div class="row">
+                    <div class="">
+                        <div class=" form-group row">
                             <div class="col">
                                 <div class="form-group">
                                     Nom: <input type="text" class="form-control" value="<?php echo strtoupper($nom) . ' ' . $prenom ?>" readonly="readonly">
@@ -105,14 +105,16 @@ if (!$user->isLoggedIn()) {
                         <br>
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
-                                    Email: <input type="text" class="form-control" name="email" id="email" value="<?php echo $info->email ?>">
+                                Email:
+                                <div class="form-group input-group">
+                                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $info->email ?>">
+                                    <div class="errmail"></div>
                                 </div>
                             </div>
                             <div class="col">
                                 Password:
                                 <div class="form-group input-group">
-                                    <input type="password" class="form-control" name="password" value="gha tmchi t9awde la ?" readonly="readonly">
+                                    <input type="password" class="form-control" name="password" value="********" readonly="readonly">
                                     <div class="input-group-prepend" id="changePasword">
                                         <div class="input-group-text">
                                             <a class="text-dark">
@@ -125,22 +127,30 @@ if (!$user->isLoggedIn()) {
                         </div>
                         <input type="hidden" name="cin" value="<?php echo $id ?>">
                         <div class="saveChanging float-right">
-                            <button type="submit" id="submit" class="btn btn-outline-success" style="display:none">Enregistre</button>
+                            <button type="submit" id="submit" class="btn btn-outline-primary" style="display:none">Enregistrer</button>
                         </div>
-                        <br> <br>
+                        <br>
+                        <br>
                     </div>
                 </form>
             </div>
+            <br>
         </div>
         <!-- Modal changer le mot de passe -->
         <div class="modal fade changermdp" id="changermdp" tabindex="-1" role="dialog" aria-labelledby="changermdpLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <div class="container" style="padding: 1%; text-align:center; margin-left: 10.5%">
-                            <input type="password" class="form-control" id="currentPassword" placeholder="Mot de passe courant" style="width: 80%;"><br>
-                            <!-- <div class="form-group input-group" style="width: 80%;"> -->
-                            <input type="password" class="form-control" id="newPassword" style="width: 80%;" placeholder="Mot de passe">
+                        <div class="container">
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="currentPassword" placeholder="Mot de passe courant">
+                                <div class="currentPasswordError"></div>
+                            </div><br>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="newPassword" placeholder="Nouveau mot de passe">
+                                <div class="pass"></div>
+                            </div>
+
                             <!-- <div class="input-group-prepend" id="icon-click">
                                     <div class="input-group-text">
                                         <a class="text-dark">
@@ -148,33 +158,42 @@ if (!$user->isLoggedIn()) {
                                         </a>
                                     </div>
                                 </div>
-                            </div> --><br>
-                            <input type="password" class="form-control" id="0password" placeholder="Répéter le mot de passe" style="width: 80%;">
+                            </div> -->
+                            <br>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="0password" placeholder="Répéter le mot de passe">
+                                <div class="rewritepass"></div>
+                            </div>
                         </div>
-                        <div class="checkpassowrdError" style="text-align: center;" role="alert">
+
+                        <div class="return">
 
                         </div>
-                        <div class="return">
-                            <!-- spinner -->
-                            <div class="d-flex justify-content-center">
-                                <div class="spinner-border m-5" role="status" id="spinner">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
+                        <!-- spinner -->
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border m-5" role="status" id="spinner">
+                                <span class="sr-only">Loading...</span>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="cin" id="cin" value="<?php echo $id; ?>">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="buttonclose" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                         <button type="button" id="buttonsubmit" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="test">
+
+        </div>
 
 
         <!-- Jquery JS-->
         <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
         <!-- Bootstrap JS-->
         <script src="../../../layout/js/bootstrap.min.js "></script>
@@ -189,6 +208,19 @@ if (!$user->isLoggedIn()) {
         <script src="http://malsup.github.com/jquery.form.js"></script>
 
         <script type="text/javascript">
+            function hideRedBorderForError(id, classError) {
+                $('#' + id).removeClass("is-invalid");
+                $('.' + classError).removeClass("invalid-feedback");
+                $('.' + classError).hide();
+            }
+
+            function showRedBorderForError(id, classError, msg) {
+                $('#' + id).addClass("is-invalid");
+                $('.' + classError).addClass("invalid-feedback");
+                $('.' + classError).html(msg);
+                $('.' + classError).show();
+            }
+
             // $(document).ready(function() {
             //     $("#icon-click").click(function() {
             //         $("#icon").toggleClass('fa-eye-slash');
@@ -203,17 +235,16 @@ if (!$user->isLoggedIn()) {
 
             //     });
             // });
+
             $(document).ready(function() {
                 $("#spinner").hide();
-                $("#buttonsubmit").click(function() {
-                    $('.checkpassowrdError').hide();
+                $("#buttonsubmit").click(function(e) {
                     var currentPassword = $("#currentPassword").val();
                     var newPassword = $("#newPassword").val();
                     var checkPassword = $("#0password").val();
                     let cin = $("#cin").val();
-                    // console.log(currentPassword+' '+newPassword+' '+cin );
-                    if (newPassword === checkPassword) {
-                        if (currentPassword != "") {
+                    if (currentPassword != "" && newPassword != "" && checkPassword != "") {
+                        if (newPassword === checkPassword) {
                             $.ajax({
                                 url: "changerMdp.php",
                                 method: "GET",
@@ -224,37 +255,58 @@ if (!$user->isLoggedIn()) {
                                 },
                                 dataType: "text",
                                 beforeSend: function() {
+                                    $(".modal-footer").hide();
                                     $("#spinner").show();
-                                    $("#buttonsubmit").hide();
                                 },
                                 complete: function() {
                                     $("#spinner").hide();
-                                    $("#buttonsubmit").show();
                                     $('.errorr').show();
+                                    $(".modal-footer").show();
                                 },
                                 success: function(data) {
                                     $('.return').html(data);
                                 }
                             });
                         } else {
-                            $('.checkpassowrdError').show();
-                            $('.checkpassowrdError').addClass('alert alert-danger');
-                            $('.checkpassowrdError').html("Veuillez remplir tout les champ ");
+                            $("#newPassword").addClass("is-invalid");
+                            showRedBorderForError("0password", "rewritepass", "Les mots de passe ne sont pas identiques.");
                         }
                     } else {
-                        $('.checkpassowrdError').show();
-                        $('.checkpassowrdError').addClass('alert alert-danger');
-                        $('.checkpassowrdError').html("Les mots de passe ne sont pas identiques.");
+                        if (currentPassword === "") {
+                            showRedBorderForError("currentPassword", "currentPasswordError", "Veuillez remplir ce champ");
+                        } else if (newPassword === "") {
+                            showRedBorderForError("newPassword", "pass", "Veuillez remplir ce champ");
+                        } else {
+                            showRedBorderForError("0password", "rewritepass", "Veuillez remplir ce champ");
+                        }
+
+
                     }
                 });
             });
+            if (window.location.href.indexOf("errmail") > 0) {
+                showRedBorderForError("email", "errmail", "l'Email qu'était saisit est déja utilisé!");
+                $('.errmail').delay(5000).queue(function() {
+                    hideRedBorderForError("email", "errmail");
+                });
 
+            }
             $(document).ready(function() {
                 $("#changePasword").click(function() {
                     $("#changermdp").modal("show");
                 });
                 $("#email").on('input', function(e) {
                     $("#submit").show();
+                    hideRedBorderForError("email", "errmail")
+                });
+                $("#currentPassword").on('input', function(e) {
+                    hideRedBorderForError('currentPassword', 'currentPasswordError');
+                });
+                $("#newPassword").on('input', function(e) {
+                    hideRedBorderForError('newPassword', 'pass');
+                });
+                $("#0password").on('input', function(e) {
+                    hideRedBorderForError('0password', 'rewritepass');
                 });
 
             });
@@ -277,11 +329,17 @@ if (!$user->isLoggedIn()) {
                             dataType: "text",
                             success: function(data) {
                                 $(".progress").hide();
-                                if (data != 'good') {
+                                if (data == 'email') {
+                                    showRedBorderForError("email", "errmail", "l'Email qu'était saisit est déja utilisé!");
+                                    $('.errmail').delay(5000).queue(function() {
+                                        hideRedBorderForError("email", "errmail");
+                                    });
+                                } else if (data == 'good')
+                                    location.reload();
+                                else {
                                     if (!confirm(data))
                                         location.reload();
-                                } else
-                                    location.reload();
+                                }
 
                             },
                             error: function() {

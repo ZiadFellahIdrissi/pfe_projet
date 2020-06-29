@@ -120,9 +120,9 @@
                             <span class="email"><?php echo $email ?></span>
                         </div>
                     </div>
-                    <?php if ($user->data()->role != 'responsable') {
-                    ?>
-                        <div class="account-dropdown__body">
+                    <div class="account-dropdown__body">
+                        <?php if ($user->data()->role != 'responsable') {
+                        ?>
                             <div class="account-dropdown__item">
                                 <a href="#">
                                     <i class="zmdi zmdi-account"></i>Account</a>
@@ -131,11 +131,18 @@
                                 <a href="../account/">
                                     <i class="zmdi zmdi-settings"></i>Setting</a>
                             </div>
-                        </div>
-                    <?php
-                    } ?>
+                        <?php
+                        } else { ?>
+                            <div class="account-dropdown__item">
+                                <a href="../../responsable/">
+                                    <i class="fas fa-user-tie"></i>Esapce Responsable</a>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
                     <div class="account-dropdown__footer">
-                        <a href="logout.php">
+                        <a href="../pages/logout.php">
                             <i class="zmdi zmdi-power"></i>Logout
                         </a>
                     </div>
