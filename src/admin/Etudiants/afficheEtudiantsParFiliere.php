@@ -59,4 +59,7 @@
         echo "</table>";
             ?>
 </div>
+<script>
+    $('.mydatatable').DataTable();
+</script>   
 <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>

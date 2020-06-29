@@ -12,3 +12,4 @@
 							 WHERE id = '$cin'		 ");
 		header("location: ./?deleted&idUrlFiliere=$filiere");
 	}
+?>

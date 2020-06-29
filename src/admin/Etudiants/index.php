@@ -92,7 +92,7 @@ if (!$user->isLoggedIn()) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body etudiants">
+                            <div class="card-body etudiants" style="display: none">
                                 <?php
                                     // include 'afficheTableauEtudiants.php';
                                 ?>
@@ -134,7 +134,7 @@ if (!$user->isLoggedIn()) {
         <!-- Main JS-->
         <script type="text/javascript" src="../../../layout/js/main.js "></script>
         <script type="text/javascript" src="../../../layout/js/animation.js"></script>
-        <script type="text/javascript" src="../../../layout/js/etudiants.js"></script>
+        <script type="text/javascript" src="../../../layout/js/admin/etudiants.js"></script>
         <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
         <!-- <script type="text/javascript">
             $(document).ready(function() {

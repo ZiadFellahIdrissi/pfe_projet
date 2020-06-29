@@ -78,11 +78,8 @@
                 }
             } else {
             ?>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td> 
-                </tr>
+                <tr><td colspan="3" style="text-align: center;">Aucun filière n'est trouvé.</td></tr>
+
             <?php
             }
             echo "</tbody>";
@@ -127,3 +124,7 @@
         }
         ?>
 </div>
+<script>
+    $('.mydatatable').DataTable();
+    $('.mydatatable2').DataTable();
+</script>

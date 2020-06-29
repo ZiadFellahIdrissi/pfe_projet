@@ -96,7 +96,7 @@ if (!$user->isLoggedIn()) {
                             <div class="col">
                                 Email:
                                 <div class="form-group input-group">
-                                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $info->email ?>">
+                                <input type="text" class="form-control" name="email" id="email" value="<?php echo isset($_GET['email'])?$_GET['email']:$info->email ?>">
                                     <div class="errmail"></div>
                                 </div>
                             </div>
@@ -273,12 +273,17 @@ if (!$user->isLoggedIn()) {
                     }
                 });
             });
+
             if (window.location.href.indexOf("errmail") > 0) {
-                showRedBorderForError("email", "errmail", "l'Email qu'était saisit est déja utilisé!");
-                $('.errmail').delay(5000).queue(function() {
+                showRedBorderForError("email", "errmail", "Email déja utilisé!");
+                $('#email').attr("readonly", "readonly");
+                $('.errmail').delay(3000).queue(function() {
+                    $('#email').val('<?php echo $info->email?>');
                     hideRedBorderForError("email", "errmail");
+                    $('#email').removeAttr("readonly");
                 });
             }
+
             $(document).ready(function() {
                 $("#changePasword").click(function() {
                     $("#changermdp").modal("show");

@@ -119,10 +119,28 @@ if (!$user->isLoggedIn()) {
                         <div class="card-body modules">
 
                         </div>
+
+                        <!-- MODAL INFORMATION FILL BY AJAX  -->
+                        <div class="modal fade moduleInfo" tabindex="-1" role="dialog" aria-labelledby="moduleInfoLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modalInfo">
+                                        <!-- SPINNER -->
+                                        <div class="d-flex justify-content-center">
+                                            <div class="spinner-border m-5" role="status" id="spinner">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                        <!-- END SPINNER -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
-
+            
             <!-- Jquery JS-->
             <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
 
@@ -158,6 +176,31 @@ if (!$user->isLoggedIn()) {
                             });
                         }
                     }
+
+                    $(document).on('click', '.openModalInformation', function() {
+                        $('.moduleInfo').modal('show');
+                        var id = $(this).attr("id");
+                        $.ajax({
+                            url: "info.php",
+                            method: 'GET',
+                            data: {
+                                id: id
+                            },
+                            dataType: 'text',
+                            beforeSend: function() {
+                                $("#spinner").show();
+                            },
+                            complete: function() {
+                                $("#spinner").hide();
+                            },
+                            success: function(data) {
+                                $('.modalInfo').html(data);
+                            },
+                            error: function() {
+                                alert('failure');
+                            }
+                        });
+                    });
                 });
             </script>
         </body>

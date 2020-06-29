@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="semester float-left">
+                                    <div class="semester float-left" style="display: none">
                                         <select name="semester" id="semester" class="form-control">
                                             <option value='1'>1er Semestre</option>
                                             <option value='2'>2ème Semestre</option>
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                     
-                        <div class="card-body modules">
+                        <div class="card-body modules" style="display: none">
                             
                         </div>
 
@@ -122,7 +122,8 @@
         <script type="text/javascript" src="../../../layout/js/bootstrap.min.js "></script>
         <script type="text/javascript" src="../../../lib/animsition/animsition.min.js "></script>
         <script type="text/javascript" src="../../../layout/js/main.js "></script>
-        <script type="text/javascript" src="../../../layout/js/modules.js"></script>
+        <script type="text/javascript" src="../../../layout/js/admin/modules.js"></script>
+        <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
     </body>
 </html>
 <?php

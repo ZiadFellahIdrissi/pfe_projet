@@ -14,7 +14,7 @@
                 <?php
                     if (strpos($fullurl, "tel")) { ?>
                         <div class="toast-body">
-                            <strong>Telephone</strong> déjà utilisé.
+                            Numéro de <strong>Telephone</strong> déjà utilisé.
                         </div>
                 <?php
                     }

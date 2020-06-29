@@ -84,7 +84,7 @@ $db = DB::getInstance();
                 <form action="modifier_module.php" method="POST">
                     <div class="form-group">
                         <label for="le_nom2" class="col-form-label">Intitule</label>
-                        <input type="text" class="form-control" name="Nom" id="le_nom2" required>
+                        <input type="text" class="form-control" name="Nom" id="le_nom2" readonly="readonly">
                     </div>
                     <div class="row">
                         <div class="col">
@@ -112,21 +112,6 @@ $db = DB::getInstance();
                                 <input type="number" class="form-control" name="Heures" id="Heures2" required>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <b>Coefficients</b>
-                        <table class="table-bordered table">
-                            <tr>
-                                <td>
-                                    <label for="coeffC_modifier" class="col-form-label">Coefficient du Controle</label>
-                                    <input type="number" step="0.01" max=1 min=0 class="form-control" name="coeffC" id="coeffC_modifier" required>
-                                </td>
-                                <td>
-                                    <label for="coeffE_modifier" class="col-form-label">Coefficient d'Examen</label>
-                                    <input type="number" step="0.01" max=1 min=0 class="form-control" name="coeffE" id="coeffE_modifier" required>
-                                </td>
-                            </tr>
-                        </table>
                     </div>
                     <div class="form-group">
                         <label for="Enseignant2" class="col-form-label">Enseignant du Module</label>

@@ -64,7 +64,7 @@ if ($fileName != '') {
     }
 } else {
     if ($numrow){
-        header("Location: ./?errmail");
+        header("Location: ./?errmail&email=$email");
     }
     else
         header("Location: ./");
