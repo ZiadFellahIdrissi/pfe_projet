@@ -40,6 +40,7 @@ if (!$user->isLoggedIn()) {
 
         <!-- Main CSS-->
         <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
+
     </head>
 
     <style>
