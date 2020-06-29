@@ -20,7 +20,7 @@
                     }
                     if (strpos($fullurl, "resp")) { ?>
                         <div class="toast-body">
-                            <strong>Enseignant</strong> déjà en charge d'un autre filière.
+                            <strong>Enseignant</strong> déjà en charge d'une autre filière.
                         </div>
                 <?php
                     }

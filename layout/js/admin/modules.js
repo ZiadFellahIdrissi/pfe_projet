@@ -4,13 +4,17 @@ function getParam(id) {
     return url.searchParams.get("idUrl" + id);
 }
 
-var id = getParam("Filiere");
-var id2 = getParam("Sem");
+$(document).ready(function() {
+    $('.toast').toast({
+        delay: 5000
+    });
+    $('.toast').toast('show');
 
-if (id && id2) {
-    $("#filiere").val(id);
-    $("#semester").val(id2);
-    $(document).ready(function() {
+    var id = getParam("Filiere");
+    var id2 = getParam("Sem");
+    if (id && id2) {
+        $("#filiere").val(id);
+        $("#semester").val(id2);
         var id_filiere = $("#filiere").val();
         var semester = $("#semester").val();
         if (id_filiere) {
@@ -24,30 +28,20 @@ if (id && id2) {
                 dataType: "text",
                 success: function(data) {
                     $('.modules').html(data);
-                    $('#semester').show();
+                    $('.semester').show();
                     $(".modules").show();
                 }
             });
         }
-    });
-}
+    }
 
-$(document).ready(function() {
-    $('.toast').toast({
-        delay: 5000
-    });
-    $('.toast').toast('show');
-
-    $('.modules').hide();
-    $('#semester').hide();
     $('#filiere').change(affiche);
-
     function affiche() {
         if ($('#filiere').val() != "") {
-            $('#semester').show();
+            $('.semester').show();
             $(".modules").show();
         } else {
-            $('#semester').hide();
+            $('.semester').hide();
             $('.modules').hide();
         }
     }
@@ -135,6 +129,33 @@ $(document).ready(function() {
             }
         });
     });
-});
 
-    
+    $(document).on('click', '.open_confirmationActModule', function() {
+        var code = $(this).attr("id");
+        console.log(code);
+        $.ajax({
+            url: "fetch_module_infos.php",
+            method: 'GET',
+            data: {
+                code: code
+            },
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(data) {
+                $('#intitule').val(data.intitule);
+                $('#displaySem').val(data.semestre);
+                $('#sem_act').val(data.id_semestre);
+                $('#heure_act').val(data.heures_sem);
+                $('#coeffC_act').val(data.coeff_controle);
+                $('#coeffE_act').val(data.coeff_examen);
+                $('#displayFil').val(data.nom_filiere);
+                $('#fil_act').val(data.id_filiere);
+                $('#id_mod_act').val(data.id_module);
+                $('#actModal').modal('show');
+            },
+            error: function() {
+                alert('failure');
+            }
+        });
+    });
+});

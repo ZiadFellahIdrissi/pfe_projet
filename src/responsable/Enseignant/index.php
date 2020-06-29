@@ -120,7 +120,7 @@ if (!$user->isLoggedIn()) {
                                             $queryINfo = $db->query($sql2, [$row->id_enseignant]);
 
                                         ?>
-                                            <tr class="openModalInformation" id="<?php echo $queryINfo->first()->id ?>" title="Plus d'informations">
+                                            <tr style="cursor: pointer" class="openModalInformation" id="<?php echo $queryINfo->first()->id ?>" title="Plus d'informations">
                                                 <td style="font-weight: bold;"><?php echo $queryINfo->first()->som; ?></td>
                                                 <td><?php echo $queryINfo->first()->id; ?></td>
                                                 <td><?php echo $queryINfo->first()->nom . ' ' . $queryINfo->first()->prenom; ?></td>

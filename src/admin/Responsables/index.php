@@ -43,8 +43,13 @@
 
 <body class="">
     <div class="page-wrapper">
-        <?php include '../pages/header.php' ?>
-        <div class="main-content ">
+        <?php
+            include '../pages/header.php';
+        ?>
+        <div class="main-content">
+            <?php
+                include 'DML_Commentator.php';
+            ?>
             <div class="container mb-3">
                 <nav aria-label="breadcrumb nov">
                     <ol class="breadcrumb nov">
@@ -90,7 +95,7 @@
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
     <script type="text/javascript" src="../../../layout/js/animation.js"></script>
     <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../../../layout/js/responsable.js"></script>
+    <script type="text/javascript" src="../../../layout/js/admin/responsable.js"></script>
     <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 </body>
 </html>

@@ -56,12 +56,7 @@ include 'modals.php';
                 }
             } else {
                 ?>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                    <tr><td colspan="4" style="text-align: center;">Aucun module n'est trouvé.</td></tr>
             <?php
             }
             echo "<tbody>";
@@ -69,12 +64,12 @@ include 'modals.php';
 
             // ============================================================================================== //
             $sql = "SELECT *
-            FROM Module
-            JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
-            JOIN dispose_de ON Module.id_module = dispose_de.id_module
-            WHERE dispose_de.id_filiere = $id_filiere
-            AND Semestre.id_semestre = $semester
-            AND Module.etat = 0";
+                    FROM Module
+                    JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
+                    JOIN dispose_de ON Module.id_module = dispose_de.id_module
+                    WHERE dispose_de.id_filiere = $id_filiere
+                    AND Semestre.id_semestre = $semester
+                    AND Module.etat = 0";
 
             $resultat = mysqli_query($conn, $sql);
             $resultatcheck = mysqli_num_rows($resultat);
@@ -119,38 +114,6 @@ include 'modals.php';
 </div>
 <script>
     $('.mydatatable').DataTable();
-
     $('.mydatatable2').DataTable();
-
-    $(document).ready(function() {
-        $(document).on('click', '.open_confirmationActModule', function() {
-            var code = $(this).attr("id");
-            console.log(code);
-            $.ajax({
-                url: "fetch_module_infos.php",
-                method: 'GET',
-                data: {
-                    code: code
-                },
-                contentType: "application/json",
-                dataType: 'json',
-                success: function(data) {
-                    $('#intitule').val(data.intitule);
-                    $('#displaySem').val(data.semestre);
-                    $('#sem_act').val(data.id_semestre);
-                    $('#heure_act').val(data.heures_sem);
-                    $('#coeffC_act').val(data.coeff_controle);
-                    $('#coeffE_act').val(data.coeff_examen);
-                    $('#displayFil').val(data.nom_filiere);
-                    $('#fil_act').val(data.id_filiere);
-                    $('#id_mod_act').val(data.id_module);
-                    $('#actModal').modal('show');
-                },
-                error: function() {
-                    alert('failure');
-                }
-            });
-        });
-    });
 </script>
 <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>

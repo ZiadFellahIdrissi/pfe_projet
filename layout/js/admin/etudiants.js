@@ -33,8 +33,6 @@ if (id = getParam("Filiere")) {
     });
 }
 
-$('.etudiants').hide();
-
 $(document).ready(function() {
     $('#filiere').change(affiche);
     function affiche() {
@@ -122,5 +120,3 @@ $(document).ready(function() {
 
     });
 });
-
-$('.mydatatable').DataTable();

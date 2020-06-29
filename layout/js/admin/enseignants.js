@@ -1,11 +1,9 @@
-
 $(document).ready(function() {
-    $('.toast').toast({ delay: 5000 });
+    $('.toast').toast({
+        delay: 5000
+    });
     $('.toast').toast('show');
 
-});
-
-$(document).ready(function() {
     $(document).on('click', '.Open_modifierEnseignant', function() {
         var code = $(this).attr("id");
         $.ajax({
@@ -30,28 +28,23 @@ $(document).ready(function() {
                 alert('failure');
             }
         });
-
     });
 
-});
 
-$(document).ready(function() {
     $(".open-confirmationR").click(function() {
         var filiere = $(this).attr('id');
         $('#fil').html(filiere);
         $('#confermationR').modal('show');
     });
-});
 
-$(document).ready(function() {
     $(".open-confirmationE").click(function() {
         var module = $(this).attr('id');
         $('#module').html(module);
         $('#confermationE').modal('show');
     });
-});
 
-$(document).ready(function() {
+    
+
     $(document).on('click', '.openModalInformation', function() {
         $('.teacherInfo').modal('show');
         var cin = $(this).attr("id");

@@ -1,13 +1,9 @@
-$('.mydatatable').DataTable();
-
-$('.mydatatable2').DataTable();
-
 $(document).ready(function() {
-    $('.toast').toast({ delay: 5000 });
+    $('.toast').toast({
+        delay: 5000
+    });
     $('.toast').toast('show');
 
-});
-$(document).ready(function() {
     $(".open-confirmation").click(function() {
         var id_filiere = $(this).data('id');
         $('#confirmation').val(id_filiere);
@@ -83,9 +79,7 @@ $(document).ready(function() {
             }
         });
     });
-});
 
-$(document).ready(function() {
     $(document).on('click', '.openModalInformation', function() {
         $('.filiereInfo').modal('show');
         var id = $(this).attr("id");
