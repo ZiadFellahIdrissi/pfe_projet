@@ -68,7 +68,7 @@ if (isset($_GET["cin"])) {
         <script type="text/javascript" src="../../../layout/js/bootstrap.min.js "></script>
 
         <!-- Main JS-->
-        <script src="http://malsup.github.com/jquery.form.js"></script>
+        <script src="../../../layout/js/jquery.form.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -97,12 +97,17 @@ if (isset($_GET["cin"])) {
                                 $(".progress-bar").width(percentageComplete + '%');
                                 submit.style.display = "none";
                             },
-                            data:{},
+                            dataType: "text",
                             success: function(data) {
                                 let login = document.querySelector("#login");
                                 login.style.display = "block";
                                 submit.style.display = "none";
-                                $(".error").html(data);
+                                $(".progress").hide();
+                                if(data != 'good'){
+                                    alert(data);
+                                    $("#profileDisplay").attr('src','../../../img/login/avatar.svg');
+                                }
+
                             },
                             error: function() {
                                 alert("wait a min there is an error");
@@ -147,12 +152,12 @@ if (isset($_GET["cin"])) {
                 ?>
                 if (profileImagee.src.includes('avatar')) {
                     if (confirm("Voulez-vous vraiment garder l'image par défaut !!!!")) {
-                        <?php
-                        $sql = "UPDATE Utilisateur
-                        SET `imagepath` = 'avatar.svg'
-                        WHERE id='$cin'";
-                        DB::getInstance()->query($sql, []);
-                        ?>
+                        // <?php
+                        // $sql = "UPDATE Utilisateur
+                        // SET `imagepath` = 'avatar.svg'
+                        // WHERE id='$cin'";
+                        // DB::getInstance()->query($sql, []);
+                        // ?>
                         location.href = "../../login/";
                     }
                 } else {

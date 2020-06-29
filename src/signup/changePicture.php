@@ -45,7 +45,7 @@ include '../connection.php';
                 }
             } else {
                 // header("Location: ./welcome.php?uploadError=true");
-                echo "there is an error";
+                echo "Essayer une autre photo";
             }
         } else {
             // header("Location: ./welcome.php?uploadext=notAlowed");
