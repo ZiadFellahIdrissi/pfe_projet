@@ -96,7 +96,7 @@ if (!$user->isLoggedIn()) {
                             <div class="col">
                                 Email:
                                 <div class="form-group input-group">
-                                <input type="text" class="form-control" name="email" id="email" value="<?php echo isset($_GET['email'])?$_GET['email']:$info->email ?>">
+                                    <input type="text" class="form-control" name="email" id="email" value="<?php echo isset($_GET['email']) ? $_GET['email'] : $info->email ?>">
                                     <div class="errmail"></div>
                                 </div>
                             </div>
@@ -125,6 +125,7 @@ if (!$user->isLoggedIn()) {
             </div>
             <br>
         </div>
+
         <!-- Modal changer le mot de passe -->
         <div class="modal fade changermdp" id="changermdp" tabindex="-1" role="dialog" aria-labelledby="changermdpLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -253,7 +254,10 @@ if (!$user->isLoggedIn()) {
                                     $(".modal-footer").show();
                                 },
                                 success: function(data) {
-                                    $('.return').html(data);
+                                    if (data === 'error') {
+                                        showRedBorderForError("currentPassword", "currentPasswordError", "Mot de passe entré est incorrect.");
+                                    } else
+                                        $('.return').html(data);
                                 }
                             });
                         } else {
@@ -278,7 +282,7 @@ if (!$user->isLoggedIn()) {
                 showRedBorderForError("email", "errmail", "Email déja utilisé!");
                 $('#email').attr("readonly", "readonly");
                 $('.errmail').delay(3000).queue(function() {
-                    $('#email').val('<?php echo $info->email?>');
+                    $('#email').val('<?php echo $info->email ?>');
                     hideRedBorderForError("email", "errmail");
                     $('#email').removeAttr("readonly");
                 });

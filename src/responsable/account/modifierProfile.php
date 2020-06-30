@@ -14,14 +14,12 @@ $numrow = mysqli_num_rows(mysqli_query($conn, $sqltest));
 if ($numrow) {
     goto checkpicture;
 }
-
 $sql = "UPDATE Utilisateur
         SET `email` = '$email'
         WHERE id = '$cin'";
 mysqli_query($conn, $sql);
 
-checkpicture: 
-$imagepath = getPersonInfo($cin)->imagepath;
+checkpicture: $imagepath = getPersonInfo($cin)->imagepath;
 //CHANGEMENT DE IMAGE
 $file = $_FILES['file'];
 $fileName = $_FILES['file']['name'];
@@ -64,10 +62,10 @@ if ($fileName != '') {
     } else {
         echo "file not allowed";
     }
-} else
-if ($numrow){
-    header("Location: ./?errmail");
+} else {
+    if ($numrow){
+        header("Location: ./?errmail&email=$email");
+    }
+    else
+        header("Location: ./");
 }
-else
-    header("Location: ./");
-

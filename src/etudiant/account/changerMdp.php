@@ -17,6 +17,4 @@ if ($currentPassword === $passfromdatabase) {
     else
         echo "<h2>Une erreur s'est produite, Essayer encore.</h2>";
 } else
-    echo '<div class="alert alert-danger checkpassowrdError" style="text-align: center;" role="alert">
-                Mot de passe entré est incorrect.
-        </div>';
+    echo 'error';

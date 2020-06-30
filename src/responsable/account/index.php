@@ -73,7 +73,7 @@ if (!$user->isLoggedIn()) {
             <?php include '../pages/headerPhone.php' ?>
             <!-- END HEADER MOBILE -->
 
-            <div class="container" style="margin-top: 0.5%; margin-left:1.2%">
+            <div class="container" style="margin-top: 0.5%; margin-left:2.5%">
                 <br>
                 <div class="container rounded text-white" style="background-color: #2f3542; width: 70%">
                     <br>
@@ -110,7 +110,7 @@ if (!$user->isLoggedIn()) {
                                 <div class="col">
                                     Email:
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" name="email" id="email" value="<?php echo $info->email ?>">
+                                        <input type="text" class="form-control" name="email" id="email" value="<?php echo isset($_GET['email']) ? $_GET['email'] : $info->email ?>">
                                         <div class="errmail"></div>
                                     </div>
                                 </div>
@@ -139,6 +139,7 @@ if (!$user->isLoggedIn()) {
                 </div>
                 <br>
             </div>
+
             <!-- Modal changer le mot de passe -->
             <div class="modal fade changermdp" id="changermdp" tabindex="-1" role="dialog" aria-labelledby="changermdpLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -267,7 +268,10 @@ if (!$user->isLoggedIn()) {
                                         $(".modal-footer").show();
                                     },
                                     success: function(data) {
-                                        $('.return').html(data);
+                                        if (data === 'error') {
+                                            showRedBorderForError("currentPassword", "currentPasswordError", "Mot de passe entré est incorrect.");
+                                        } else
+                                            $('.return').html(data);
                                     }
                                 });
                             } else {
@@ -287,13 +291,17 @@ if (!$user->isLoggedIn()) {
                         }
                     });
                 });
-                if (window.location.href.indexOf("errmail") > 0) {
-                    showRedBorderForError("email", "errmail", "l'Email qu'était saisit est déja utilisé!");
-                    $('.errmail').delay(5000).queue(function() {
-                        hideRedBorderForError("email", "errmail");
-                    });
 
+                if (window.location.href.indexOf("errmail") > 0) {
+                    showRedBorderForError("email", "errmail", "Email déja utilisé!");
+                    $('#email').attr("readonly", "readonly");
+                    $('.errmail').delay(3000).queue(function() {
+                        $('#email').val('<?php echo $info->email ?>');
+                        hideRedBorderForError("email", "errmail");
+                        $('#email').removeAttr("readonly");
+                    });
                 }
+
                 $(document).ready(function() {
                     $("#changePasword").click(function() {
                         $("#changermdp").modal("show");

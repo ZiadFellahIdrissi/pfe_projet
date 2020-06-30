@@ -24,7 +24,7 @@ body {
     overflow-x: hidden;
     /* text-align: center; */
     /* fix */
-    background: #AEACFB;
+    background: linear-gradient(125deg, #6a89cc, #64cea5);
 }
 
 @media screen and (max-width: 1000px) {
