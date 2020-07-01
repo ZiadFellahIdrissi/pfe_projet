@@ -64,7 +64,7 @@ include 'modals.php';
 <form method="GET" action="./exporteExcel.php">
     <div class="float-center" style="padding-top: 9px; text-align:center; ">
         <input type="hidden" name="id_filiere" value="<?php echo $id_filiere  ?>">
-        <button type="submit" id="print-excel" name="print-excel" class="btn btn-outline-primary">Importer form xls</button>
+        <button type="submit" id="print-excel" name="print-excel" class="btn btn-outline-primary">Exporter format xls</button>
     </div>
 </form>
 <script>
