@@ -43,7 +43,6 @@ if (!empty($_GET['id_filiere'])) {
                     <tr>
                         <th>CNE</th>
                         <th>Nom Complet</th>
-                        <th>Relevé des notes</th>
                     </tr>
                 </thead>
                 <tbody>
