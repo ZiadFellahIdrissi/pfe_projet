@@ -27,6 +27,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="../seances/">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span class="bot-line"></span>Emploi du temps
+                        </a>
+                    </li>
+                    <li>
                         <a href="../Module/">
                             <i class="fab fa-stack-overflow"></i>
                             <span class="bot-line"></span>Modules
