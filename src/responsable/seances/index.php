@@ -13,14 +13,13 @@ if (!$user->isLoggedIn()) {
 ?>
     <html lang="en">
 
-
     <head>
         <!-- Required meta tags-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Title Page-->
-        <title>Controles</title>
+        <title>Seances</title>
 
         <!-- Fontfaces CSS-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -64,7 +63,7 @@ if (!$user->isLoggedIn()) {
                                     <li class="list-inline-item seprate">
                                         <a href="../">Dashboard</a> <span>/</span>
                                     </li>
-                                    <li class="list-inline-item">Controles</li>
+                                    <li class="list-inline-item">Seances</li>
                                 </ul>
                             </div>
                             <form class="au-form-icon--sm" action="" method="post">
@@ -187,7 +186,6 @@ if (!$user->isLoggedIn()) {
 
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
-        <!-- <script scr="../../../layout/js/espace_enseignant/controleCalendar.js"></script> -->
         <script>
             $(document).ready(function() {
                 $('#spinner1').hide();

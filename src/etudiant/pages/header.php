@@ -1,11 +1,11 @@
 <!-- MENU SIDEBAR-->
-<aside class="menu-sidebar2" style="background-color: #2f3542" >
+<aside class="menu-sidebar2" style="background-color: #2f3542">
     <div class="logo" style="background-color: #2f3542;">
         <a href="#">
             <!-- <img src="mylogo.png" alt="" /> -->
         </a>
     </div>
-    <div class="menu-sidebar2__content js-scrollbar1" >
+    <div class="menu-sidebar2__content js-scrollbar1">
         <div class="account2">
             <div class="image img-cir img-120">
                 <img src="../../../img/profiles/<?php echo $imagepath ?>" title="Photo de profile" draggable="false" />
@@ -21,9 +21,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../messages/">
-                        <i class="fa fa-envelope"></i>Inbox</a>
-                    <span class="inbox-num">3</span>
+                    <a href="../seances/">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span class="bot-line"></span>Emploi du temps
+                    </a>
                 </li>
                 <li>
                     <a href="../Examens">
@@ -61,7 +62,7 @@
 <!-- PAGE CONTAINER-->
 <div class="page-container2">
     <?php
-        require_once 'headerDesktop.php';
+    require_once 'headerDesktop.php';
     ?>
     <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
         <div class="logo">
@@ -85,9 +86,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="fa fa-envelope"></i>Inbox</a>
-                        <span class="inbox-num">3</span>
+                        <a href="../seances/">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span class="bot-line"></span>Emploi du temps
+                        </a>
                     </li>
                     <li>
                         <a href="../Examens/">
