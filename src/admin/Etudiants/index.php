@@ -92,10 +92,10 @@ if (!$user->isLoggedIn()) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body etudiants" style="display: none">
-                                <?php
-                                // include 'afficheTableauEtudiants.php';
-                                ?>                       
+                            <div class="card-body etudiants">
+                                <div class="containar infosWait" style="text-align: center;" >
+                                    <img src="../../../img/Dashboard/infoEtudiant.svg" width="500px" >
+                                </div>
                             </div>
 
                             <!-- MODAL INFORMATION FILL BY AJAX  -->

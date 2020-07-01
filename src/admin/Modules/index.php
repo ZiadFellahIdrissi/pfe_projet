@@ -1,13 +1,14 @@
 <?php
-    include '../../connection.php';
-    include_once '../../../core/init.php';
-    $user = new User_Admin();
-    if (!$user->isLoggedIn()) {
-        header('Location: ../pages/login.php');
-    } else {
-        $username =$user->data()->username;
+include '../../connection.php';
+include_once '../../../core/init.php';
+$user = new User_Admin();
+if (!$user->isLoggedIn()) {
+    header('Location: ../pages/login.php');
+} else {
+    $username = $user->data()->username;
 ?>
-<html lang="en">
+    <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -47,11 +48,11 @@
     <body class="">
         <div class="page-wrapper">
             <?php
-                include '../pages/header.php';
+            include '../pages/header.php';
             ?>
             <div class="main-content ">
                 <?php
-                    include 'DML_Commentator.php';
+                include 'DML_Commentator.php';
                 ?>
                 <div class="container  mb-3">
                     <nav aria-label="breadcrumb nov">
@@ -68,15 +69,15 @@
                                         <select name="filiere" id="filiere" class="form-control">
                                             <option value=''>Choisissez une filière</option>
                                             <?php
-                                                $sql = "SELECT id_filiere, nom_filiere
+                                            $sql = "SELECT id_filiere, nom_filiere
                                                         FROM Filiere
                                                         WHERE etat = 1";
-                                                $resultat = mysqli_query($conn, $sql);
-                                                while ($row = mysqli_fetch_assoc($resultat)) {
+                                            $resultat = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_assoc($resultat)) {
                                             ?>
-                                                    <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
+                                                <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
                                             <?php
-                                                }
+                                            }
                                             ?>
                                         </select>
                                     </div>
@@ -91,9 +92,11 @@
                                 </div>
                             </div>
                         </div>
-                    
-                        <div class="card-body modules" style="display: none">
-                            
+
+                        <div class="card-body modules">
+                            <div class="containar infosWait" style="text-align: center;">
+                                <img src="../../../img/Dashboard/infoFiliere.svg">
+                            </div>
                         </div>
 
                         <!-- MODAL INFORMATION FILL BY AJAX  -->
@@ -125,7 +128,8 @@
         <script type="text/javascript" src="../../../layout/js/admin/modules.js"></script>
         <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
     </body>
-</html>
+
+    </html>
 <?php
 }
 ?>

@@ -25,10 +25,12 @@ if (id = getParam("Filiere")) {
                 dataType: "text",
                 success: function(data) {
                     $('.etudiants').html(data);
-                    $('.etudiants').show();
+                    // $('.etudiants').show();
+                    $('.infosWait').hide();
                 }
             });
-        }
+        } else
+            $('.infosWait').show();
     });
 }
 
@@ -56,9 +58,11 @@ $(document).ready(function() {
                 dataType: "text",
                 success: function(data) {
                     $('.etudiants').html(data);
+                    $('.infosWait').hide();
                 }
             });
-        }
+        } else
+            $('.infosWait').show();
     });
 });
 
