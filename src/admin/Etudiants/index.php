@@ -5,7 +5,7 @@ $user = new User_Admin();
 if (!$user->isLoggedIn()) {
     header('Location: ../pages/login.php');
 } else {
-    $username =$user->data()->username;
+    $username = $user->data()->username;
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -70,15 +70,15 @@ if (!$user->isLoggedIn()) {
                                             <select name="filiere" id="filiere" class="form-control">
                                                 <option value=''>Choisissez une filière</option>
                                                 <?php
-                                                    $sql = "SELECT id_filiere, nom_filiere
+                                                $sql = "SELECT id_filiere, nom_filiere
                                                             FROM Filiere
                                                             WHERE etat = 1";
-                                                    $resultat = mysqli_query($conn, $sql);
-                                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                                $resultat = mysqli_query($conn, $sql);
+                                                while ($row = mysqli_fetch_assoc($resultat)) {
                                                 ?>
-                                                        <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
+                                                    <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
                                                 <?php
-                                                    }
+                                                }
                                                 ?>
 
                                             </select>
@@ -94,10 +94,9 @@ if (!$user->isLoggedIn()) {
                             </div>
                             <div class="card-body etudiants" style="display: none">
                                 <?php
-                                    // include 'afficheTableauEtudiants.php';
-                                ?>
+                                // include 'afficheTableauEtudiants.php';
+                                ?>                       
                             </div>
-
 
                             <!-- MODAL INFORMATION FILL BY AJAX  -->
                             <div class="modal fade studentInfo" tabindex="-1" role="dialog" aria-labelledby="studentInfoLabel" aria-hidden="true">
@@ -115,7 +114,7 @@ if (!$user->isLoggedIn()) {
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

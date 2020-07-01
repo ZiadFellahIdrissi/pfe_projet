@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     $('.toast').toast({
         delay: 5000
@@ -35,8 +34,9 @@ if (id = getParam("Filiere")) {
 
 $(document).ready(function() {
     $('#filiere').change(affiche);
+
     function affiche() {
-        if($('#filiere').val()!="")
+        if ($('#filiere').val() != "")
             $('.etudiants').show();
         else
             $('.etudiants').hide();
