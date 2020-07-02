@@ -86,7 +86,7 @@ if (!$user->isLoggedIn()) {
         <div class="container">
             <div class="container">
                 <div class="au-card shadow-lg bg-white rounded">
-                    <div id="calendar">
+                    <div id="calendarEns">
                     </div>
                 </div>
             </div>
@@ -112,25 +112,25 @@ if (!$user->isLoggedIn()) {
         <script>
             $(document).ready(function() {
                 // $('#spinner1').hide();
-                var calendar = $('#calendar').fullCalendar({
+                var calendar = $('#calendarEns').fullCalendar({
                     locale: 'fr-ch',
                     minTime: "07:00:00",
                     maxTime: "23:00:00",
                     header: {
-                        left: 'prev,next,today',
-                        center: 'title',
-                        right: ''
+                        left: 'title',
+                        center: '',
+                        right: 'next,today'
                     },
-                    defaultView: 'agendaWeek',
+                    defaultView: 'listWeek',
+                    aspectRatio: 1.5,
                     theme: true,
                     themeSystem: 'bootstrap4',
                     events: 'loadSeances.php?id=<?php echo $id ?>',
                 });
                 $(".fc-next-button").attr("title", "Semaine suivante");
-                $(".fc-prev-button").attr("title", "Semaine précédente");
-                $(".fc-today-button").attr("title", "Aujourd'hui");
+                $(".fc-today-button").attr("title", "Semaine courante");
                 $(".fc-today-button").text("Semaine courante");
-                $(".fc-prev-button").hide();
+                $(".fc-next-button").text("Semaine Suivante");
 
                 $(".fc-next-button").on('click', function() {
                     $(".fc-next-button").attr("disabled", "disabled");
