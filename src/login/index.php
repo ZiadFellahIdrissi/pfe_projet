@@ -23,16 +23,17 @@ if ($User_Etudiant->isLoggedIn()) {
         <script src="https://kit.fontawesome.com/a81368914c.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-    
+
     <body>
         <?php
         if (isset($_GET['resetsuccess'])) {
         ?>
-            <div aria-live="polite" aria-atomic="false" style="position: absolute; top: 13%; text-align: center;  min-height: 200px; ">
+            <div aria-live="polite" aria-atomic="false" style="position: absolute; top: 13%; text-align: center;  min-height: 200px;  ">
                 <div class="toast" style=" width:700px; background-color: #06b4c8; opacity: 0.8; color:white;">
                     Votre mot de passe a étè bien modifié.
                 </div>
             </div>
+            
         <?php
         }
         ?>
@@ -57,13 +58,13 @@ if ($User_Etudiant->isLoggedIn()) {
                     <form action="login_verification.php" method="POST">
                         <img src="../../img/login/avatar.svg" draggable="false">
                         <h2 class="title">S'identifier</h2>
-                        <div class="input-div one <?php if (isset($_POST["username"])) echo "focus" ?>">
+                        <div class="input-div one <?php if (isset($_GET["err"])) echo "focus" ?>">
                             <div class="i">
                                 <i class="fas fa-user"></i>
                             </div>
                             <div class="div">
                                 <h5>Nom d'utilisateur</h5>
-                                <input type="text" name="username" class="input" value="<?php if (isset($_POST["username"])) echo $_POST["username"]; ?>">
+                                <input type="text" name="username" class="input" value="<?php if (isset($_GET["err"])) echo $_GET["err"]; ?>">
                             </div>
                         </div>
                         <div class="input-div pass">
@@ -91,7 +92,7 @@ if ($User_Etudiant->isLoggedIn()) {
                         }
                         ?>
                         <input type="submit" class="btn" name="login" value="Connexion">
-                        <a href="?restore" class="formShower">Informations de compte oubliées?</a>
+                        <a href="whoAreYou.php" class="formShower">Informations de compte oubliées?</a>
                     </form>
                 </div>
             <?php
@@ -116,10 +117,23 @@ if ($User_Etudiant->isLoggedIn()) {
                             <div class="i">
                                 <i class="fas fa-address-book"></i>
                             </div>
-                            <div class="div">
-                                <h5>Cne</h5>
-                                <input type="text" name="cne" class="input">
-                            </div>
+                            <?php
+                            if ($_GET['role'] == 'etudiant') {
+                            ?>
+                                <div class="div">
+                                    <h5>Cne</h5>
+                                    <input type="text" name="cne" class="input" value="">
+                                </div>
+                            <?php
+                            } else {
+                            ?>
+                                <div class="div">
+                                    <h5>SOM</h5>
+                                    <input type="text" name="som" class="input" value="">
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                         <div class="input-div one">
                             <div class="i">
@@ -147,6 +161,12 @@ if ($User_Etudiant->isLoggedIn()) {
                         }
                         ?>
                         <input type="submit" class="btn" name="submit" value="ok?">
+                        <input type="hidden" name="<?php
+                                                    if ($_GET['role'] == 'etudiant')
+                                                        echo 'som';
+                                                    else
+                                                        echo 'cne'
+                                                    ?>">
                     </form>
                 </div>
             <?php
@@ -167,9 +187,8 @@ if ($User_Etudiant->isLoggedIn()) {
                                 <input type="text" name="username" class="input" value="<?php
                                                                                         $_sessionCin = Config::get('session/session_cin');
                                                                                         $cin__FromSession = Session::get($_sessionCin);
-                                                                                        $sql = "SELECT nom, prenom from Utilisateur where id=$cin__FromSession";
-                                                                                        $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-                                                                                        echo $row["prenom"] . "." . $row["nom"] . "-etu";
+                                                                                        $sql = "SELECT username from Utilisateur where id=?";
+                                                                                        echo DB::getInstance()->query($sql,[$cin__FromSession])->first()->username;
                                                                                         ?>" readonly="readonly">
                             </div>
                         </div>
@@ -208,6 +227,7 @@ if ($User_Etudiant->isLoggedIn()) {
         <script type="text/javascript" src="../../layout/js/login.js"></script>
         <script type="text/javascript" src="../../layout/js/jquery-3.4.1.min.js"></script>
         <script>
+            
             $(document).ready(function() {
                 const input = $("#pass");
                 $("#isChecked").change(function() {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 23, 2020 at 02:21 AM
+-- Generation Time: Jul 05, 2020 at 01:08 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -52,7 +52,6 @@ DROP TABLE IF EXISTS `assiste`;
 CREATE TABLE IF NOT EXISTS `assiste` (
   `id_seance` int(11) NOT NULL,
   `id_etudiant` varchar(8) NOT NULL,
-  `absent` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_seance`,`id_etudiant`),
   KEY `assiste_Etudiant0_FK` (`id_etudiant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -73,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `controle` (
   `id_module` int(11) NOT NULL,
   PRIMARY KEY (`id_controle`),
   KEY `id_module` (`id_module`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -177,22 +176,40 @@ CREATE TABLE IF NOT EXISTS `personnel` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `salle`
+--
+
+DROP TABLE IF EXISTS `salle`;
+CREATE TABLE IF NOT EXISTS `salle` (
+  `id_salle` int(5) NOT NULL AUTO_INCREMENT,
+  `salle` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_salle`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `salle`
+--
+
+INSERT INTO `salle` (`id_salle`, `salle`) VALUES
+(1, 'ziad');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `seance`
 --
 
 DROP TABLE IF EXISTS `seance`;
 CREATE TABLE IF NOT EXISTS `seance` (
-  `id_seance` int(11) NOT NULL,
+  `id_seance` int(11) NOT NULL AUTO_INCREMENT,
   `h_debut` time NOT NULL,
   `h_fin` time NOT NULL,
-  `type` varchar(2) NOT NULL,
   `date_seance` date NOT NULL,
-  `salle` varchar(30) NOT NULL,
+  `salle` varchar(15) NOT NULL,
   `id_module` int(11) NOT NULL,
   PRIMARY KEY (`id_seance`),
-  UNIQUE KEY `Seance_Idx` (`date_seance`,`salle`),
   KEY `id_module` (`id_module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -294,6 +311,12 @@ ALTER TABLE `passe`
 --
 ALTER TABLE `personnel`
   ADD CONSTRAINT `personnel_ibfk_1` FOREIGN KEY (`id`) REFERENCES `utilisateur` (`id`);
+
+--
+-- Constraints for table `seance`
+--
+ALTER TABLE `seance`
+  ADD CONSTRAINT `Seance_ibfk_1` FOREIGN KEY (`id_module`) REFERENCES `module` (`id_module`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -119,7 +119,7 @@ if (!$user->isLoggedIn()) {
                     header: {
                         left: 'title',
                         center: '',
-                        right: 'next,today'
+                        right: 'today,next'
                     },
                     defaultView: 'listWeek',
                     aspectRatio: 1.5,

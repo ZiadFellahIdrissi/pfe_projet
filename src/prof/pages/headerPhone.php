@@ -34,18 +34,10 @@
                         <span class="bot-line"></span>Gestion Des Notes
                     </a>
                 </li>
-                <li class="has-sub">
-                    <a href="#">
+                <li>
+                    <a href="../absences/">
                         <i class="far fa-clock"></i>
                         <span class="bot-line"></span>Absence</a>
-                    <ul class="header3-sub-list list-unstyled">
-                        <li>
-                            <a href="">Afficher Absences</a>
-                        </li>
-                        <li>
-                            <a href="">Affecter Absences</a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
                     <a href="../Module/">

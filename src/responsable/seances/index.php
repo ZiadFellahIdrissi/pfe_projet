@@ -101,7 +101,7 @@ if (!$user->isLoggedIn()) {
             </div>
         </section><br><br>
         <!-- Calendar-->
-        
+
         <!-- un modal pout ajoute un controle -->
         <div class="modal fade" id="addSeance" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -169,7 +169,7 @@ if (!$user->isLoggedIn()) {
         </div>
         <!-- FIN MODAL -->
 
-    
+
 
         <!-- Jquery JS-->
         <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
@@ -189,7 +189,7 @@ if (!$user->isLoggedIn()) {
         <script>
             $(document).ready(function() {
                 $('#spinner1').hide();
-                
+
                 var calendar = $('#calendar').fullCalendar({
                     // loading: function(bool) {
                     //     // $('#spinner0').show();
@@ -209,81 +209,94 @@ if (!$user->isLoggedIn()) {
                         center: 'title',
                         right: ''
                     },
-                    defaultView : 'agendaWeek',
+                    defaultView: 'agendaWeek',
                     theme: true,
                     themeSystem: 'bootstrap4',
                     events: 'loadSeances.php?id=<?php echo $id ?>',
                     selectable: true,
                     selectHelper: true,
                     editable: true,
+
                     select: function(start, end) {
                         var date = $.fullCalendar.formatDate(start, 'Y-MM-DD');
                         var heure_debut = $.fullCalendar.formatDate(start, 'HH:mm');
                         var heure_fin = $.fullCalendar.formatDate(end, 'HH:mm');
 
-                        // tester la date de controle
-                        // let dateNow = GetFormattedDate();
-                        // let d1 = new Date(dateControle);
-                        // let d2 = new Date(dateNow);
-                        // if (d1.getDate() <= d2.getDate()) {
-                        //     alert("Imposible d'ajouter un controle dans cette date");
-                        //     return false;
-                        // } else {
-                        $("#date_seance").val(date);
-                        $("#heur_debut").val(heure_debut);
-                        $("#heur_fin").val(heure_fin);
-                        $("#addSeance").modal('show');
-                        // }
+                        // tester la date de seance
+                        let dateNow = GetFormattedDate();
+                        let d1 = new Date(date);
+                        let d2 = new Date(dateNow);
+                        if (d1.getTime() <= d2.getTime()) {
+                            calendar.fullCalendar("refetchEvents");
+                            alert("Imposible d'ajouter une seance dans cette date");
+
+                        } else {
+                            $("#date_seance").val(date);
+                            $("#heur_debut").val(heure_debut);
+                            $("#heur_fin").val(heure_fin);
+                            $("#addSeance").modal('show');
+                        }
                     },
+
                     eventResize: function(e) {
                         var date = $.fullCalendar.formatDate(e.start, 'Y-MM-DD');
                         var heure_debut = $.fullCalendar.formatDate(e.start, 'HH:mm');
                         var heure_fin = $.fullCalendar.formatDate(e.end, 'HH:mm');
                         var id = e.id;
-                        // //test de la durée du controle
-                        // var d1 = new Date(dateControle + ' ' + heur_debut);
-                        // var d2 = new Date(dateControle + ' ' + heur_fin);
-                        // var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
-                    
-                        // if (diff < 1) {
-                        //     alert("La durée du controle doit être égale à une heure au minimum!");
-                        //     calendar.fullCalendar("refetchEvents");
-                        // } else {
-                            $.ajax({
-                                url: 'modifierSeance.php',
-                                type: 'GET',
-                                data: {
-                                    date: date,
-                                    heure_debut: heure_debut,
-                                    heure_fin: heure_fin,
-                                    id: id
+                        //test de la durée du seance
+                        var d1 = new Date(date + ' ' + heure_debut);
+                        var d2 = new Date(date + ' ' + heure_fin);
+                        var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
 
-                                },
-                                success: function() {
-                                    alert("hh yk");
-                                    calendar.fullCalendar("refetchEvents");
-                                },
-                                error: function() {
-                                    alert('failure');
-                                }
-                            })
-                        // }
+                        //test de la date du seance
+                        let dateNow = GetFormattedDate();
+                        let d01 = new Date(date);
+                        let d02 = new Date(dateNow);
+
+                        if (d01.getTime() <= d02.getTime()) {
+                            alert("impossible d'modifier cette seance dans cetter date");
+                            calendar.fullCalendar("refetchEvents");
+                        } else {
+                            if (diff < 1) {
+                                alert("La durée du controle doit être égale à une heure au minimum!");
+                                calendar.fullCalendar("refetchEvents");
+                            } else {
+                                $.ajax({
+                                    url: 'modifierSeance.php',
+                                    type: 'GET',
+                                    data: {
+                                        date: date,
+                                        heure_debut: heure_debut,
+                                        heure_fin: heure_fin,
+                                        id: id
+                                    },
+                                    success: function() {
+                                        alert("seance modifier");
+                                        calendar.fullCalendar("refetchEvents");
+                                    },
+                                    error: function() {
+                                        alert('failure');
+                                    }
+                                })
+                            }
+                        }
                     },
+
                     eventDrop: function(e) {
                         var date = $.fullCalendar.formatDate(e.start, 'Y-MM-DD');
                         var heure_debut = $.fullCalendar.formatDate(e.start, 'HH:mm');
                         var heure_fin = $.fullCalendar.formatDate(e.end, 'HH:mm');
                         var id = e.id;
 
-                        //pour test la date de controle
-                        // let dateNow = GetFormattedDate();
-                        // let d1 = new Date(dateControle);
-                        // let d2 = new Date(dateNow);
+                        // pour test la date de seance
+                        let dateNow = GetFormattedDate();
+                        let d1 = new Date(date);
+                        let d2 = new Date(dateNow);
 
-                        // if (d1.getDate() <= d2.getDate()) {
-                        //     alert("Imposible de modifier cette Controle");
-                        //     calendar.fullCalendar("refetchEvents");
-                        // } else {
+                        if (d1.getTime() <= d2.getTime()) {
+                            alert("Imposible de modifier cette Controle");
+                            calendar.fullCalendar("refetchEvents");
+                        } else {
                             $.ajax({
                                 url: 'modifierSeance.php',
                                 type: 'GET',
@@ -303,18 +316,19 @@ if (!$user->isLoggedIn()) {
                                 }
 
                             });
-                        // }
+                        }
                     },
+
                     eventClick: function(event) {
-                        var dateControle = $.fullCalendar.formatDate(event.start, 'Y-MM-DD');
+                        var date = $.fullCalendar.formatDate(event.start, 'Y-MM-DD');
                         var dateNow = GetFormattedDate();
-                        var d1 = new Date(dateControle);
+                        var d1 = new Date(date);
                         var d2 = new Date(dateNow);
 
-                        // if (d1.getDate() <= d2.getDate()) {
-                        //     alert("Impossible de supprimer cette séance");
-                        //     return false;
-                        // } else {
+                        if (d1.getTime() <= d2.getTime()) {
+                            alert("Impossible de supprimer cette séance");
+                            return false;
+                        } else {
                             if (confirm("Vous êtes sure de supprimer cet seance?")) {
                                 var id = event.id;
                                 $.ajax({
@@ -329,13 +343,14 @@ if (!$user->isLoggedIn()) {
                                     }
                                 })
                             }
-                        // }
+                        }
                     }
                 });
+                // End FULL CALENDAR
 
                 function GetFormattedDate() {
                     var todayTime = new Date();
-                    var month = todayTime.getMonth();
+                    var month = todayTime.getMonth() + 1;
                     var day = todayTime.getDate();
                     var year = todayTime.getFullYear();
                     return year + "-" + month + "-" + day;
@@ -349,23 +364,23 @@ if (!$user->isLoggedIn()) {
                     var heure_debut = $("#heur_debut").val();
                     var heure_fin = $("#heur_fin").val();
 
-                    // // tester la date de controle
-                    // let dateNow = GetFormattedDate();
-                    // let d01 = new Date(date);
-                    // let d02 = new Date(dateNow);
+                    // tester la date de seance
+                    let dateNow = GetFormattedDate();
+                    let d01 = new Date(date);
+                    let d02 = new Date(dateNow);
 
-                    // //test de la durée du controle
-                    // var d1 = new Date(date + ' ' + heure_debut);
-                    // var d2 = new Date(date + ' ' + heurheure_fin_fin);
-                    // var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
+                    //test de la durée du seance
+                    var d1 = new Date(date + ' ' + heure_debut);
+                    var d2 = new Date(date + ' ' + heure_debut);
+                    var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
 
-                    // if (d01.getDate() <= d02.getDate()) {
-                    //     alert("impossible d'ajouter cette contrlr dans cetter date");
-                    //     return false;
-                    // } else {
-                    //     if (diff < 1) {
-                    //         alert("La durée du controle doit être égale à une heure au minimum!");
-                    //     } else {
+                    if (d01.getTime() <= d02.getTime()) {
+                        alert("impossible d'ajouter cette seance dans cetter date");
+                        return false;
+                    } else {
+                        if (diff < 1) {
+                            alert("La durée du controle doit être égale à une heure au minimum!");
+                        } else {
                             $.ajax({
                                 url: "ajoute_seance.php",
                                 method: 'GET',
@@ -390,16 +405,18 @@ if (!$user->isLoggedIn()) {
                                     alert('failure');
                                 }
                             });
-                    // }
+                        }
+                    }
+
                 });
 
-                $(".fc-next-button").attr("title","Semaine suivante");
-                $(".fc-prev-button").attr("title","Semaine précédente");
+                $(".fc-next-button").attr("title", "Semaine suivante");
+                $(".fc-prev-button").attr("title", "Semaine précédente");
                 $(".fc-today-button").attr("title", "Aujourd'hui");
                 $(".fc-today-button").text("Semaine courante");
                 $(".fc-next-button").on('click', function() {
-                    $(".fc-next-button").attr("disabled","disabled");
-                    $(".fc-next-button").css("cursor","default");
+                    $(".fc-next-button").attr("disabled", "disabled");
+                    $(".fc-next-button").css("cursor", "default");
                 });
             });
         </script>

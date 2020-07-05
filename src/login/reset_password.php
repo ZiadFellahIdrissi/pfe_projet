@@ -3,8 +3,12 @@
     if (isset($_POST['reset'])) {
         $cin      = $_POST['cin'];
         $password = $_POST['password'];
-        $user     = new User_Etudiant();
-        $user->setPassword($cin, $password);
-        header("Location: ../?resetsuccess");
+        $activer = new ActiveCompte();
+        $activer->setPassword($cin, $password);
+        ?>
+        <script>window.location.replace("./?resetsuccess");</script>
+        <?php
+        
+        // header("Location: ./?resetsuccess");
     }
 ?>

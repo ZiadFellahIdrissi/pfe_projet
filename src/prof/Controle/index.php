@@ -81,11 +81,11 @@ if (!$user->isLoggedIn()) {
         <!-- END BREADCRUMB-->
 
         <!-- spinner -->
-        <div class="d-flex justify-content-center">
+        <!-- <div class="d-flex justify-content-center">
             <div class="spinner-border m-5" role="status" id="spinner1">
                 <span class="sr-only">Loading...</span>
             </div>
-        </div>
+        </div> -->
 
         <!-- Calendar-->
         <section class="statistic statistic2 calendareContainer">
@@ -107,7 +107,7 @@ if (!$user->isLoggedIn()) {
             </div>
         </section><br><br>
         <!-- Calendar-->
-        
+
         <!-- un modal pout ajoute un controle -->
         <div class="modal fade" id="addControle" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -165,7 +165,7 @@ if (!$user->isLoggedIn()) {
         </div>
         <!-- FIN MODAL -->
 
-    
+
 
         <!-- Jquery JS-->
         <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
@@ -186,16 +186,16 @@ if (!$user->isLoggedIn()) {
         <script>
             $(document).ready(function() {
                 var calendar = $('#calendar').fullCalendar({
-                    loading: function(bool) {
-                        // $('#spinner0').show();
-                        $('#spinner1').show();
-                        $('.calendareContainer').hide();
-                    },
-                    eventAfterAllRender: function(view) {
-                        // $('#spinner0').hide();
-                        $('#spinner1').hide();
-                        $('.calendareContainer').show();
-                    },
+                    // loading: function(bool) {
+                    //     // $('#spinner0').show();
+                    //     $('#spinner1').show();
+                    //     $('.calendareContainer').hide();
+                    // },
+                    // eventAfterAllRender: function(view) {
+                    //     // $('#spinner0').hide();
+                    //     $('#spinner1').hide();
+                    //     $('.calendareContainer').show();
+                    // },
                     locale: 'fr-ch',
                     height: 650,
                     editable: true,
@@ -228,9 +228,9 @@ if (!$user->isLoggedIn()) {
                         let dateNow = GetFormattedDate();
                         let d1 = new Date(dateControle);
                         let d2 = new Date(dateNow);
-                        if (d1.getDate() <= d2.getDate()) {
+                        if (d1.getTime() <= d2.getTime()) {
                             alert("Imposible d'ajouter un controle dans cette date");
-                            return false;
+                            // return false;
                         } else {
                             $("#date_controle").val(dateControle);
                             $("#heur_debut").val(heur_debut);
@@ -243,35 +243,46 @@ if (!$user->isLoggedIn()) {
                         var heur_debut = $.fullCalendar.formatDate(e.start, 'HH:mm');
                         var heur_fin = $.fullCalendar.formatDate(e.end, 'HH:mm');
                         var id_controle = e.id;
+
                         //test de la durée du controle
                         var d1 = new Date(dateControle + ' ' + heur_debut);
                         var d2 = new Date(dateControle + ' ' + heur_fin);
                         var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
-                    
-                        if (diff < 1) {
-                            alert("La durée du controle doit être égale à une heure au minimum!");
+
+                        //test de la date du seance
+                        let dateNow = GetFormattedDate();
+                        let d01 = new Date(dateControle);
+                        let d02 = new Date(dateNow);
+
+                        if (d01.getTime() <= d02.getTime()) {
+                            alert("impossible d'modifier cette controle dans cetter date");
                             calendar.fullCalendar("refetchEvents");
                         } else {
-                            $.ajax({
-                                url: 'modifierControles.php',
-                                type: 'GET',
-                                data: {
-                                    dateControle: dateControle,
-                                    heur_debut: heur_debut,
-                                    heur_fin: heur_fin,
-                                    id_controle: id_controle
-
-                                },
-                                success: function() {
-                                    alert("tmodifat");
-                                    calendar.fullCalendar("refetchEvents");
-                                },
-                                error: function() {
-                                    alert('failure');
-                                }
-                            })
+                            if (diff < 1) {
+                                alert("La durée du controle doit être égale à une heure au minimum!");
+                                calendar.fullCalendar("refetchEvents");
+                            } else {
+                                $.ajax({
+                                    url: 'modifierControles.php',
+                                    type: 'GET',
+                                    data: {
+                                        dateControle: dateControle,
+                                        heur_debut: heur_debut,
+                                        heur_fin: heur_fin,
+                                        id_controle: id_controle
+                                    },
+                                    success: function() {
+                                        alert("tmodifat");
+                                        calendar.fullCalendar("refetchEvents");
+                                    },
+                                    error: function() {
+                                        alert('failure');
+                                    }
+                                })
+                            }
                         }
                     },
+
                     eventDrop: function(e) {
                         var dateControle = $.fullCalendar.formatDate(e.start, 'Y-MM-DD');
                         var heur_debut = $.fullCalendar.formatDate(e.start, 'HH:mm');
@@ -283,7 +294,7 @@ if (!$user->isLoggedIn()) {
                         let d1 = new Date(dateControle);
                         let d2 = new Date(dateNow);
 
-                        if (d1.getDate() <= d2.getDate()) {
+                        if (d1.getTime() <= d2.getTime()) {
                             alert("Imposible de modifier cette Controle");
                             calendar.fullCalendar("refetchEvents");
                         } else {
@@ -298,7 +309,7 @@ if (!$user->isLoggedIn()) {
 
                                 },
                                 success: function() {
-                                    alert("tmodifat");
+                                    alert("Controle modifié");
                                     calendar.fullCalendar("refetchEvents");
                                 },
                                 error: function() {
@@ -314,7 +325,7 @@ if (!$user->isLoggedIn()) {
                         var d1 = new Date(dateControle);
                         var d2 = new Date(dateNow);
 
-                        if (d1.getDate() <= d2.getDate()) {
+                        if (d1.getTime() <= d2.getTime()) {
                             alert("Imposible de supprimier cette Controle");
                             return false;
                         } else {
@@ -338,7 +349,7 @@ if (!$user->isLoggedIn()) {
 
                 function GetFormattedDate() {
                     var todayTime = new Date();
-                    var month = todayTime.getMonth();
+                    var month = todayTime.getMonth() + 1;
                     var day = todayTime.getDate();
                     var year = todayTime.getFullYear();
                     return year + "-" + month + "-" + day;
@@ -360,7 +371,7 @@ if (!$user->isLoggedIn()) {
                     var d2 = new Date(dateControle + ' ' + heur_fin);
                     var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
 
-                    if (d01.getDate() <= d02.getDate()) {
+                    if (d01.getTime() <= d02.getTime()) {
                         alert("impossible d'ajouter cette contrlr dans cetter date");
                         return false;
                     } else {
