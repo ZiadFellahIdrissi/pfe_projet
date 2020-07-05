@@ -1,6 +1,7 @@
 <?php
-function controles($id){
-    $db=DB::getInstance();
+function controles($id)
+{
+    $db = DB::getInstance();
     $sql = "SELECT Module.intitule, Controle.date, Controle.h_debut, TIMEDIFF(Controle.h_fin,Controle.h_debut) as duree
             from Controle 
             JOIN Module on Controle.id_module = Module.id_module 
@@ -56,7 +57,8 @@ function getSemestre()
     $resultats = $db3->query($sql, []);
     return $resultats->first();
 }
-function getMarksByControle($id_controle, $id_etudiant){
+function getMarksByControle($id_controle, $id_etudiant)
+{
     $db = DB::getInstance();
     $sql = "SELECT note
             FROM passe
@@ -65,7 +67,8 @@ function getMarksByControle($id_controle, $id_etudiant){
     $resultats = $db->query($sql, [$id_controle, $id_etudiant]);
     return $resultats->results();
 }
-function getInfos($id){
+function getInfos($id)
+{
     $db = DB::getInstance();
     $sql = "SELECT *
             FROM Etudiant
@@ -75,25 +78,29 @@ function getInfos($id){
     $resultats = $db->query($sql, [$id]);
     return $resultats->first();
 }
-function getPersonInfo($id){
+function getPersonInfo($id)
+{
     $db = DB::getInstance();
     $sql = "SELECT * from Utilisateur where id=?";
     $resultats = $db->query($sql, [$id]);
     return $resultats->first();
 }
-function getStudentsInfo($id){
+function getStudentsInfo($id)
+{
     $db = DB::getInstance();
     $sql = "SELECT cne,nom_filiere from Etudiant Join Filiere on Etudiant.id_filiere=Filiere.id_filiere where id=?";
     $resultats = $db->query($sql, [$id]);
     return $resultats;
 }
-function getPersonnelInfo($id){
+function getPersonnelInfo($id)
+{
     $db1 = DB::getInstance();
     $sql2 = "SELECT som,`role` from Personnel where id=?";
     $resultats0 = $db1->query($sql2, [$id]);
     return $resultats0;
 }
-function getResponsableInfos($id_responsable){
+function getResponsableInfos($id_responsable)
+{
     $db = DB::getInstance();
     $sql = "SELECT *
             FROM Personnel
@@ -103,7 +110,8 @@ function getResponsableInfos($id_responsable){
     $resultats = $db->query($sql, [$id_responsable]);
     return $resultats->first();
 }
-function getEnseignantInfos($id_enseignant){
+function getEnseignantInfos($id_enseignant)
+{
     $db = DB::getInstance();
     $sql = "SELECT *
             FROM Personnel
@@ -112,7 +120,8 @@ function getEnseignantInfos($id_enseignant){
     $resultats = $db->query($sql, [$id_enseignant]);
     return $resultats->first();
 }
-function getFiliereInfos($id_filiere){
+function getFiliereInfos($id_filiere)
+{
     $db = DB::getInstance();
     $sql = "SELECT *
             FROM Filiere
@@ -122,7 +131,8 @@ function getFiliereInfos($id_filiere){
     $resultats = $db->query($sql, [$id_filiere]);
     return $resultats->first();
 }
-function getModuleInfos($id_module){
+function getModuleInfos($id_module)
+{
     $db = DB::getInstance();
     $sql = "SELECT *
             FROM Module
@@ -134,11 +144,30 @@ function getModuleInfos($id_module){
     $resultats = $db->query($sql, [$id_module]);
     return $resultats->first();
 }
-function countFiliereStudents($id_filiere){
+function countFiliereStudents($id_filiere)
+{
     $db = DB::getInstance();
     $sql = "SELECT *
             FROM Etudiant
             WHERE id_filiere = ?";
     $resultats = $db->query($sql, [$id_filiere]);
     return $resultats->count();
+}
+function getSeance($id_module)
+{
+    $db = DB::getInstance();
+    $sql = 'SELECT id_seance, date_seance from Seance where id_module=? AND date_seance between ? and ?';
+    $startWeek =  date("Y-m-d", strtotime('monday this week'));
+    $endWeek =  date("Y-m-d", strtotime('sunday this week'));
+    $resultat = $db->query($sql, [$id_module, $startWeek, $endWeek]);
+    return $resultat;
+}
+function getAbsence($id, $module)
+{
+    $db = DB::getInstance();
+    $sql = 'SELECT assiste.id_seance from assiste join Seance on Seance.id_seance=assiste.id_seance where id_etudiant=? AND Seance.id_module=? AND Seance.date_seance between ? and ?';
+    $startWeek =  date("Y-m-d", strtotime('monday this week'));
+    $endWeek =  date("Y-m-d", strtotime('sunday this week'));
+    $resultat = $db->query($sql, [$id, $module, $startWeek, $endWeek]);
+    return $resultat;
 }

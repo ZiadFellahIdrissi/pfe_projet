@@ -102,14 +102,22 @@ if (!$user->isLoggedIn()) {
                     </select>
                 </div>
                 <div class="card-body absences shadow-lg bg-white rounded">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border m-5" role="status" id="spinner">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="containar infosWait" style="text-align: center;">
+                        <img src="../../../img/Dashboard/infoEtudiant.svg" width="500px">
+                    </div>
 
                 </div>
 
-                <!--   // date('Y-m-d', strtotime('monday this week')) . ' to' . date('Y-m-d', strtotime('sunday this week')) ; -->
+
 
             </div>
         </div>
-        <!-- FIN TABLEAU DE GESTION DES ABSENCES
+        <!-- FIN TABLEAU DE GESTION DES ABSENCES-->
 
         <!-- Jquery JS-->
         <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
@@ -126,28 +134,32 @@ if (!$user->isLoggedIn()) {
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
         <script>
+            $('#spinner').hide();
             $('#module').change(fetchabsences);
 
             function fetchabsences() {
-                // $('.notes').hide();
+                
+                $('.infosWait').hide();
                 var module = $("#module").val();
-                $.ajax({
-                    url: 'fetchabsence.php',
-                    method: "GET",
-                    data: {
-                        module: module
-                    },
-                    dataType: "text",
-                    // beforeSend: function() {
-                    //     $("#spinner2").show();
-                    // },
-                    // complete: function() {
-                    //     $("#spinner2").hide();
-                    // },
-                    success: function(data) {
-                        $('.absences').html(data);
-                    }
-                });
+                if (module) {
+                    $.ajax({
+                        url: 'fetchabsence.php',
+                        method: "GET",
+                        data: {
+                            module: module
+                        },
+                        dataType: "text",
+                        beforeSend: function() {
+                            $("#spinner").show();
+                        },
+                        complete: function() {
+                            $("#spinner").hide();
+                        },
+                        success: function(data) {
+                            $('.absences').html(data);
+                        }
+                    });
+                }
             }
         </script>
 
