@@ -3,7 +3,12 @@ include_once '../../../core/init.php';
 include_once '../../../fonctions/tools.function.php';
 $module = $_GET['module'];
 ?>
-<div class="table-responsive-sm">
+<div class="table-responsive-sm ">
+<div class="d-flex justify-content-center" style="display: none;">
+                        <div class="spinner-border m-5" role="status" id="spinner">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
     <form method="POST" action="ajouterAbsence.php" id="myform">
         <table class="table table-hover mydatatable">
             <thead class="thead-dark">
@@ -46,17 +51,22 @@ $module = $_GET['module'];
         <input type="hidden" name="id_seance" value="<?php echo $id_seance ?>">
     </form>
 </div>
+<script src="../../../layout/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
         $("#myform").submit(function(event) {
+            $('.mydatatable').DataTable().search("").draw();
+            $('#DataTables_Table_0_wrapper').hide();
+            $('#spinner').show();
             if (!confirm("vous avez sure ?")) {
                 event.preventDefault();
             }
         });
     });
 </script>
-<script src="../../../layout/js/jquery.dataTables.min.js"></script>
 <script>
     $('.mydatatable').DataTable();
 </script>
+
 <script src="../../../layout/js/DataTableCustomiser.js"></script>
+

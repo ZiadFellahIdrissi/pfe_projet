@@ -159,7 +159,8 @@ if (!$user->isLoggedIn()) {
                             $('.absences').html(data);
                         }
                     });
-                }
+                }else
+                $('.absences').html("3zale oula dore t7awa");
             }
         </script>
 
