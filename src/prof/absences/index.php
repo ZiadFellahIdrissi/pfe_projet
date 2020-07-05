@@ -82,28 +82,31 @@ if (!$user->isLoggedIn()) {
             <div class="card">
                 <div class="card-header">
                     <select id="module" class="form-control">
-                                <option value=''>Choisissez le module</option>
-                                <?php
-                                $sql = "SELECT intitule, id_module
+                        <option value=''>Choisissez le module</option>
+                        <?php
+                        $sql = "SELECT intitule, id_module
                                             FROM Module
-                                            WHERE id_enseignant = ? AND id_module In(SELECT id_module from Seance)";
-                                $resultat = $db->query($sql, [$id]);
-                                foreach ($resultat->results() as $row) {
-                                ?>
-                                    <option value=<?php echo $row->id_module ?>><?php echo $row->intitule ?>
-                                    </option>
-                                <?php
-                                }   
+                                            WHERE id_enseignant = ? AND id_module In(SELECT id_module from Seance where
+                                            date_seance between ? and ?)";
+                        $startWeek =  date("Y-m-d", strtotime('monday this week'));
+                        $endWeek =  date("Y-m-d", strtotime('sunday this week'));
+                        $resultat = $db->query($sql, [$id, $startWeek, $endWeek]);
+                        foreach ($resultat->results() as $row) {
+                        ?>
+                            <option value=<?php echo $row->id_module ?>><?php echo $row->intitule ?>
+                            </option>
+                        <?php
+                        }
 
-                                ?>
-                            </select>
-                        </div>
-                        <div class="card-body absences shadow-lg bg-white rounded">
+                        ?>
+                    </select>
+                </div>
+                <div class="card-body absences shadow-lg bg-white rounded">
 
                 </div>
-                    
-                  <!--   // date('Y-m-d', strtotime('monday this week')) . ' to' . date('Y-m-d', strtotime('sunday this week')) ; -->
-   
+
+                <!--   // date('Y-m-d', strtotime('monday this week')) . ' to' . date('Y-m-d', strtotime('sunday this week')) ; -->
+
             </div>
         </div>
         <!-- FIN TABLEAU DE GESTION DES ABSENCES
@@ -123,32 +126,32 @@ if (!$user->isLoggedIn()) {
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
         <script>
-            
-                $('#module').change(fetchabsences);
+            $('#module').change(fetchabsences);
 
-                function fetchabsences() {
-                    // $('.notes').hide();
-                    var module = $("#module").val();
-                    $.ajax({
-                        url: 'fetchabsence.php',
-                        method: "GET",
-                        data: {
-                            module: module
-                        },
-                        dataType: "text",
-                        // beforeSend: function() {
-                        //     $("#spinner2").show();
-                        // },
-                        // complete: function() {
-                        //     $("#spinner2").hide();
-                        // },
-                        success: function(data) { 
-                            $('.absences').html(data);
-                        }
-                    });
-                }
+            function fetchabsences() {
+                // $('.notes').hide();
+                var module = $("#module").val();
+                $.ajax({
+                    url: 'fetchabsence.php',
+                    method: "GET",
+                    data: {
+                        module: module
+                    },
+                    dataType: "text",
+                    // beforeSend: function() {
+                    //     $("#spinner2").show();
+                    // },
+                    // complete: function() {
+                    //     $("#spinner2").hide();
+                    // },
+                    success: function(data) {
+                        $('.absences').html(data);
+                    }
+                });
+            }
         </script>
 
     </body>
+
     </html>
 <?php } ?>
