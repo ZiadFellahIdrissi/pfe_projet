@@ -78,12 +78,13 @@ if (!$user->isLoggedIn()) {
                 </div>
             </section>
 
-            
+
 
             <!-- LES ETUDIANTS -->
             <div class="container shadow-lg bg-white rounded" style="padding: 0%;">
                 <div class="card">
                     <div class="card-header">
+                      Liste des Etudiants de la filière dont vous êtes responsable.
                     </div>
                     <div class="card-body">
                         <div class="table-responsive-sm">
@@ -91,7 +92,7 @@ if (!$user->isLoggedIn()) {
                             $sql = "SELECT Utilisateur.id cin, Etudiant.cne, Utilisateur.nom, Utilisateur.prenom,
                                     Utilisateur.telephone, Utilisateur.email, Utilisateur.date_naissance,
                                     Etudiant.id_filiere, Utilisateur.imagepath
-                                    FROM Utilisateur 
+                                    FROM Utilisateur
                                     join Etudiant ON Etudiant.id = Utilisateur.id
                                     WHERE Etudiant.id_filiere = (select Filiere.id_filiere FROM Filiere WHERE Filiere.id_responsable=?)";
                             $resultat = $db->query($sql, [$id]);
@@ -102,7 +103,7 @@ if (!$user->isLoggedIn()) {
                                         <th>CNE</th>
                                         <th>Nom Complet</th>
                                         <th>Telephone</th>
-                                        <!-- <th>Inforamtions</th> -->
+                                        <th>Informations</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -110,15 +111,15 @@ if (!$user->isLoggedIn()) {
                                     if ($resultat->count() > 0) {
                                         foreach ($resultat->results() as $row) {
                                     ?>
-                                            <tr class="openModalInformation" style="cursor: pointer" id="<?php echo $row->cin ?>" title="Plus d'informations">
+                                            <tr>
                                                 <td style="font-weight: bold;"><?php echo $row->cne ?></td>
                                                 <td><?php echo $row->nom . ' ' . $row->prenom ?></td>
                                                 <td style="text-align: center;"><?php echo $row->telephone ?></td>
-                                                <!-- <td>
+                                                <td>
                                                     <span class="more openModalInformation" id="<?php echo $row->cin ?>" title="More">
                                                         <i class="zmdi zmdi-more"></i>
                                                     </span>
-                                                </td> -->
+                                                </td>
                                             </tr>
                                         <?php
                                         }

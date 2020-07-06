@@ -85,15 +85,15 @@ if (!$user->isLoggedIn()) {
                 <div class="container shadow-lg bg-white rounded" style="padding: 0%;">
                     <div class="card">
                         <div class="card-header">
-                            Liste des Enseignants des modules de la filiere dont vous êtes responsable.
+                            Liste des Enseignants des modules de la filière dont vous êtes responsable.
                         </div>
                         <div class="card-body modules">
                             <div class="table-responsive-sm">
                                 <?php
                                 $sql = "SELECT DISTINCT Module.id_enseignant
-                                        from Module 
+                                        from Module
                                         join dispose_de on Module.id_module = dispose_de.id_module
-                                        where dispose_de.id_filiere=(select Filiere.id_filiere 
+                                        where dispose_de.id_filiere=(select Filiere.id_filiere
                                                                         from Filiere
                                                                             where Filiere.id_responsable = ?)
                                         and id_enseignant != ?
@@ -143,8 +143,8 @@ if (!$user->isLoggedIn()) {
                 </div>
             <!-- END -->
 
-            
-            
+
+
 
             <!-- MODAL INFORMATION FILL BY AJAX  -->
             <div class="modal fade teacherInfo" tabindex="-1" role="dialog" aria-labelledby="teacherInfoLabel" aria-hidden="true">
@@ -166,8 +166,8 @@ if (!$user->isLoggedIn()) {
             <!-- Jquery JS-->
             <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
             <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
-            
-            <!-- <script type="text/javascript" src="../../../layout/js/datatables.bootstrap4.min.js"></script> --> 
+
+            <!-- <script type="text/javascript" src="../../../layout/js/datatables.bootstrap4.min.js"></script> -->
             <!-- hade script kibdal theme dyal datatable kiraj3o bootstrap -->
 
             <!-- Bootstrap JS-->

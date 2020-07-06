@@ -11,7 +11,7 @@ $id_controle = $_GET['id_controle'];
                 <th>CIN</th>
                 <th>CNE</th>
                 <th>Nom</th>
-                <th>Moyenne <button id="del" class="float-right" style="color: red;">DEL</button></th>
+                <th>Moyenne <button id="del" class="float-right" style="color: red;">Reset</button></th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@ $id_controle = $_GET['id_controle'];
                     <td><?php echo $myRow->id ?></td>
                     <td><?php echo $myRow->cne ?></td>
                     <td><?php echo $myRow->prenom . ' ' . $myRow->nom ?></td>
-                    <td style="width:15%">
+                    <td style="width:17%; border-left: 1px solid rgba(0, 0, 0, .1)">
                         <?php
                         $noteExamFinale = -1;
                         $markFinale = getMarksByControle($id_controle, $myRow->id);
@@ -43,7 +43,7 @@ $id_controle = $_GET['id_controle'];
 <script>
     $(document).ready(function() {
         $('.mydatatable').Tabledit({
-            url: 'editNotes.php?id_controle=<?php echo $id_controle; ?>&module=<?php echo $module; ?>',
+            url: 'editNotes.php?id_controle=<?php echo $id_controle; ?>',
             editButton: false,
             deleteButton: false,
             hideIdentifier: true,
@@ -56,7 +56,7 @@ $id_controle = $_GET['id_controle'];
         });
 
         $('#del').click(function() {
-            if (!confirm("vous avez sure peux suprimer tout les notes")) {
+            if (!confirm("Tous les Notes vont être supprimé, êtes-vous sure?")) {
                 return false;
             } else {
                 $.ajax({
@@ -64,7 +64,7 @@ $id_controle = $_GET['id_controle'];
                     method: "GET",
                     dataType: "text",
                     success: function(data) {
-                        window.location.reload(false);
+                        window.location.replace('./?del&mod=<?php echo $module ?>');
                     }
                 });
             }

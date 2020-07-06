@@ -246,8 +246,8 @@ if (!$user->isLoggedIn()) {
                         //test de la durée du seance
                         var d1 = new Date(date + ' ' + heure_debut);
                         var d2 = new Date(date + ' ' + heure_fin);
-                        var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
-
+                        var diff = ((d2.getHours() * 60 + d2.getMinutes()) - (d1.getHours() * 60 + d1.getMinutes())) / 60;
+                        console.log(diff);
                         //test de la date du seance
                         let dateNow = GetFormattedDate();
                         let d01 = new Date(date);
@@ -371,9 +371,9 @@ if (!$user->isLoggedIn()) {
 
                     //test de la durée du seance
                     var d1 = new Date(date + ' ' + heure_debut);
-                    var d2 = new Date(date + ' ' + heure_debut);
-                    var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
-
+                    var d2 = new Date(date + ' ' + heure_fin);
+                    var diff = ((d2.getHours() * 60 + d2.getMinutes()) - (d1.getHours() * 60 + d1.getMinutes())) / 60;
+                    console.log(diff);
                     if (d01.getTime() <= d02.getTime()) {
                         alert("impossible d'ajouter cette seance dans cetter date");
                         return false;
