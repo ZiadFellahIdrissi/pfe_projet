@@ -124,7 +124,3 @@
         }
         ?>
 </div>
-<script>
-    $('.mydatatable').DataTable();
-    $('.mydatatable2').DataTable();
-</script>

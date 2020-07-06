@@ -66,7 +66,7 @@
                             include 'AfficheTableauFiliere.php';
                         ?>
                     </div>
-                    
+
                     <!-- MODAL INFORMATION FILL BY AJAX  -->
                     <div class="modal fade filiereInfo" tabindex="-1" role="dialog" aria-labelledby="filiereInfoLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -99,6 +99,10 @@
     <script type="text/javascript" src="../../../layout/js/main.js "></script>
     <script type="text/javascript" src="../../../layout/js/animation.js"></script>
     <script type="text/javascript" src="../../../layout/js/admin/filieres.js"></script>
+    <script>
+      $('.mydatatable').DataTable();
+      $('.mydatatable2').DataTable();
+    </script>
     <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
 </body>
 

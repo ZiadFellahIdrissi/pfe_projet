@@ -1,4 +1,4 @@
-<?php 
+<?php
     include_once '../../../core/init.php';
     $db = DB::getInstance();
     $id_controle = $_GET["id_controle"];

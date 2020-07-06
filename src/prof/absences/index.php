@@ -40,6 +40,9 @@ if (!$user->isLoggedIn()) {
     </head>
 
     <body>
+        <!-- DML -->
+        <?php include 'DML_Commentator.php' ?>
+        <!-- END DML-->
 
         <!-- HEADER DESKTOP-->
         <?php include '../pages/headerDesktop.php' ?>
@@ -56,20 +59,14 @@ if (!$user->isLoggedIn()) {
                     <div class="col-md-12">
                         <div class="au-breadcrumb-content">
                             <div class="au-breadcrumb-left">
-                                <span class="au-breadcrumb-span">vous ete la:</span>
+                                <span class="au-breadcrumb-span">vous êtes ici:</span>
                                 <ul class="list-unstyled list-inline au-breadcrumb__list">
                                     <li class="list-inline-item seprate">
-                                        <a href="../">Dashboard</a> <span>/</span>
+                                        <a href="../">Dashboard</a><span> /</span>
                                     </li>
                                     <li class="list-inline-item">Abscences</li>
                                 </ul>
                             </div>
-                            <form class="au-form-icon--sm" action="" method="post">
-                                <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
-                                <button class="au-btn--submit2" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -110,11 +107,7 @@ if (!$user->isLoggedIn()) {
                     <div class="containar infosWait" style="text-align: center;">
                         <img src="../../../img/Dashboard/infoEtudiant.svg" width="500px">
                     </div>
-
                 </div>
-
-
-
             </div>
         </div>
         <!-- FIN TABLEAU DE GESTION DES ABSENCES-->
@@ -134,11 +127,16 @@ if (!$user->isLoggedIn()) {
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
         <script>
-            $('#spinner').hide();
-            $('#module').change(fetchabsences);
+        $(document).ready(function() {
+            $('.toast').toast({
+                delay: 5000
+            });
+            $('.toast').toast('show');
 
-            function fetchabsences() {
-                
+            $('#spinner').hide();
+            $('#module').change(fetchAbsences);
+
+            function fetchAbsences() {
                 $('.infosWait').hide();
                 var module = $("#module").val();
                 if (module) {
@@ -159,11 +157,16 @@ if (!$user->isLoggedIn()) {
                             $('.absences').html(data);
                         }
                     });
-                }else
-                $('.absences').html("3zale oula dore t7awa");
+                }
             }
-        </script>
 
+            var id = new URL(window.location.href).searchParams.get("mod");
+            if (id) {
+                $("#module").val(id);
+                fetchAbsences();
+            }
+        });
+        </script>
     </body>
 
     </html>

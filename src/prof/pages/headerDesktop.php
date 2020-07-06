@@ -29,7 +29,7 @@
                     <li>
                         <a href="../absences/">
                             <i class="far fa-clock"></i>
-                            <span class="bot-line"></span>Absence</a>
+                            <span class="bot-line"></span>Absences</a>
                     </li>
                     <li>
                         <a href="../seances/">

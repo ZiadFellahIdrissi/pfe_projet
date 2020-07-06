@@ -40,13 +40,16 @@ if (!$user->isLoggedIn()) {
     </head>
 
     <body>
+        <!-- DML -->
+        <?php include 'DML_Commentator.php'; ?>
+        <!-- END DML-->
 
         <!-- HEADER DESKTOP-->
-        <?php include '../pages/headerDesktop.php' ?>
+        <?php include '../pages/headerDesktop.php'; ?>
         <!-- END HEADER DESKTOP-->
 
         <!-- HEADER MOBILE-->
-        <?php include '../pages/headerPhone.php' ?>
+        <?php include '../pages/headerPhone.php'; ?>
         <!-- END HEADER MOBILE -->
 
         <!-- BREADCRUMB-->
@@ -64,12 +67,6 @@ if (!$user->isLoggedIn()) {
                                     <li class="list-inline-item">Notes</li>
                                 </ul>
                             </div>
-                            <form class="au-form-icon--sm" action="" method="post">
-                                <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
-                                <button class="au-btn--submit2" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -129,7 +126,7 @@ if (!$user->isLoggedIn()) {
         </div>
         <!-- FIN TABLEAU DE GESTION DES NOTES -->
 
-        
+
         <!-- Jquery JS-->
         <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
 
@@ -148,30 +145,41 @@ if (!$user->isLoggedIn()) {
 
         <script>
             $(document).ready(function() {
+                $('.toast').toast({
+                    delay: 5000
+                });
+                $('.toast').toast('show');
+
+                $('#id_controle').hide();
+                $(".notes").hide();
                 $("#spinner").hide();
                 $("#spinner2").hide();
+
                 $('#module').change(fetchNotes);
 
                 function fetchNotes() {
                     $('.notes').hide();
                     var module = $("#module").val();
-                    $.ajax({
-                        url: 'fetchControleType.php',
-                        method: "GET",
-                        data: {
-                            module: module
-                        },
-                        dataType: "text",
-                        beforeSend: function() {
-                            $("#spinner2").show();
-                        },
-                        complete: function() {
-                            $("#spinner2").hide();
-                        },
-                        success: function(data) {
-                            $('#id_controle').html(data);
-                        }
-                    });
+                    if(module){
+                      $.ajax({
+                          url: 'fetchControleType.php',
+                          method: "GET",
+                          data: {
+                              module: module
+                          },
+                          dataType: "text",
+                          beforeSend: function() {
+                              $("#spinner2").show();
+                          },
+                          complete: function() {
+                              $("#spinner2").hide();
+                          },
+                          success: function(data) {
+                              $('#id_controle').html(data);
+                              $("#id_controle").show();
+                          }
+                      });
+                    }
                 }
 
                 $('#id_controle').change(afficheNotes);
@@ -179,38 +187,49 @@ if (!$user->isLoggedIn()) {
                 function afficheNotes() {
                     var module = $("#module").val();
                     var id_controle = $("#id_controle").val();
-                    $.ajax({
-                        url: 'fetch_notes.php',
-                        method: "GET",
-                        data: {
-                            module: module,
-                            id_controle: id_controle
-                        },
-                        dataType: "text",
-                        beforeSend: function() {
-                            $("#spinner").show();
-                            $(".notes").hide();
-                        },
-                        complete: function() {
-                            $("#spinner").hide();
-                            $(".notes").show();
-                        },
-                        success: function(data) {
-                            $('.notes').html(data);
-                            $('.notes').show();
-                        }
-                    });
+                    if(id_controle){
+                      $.ajax({
+                          url: 'fetch_notes.php',
+                          method: "GET",
+                          data: {
+                              module: module,
+                              id_controle: id_controle
+                          },
+                          dataType: "text",
+                          beforeSend: function() {
+                              $("#spinner").show();
+                          },
+                          complete: function() {
+                              $("#spinner").hide();
+                          },
+                          success: function(data) {
+                              $('.notes').html(data);
+                              $(".notes").show();
+                          }
+                      });
+                    }
                 }
 
-                $('#id_controle').hide();
-                $(".notes").hide();
-                $('#module').change(affiche);
-                function affiche() {
-                    if ($('#module').val()!="")
-                        $('#id_controle').show();
-                    else
-                        $('#id_controle').hide();
+                $('#module').change(function(){
+                  if ($('#module').val()!="")
+                      $('#id_controle').show();
+                  else
+                      $('#id_controle').hide();
+                });
+
+                $('#id_controle').change(function(){
+                  if ($('#id_controle').val()!="")
+                      $('.notes').show();
+                  else
+                      $('.notes').hide();
+                });
+
+                var id = new URL(window.location.href).searchParams.get("mod");
+                if (id) {
+                    $("#module").val(id);
+                    fetchNotes();
                 }
+
             });
         </script>
 
