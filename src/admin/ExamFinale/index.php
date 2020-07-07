@@ -1,5 +1,7 @@
 <?php
 include_once '../../../core/init.php';
+include_once '../../../fonctions/tools.function.php';
+
 $user = new User_Admin();
 $db = DB::getInstance();
 if (!$user->isLoggedIn()) {
@@ -57,6 +59,9 @@ if (!$user->isLoggedIn()) {
                             <li class="breadcrumb-item active" aria-current="page">Exames Finale</li>
                         </ol>
                     </nav>
+                    <div class="deru" style="font-weight: bold; text-align: center">
+                        <?php echo $min_Exame_finale . ' To  ' . $max_Exame_finale ?>
+                    </div>
                     <div class="modal-content ">
                         <div class="container" style="padding: 2%;">
                             <div id="calendar">
@@ -142,6 +147,9 @@ if (!$user->isLoggedIn()) {
         </div>
         <!-- FIN MODAL -->
 
+
+
+
         <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
         <!-- Bootstrap JS-->
         <script type="text/javascript" src="../../../layout/js/bootstrap.min.js "></script>
@@ -160,8 +168,6 @@ if (!$user->isLoggedIn()) {
             $("#spinner").hide();
             $(document).ready(function() {
                 $('#filiere').change(affiche);
-
-
 
                 function affiche() {
                     var id_filiere = $("#filiere").val();
@@ -190,10 +196,10 @@ if (!$user->isLoggedIn()) {
         <script>
             $(document).ready(function() {
                 var calendar = $('#calendar').fullCalendar({
-                    // validRange: {
-                    //     start: date_debut,
-                    //     end: data_fin
-                    // },
+                    validRange: {
+                        start: '<?php echo $min_Exame_finale;  ?>',
+                        end: '<?php echo $max_Exame_finale; ?>',
+                    },
                     locale: 'fr-ch',
                     height: 600,
                     editable: true,
@@ -211,8 +217,9 @@ if (!$user->isLoggedIn()) {
                         right: ''
                     },
                     events: 'loadExames.php',
-                    editable: true,
                     selectable: true,
+                    selectHelper: true,
+                    editable: true,
                     theme: true,
                     themeSystem: 'bootstrap4',
 
@@ -221,44 +228,64 @@ if (!$user->isLoggedIn()) {
                         var heur_debut = $.fullCalendar.formatDate(start, 'HH:mm');
                         var heur_fin = $.fullCalendar.formatDate(end, 'HH:mm');
 
-                        // tester la date de controle
-                        // let dateNow = GetFormattedDate();
-                        // let d1 = new Date(dateExame);
-                        // let d2 = new Date(dateNow);
-                        // if (d1.getTime() <= d2.getTime()) {
-                        //     alert("Imposible d'ajouter un controle dans cette date");
-                        //     // return false;
-                        // } else {
                         $("#date_controle").val(dateExame);
                         $("#heur_debut").val(heur_debut);
                         $("#heur_fin").val(heur_fin);
                         $("#addExame").modal('show');
-                        // }
+
                     },
+                    eventDrop: function(e) {
+                        var dateExamen = $.fullCalendar.formatDate(e.start, 'Y-MM-DD');
+                        var heur_debut = $.fullCalendar.formatDate(e.start, 'HH:mm');
+                        var heur_fin = $.fullCalendar.formatDate(e.end, 'HH:mm');
+                        var id_Examen = e.id;
+
+
+                        $.ajax({
+                            url: 'modifierExamens.php',
+                            type: 'GET',
+                            data: {
+                                dateExamen: dateExamen,
+                                heur_debut: heur_debut,
+                                heur_fin: heur_fin,
+                                id_Examen: id_Examen
+
+                            },
+                            success: function() {
+                                alert("Examen modifié");
+                                calendar.fullCalendar("refetchEvents");
+                            },
+                            error: function() {
+                                alert('failure');
+                            }
+
+                        });
+
+                    },
+                    eventClick: function(event) {
+                        var dateControle = $.fullCalendar.formatDate(event.start, 'Y-MM-DD');
+                        if (confirm("Vous êtes sure de supprimer cet examen !!")) {
+                            var id = event.id;
+                            $.ajax({
+                                url: 'supprimerExamen.php',
+                                type: "GET",
+                                data: {
+                                    id_examen: id
+                                },
+                                success: function() {
+                                    alert("le controle ete suprimer avec secu");
+                                    calendar.fullCalendar("refetchEvents");
+                                }
+                            })
+                        }
+                    }
                 });
+
                 $(document).on('click', '#ajouterExame', function() {
                     var module = $("#modules").val();
                     var dateExames = $("#date_controle").val();
                     var heur_debut = $("#heur_debut").val();
                     var heur_fin = $("#heur_fin").val();
-
-                    // // tester la date de controle
-                    // let dateNow = GetFormattedDate();
-                    // let d01 = new Date(dateControle);
-                    // let d02 = new Date(dateNow);
-
-                    // //test de la durée du controle
-                    // var d1 = new Date(dateControle + ' ' + heur_debut);
-                    // var d2 = new Date(dateControle + ' ' + heur_fin);
-                    // var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
-
-                    // if (d01.getTime() <= d02.getTime()) {
-                    //     alert("impossible d'ajouter cette contrlr dans cetter date");
-                    //     return false;
-                    // } else {
-                    //     if (diff < 1) {
-                    //         alert("La durée du controle doit être égale à une heure au minimum!");
-                    //     } else {
                     $.ajax({
                         url: "ajoute_exames.php",
                         method: 'GET',
@@ -282,10 +309,7 @@ if (!$user->isLoggedIn()) {
                             alert('failure');
                         }
                     });
-                    //     }
-                    // }
                 });
-
             });
         </script>
 

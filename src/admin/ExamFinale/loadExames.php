@@ -6,7 +6,7 @@ $db = DB::getInstance();
             FROM Controle
             JOIN Module ON Controle.id_module = Module.id_module
             WHERE Controle.type = ?";
-    $results = $db->query($sql, ['examfinale']);
+    $results = $db->query($sql, ['exam_finale_normal']);
 
     foreach ($results->results() as $row) {
         $data[] = array(

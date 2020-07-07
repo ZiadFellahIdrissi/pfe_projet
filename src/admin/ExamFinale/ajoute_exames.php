@@ -10,9 +10,9 @@
     $sql = "SELECT id_module
             FROM Controle
             WHERE `date` = ?
-            AND id_module = $module";
+            AND id_module = ?";
 
-    if ($db->query($sql, [$datecontrole])->count()) {
+    if ($db->query($sql, [$datecontrole,$module])->count()) {
         $error="Vous pouvez pas ajouter plusieurs controles en meme jour!";
         $r=array("error"=>$error);
         echo json_encode($r);
@@ -32,7 +32,7 @@
     } else {
         $sql = "INSERT INTO `Controle`( `type`, `date`, `h_debut`, `h_fin`, `id_module`)
                 VALUES (?,?,?,?,?)";
-        $db->query($sql, ['examfinale', $datecontrole, $heur_debut, $heur_fin, $module]);
+        $db->query($sql, ['exam_finale_normal', $datecontrole, $heur_debut, $heur_fin, $module]);
 
         echo json_encode([]);
     }

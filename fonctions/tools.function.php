@@ -51,7 +51,7 @@ function getCoiffissient($module)
 function getSemestre()
 {
     $db3 = DB::getInstance();
-    $sql = "SELECT date_fin
+    $sql = "SELECT date_fin,date_debut
             FROM Semestre
             ORDER BY id_semestre";
     $resultats = $db3->query($sql, []);
@@ -173,7 +173,7 @@ function getAbsence($id, $module)
 }
 function demandeCheck($id_etudiant, $type_, $etat){
     $db = DB::getInstance();
-    $type;
+    $type="";
   	switch($type_){
       case 'releve'      : $type = "un relevé de notes"; break;
       case 'attestation' : $type = "une attestation de scolarité"; break;
@@ -187,3 +187,28 @@ function demandeCheck($id_etudiant, $type_, $etat){
     $resultats = $db->query($sql, [$id_etudiant, $type, $etat]);
     return $resultats->count();
 }
+function getDatesSemestre($id)
+{
+    $db3 = DB::getInstance();
+    $sql = "SELECT date_fin,date_debut
+            FROM Semestre
+            where id_semestre=?";
+    $resultats = $db3->query($sql, [$id]);
+    return $resultats;
+}
+
+//=======================================================================
+$max_Exame_finale = "";
+$min_Exame_finale = "";
+$date_Fin_Premier_Semester = getSemestre()->date_fin;
+if (date('yy/m/d', time()) > $date_Fin_Premier_Semester) {
+    $dateSemsetre = date_create(getDatesSemestre(2)->first()->date_fin);
+    date_add($dateSemsetre, date_interval_create_from_date_string('30 days'));
+
+    $max_Exame_finale = date_format($dateSemsetre, 'Y-m-d');
+    $min_Exame_finale = getDatesSemestre(2)->first()->date_fin;
+} else {
+    $min_Exame_finale = getDatesSemestre(1)->first()->date_fin;
+    $max_Exame_finale = getDatesSemestre(2)->first()->date_debut;
+}
+//====================================================================================
