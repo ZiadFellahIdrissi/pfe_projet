@@ -1,6 +1,7 @@
 <!-- MOBILE HEADER -->
 <?php
     include 'mobile_header.php';
+    $db = DB::getInstance();
 ?>
 <!-- END MOBILE HEADER -->
 
@@ -15,12 +16,40 @@
                         <div class="noti-wrap ">
                             <div class="noti__item js-item-menu ">
                                 <i class="zmdi zmdi-notifications "></i>
-                                <span class="quantity ">3</span>
+                                <span class="quantity ">
+                                  <?php
+                                    $sql = "SELECT *
+                                            FROM Demandes
+                                            JOIN Utilisateur ON Demandes.id_etudiant = Utilisateur.id
+                                            WHERE etat = -1";
+                                    $db->query($sql, []);
+                                    echo $db->count();
+                                  ?>
+                                </span>
                                 <div class="notifi-dropdown js-dropdown ">
                                     <div class="notifi__title ">
-                                        <p>You have 3 Notifications</p>
+                                        <p>You have <?php echo $db->count(); ?> Notifications</p>
                                     </div>
-                                    <div class="notifi__item ">
+                                    <?php
+                                      foreach($db->results() as $row){
+                                    ?>
+                                        <div class="notifi__item ">
+                                            <div class="bg-c2 img-cir img-40 ">
+                                                <i class="zmdi zmdi-account-box "></i>
+                                            </div>
+                                            <div class="content ">
+                                                <p>
+                                                  <?php echo strtoupper($row->nom).' '.$row->prenom ?> a demandé <?php echo $row->type ?>.
+                                                </p>
+                                                <span class="date ">
+                                                  <?php echo $row->date ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    <?php
+                                        }
+                                     ?>
+                                    <!-- <div class="notifi__item ">
                                         <div class="bg-c1 img-cir img-40 ">
                                             <i class="zmdi zmdi-email-open "></i>
                                         </div>
@@ -28,28 +57,7 @@
                                             <p>You got a email notification</p>
                                             <span class="date ">April 12, 2018 06:50</span>
                                         </div>
-                                    </div>
-                                    <div class="notifi__item ">
-                                        <div class="bg-c2 img-cir img-40 ">
-                                            <i class="zmdi zmdi-account-box "></i>
-                                        </div>
-                                        <div class="content ">
-                                            <p>Your account has been blocked</p>
-                                            <span class="date ">April 12, 2018 06:50</span>
-                                        </div>
-                                    </div>
-                                    <div class="notifi__item ">
-                                        <div class="bg-c3 img-cir img-40 ">
-                                            <i class="zmdi zmdi-file-text "></i>
-                                        </div>
-                                        <div class="content ">
-                                            <p>You got a new file</p>
-                                            <span class="date ">April 12, 2018 06:50</span>
-                                        </div>
-                                    </div>
-                                    <div class="notifi__footer ">
-                                        <a href="# ">All notifications</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

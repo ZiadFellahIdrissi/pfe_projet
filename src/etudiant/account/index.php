@@ -1,6 +1,6 @@
 <?php
 include_once '../../../core/init.php';
-include_once '../fonctions/tools.function.php';
+include_once '../../../fonctions/tools.function.php';
 $user = new User_Etudiant();
 if (!$user->isLoggedIn()) {
     header('Location: ../../login/');

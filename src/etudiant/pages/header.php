@@ -1,5 +1,8 @@
+<?php
+  require_once '../../../fonctions/tools.function.php';
+?>
 <!-- MENU SIDEBAR-->
-<aside class="menu-sidebar2" style="background-color: #2f3542">
+<aside class="menu-sidebar2">
     <div class="logo" style="background-color: #2f3542;">
         <a href="#">
             <!-- <img src="mylogo.png" alt="" /> -->
@@ -10,10 +13,10 @@
             <div class="image img-cir img-120">
                 <img src="../../../img/profiles/<?php echo $imagepath ?>" title="Photo de profile" draggable="false" />
             </div>
-            <h4 class="name" style="color: white;"><?php echo strtoupper($nom) . ' ' . $prenom ?></h4>
-            <a href="../pages/logout.php" style="color: white;">Sign out</a>
+            <h4 class="name"><?php echo strtoupper($nom) . ' ' . $prenom ?></h4>
+            <a href="../pages/logout.php">Sign out</a>
         </div>
-        <nav class="navbar-sidebar2">
+        <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
                 <li class="active">
                     <a href="../pages/">
@@ -30,12 +33,11 @@
                     <a href="../Examens">
                         <i class="fa fa-file"></i>Controles</a>
                     <?php
-                    include_once '../fonctions/tools.function.php';
-                    $resultat = controles($id);
-                    $count = $resultat->count();
-                    if ($count) {
-                        echo '<span class="inbox-num">' . $count . '</span>';
-                    }
+                      $resultat = controles($id);
+                      $count = $resultat->count();
+                      if ($count) {
+                          echo '<span class="inbox-num">' . $count . '</span>';
+                      }
                     ?>
                 </li>
                 <li class="">

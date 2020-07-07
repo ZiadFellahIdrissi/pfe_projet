@@ -1,6 +1,6 @@
 <?php
 include_once '../../../core/init.php';
-include_once '../fonctions/tools.function.php';
+include_once '../../../fonctions/tools.function.php';
 $user = new User_Etudiant();
 if (!$user->isLoggedIn()) {
     header('Location: ../../login/');
@@ -99,11 +99,11 @@ if (!$user->isLoggedIn()) {
                         <div class="form-group">
                             Email: <?php echo '<b>'.$info->email.'</b>'; ?>
                         </div>
-                                
+
                         <div class="form-group">
                             Filière: <?php echo '<b>'.$info->nom_filiere.'</b>'; ?>
                         </div>
-                        
+
                     </div>
                 </div>
                 <br>

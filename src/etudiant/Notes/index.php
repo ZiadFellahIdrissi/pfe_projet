@@ -1,5 +1,6 @@
 <?php
 include_once '../../../core/init.php';
+require_once '../../../fonctions/tools.function.php';
 $user = new User_Etudiant();
 $db = DB::getInstance();
 if (!$user->isLoggedIn()) {
@@ -58,8 +59,8 @@ if (!$user->isLoggedIn()) {
                 </nav>
             </div>
         </section><br>
-        
-        <!-- relvet de notes -->
+
+        <!-- relvé de notes -->
         <div class="section__content section__content--p30">
             <?php include 'notesResultat.php' ?>
         </div>
@@ -81,7 +82,6 @@ if (!$user->isLoggedIn()) {
         <script>
             $(document).ready(function() {
                 $(".imprimer").click(function() {
-                    // alert("ziad");
                     $('.notes').printThis({
                         debug: false,
                         importCSS: true,
@@ -95,7 +95,7 @@ if (!$user->isLoggedIn()) {
                         canvas: false,
                         header: "<h1>Relvet des notes</h1>",
                         footer: null, // postfix to html
-                        base: false, // preserve the BASE tag or accept a string for the 
+                        base: false, // preserve the BASE tag or accept a string for the
                         doctypeString: '<!DOCTYPE html>',
                         removeScripts: false,
                         copyTagClasses: false

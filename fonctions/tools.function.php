@@ -3,8 +3,8 @@ function controles($id)
 {
     $db = DB::getInstance();
     $sql = "SELECT Module.intitule, Controle.date, Controle.h_debut, TIMEDIFF(Controle.h_fin,Controle.h_debut) as duree
-            from Controle 
-            JOIN Module on Controle.id_module = Module.id_module 
+            from Controle
+            JOIN Module on Controle.id_module = Module.id_module
             JOIN dispose_de on dispose_de.id_module = Module.id_module
             WHERE Controle.type = ?
             AND concat(Controle.date,' ',Controle.h_debut) >= ( SELECT SYSDATE() )
@@ -170,4 +170,20 @@ function getAbsence($id, $module)
     $endWeek =  date("Y-m-d", strtotime('sunday this week'));
     $resultat = $db->query($sql, [$id, $module, $startWeek, $endWeek]);
     return $resultat;
+}
+function demandeCheck($id_etudiant, $type_, $etat){
+    $db = DB::getInstance();
+    $type;
+  	switch($type_){
+      case 'releve'      : $type = "un relevé de notes"; break;
+      case 'attestation' : $type = "une attestation de scolarité"; break;
+      case 'stage'       : $type = "une autorisation de stage"; break;
+    }
+    $sql = "SELECT id
+            FROM Demandes
+            WHERE id_etudiant = ?
+            AND type = ?
+            AND etat = ?";
+    $resultats = $db->query($sql, [$id_etudiant, $type, $etat]);
+    return $resultats->count();
 }
