@@ -152,16 +152,10 @@ if (isset($_GET["cin"])) {
                 ?>
                 if (profileImagee.src.includes('avatar')) {
                     if (confirm("Voulez-vous vraiment garder l'image par défaut !!!!")) {
-                        // <?php
-                        // $sql = "UPDATE Utilisateur
-                        // SET `imagepath` = 'avatar.svg'
-                        // WHERE id='$cin'";
-                        // DB::getInstance()->query($sql, []);
-                        // ?>
-                        location.href = "../../login/";
+                        location.replace("../../login/");
                     }
                 } else {
-                    location.href = "../../login/";
+                    location.replace("../../login/");
                 }
 
             });

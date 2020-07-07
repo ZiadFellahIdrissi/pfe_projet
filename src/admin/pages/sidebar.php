@@ -42,6 +42,11 @@
                         <i class="fas fa-copy"></i>Notes
                     </a>
                 </li>
+                <li>
+                    <a href="../ExamFinale">
+                        <i class="fas fa-copy"></i>Exame Finale
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
