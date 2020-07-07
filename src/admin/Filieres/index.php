@@ -49,7 +49,7 @@
         <?php
             include '../pages/header.php';
         ?>
-        <div class="main-content ">
+        <div class="main-content">
             <?php
                 include 'DML_Commentator.php';
             ?>

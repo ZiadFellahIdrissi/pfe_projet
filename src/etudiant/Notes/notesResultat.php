@@ -1,4 +1,39 @@
-<?php echo $date = date('yy/m/d h:i', time()); ?>
+<?php
+  require_once '../../../fonctions/tools.function.php';
+  if(!demandeCheck($id, 'releve', -1) && !demandeCheck($id, 'releve', 1)){
+?>
+  <div style="text-align: right; margin-bottom: 1%">
+      <?php
+        if(demandeCheck($id, 'releve', 0)){
+      ?>
+          <span style="color: red">Votre demande précédent a été refusé.</span>
+      <?php
+        }
+      ?>
+      <button type="button" class="btn btn-outline-dark" onclick="location.href='../demander.php?type=releve&id=<?php echo $id ?>'">
+        <span><i class="fa fa-print"></i></span> Demander le relevé de notes
+      </button>
+  </div>
+<?php
+  }
+  if(demandeCheck($id, 'releve', -1) && !demandeCheck($id, 'releve', 1)){
+?>
+  <div style="text-align: right; margin-bottom: 1%">
+    Demande envoyé.
+  </div>
+<?php
+}
+  if(demandeCheck($id, 'releve', 1)){
+?>
+    <div style="text-align: right; margin-bottom: 1%">
+      <button type="button" class="btn btn-outline-dark" onclick="location.href=''">
+        <span><i class="fa fa-download"></i></span> Télécharger le relevé de notes.
+      </button>
+    </div>
+<?php
+  }
+?>
+
 <div class="au-card notes shadow-lg bg-white rounded" style="padding: 0;">
     <?php
     function sqlStatment($semester)
@@ -8,12 +43,11 @@
                 JOIN dispose_de ON Module.id_module = dispose_de.id_module
                 JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
                 WHERE Semestre.semestre='$semester'
-                AND dispose_de.id_filiere = (SELECT id_filiere 
-                                              FROM Etudiant 
+                AND dispose_de.id_filiere = (SELECT id_filiere
+                                              FROM Etudiant
                                               WHERE id = ?      )";
         return $sql;
     }
-    include_once '../fonctions/tools.function.php';
     ?>
     <div class="table-responsive-sm">
         <table class="table table-hover">
@@ -150,8 +184,4 @@
                 </tbody>
         </table>
     </div>
-</div>
-
-<div style="text-align: right; margin-right:2%; margin-top:1%;">
-    <button type="button" class="btn btn-outline-info imprimer "><span><i class="fa fa-print"></i></span> Imprimer </button>
 </div>

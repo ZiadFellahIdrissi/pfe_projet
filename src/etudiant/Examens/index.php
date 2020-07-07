@@ -62,7 +62,7 @@ if (!$user->isLoggedIn()) {
         <div class="section__content section__content--p30">
             <div class="au-card notes shadow-lg bg-white rounded" style="padding: 0;">
                 <?php
-                include_once '../fonctions/tools.function.php';
+                include_once '../../../fonctions/tools.function.php';
                 $resultat = controles($id);
                 if (!$resultat->count()) {
                     echo '<div class="alert alert-warning" role="alert">
