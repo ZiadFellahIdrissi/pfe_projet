@@ -1,5 +1,5 @@
 <!-- MENU SIDEBAR-->
-<aside class="menu-sidebar d-none d-lg-block js-scrollbar1" style="overflow: auto;">
+<aside class="menu-sidebar d-none d-lg-block js-scrollbar1" id="Mysidebar" style="overflow: auto;">
     <div class="logo ">
         <a href="# ">
             <img src="../../../img/Dashboard/mylogo1.png " alt=" " />
@@ -43,13 +43,18 @@
                     </a>
                 </li>
                 <li>
+                    <a href="../Semestre">
+                        <i class="fa fa-columns" aria-hidden="true"></i>Semestre
+                    </a>
+                </li>
+                <li>
                     <a href="../ExamFinale">
-                        <i class="far fa-copy" aria-hidden="true"></i>Calendrier des exams
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>Calendrier des exams
                     </a>
                 </li>
                 <li>
                     <a href="../Demandes">
-                        <i class="fa fa-bars" aria-hidden="true"></i>Demandes
+                        <i class="fa fa-bars" aria-hidden="true"></i>Demandes 
                     </a>
                 </li>
             </ul>

@@ -33,8 +33,6 @@ if (!$user->isLoggedIn()) {
         <!-- Main CSS-->
         <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
     </head>
-
-
     <style>
         .nov {
             background: #f5f5f5;
@@ -46,53 +44,31 @@ if (!$user->isLoggedIn()) {
             <?php
             include '../pages/header.php';
             ?>
-            <div class="main-content ">
-                <?php //include 'DML_Commentator.php'; 
-                ?>
-                <div class="container mb-3">
-                    <nav aria-label="breadcrumb nov">
-                        <ol class="breadcrumb nov">
-                            <li class="breadcrumb-item"><a href="../pages">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Notes</li>
-                        </ol>
-                    </nav>
-                    <div class="col-md-14">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="col-md-13">
-                                            <select name="filiere" id="filiere" class="form-control">
-                                                <option value=''>Choisissez une filière</option>
-                                                <?php
-                                                $sql = "SELECT id_filiere, nom_filiere
-                                                            FROM Filiere";
-                                                $resultat = mysqli_query($conn, $sql);
-                                                while ($row = mysqli_fetch_assoc($resultat)) {
-                                                ?>
-                                                    <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
-                                                <?php
-                                                }
-                                                ?>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col"></div>
-                                </div>
-                            </div>
-                            <div class="card-body etudiants" style="display: none">
-
-                            </div>
+            <div class="main-content">
+                <div class="warnnig" style="text-align: center; padding:4%">
+                    <div class="alert alert-danger" role="alert">
+                        You will delete all the users in your application
+                    </div>
+                </div>
+                <div class="bt" style="text-align: center; margin-top:6%">
+                    <form action="supprimier_tout.php" method="POST" id="myform">
+                        <input type="submit" style="padding-left:4%; padding-right:4%" class="btn btn-dark deleteall" value="Supprimer">
+                    </form>
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border m-5" role="status" id="spinner">
+                            <span class="sr-only">Loading...</span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
         </div>
 
+
         <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
+
         <!-- Bootstrap JS-->
         <script type="text/javascript" src="../../../layout/js/bootstrap.min.js "></script>
 
@@ -104,6 +80,22 @@ if (!$user->isLoggedIn()) {
         <script type="text/javascript" src="../../../layout/js/main.js "></script>
         <script type="text/javascript" src="../../../layout/js/admin/notes.js"></script>
         <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#spinner').hide();
+                $("#myform").submit(function(event) {
+                    if (!confirm("vous avez sure ?")) {
+                        event.preventDefault();
+                    } else {
+                        $('#myform').hide();
+                        $('#spinner').show();
+                    }
+                });
+
+
+            });
+        </script>
+
     </body>
 
     </html>

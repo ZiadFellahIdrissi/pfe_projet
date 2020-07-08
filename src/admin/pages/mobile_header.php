@@ -17,63 +17,53 @@
     <nav class="navbar-mobile">
         <div class="container-fluid">
             <ul class="navbar-mobile__list list-unstyled">
-                <li class="active">
-                    <a href="./">
-                        <i class="fas fa-tachometer-alt"></i>Dashboard
+                <li class="active ">
+                    <a href="../pages">
+                        <i class="fas fa-tachometer-alt" aria-hidden="true"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="../Enseignants">
+                        <span><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i></span> Enseignants
                     </a>
                 </li>
                 <li>
-                    <a href="./Etudiants.php">
-                        <i class="fas fa-user-graduate"></i>Etudiants
+                    <a href="../Responsables">
+                        <span><i class="fas fa-user-tie" aria-hidden="true"></i></span> Responsables
                     </a>
                 </li>
                 <li>
-                    <a href="./Filieres.php">
-                        <i class="fas fa-university"></i>Filières
+                    <a href="../Filieres">
+                        <span><i class="fas fa-university" aria-hidden="true"></i></span> Filières
                     </a>
                 </li>
                 <li>
-                    <a href="./Enseignant.php">
-                        <i class="fas fa-chalkboard-teacher"></i>Enseignant
+                    <a href="../Modules">
+                        <span><i class="fab fa-stack-overflow" aria-hidden="true"></i></span> Modules
                     </a>
                 </li>
                 <li>
-                    <a href="./Modules.php">
-                        <i class="fab fa-stack-overflow"></i>Modules
+                    <a href="../Etudiants">
+                        <i class="fas fa-user-graduate" aria-hidden="true"></i> Etudiants
                     </a>
                 </li>
                 <li>
                     <a href="../Notes">
-                        <i class="fas fa-copy"></i>Notes
+                        <i class="fas fa-copy" aria-hidden="true"></i> Notes
                     </a>
                 </li>
-                <!-- <li class="has-sub">
-                    <a class="js-arrow" href="#">
-                        <i class="fas fa-calendar-alt"></i>Examens <i class="fas fa-angle-down"></i> </a>
-                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                        <li>
-                            <a href="./CalendrierExamens.php">Calendrier Exames</a>
-                        </li>
-                        <li>
-                            <a href="./consulte_Examen.php">Liste Examens</a>
-                        </li>
-                    </ul>
-                </li> -->
-                <li class="has-sub">
-                    <a class="js-arrow" href="#">
-                        <i class="fas fa-copy"></i>Notes <i class="fas fa-angle-down"></i> </a>
-                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                        <li>
-                            <a href="./consulter_Notes.php">Consulter Notes</a>
-                        </li>
-                        <li>
-                            <a href="./ajoute_notes">Gestion des Notes</a>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="../Semestre">
+                        <i class="fa fa-columns" aria-hidden="true"></i> Semestre
+                    </a>
                 </li>
                 <li>
-                    <a href="Absences.php">
-                        <i class="far fa-clock"></i>Absences
+                    <a href="../ExamFinale">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i> Calendrier des exams
+                    </a>
+                </li>
+                <li>
+                    <a href="../Demandes">
+                        <i class="fa fa-bars" aria-hidden="true"></i> Demandes
                     </a>
                 </li>
             </ul>
