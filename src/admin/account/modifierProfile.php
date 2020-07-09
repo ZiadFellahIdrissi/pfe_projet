@@ -13,7 +13,7 @@ $numrow = mysqli_num_rows(mysqli_query($conn, $sqltest));
 if ($numrow) {
     goto checkpicture;
 }
-$sql = "UPDATE administrateur
+$sql = "UPDATE Administrateur
         SET `email` = '$email'
         WHERE username = '$username'";
 mysqli_query($conn, $sql);
@@ -43,7 +43,7 @@ if ($fileName != '') {
                         }
                     }
 
-                    $sql = "UPDATE administrateur
+                    $sql = "UPDATE Administrateur
                                 SET `imagepath` = '$filenewname'
                             WHERE username = '$username'";
                     mysqli_query($conn, $sql);

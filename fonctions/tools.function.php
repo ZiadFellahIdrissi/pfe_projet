@@ -207,7 +207,7 @@ function getDatesSemestre($id)
 function getAdminInfo($username){
     $db = DB::getInstance();
        $sql = "SELECT *
-               FROM administrateur
+               FROM Administrateur
                WHERE username = ?";
        $resultats = $db->query($sql, [$username]);
        return $resultats->first();

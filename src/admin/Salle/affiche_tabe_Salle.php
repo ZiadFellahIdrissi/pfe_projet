@@ -4,7 +4,7 @@ include_once '../../../fonctions/tools.function.php';
 $db = DB::getInstance();
 
 $sql = "SELECT id_salle,salle
-        FROM salle
+        FROM Salle
         order by id_salle";
 
 $resultats = $db->query($sql, []);

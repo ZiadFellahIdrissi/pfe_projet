@@ -80,7 +80,7 @@ class User_Admin
     public static function setAdminPassword($username, $password)
     {
         if ($username && $password) {
-            $data = DB::getInstance()->query("UPDATE administrateur
+            $data = DB::getInstance()->query("UPDATE Administrateur
                                             SET `password` = ?
                                             WHERE username = ?", array($password, $username));
             return ($data->error());
