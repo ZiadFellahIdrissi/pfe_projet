@@ -65,22 +65,6 @@ if (!$user->isLoggedIn()) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-3" onclick="location.href='../Responsables'" title="Responsables">
-                                <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
-                                    <h2>
-                                        <?php
-                                        $sql = "SELECT *
-                                                    FROM Personnel
-                                                    WHERE role = 'responsable'";
-                                        echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                        ?>
-                                    </h2>
-                                    <span class="desc">Responsables</span>
-                                    <div class="icon">
-                                        <i class="fas fa-user-tie"></i>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-md-6 col-lg-3" onclick="location.href='../Etudiants'" title="Etudiants">
                                 <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
                                     <h2>
@@ -96,8 +80,6 @@ if (!$user->isLoggedIn()) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row d-flex justify-content-center">
                             <div class="col-md-6 col-lg-3" onclick="location.href='../Filieres'" title="Filières">
                                 <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
                                     <h2>
@@ -121,6 +103,7 @@ if (!$user->isLoggedIn()) {
                                                     FROM Module";
                                         echo mysqli_num_rows(mysqli_query($conn, $sql));
                                         ?>
+
                                     </h2>
                                     <span class="desc">Modules</span>
                                     <div class="icon">
@@ -128,16 +111,161 @@ if (!$user->isLoggedIn()) {
                                     </div>
                                 </div>
                             </div>
+
+
+
+                            <!-- <div class="col-md-6 col-lg-3" onclick="location.href='../Modules'" title="Modules">
+                            <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
+                                <h2>
+                                <?php
+                                $sql = "SELECT *
+                                                    FROM Personnel
+                                                    WHERE role = 'responsable'";
+                                echo mysqli_num_rows(mysqli_query($conn, $sql));
+                                ?>
+                                </h2>
+                                <span class="desc">Modules</span>
+                                <div class="icon">
+                                    <i class="fab fa-stack-overflow"></i>
+                                </div>
+                            </div>
+                        </div> -->
                         </div>
                     </div>
                 </section>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="au-card m-b-30">
+                                <div class="au-card-inner">
+                                    <h3 class="title-2 m-b-40">Les notes</h3>
+                                    <canvas id="lesNOtes-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="au-card m-b-30">
+                                <div class="au-card-inner">
+                                    <h3 class="title-2 m-b-40">Les absences</h3>
+                                    <canvas id="lesabsences-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
         <script src="../../../layout/js/jquery-3.4.1.min.js"></script>
         <!-- lib JS   -->
         <script src="../../../lib/animsition/animsition.min.js "></script>
+        <script src="../../../lib/chartjs/Chart.bundle.min.js"></script>
+
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    url: "./fetch_absence_data.php",
+                    method: "GET",
+                    success: function(data) {
+                        let nbSeance = [];
+                        let dataSeance = [];
+                        let data0 = JSON.parse(data);
+                        for (var i in data0) {
+                            nbSeance.push(data0[i].nbAbsence);
+                            dataSeance.push(data0[i].date_seance);
+                        }
+                        var ctx = $("#lesabsences-chart");
+                        if (ctx) {
+                            ctx.height = 150;
+                            var myChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: dataSeance,
+                                    type: 'line',
+                                    defaultFontFamily: 'Poppins',
+                                    datasets: [{
+                                        data: nbSeance,
+                                        label: "absent(e)s",
+                                        backgroundColor: 'rgba(0,103,255,.15)',
+                                        borderColor: 'rgba(0,103,255,0.5)',
+                                        borderWidth: 3.5,
+                                        pointStyle: 'circle',
+                                        pointRadius: 5,
+                                        pointBorderColor: 'transparent',
+                                        pointBackgroundColor: 'rgba(0,103,255,0.5)',
+                                    }, ]
+                                },
+                                options: {
+                                    responsive: true,
+                                    tooltips: {
+                                        mode: 'index',
+                                        titleFontSize: 12,
+                                        titleFontColor: '#000',
+                                        bodyFontColor: '#000',
+                                        backgroundColor: '#fff',
+                                        titleFontFamily: 'Poppins',
+                                        bodyFontFamily: 'Poppins',
+                                        cornerRadius: 3,
+                                        intersect: false,
+                                    },
+                                    legend: {
+                                        display: false,
+                                        position: 'top',
+                                        labels: {
+                                            usePointStyle: true,
+                                            fontFamily: 'Poppins',
+                                        },
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            display: true,
+                                            gridLines: {
+                                                display: false,
+                                                drawBorder: false
+                                            },
+                                            scaleLabel: {
+                                                display: false,
+                                                labelString: 'year'
+                                            },
+                                            ticks: {
+                                                fontFamily: "Poppins"
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            display: true,
+                                            gridLines: {
+                                                display: false,
+                                                drawBorder: false
+                                            },
+                                            scaleLabel: {
+                                                display: true,
+                                                labelString: 'nombre absences',
+                                                fontFamily: "Poppins"
+                                            },
+                                            ticks: {
+                                                fontFamily: "Poppins"
+                                            }
+                                        }]
+                                    },
+                                    title: {
+                                        display: false,
+                                    }
+                                }
+                            });
+                        }
+
+                    },
+                    error: function() {
+                        alert("something is wrong");
+                    }
+
+
+                });
+            });
+        </script>
     </body>
 
     </html>
