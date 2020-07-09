@@ -2,7 +2,7 @@
 include_once '../../../core/init.php';
 $db = DB::getInstance();
 if (isset($_GET["id"])) {
-    $id=$_GET["id"];
+    $id = $_GET["id"];
     $sql = "SELECT Seance.date_seance, Seance.h_debut, Seance.h_fin, Seance.id_seance, Module.intitule
             FROM Seance
             JOIN Module ON Seance.id_module = Module.id_module

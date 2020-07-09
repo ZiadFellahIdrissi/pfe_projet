@@ -1,7 +1,7 @@
 <!-- ===============un button pour ajoute un enseignant======================= -->
 <div class="col-6 col-md-4">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
-    + Ajouter</button>
+        + Ajouter</button>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

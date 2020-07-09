@@ -1,6 +1,6 @@
 <?php
 include_once '../../../core/init.php';
-include_once '../../etudiant/fonctions/tools.function.php';
+include_once '../../../fonctions/tools.function.php';
 ob_start();
 if (isset($_GET["cin"])) {
     $cin = $_GET["cin"];

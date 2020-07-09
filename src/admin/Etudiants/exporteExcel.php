@@ -44,6 +44,6 @@ if (isset($_GET["print-excel"]) && isset($_GET["id_filiere"])) {
     }
     $output .= '</table>';
     header("Content-Type: application/xls");
-    header("Content-Disposition:attachment; filename=Etudiants_".$nomfiliere."_".date('yy/m/d h:m', time()).".xls");
+    header("Content-Disposition:attachment; filename=Etudiants_" . $nomfiliere . "_" . date('yy/m/d h:m', time()) . ".xls");
     echo $output;
 }

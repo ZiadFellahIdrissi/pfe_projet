@@ -1,5 +1,5 @@
 <!-- MENU SIDEBAR-->
-<aside class="menu-sidebar d-none d-lg-block js-scrollbar1" id="Mysidebar" style="overflow: auto;">
+<aside class="menu-sidebar d-none d-lg-block" id="Mysidebar" >
     <div class="logo ">
         <a href="# ">
             <img src="../../../img/Dashboard/mylogo1.png " alt=" " />
@@ -43,11 +43,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../Semestre">
-                        <i class="fa fa-columns" aria-hidden="true"></i>Semestre
-                    </a>
-                </li>
-                <li>
                     <a href="../ExamFinale">
                         <i class="fas fa-calendar-alt" aria-hidden="true"></i>Calendrier des exams
                     </a>
@@ -55,6 +50,21 @@
                 <li>
                     <a href="../Demandes">
                         <i class="fa fa-bars" aria-hidden="true"></i>Demandes 
+                    </a>
+                </li>
+                <li>
+                    <a href="../Semestre">
+                        <i class="fa fa-columns" aria-hidden="true"></i>Semestre
+                    </a>
+                </li>
+                <li>
+                    <a href="../Salle">
+                        <i class="fa fa-th" aria-hidden="true"></i>Salles 
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        
                     </a>
                 </li>
             </ul>

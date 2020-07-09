@@ -43,8 +43,9 @@ if (!$user->isLoggedIn()) {
             font-weight: bold;
             text-align: center;
         }
-        .header-desktop2{
-            left:0px;
+
+        .header-desktop2 {
+            left: 0px;
         }
     </style>
 
@@ -67,18 +68,18 @@ if (!$user->isLoggedIn()) {
                     </div>
                     <br>
                     <?php
-                        $info = getInfos($id);
+                    $info = getInfos($id);
                     ?>
                     <div class="col">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    Cne: <?php echo '<b>'.$info->cne.'</b>'; ?>
+                                    Cne: <?php echo '<b>' . $info->cne . '</b>'; ?>
                                 </div>
                             </div>
                             <div class="col ">
                                 <div class="form-group float-left">
-                                    Cin: <?php echo '<b>'.$id.'</b>'; ?>
+                                    Cin: <?php echo '<b>' . $id . '</b>'; ?>
                                 </div>
                             </div>
                         </div>
@@ -86,22 +87,22 @@ if (!$user->isLoggedIn()) {
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    Date Naissance: <?php echo '<b>'.$info->date_naissance.'</b>'; ?>
+                                    Date Naissance: <?php echo '<b>' . $info->date_naissance . '</b>'; ?>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    Telephone: <?php echo '<b>'.$info->telephone.'</b>'; ?>
+                                    Telephone: <?php echo '<b>' . $info->telephone . '</b>'; ?>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            Email: <?php echo '<b>'.$info->email.'</b>'; ?>
+                            Email: <?php echo '<b>' . $info->email . '</b>'; ?>
                         </div>
 
                         <div class="form-group">
-                            Filière: <?php echo '<b>'.$info->nom_filiere.'</b>'; ?>
+                            Filière: <?php echo '<b>' . $info->nom_filiere . '</b>'; ?>
                         </div>
 
                     </div>

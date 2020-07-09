@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- modal footer -->
                     <div class="modal-footer">
                         <input type="hidden" name="filiere" value="<?php echo $_GET['id_filiere'] ?>" class="form-control">
@@ -129,14 +129,14 @@
                         <label for="fil">Filière</label>
                         <select name="filiere" id="fil" class="form-control">
                             <?php
-                                $sql = "SELECT id_filiere,nom_filiere
+                            $sql = "SELECT id_filiere,nom_filiere
                                         FROM Filiere";
-                                $resultat = mysqli_query($conn, $sql);
-                                while ($row = mysqli_fetch_assoc($resultat)) {
+                            $resultat = mysqli_query($conn, $sql);
+                            while ($row = mysqli_fetch_assoc($resultat)) {
                             ?>
-                                    <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
+                                <option value='<?php echo $row["id_filiere"] ?>'><?php echo $row["nom_filiere"] ?></option>
                             <?php
-                                }
+                            }
                             ?>
                         </select>
                     </div>

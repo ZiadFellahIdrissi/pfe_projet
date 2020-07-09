@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 05, 2020 at 01:08 AM
+-- Generation Time: Jul 09, 2020 at 04:02 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -30,6 +30,10 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `administrateur`;
 CREATE TABLE IF NOT EXISTS `administrateur` (
+  `nom` varchar(11) NOT NULL,
+  `prenom` varchar(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `imagepath` varchar(50) NOT NULL,
   `username` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
   PRIMARY KEY (`username`,`password`)
@@ -39,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 -- Dumping data for table `administrateur`
 --
 
-INSERT INTO `administrateur` (`username`, `password`) VALUES
-('admin', 'admin');
+INSERT INTO `administrateur` (`nom`, `prenom`, `email`, `imagepath`, `username`, `password`) VALUES
+('abghoure', 'mohamed', 'mohamed.abghour@fsac.ma', 'avatar.svg', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -65,14 +69,31 @@ CREATE TABLE IF NOT EXISTS `assiste` (
 DROP TABLE IF EXISTS `controle`;
 CREATE TABLE IF NOT EXISTS `controle` (
   `id_controle` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(10) NOT NULL,
+  `type` varchar(20) NOT NULL,
   `date` date NOT NULL,
   `h_debut` time NOT NULL,
   `h_fin` time NOT NULL,
   `id_module` int(11) NOT NULL,
   PRIMARY KEY (`id_controle`),
   KEY `id_module` (`id_module`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `demandes`
+--
+
+DROP TABLE IF EXISTS `demandes`;
+CREATE TABLE IF NOT EXISTS `demandes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_etudiant` varchar(8) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `date` date NOT NULL,
+  `etat` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_id_etudiant` (`id_etudiant`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -184,14 +205,20 @@ CREATE TABLE IF NOT EXISTS `salle` (
   `id_salle` int(5) NOT NULL AUTO_INCREMENT,
   `salle` varchar(20) NOT NULL,
   PRIMARY KEY (`id_salle`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `salle`
 --
 
 INSERT INTO `salle` (`id_salle`, `salle`) VALUES
-(1, 'ziad');
+(1, 'Amphi_B'),
+(2, 'Amphi_D'),
+(3, 'Amphi_A'),
+(4, 'Amphi_C'),
+(5, 'Amphi_E'),
+(6, 'Amphi_K'),
+(7, 'Salle 1');
 
 -- --------------------------------------------------------
 
@@ -205,11 +232,12 @@ CREATE TABLE IF NOT EXISTS `seance` (
   `h_debut` time NOT NULL,
   `h_fin` time NOT NULL,
   `date_seance` date NOT NULL,
-  `salle` varchar(15) NOT NULL,
+  `salle` int(5) NOT NULL,
   `id_module` int(11) NOT NULL,
   PRIMARY KEY (`id_seance`),
-  KEY `id_module` (`id_module`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  KEY `id_module` (`id_module`),
+  KEY `Seance_ibfk_2` (`salle`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -231,8 +259,8 @@ CREATE TABLE IF NOT EXISTS `semestre` (
 --
 
 INSERT INTO `semestre` (`id_semestre`, `semestre`, `date_debut`, `date_fin`) VALUES
-(1, '1ère semestre', '2019-09-01', '2019-12-25'),
-(2, '2ème semestre', '2020-01-15', '2020-05-01');
+(1, '1ère semestre', '2019-09-01', '2019-12-20'),
+(2, '2ème semestre', '2020-02-01', '2020-07-15');
 
 -- --------------------------------------------------------
 
@@ -271,6 +299,12 @@ ALTER TABLE `assiste`
 --
 ALTER TABLE `controle`
   ADD CONSTRAINT `Controle_ibfk_1` FOREIGN KEY (`id_module`) REFERENCES `module` (`id_module`);
+
+--
+-- Constraints for table `demandes`
+--
+ALTER TABLE `demandes`
+  ADD CONSTRAINT `FK_id_etudiant` FOREIGN KEY (`id_etudiant`) REFERENCES `etudiant` (`id`);
 
 --
 -- Constraints for table `dispose_de`
@@ -316,7 +350,8 @@ ALTER TABLE `personnel`
 -- Constraints for table `seance`
 --
 ALTER TABLE `seance`
-  ADD CONSTRAINT `Seance_ibfk_1` FOREIGN KEY (`id_module`) REFERENCES `module` (`id_module`);
+  ADD CONSTRAINT `Seance_ibfk_1` FOREIGN KEY (`id_module`) REFERENCES `module` (`id_module`),
+  ADD CONSTRAINT `Seance_ibfk_2` FOREIGN KEY (`salle`) REFERENCES `salle` (`id_salle`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

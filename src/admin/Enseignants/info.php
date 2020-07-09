@@ -14,19 +14,19 @@ $allInfos = getEnseignantInfos($id);
                     </div>
                 </div>
                 <div class="form-group d-flex justify-content-center">
-                    <h4 class="text" style="text-align: center"><?php echo '<b>'.strtoupper($allInfos->nom).' '.$allInfos->prenom.'</b>' ?></h4>
+                    <h4 class="text" style="text-align: center"><?php echo '<b>' . strtoupper($allInfos->nom) . ' ' . $allInfos->prenom . '</b>' ?></h4>
                 </div>
             </div>
             <div class="col" style="margin-top: 40px">
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            CIN: <?php echo '<b>'.$allInfos->id.'</b>'; ?>
+                            CIN: <?php echo '<b>' . $allInfos->id . '</b>'; ?>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            Numéro de SOM: <?php echo '<b>'.$allInfos->som.'</b>'; ?>
+                            Numéro de SOM: <?php echo '<b>' . $allInfos->som . '</b>'; ?>
                         </div>
                     </div>
                 </div>
@@ -34,39 +34,39 @@ $allInfos = getEnseignantInfos($id);
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            Telephone: <?php echo '<b>'.$allInfos->telephone.'</b>'; ?>
+                            Telephone: <?php echo '<b>' . $allInfos->telephone . '</b>'; ?>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            Date Naissance: <?php echo '<b>'.$allInfos->date_naissance.'</b>'; ?>
+                            Date Naissance: <?php echo '<b>' . $allInfos->date_naissance . '</b>'; ?>
                         </div>
                     </div>
                 </div>
 
                 <?php if (ActiveCompte::isAlreadyActivated($allInfos->id)) { ?>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            Email: <?php echo '<b>'.$allInfos->email.'</b>'; ?>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                Email: <?php echo '<b>' . $allInfos->email . '</b>'; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php } ?>
             </div>
         </div>
     </div>
     <div class="modal-footer d-flex justify-content-between">
-    <?php
+        <?php
         if (!ActiveCompte::isAlreadyActivated($allInfos->id)) { ?>
             <span style="color: red">*Compte pas encore activé.</span>
-    <?php
+        <?php
         } else {
-    ?>
+        ?>
             <span></span>
-    <?php
+        <?php
         }
-    ?>
+        ?>
         <button type="button" class="btn btn-secondary" id="closeModal" data-dismiss="modal">Close</button>
     </div>
 </div>

@@ -1,40 +1,35 @@
 <?php
+include '../../connection.php';
 include_once '../../../core/init.php';
 include_once '../../../fonctions/tools.function.php';
-$user = new User_Etudiant();
+$user = new User_Admin();
 if (!$user->isLoggedIn()) {
-    header('Location: ../../login/');
+    header('Location: ../pages/login.php');
 } else {
-    $nom = $user->data()->nom;
-    $prenom = $user->data()->prenom;
-    $email = $user->data()->email;
-    $id = $user->data()->id;
-    $imagepath = $user->data()->imagepath;
+    $username = $user->data()->username;
 ?>
-    <html lang="fr">
+    <!DOCTYPE html>
+    <html lang="en">
 
     <head>
-        <!-- Required meta tags-->
+        <title>Notes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Title Page-->
-        <title>Dashboard</title>
-
-        <!-- Fontfaces CSS-->
+        <link href="../../../layout/css/animation.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link href="../../../lib/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
         <!-- Bootstrap CSS-->
-        <link href="../../../layout/css/bootstrap.min.css" rel="stylesheet" media="all">
-
+        <link href="../../../layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="../../../layout/css/datatables.min.css" rel="stylesheet" type="text/css" />
 
         <!-- lib CSS-->
         <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
         <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-        <link href='../../../lib/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
+        <link href="../../../lib/select2/select2.min.css" rel="stylesheet" media="all">
+
         <!-- Main CSS-->
         <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
     </head>
@@ -58,73 +53,93 @@ if (!$user->isLoggedIn()) {
     </style>
 
     <body>
-        <?php include '../pages/headerDesktop.php' ?>
-        <div class="container" style="margin-top: 5.5%; margin-left:2.5%">
-            <br>
-            <div class="container rounded text-white" style="background-color: #2f3542; width: 70%">
-                <br>
-                <form id="myform" method="POST" action="modifierProfile.php" enctype="multipart/form-data">
-                    <div class="progress" style="display:none">
-                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div><br>
-                    <div class="account d-flex justify-content-center">
-                        <div class="image img-cir img-120">
-                            <img src="../../../img/profiles/<?php echo $imagepath ?>" id="profileDisplay" />
-                            <img type="button" src="../../../img/signup/modify.png" id="changePicture" onclick="chooseMyPicture()" title="Changer Votre photo de profile">
-                            <input type="file" name="file" id="profileImage" onchange="displayImage(this)" style="display: none">
-                        </div>
-                    </div>
-                    <br>
-                    <?php
-                    $info = getInfos($id);
-                    ?>
-                    <div class="">
-                        <div class=" form-group row">
-                            <div class="col">
-                                <div class="form-group">
-                                    Nom: <input type="text" class="form-control" value="<?php echo strtoupper($nom) . ' ' . $prenom ?>" readonly="readonly">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    Username: <input type="text" class="form-control" value="<?php echo strtoupper($info->username); ?>" readonly="readonly">
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col">
-                                Email:
-                                <div class="form-group input-group">
-                                    <input type="text" class="form-control" name="email" id="email" value="<?php echo isset($_GET['email']) ? $_GET['email'] : $info->email ?>">
-                                    <div class="errmail"></div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                Password:
-                                <div class="form-group input-group">
-                                    <input type="password" class="form-control" name="password" value="********" readonly="readonly">
-                                    <div class="input-group-prepend" id="changePasword">
-                                        <div class="input-group-text">
-                                            <a class="text-dark">
-                                                <span style="cursor: pointer"><b>Changer</b></span>
-                                            </a>
+        <div class="page-wrapper">
+            <?php
+            include '../pages/header.php';
+            ?>
+            <div class="main-content ">
+                <?php //include 'DML_Commentator.php'; 
+                ?>
+                <div class="container mb-3">
+                    <nav aria-label="breadcrumb nov">
+                        <ol class="breadcrumb nov">
+                            <li class="breadcrumb-item"><a href="../pages">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Notes</li>
+                        </ol>
+                    </nav>
+                    <div class="col-md-14">
+                        <div class="container" style="margin-top: 5.5%;">
+                            <br>
+                            <div class="container rounded text-white" style="background: url('../../../img/Dashboard/pic03.jpg'); background-position: center center;
+    background-size: cover; width: 100%">
+                                <br>
+                                <form id="myform" method="POST" action="modifierProfile.php" enctype="multipart/form-data">
+                                    <div class="progress" style="display:none">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div><br>
+                                    <div class="account d-flex justify-content-center">
+                                        <div class="image img-cir img-120">
+                                            <img src="../../../img/profiles/<?php //echo $imagepath ?>" id="profileDisplay" />
+                                            <img type="button" src="../../../img/signup/modify.png" id="changePicture" onclick="chooseMyPicture()" title="Changer Votre photo de profile">
+                                            <input type="file" name="file" id="profileImage" onchange="displayImage(this)" style="display: none">
                                         </div>
                                     </div>
-                                </div>
+                                    <br>
+                                    <?php
+                                    // $info = getInfos($id);
+                                    ?>
+                                    <div class="">
+                                        <div class=" form-group row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    Nom: <input type="text" class="form-control" value="<?php //echo strtoupper($nom) . ' ' . $prenom ?>" readonly="readonly">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    Username: <input type="text" class="form-control" value="<?php //echo strtoupper($info->username); ?>" readonly="readonly">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col">
+                                                Email:
+                                                <div class="form-group input-group">
+                                                    <input type="text" class="form-control" name="email" id="email" value="<?php //echo isset($_GET['email']) ? $_GET['email'] : $info->email ?>">
+                                                    <div class="errmail"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                Password:
+                                                <div class="form-group input-group">
+                                                    <input type="password" class="form-control" name="password" value="********" readonly="readonly">
+                                                    <div class="input-group-prepend" id="changePasword">
+                                                        <div class="input-group-text">
+                                                            <a class="text-dark">
+                                                                <span style="cursor: pointer"><b>Changer</b></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="cin" value="<?php //echo $id ?>">
+                                        <div class="saveChanging float-right">
+                                            <button type="submit" id="submit" class="btn btn-outline-primary" style="display:none">Enregistrer</button>
+                                        </div>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </form>
                             </div>
+                            <br>
                         </div>
-                        <input type="hidden" name="cin" value="<?php echo $id ?>">
-                        <div class="saveChanging float-right">
-                            <button type="submit" id="submit" class="btn btn-outline-primary" style="display:none">Enregistrer</button>
-                        </div>
-                        <br>
-                        <br>
                     </div>
-                </form>
+                </div>
             </div>
-            <br>
         </div>
+
 
         <!-- Modal changer le mot de passe -->
         <div class="modal fade changermdp" id="changermdp" tabindex="-1" role="dialog" aria-labelledby="changermdpLabel" aria-hidden="true">
@@ -167,7 +182,7 @@ if (!$user->isLoggedIn()) {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="cin" id="cin" value="<?php echo $id; ?>">
+                        <input type="hidden" name="cin" id="cin" value="<?php //echo $id; ?>">
                         <button type="button" id="buttonclose" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                         <button type="button" id="buttonsubmit" class="btn btn-primary">Save changes</button>
                     </div>
@@ -282,7 +297,7 @@ if (!$user->isLoggedIn()) {
                 showRedBorderForError("email", "errmail", "Email déja utilisé!");
                 $('#email').attr("readonly", "readonly");
                 $('.errmail').delay(3000).queue(function() {
-                    $('#email').val('<?php echo $info->email ?>');
+                    $('#email').val('<?php //echo $info->email ?>');
                     hideRedBorderForError("email", "errmail");
                     $('#email').removeAttr("readonly");
                 });

@@ -1,6 +1,6 @@
 <?php
 include_once '../../core/init.php';
-include_once '../etudiant/fonctions/tools.function.php';
+include_once '../../fonctions/tools.function.php';
 if (isset($_POST["login"])) {
     $cin = $_POST["cin"];
     $email = strtolower($_POST["email"]);

@@ -1,6 +1,6 @@
 <?php
 include_once '../../../core/init.php';
-include_once '../../etudiant/fonctions/tools.function.php';
+include_once '../../../fonctions/tools.function.php';
 $module = $_GET['module'];
 $id_controle = $_GET['id_controle'];
 ?>

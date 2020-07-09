@@ -7,8 +7,8 @@ if (!$user->isLoggedIn()) {
 } else {
     $username = $user->data()->username;
 ?>
-  <!DOCTYPE html>
-  <html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
     <head>
         <meta charset="UTF-8">
@@ -60,7 +60,7 @@ if (!$user->isLoggedIn()) {
                     <div class="modal-content ">
                         <div class="modal-body">
                             <?php
-                              include "afficheTableauDemandes.php";
+                            include "afficheTableauDemandes.php";
                             ?>
                         </div>
                     </div>
@@ -78,12 +78,12 @@ if (!$user->isLoggedIn()) {
         <!-- <script type="text/javascript" src="../../../layout/js/animation.js"></script> -->
         <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
         <script>
-          $('.mydatatable').DataTable();
+            $('.mydatatable').DataTable();
         </script>
         <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
     </body>
 
-  </html>
+    </html>
 <?php
 }
 ?>

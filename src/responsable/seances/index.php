@@ -138,7 +138,18 @@ if (!$user->isLoggedIn()) {
                             </div>
                             <div class="col">
                                 <label for="salle" class="col-form-label">Salle</label>
-                                <input type="text" class="form-control" id="salle" required>
+                                <select class="form-control" id="salle">
+                                    <?php
+                                    $sql = "SELECT *
+                                        FROM salle";
+                                    $resultat = $db->query($sql, []);
+                                    foreach ($resultat->results() as $row) {
+                                    ?>
+                                        <option value="<?php echo $row->id_salle ?>"><?php echo $row->salle ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
 

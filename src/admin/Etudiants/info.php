@@ -69,15 +69,15 @@ $info = getInfos($id);
     </div>
 </div>
 <div class="modal-footer d-flex justify-content-between">
-<?php
+    <?php
     if (!ActiveCompte::isAlreadyActivated($info->id)) { ?>
         <span style="color: red">*Compte pas encore activé.</span>
-<?php
+    <?php
     } else {
-?>
+    ?>
         <span></span>
-<?php
+    <?php
     }
-?>
+    ?>
     <button type="button" class="btn btn-secondary" id="closeModal" data-dismiss="modal">Close</button>
 </div>

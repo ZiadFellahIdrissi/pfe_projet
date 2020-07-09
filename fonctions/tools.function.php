@@ -171,13 +171,20 @@ function getAbsence($id, $module)
     $resultat = $db->query($sql, [$id, $module, $startWeek, $endWeek]);
     return $resultat;
 }
-function demandeCheck($id_etudiant, $type_, $etat){
+function demandeCheck($id_etudiant, $type_, $etat)
+{
     $db = DB::getInstance();
-    $type="";
-  	switch($type_){
-      case 'releve'      : $type = "un relevé de notes"; break;
-      case 'attestation' : $type = "une attestation de scolarité"; break;
-      case 'stage'       : $type = "une autorisation de stage"; break;
+    $type = "";
+    switch ($type_) {
+        case 'releve':
+            $type = "un relevé de notes";
+            break;
+        case 'attestation':
+            $type = "une attestation de scolarité";
+            break;
+        case 'stage':
+            $type = "une autorisation de stage";
+            break;
     }
     $sql = "SELECT id
             FROM Demandes

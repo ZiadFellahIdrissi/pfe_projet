@@ -1,5 +1,5 @@
 <?php
-  require_once '../../../fonctions/tools.function.php';
+require_once '../../../fonctions/tools.function.php';
 ?>
 <!-- MENU SIDEBAR-->
 <aside class="menu-sidebar2">
@@ -33,11 +33,11 @@
                     <a href="../Examens">
                         <i class="fa fa-file"></i>Controles</a>
                     <?php
-                      $resultat = controles($id);
-                      $count = $resultat->count();
-                      if ($count) {
-                          echo '<span class="inbox-num">' . $count . '</span>';
-                      }
+                    $resultat = controles($id);
+                    $count = $resultat->count();
+                    if ($count) {
+                        echo '<span class="inbox-num">' . $count . '</span>';
+                    }
                     ?>
                 </li>
                 <li class="">

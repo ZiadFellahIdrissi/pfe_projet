@@ -1,37 +1,37 @@
 <?php
-  require_once '../../../fonctions/tools.function.php';
-  if(!demandeCheck($id, 'releve', -1) && !demandeCheck($id, 'releve', 1)){
-?>
-  <div style="text-align: right; margin-bottom: 1%">
-      <?php
-        if(demandeCheck($id, 'releve', 0)){
-      ?>
-          <span style="color: red">Votre demande précédent a été refusé.</span>
-      <?php
-        }
-      ?>
-      <button type="button" class="btn btn-outline-dark" onclick="location.href='../demander.php?type=releve&id=<?php echo $id ?>'">
-        <span><i class="fa fa-print"></i></span> Demander le relevé de notes
-      </button>
-  </div>
-<?php
-  }
-  if(demandeCheck($id, 'releve', -1) && !demandeCheck($id, 'releve', 1)){
-?>
-  <div style="text-align: right; margin-bottom: 1%">
-    Demande envoyé.
-  </div>
-<?php
-}
-  if(demandeCheck($id, 'releve', 1)){
+require_once '../../../fonctions/tools.function.php';
+if (!demandeCheck($id, 'releve', -1) && !demandeCheck($id, 'releve', 1)) {
 ?>
     <div style="text-align: right; margin-bottom: 1%">
-      <button type="button" class="btn btn-outline-dark" onclick="location.href=''">
-        <span><i class="fa fa-download"></i></span> Télécharger le relevé de notes.
-      </button>
+        <?php
+        if (demandeCheck($id, 'releve', 0)) {
+        ?>
+            <span style="color: red">Votre demande précédent a été refusé.</span>
+        <?php
+        }
+        ?>
+        <button type="button" class="btn btn-outline-dark" onclick="location.href='../demander.php?type=releve&id=<?php echo $id ?>'">
+            <span><i class="fa fa-print"></i></span> Demander le relevé de notes
+        </button>
     </div>
 <?php
-  }
+}
+if (demandeCheck($id, 'releve', -1) && !demandeCheck($id, 'releve', 1)) {
+?>
+    <div style="text-align: right; margin-bottom: 1%">
+        Demande envoyé.
+    </div>
+<?php
+}
+if (demandeCheck($id, 'releve', 1)) {
+?>
+    <div style="text-align: right; margin-bottom: 1%">
+        <button type="button" class="btn btn-outline-dark" onclick="location.href=''">
+            <span><i class="fa fa-download"></i></span> Télécharger le relevé de notes.
+        </button>
+    </div>
+<?php
+}
 ?>
 
 <div class="au-card notes shadow-lg bg-white rounded" style="padding: 0;">
@@ -63,10 +63,10 @@
                 <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
                     <td colspan=4>1ère Semestre</td>
                 </tr>
-            <?php
-            $db->query(sqlStatment('1ere Semestre'), [$id]);
-            foreach ($db->results() as $row) {
-            ?>
+                <?php
+                $db->query(sqlStatment('1ere Semestre'), [$id]);
+                foreach ($db->results() as $row) {
+                ?>
                     <tr>
                         <td><?php echo $row->intitule ?></td>
 
@@ -117,12 +117,12 @@
                         </td>
                     </tr>
                 <?php
-            }
-            $se = getSemestre()->date_fin;
-            if (date('yy/m/d', time()) < $se) {
-                echo '</tbody>';
-                echo '</table>';
-            } else {
+                }
+                $se = getSemestre()->date_fin;
+                if (date('yy/m/d', time()) < $se) {
+                    echo '</tbody>';
+                    echo '</table>';
+                } else {
                 ?>
                     <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
                         <td colspan=4>2ème Semestre</td>
@@ -181,7 +181,7 @@
                     }
                 }
                 ?>
-                </tbody>
+            </tbody>
         </table>
     </div>
 </div>
