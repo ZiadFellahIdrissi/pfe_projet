@@ -299,6 +299,11 @@ if (!$user->isLoggedIn()) {
                         $('#email').val('<?php echo $info->email ?>');
                         hideRedBorderForError("email", "errmail");
                         $('#email').removeAttr("readonly");
+                        var url = window.location.toString();
+                        if (url.indexOf("?") > 0) {
+                            var clean_uri = uri.substring(0, url.indexOf("?"));
+                            window.history.replaceState({}, document.title, clean_url);
+                        }
                     });
                 }
 

@@ -2,7 +2,7 @@
 if (isset($_GET["cin"])) {
     include_once '../../../core/init.php';
     $db = DB::getInstance();
-    include_once '../../etudiant/fonctions/tools.function.php';
+    include_once '../../../fonctions/tools.function.php';
     $id = $_GET["cin"];
 ?>
     <div class=" notes " style="border-radius:5%;">
@@ -75,7 +75,7 @@ if (isset($_GET["cin"])) {
                 </thead>
                 <tbody>
                     <?php
-                        $db->query(sqlStatment('1ere Semestre'), [$id]);
+                    $db->query(sqlStatment('1ere Semestre'), [$id]);
                     ?>
                     <tr style="background: rgba(0, 0, 0, 0.1); font-weight: bold; font-size:large;">
                         <td colspan=2>1ère Semestre</td>
@@ -106,11 +106,11 @@ if (isset($_GET["cin"])) {
                             <td><?php echo $row->intitule ?></td>
 
                             <!-- hado khelithom f 7alat ma bghiti trej3 l examens finale yban o l controls -->
-                            <!-- Controles --> 
+                            <!-- Controles -->
                             <!-- <td style="font-weight:bold; text-align: center">
                                 <?php
-                                
-                                if($controleCount != 0)
+
+                                if ($controleCount != 0)
                                     echo ($sommeControle / $controleCount) * $coeff_controle;
                                 ?>
                             </td> -->
@@ -118,41 +118,41 @@ if (isset($_GET["cin"])) {
                             <!-- Examen Final -->
                             <!-- <td id='bold'>
                                 <?php
-                                    echo $noteExamFinale;
+                                echo $noteExamFinale;
                                 ?>
                             </td> -->
 
                             <!-- Moyenne Genrale -->
                             <td id='bold' style="text-align: center">
                                 <?php
-                                    $countModule++;
-                                    if ($noteExamFinale != -1) {
-                                        if($controleCount != 0)
-                                            $moyModule = ($noteExamFinale * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
-                                        else
-                                            $moyModule = $noteExamFinale;
-                                        
-                                        $examCount++;
-                                        echo $moyModule;
-                                    }
+                                $countModule++;
+                                if ($noteExamFinale != -1) {
+                                    if ($controleCount != 0)
+                                        $moyModule = ($noteExamFinale * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
+                                    else
+                                        $moyModule = $noteExamFinale;
+
+                                    $examCount++;
+                                    echo $moyModule;
+                                }
                                 ?>
                             </td>
                         </tr>
-                        
+
                     <?php
                     }
-                        if($countModule && $examCount == $countModule){
+                    if ($countModule && $examCount == $countModule) {
                     ?>
                         <!-- l moyenne dyl semestre 1 -->
                         <tr>
-                            <td class="float-right">Moyenne Generale dyl semestre 1: <?php echo $moySem1=$moyModule/$countModule ?></td>
+                            <td class="float-right">Moyenne Generale dyl semestre 1: <?php echo $moySem1 = $moyModule / $countModule ?></td>
                         </tr>
                     <?php
-                        }
+                    }
                     $se = getSemestre()->date_fin;
                     if (date('yy/m/d', time()) < $se) {
-                    echo '</tbody>';
-                echo '</table>';
+                        echo '</tbody>';
+                        echo '</table>';
                     } else {
                         $db->query(sqlStatment('2eme Semestre'), [$id]);
                     ?>
@@ -187,7 +187,7 @@ if (isset($_GET["cin"])) {
                                 <!-- Controles -->
                                 <!-- <td style="font-weight:bold; text-align: center">
                                     <?php
-                                        if($sommeControle!=0)
+                                    if ($sommeControle != 0)
                                         echo ($sommeControle / $controleCount) * $coeff_controle;
                                     ?>
                                 </td> -->
@@ -195,41 +195,41 @@ if (isset($_GET["cin"])) {
                                 <!-- Examen Final -->
                                 <!-- <td id='bold'>
                                     <?php
-                                        echo $noteExamFinale;
+                                    echo $noteExamFinale;
                                     ?>
                                 </td> -->
 
                                 <!-- Moyenne Genrale -->
-                                <td id='bold'  style="text-align: center">
+                                <td id='bold' style="text-align: center">
                                     <?php
-                                        $countModule++;
-                                        if ($noteExamFinale != -1) {
-                                            if($controleCount != 0)
-                                                $moyModule = ($noteExamFinale * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
-                                            else
-                                                $moyModule = $noteExamFinale;
+                                    $countModule++;
+                                    if ($noteExamFinale != -1) {
+                                        if ($controleCount != 0)
+                                            $moyModule = ($noteExamFinale * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
+                                        else
+                                            $moyModule = $noteExamFinale;
 
-                                            $examCount++;
-                                            echo $moyModule;
-                                        }
+                                        $examCount++;
+                                        echo $moyModule;
+                                    }
                                     ?>
                                 </td>
                             </tr>
-                    <?php
+                        <?php
                         }
-                        if($countModule && $examCount == $countModule){
-                    ?>
-                        <!-- l moyenne dyl semestre 2 -->
-                        <tr>
-                            <td class="float-right">Moyenne Generale dyl semestre 2: <?php echo $moySem2=$moyModule/$countModule ?></td>
-                        </tr>
-                    <?php
+                        if ($countModule && $examCount == $countModule) {
+                        ?>
+                            <!-- l moyenne dyl semestre 2 -->
+                            <tr>
+                                <td class="float-right">Moyenne Generale dyl semestre 2: <?php echo $moySem2 = $moyModule / $countModule ?></td>
+                            </tr>
+                        <?php
                         }
                     }
-                    if(isset($moySem1) && isset($moySem2)){
-                    ?>
+                    if (isset($moySem1) && isset($moySem2)) {
+                        ?>
                         <!-- l moyenne dyl 3am kaml -->
-                        <div class="float-right"><?php echo "Moyenne Generale Dyl 3am: ".($moySem1+$moySem2)/2 ?></div>
+                        <div class="float-right"><?php echo "Moyenne Generale Dyl 3am: " . ($moySem1 + $moySem2) / 2 ?></div>
                     <?php
                     }
                     ?>

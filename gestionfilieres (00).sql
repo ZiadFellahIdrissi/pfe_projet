@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 09, 2020 at 04:02 AM
+-- Generation Time: Jul 09, 2020 at 05:51 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 --
 
 INSERT INTO `administrateur` (`nom`, `prenom`, `email`, `imagepath`, `username`, `password`) VALUES
-('abghoure', 'mohamed', 'mohamed.abghour@fsac.ma', 'avatar.svg', 'admin', 'admin');
+('abghoure', 'mohamed', 'abghoure.mohamed_fs@fsac.ma', 'enseignant.svg', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -73,10 +73,12 @@ CREATE TABLE IF NOT EXISTS `controle` (
   `date` date NOT NULL,
   `h_debut` time NOT NULL,
   `h_fin` time NOT NULL,
+  `salle` int(11) DEFAULT NULL,
   `id_module` int(11) NOT NULL,
   PRIMARY KEY (`id_controle`),
-  KEY `id_module` (`id_module`)
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb4;
+  KEY `id_module` (`id_module`),
+  KEY `Controle_ibfk_2` (`salle`)
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -218,7 +220,7 @@ INSERT INTO `salle` (`id_salle`, `salle`) VALUES
 (4, 'Amphi_C'),
 (5, 'Amphi_E'),
 (6, 'Amphi_K'),
-(7, 'Salle 1');
+(7, 'Salle 11');
 
 -- --------------------------------------------------------
 
@@ -237,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `seance` (
   PRIMARY KEY (`id_seance`),
   KEY `id_module` (`id_module`),
   KEY `Seance_ibfk_2` (`salle`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -298,7 +300,8 @@ ALTER TABLE `assiste`
 -- Constraints for table `controle`
 --
 ALTER TABLE `controle`
-  ADD CONSTRAINT `Controle_ibfk_1` FOREIGN KEY (`id_module`) REFERENCES `module` (`id_module`);
+  ADD CONSTRAINT `Controle_ibfk_1` FOREIGN KEY (`id_module`) REFERENCES `module` (`id_module`),
+  ADD CONSTRAINT `Controle_ibfk_2` FOREIGN KEY (`salle`) REFERENCES `salle` (`id_salle`);
 
 --
 -- Constraints for table `demandes`

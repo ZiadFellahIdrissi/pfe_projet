@@ -137,6 +137,21 @@ if (!$user->isLoggedIn()) {
                             <label for="date_controle" class="col-form-label">Date du Controle</label>
                             <input type="date" class="form-control" name="date_controle" id="date_controle" required>
                         </div>
+                        <div class="form-group">
+                            <label for="salle" class="col-form-label">Salle</label>
+                            <select class="form-control" id="salle">
+                                <?php
+                                $sql = "SELECT *
+                                        FROM salle";
+                                $resultat = $db->query($sql, []);
+                                foreach ($resultat->results() as $row) {
+                                ?>
+                                    <option value="<?php echo $row->id_salle ?>"><?php echo $row->salle ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
 
                         <!-- heur debut / heur fin -->
                         <div class="row">
@@ -360,6 +375,7 @@ if (!$user->isLoggedIn()) {
                     var dateControle = $("#date_controle").val();
                     var heur_debut = $("#heur_debut").val();
                     var heur_fin = $("#heur_fin").val();
+                    var salle = $("#salle").val();
 
                     // tester la date de controle
                     let dateNow = GetFormattedDate();
@@ -385,7 +401,8 @@ if (!$user->isLoggedIn()) {
                                     module: module,
                                     dateControle: dateControle,
                                     heur_debut: heur_debut,
-                                    heur_fin: heur_fin
+                                    heur_fin: heur_fin,
+                                    salle: salle
                                 },
                                 contentType: "application/json",
                                 dataType: 'json',

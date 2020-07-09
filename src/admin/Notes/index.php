@@ -7,6 +7,10 @@ if (!$user->isLoggedIn()) {
     header('Location: ../pages/login.php');
 } else {
     $username = $user->data()->username;
+    $nom = $user->data()->nom;
+    $prenom = $user->data()->prenom;
+    $email = $user->data()->email;
+    $imagepath = $user->data()->imagepath;
 ?>
     <!DOCTYPE html>
     <html lang="en">

@@ -3,6 +3,7 @@
     $db = DB::getInstance();
 
     $module = $_GET["module"];
+    $salle = $_GET["salle"];
     $datecontrole = $_GET["dateControle"];
     $heur_debut = $_GET["heur_debut"];
     $heur_fin = $_GET["heur_fin"];
@@ -30,9 +31,9 @@
         $r=array("error"=>$error);
         echo json_encode($r);
     } else {
-        $sql = "INSERT INTO `Controle`( `type`, `date`, `h_debut`, `h_fin`, `id_module`)
-                VALUES (?,?,?,?,?)";
-        $db->query($sql, ['controle', $datecontrole, $heur_debut, $heur_fin, $module]);
+        $sql = "INSERT INTO `Controle`( `type`, `date`, `h_debut`, `h_fin`, `salle`, `id_module`)
+                VALUES (?,?,?,?,?,?)";
+        $db->query($sql, ['controle', $datecontrole, $heur_debut, $heur_fin,$salle, $module]);
 
         echo json_encode([]);
     }

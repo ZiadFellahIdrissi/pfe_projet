@@ -8,6 +8,10 @@ if (!$user->isLoggedIn()) {
     header('Location: ../pages/login.php');
 } else {
     $username = $user->data()->username;
+    $nom = $user->data()->nom;
+    $prenom = $user->data()->prenom;
+    $email = $user->data()->email;
+    $imagepath = $user->data()->imagepath;
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -111,13 +115,27 @@ if (!$user->isLoggedIn()) {
                                     </div>
                                 </option>
                             </select>
-
                         </div>
 
                         <!-- date controle -->
                         <div class="form-group">
                             <label for="date_controle" class="col-form-label">Date du Controle</label>
                             <input type="date" class="form-control" name="date_controle" id="date_controle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="salle" class="col-form-label">Salle</label>
+                            <select class="form-control" id="salle">
+                                <?php
+                                $sql = "SELECT *
+                                        FROM salle";
+                                $resultat = $db->query($sql, []);
+                                foreach ($resultat->results() as $row) {
+                                ?>
+                                    <option value="<?php echo $row->id_salle ?>"><?php echo $row->salle ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
 
                         <!-- heur debut / heur fin -->
@@ -286,29 +304,39 @@ if (!$user->isLoggedIn()) {
                     var dateExames = $("#date_controle").val();
                     var heur_debut = $("#heur_debut").val();
                     var heur_fin = $("#heur_fin").val();
-                    $.ajax({
-                        url: "ajoute_exames.php",
-                        method: 'GET',
-                        data: {
-                            module: module,
-                            dateExames: dateExames,
-                            heur_debut: heur_debut,
-                            heur_fin: heur_fin
-                        },
-                        contentType: "application/json",
-                        dataType: 'json',
-                        success: function(data) {
-                            if (data.error) {
-                                alert(data.error);
-                            } else {
-                                calendar.fullCalendar("refetchEvents");
-                                $("#addExame").modal('hide');
+                    var salle = $("#salle").val();
+
+                    var d1 = new Date(dateExames + ' ' + heur_debut);
+                    var d2 = new Date(dateExames + ' ' + heur_fin);
+                    var diff = (d2.getHours() * 60 + d2.getMinutes() - d1.getHours() * 60 + d1.getMinutes()) / 60;
+                    if (diff < 1) {
+                        alert("La durée du Exame doit être égale à une heure au minimum!");
+                    } else {
+                        $.ajax({
+                            url: "ajoute_exames.php",
+                            method: 'GET',
+                            data: {
+                                module: module,
+                                dateExames: dateExames,
+                                heur_debut: heur_debut,
+                                heur_fin: heur_fin,
+                                salle: salle
+                            },
+                            contentType: "application/json",
+                            dataType: 'json',
+                            success: function(data) {
+                                if (data.error) {
+                                    alert(data.error);
+                                } else {
+                                    calendar.fullCalendar("refetchEvents");
+                                    $("#addExame").modal('hide');
+                                }
+                            },
+                            error: function() {
+                                alert('failure');
                             }
-                        },
-                        error: function() {
-                            alert('failure');
-                        }
-                    });
+                        });
+                    }
                 });
             });
         </script>

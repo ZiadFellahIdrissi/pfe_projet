@@ -2,24 +2,23 @@
 include_once '../../../core/init.php';
 include_once '../../../fonctions/tools.function.php';
 include '../../connection.php';
-$email = $_POST["email"];
-$cin = $_POST["cin"];
+$email = strtolower($_POST["email"]);
+$username = $_POST["username"];
 
 $sqltest = "SELECT Utilisateur.email
             FROM Utilisateur
-            WHERE Utilisateur.email = '$email'
-            AND Utilisateur.id != '$cin'";
+            WHERE Utilisateur.email = '$email'";
 
 $numrow = mysqli_num_rows(mysqli_query($conn, $sqltest));
 if ($numrow) {
     goto checkpicture;
 }
-$sql = "UPDATE Utilisateur
+$sql = "UPDATE administrateur
         SET `email` = '$email'
-        WHERE id = '$cin'";
+        WHERE username = '$username'";
 mysqli_query($conn, $sql);
 
-checkpicture: $imagepath = getPersonInfo($cin)->imagepath;
+checkpicture: $imagepath = getAdminInfo($username)->imagepath;
 //CHANGEMENT DE IMAGE
 $file = $_FILES['file'];
 $fileName = $_FILES['file']['name'];
@@ -38,15 +37,15 @@ if ($fileName != '') {
                 $fileDistination = "../../../img/profiles/$filenewname";
                 if (move_uploaded_file($filetmp, $fileDistination)) {
 
-                    if ($imagepath != 'avatar.svg') {
+                    if ($imagepath != 'enseignant.svg') {
                         if (file_exists("../../../img/profiles/$imagepath")) {
                             unlink("../../../img/profiles/$imagepath");
                         }
                     }
 
-                    $sql = "UPDATE Utilisateur
+                    $sql = "UPDATE administrateur
                                 SET `imagepath` = '$filenewname'
-                            WHERE id = '$cin'";
+                            WHERE username = '$username'";
                     mysqli_query($conn, $sql);
                     if ($numrow)
                         echo 'email';

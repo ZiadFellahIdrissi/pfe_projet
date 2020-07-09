@@ -7,6 +7,10 @@ if (!$user->isLoggedIn()) {
     header('Location: ../pages/login.php');
 } else {
     $username = $user->data()->username;
+    $nom = $user->data()->nom;
+    $prenom = $user->data()->prenom;
+    $email = $user->data()->email;
+    $imagepath = $user->data()->imagepath;
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -49,7 +53,7 @@ if (!$user->isLoggedIn()) {
             include '../pages/header.php';
             ?>
             <div class="main-content ">
-                <?php include 'DML_Commentator.php'; 
+                <?php include 'DML_Commentator.php';
                 ?>
                 <div class="container mb-3">
                     <nav aria-label="breadcrumb nov">
@@ -148,6 +152,11 @@ if (!$user->isLoggedIn()) {
         <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
         <script>
             $(document).ready(function() {
+                // var url = window.location.toString();
+                // if (url.indexOf("?") > 0) {
+                //     var clean_uri = uri.substring(0, url.indexOf("?"));
+                //     window.history.replaceState({}, document.title, clean_url);
+                // }
                 $('.toast').toast({
                     delay: 5000
                 });
@@ -224,8 +233,8 @@ if (!$user->isLoggedIn()) {
                             // history.pushState({}, '', '?'+data);
                             // $('.salles').load("./affiche_tabe_Salle.php");
 
-                            location.href="./?"+data;
-                            
+                            location.href = "./?" + data;
+
                         }
                     });
                 });

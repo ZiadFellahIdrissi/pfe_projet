@@ -2,14 +2,15 @@
 include_once '../../../core/init.php';
 include_once '../../../fonctions/tools.function.php';
 // hnaa zide if isset b roooooooooooooooojola, hh la
-$cin = $_GET["cin"];
+
+$username = $_GET["username"];
 $currentPassword = $_GET["currentPassword"];
 $newPassword = $_GET["newPassword"];
 
-$passfromdatabase = getPersonInfo($cin)->password;
+$passfromdatabase = getAdminInfo($username)->password;
 
 if ($currentPassword === $passfromdatabase) {
-    if (!ActiveCompte::setPassword($cin, $newPassword))
+    if (!User_Admin::setAdminPassword($username, $newPassword))
         echo '<div class="alert alert-success" style="text-align: center;" role="alert">
                 Mot de passe à étè bien changé.
                 </div>

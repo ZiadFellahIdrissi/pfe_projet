@@ -204,6 +204,15 @@ function getDatesSemestre($id)
     return $resultats;
 }
 
+function getAdminInfo($username){
+    $db = DB::getInstance();
+       $sql = "SELECT *
+               FROM administrateur
+               WHERE username = ?";
+       $resultats = $db->query($sql, [$username]);
+       return $resultats->first();
+   }
+
 //=======================================================================
 $max_Exame_finale = "";
 $min_Exame_finale = "";

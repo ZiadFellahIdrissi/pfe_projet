@@ -7,6 +7,10 @@ if (!$user->isLoggedIn()) {
     header('Location: ../pages/login.php');
 } else {
     $username = $user->data()->username;
+    $nom = $user->data()->nom;
+    $prenom = $user->data()->prenom;
+    $email = $user->data()->email;
+    $imagepath = $user->data()->imagepath;
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -84,7 +88,7 @@ if (!$user->isLoggedIn()) {
 
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control-plaintext" value="1ere Semester :" style="font-weight: bold;" readonly="readonly" >
+                                        <input type="text" class="form-control-plaintext" value="1ere Semester :" style="font-weight: bold;" readonly="readonly">
                                     </div>
 
                                     <div class="col">
@@ -101,7 +105,7 @@ if (!$user->isLoggedIn()) {
 
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control-plaintext" value="2eme Semester :" style="font-weight: bold;" readonly="readonly" >
+                                        <input type="text" class="form-control-plaintext" value="2eme Semester :" style="font-weight: bold;" readonly="readonly">
                                     </div>
 
                                     <div class="col">

@@ -1,6 +1,7 @@
 <?php
 if (!empty($_GET['id_filiere'])) {
-    include_once '../../etudiant/fonctions/tools.function.php';
+    include_once '../../../core/init.php';
+    include_once '../../../fonctions/tools.function.php';
     include '../../connection.php';
 ?>
     <!-- relvet de notes -->
@@ -57,7 +58,7 @@ if (!empty($_GET['id_filiere'])) {
                                 <td>
                                     <div class="table-data-feature">
                                         <button class="openModalNotes" data-toggle="tooltip" data-placement="top" id='<?php echo $row["cin"] ?>' title='Relevé de notes de <?php echo $row["nom"].' '.$row["prenom"] ?>'>
-                                            <img src="https://image.flaticon.com/icons/svg/782/782702.svg" width="35">
+                                            <img src="../../../img/Dashboard/relvetnote.svg" width="35">
                                         </button>
                                     </div>
                                 </td>

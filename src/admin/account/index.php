@@ -7,12 +7,16 @@ if (!$user->isLoggedIn()) {
     header('Location: ../pages/login.php');
 } else {
     $username = $user->data()->username;
+    $nom = $user->data()->nom;
+    $prenom = $user->data()->prenom;
+    $email = $user->data()->email;
+    $imagepath = $user->data()->imagepath;
 ?>
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
-        <title>Notes</title>
+        <title>Paramètre</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="../../../layout/css/animation.css" rel="stylesheet" type="text/css" />
@@ -50,6 +54,13 @@ if (!$user->isLoggedIn()) {
             width: 20px;
             color: white;
         }
+
+        .parametre {
+            background: url('../../../img/Dashboard/pic03.jpg');
+            background-position: center center;
+            background-size: cover;
+            width: 100%
+        }
     </style>
 
     <body>
@@ -64,22 +75,21 @@ if (!$user->isLoggedIn()) {
                     <nav aria-label="breadcrumb nov">
                         <ol class="breadcrumb nov">
                             <li class="breadcrumb-item"><a href="../pages">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Notes</li>
+                            <li class="breadcrumb-item active" aria-current="page">Paramètre</li>
                         </ol>
                     </nav>
                     <div class="col-md-14">
-                        <div class="container" style="margin-top: 5.5%;">
-                            <br>
-                            <div class="container rounded text-white" style="background: url('../../../img/Dashboard/pic03.jpg'); background-position: center center;
-    background-size: cover; width: 100%">
-                                <br>
+                        <div class="container">
+
+                            <div class="container rounded text-white parametre">
+
                                 <form id="myform" method="POST" action="modifierProfile.php" enctype="multipart/form-data">
                                     <div class="progress" style="display:none">
                                         <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div><br>
                                     <div class="account d-flex justify-content-center">
                                         <div class="image img-cir img-120">
-                                            <img src="../../../img/profiles/<?php //echo $imagepath ?>" id="profileDisplay" />
+                                            <img src="../../../img/profiles/<?php echo $imagepath ?>" id="profileDisplay" />
                                             <img type="button" src="../../../img/signup/modify.png" id="changePicture" onclick="chooseMyPicture()" title="Changer Votre photo de profile">
                                             <input type="file" name="file" id="profileImage" onchange="displayImage(this)" style="display: none">
                                         </div>
@@ -92,12 +102,12 @@ if (!$user->isLoggedIn()) {
                                         <div class=" form-group row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    Nom: <input type="text" class="form-control" value="<?php //echo strtoupper($nom) . ' ' . $prenom ?>" readonly="readonly">
+                                                    Nom: <input type="text" class="form-control" value="<?php echo strtoupper($nom) . ' ' . $prenom ?>" readonly="readonly">
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    Username: <input type="text" class="form-control" value="<?php //echo strtoupper($info->username); ?>" readonly="readonly">
+                                                    Username: <input type="text" class="form-control" value="<?php echo $username; ?>" readonly="readonly">
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +116,7 @@ if (!$user->isLoggedIn()) {
                                             <div class="col">
                                                 Email:
                                                 <div class="form-group input-group">
-                                                    <input type="text" class="form-control" name="email" id="email" value="<?php //echo isset($_GET['email']) ? $_GET['email'] : $info->email ?>">
+                                                    <input type="text" class="form-control" name="email" id="email" value="<?php echo isset($_GET['email']) ? $_GET['email'] : $email ?>">
                                                     <div class="errmail"></div>
                                                 </div>
                                             </div>
@@ -124,7 +134,7 @@ if (!$user->isLoggedIn()) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="hidden" name="cin" value="<?php //echo $id ?>">
+                                        <input type="hidden" name="username" value="<?php echo $username ?>">
                                         <div class="saveChanging float-right">
                                             <button type="submit" id="submit" class="btn btn-outline-primary" style="display:none">Enregistrer</button>
                                         </div>
@@ -182,7 +192,7 @@ if (!$user->isLoggedIn()) {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="cin" id="cin" value="<?php //echo $id; ?>">
+                        <input type="hidden" name="username" id="username" value="<?php echo $username; ?>">
                         <button type="button" id="buttonclose" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                         <button type="button" id="buttonsubmit" class="btn btn-primary">Save changes</button>
                     </div>
@@ -210,7 +220,7 @@ if (!$user->isLoggedIn()) {
 
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
-        <script src="http://malsup.github.com/jquery.form.js"></script>
+        <script src="../../../layout/js/jquery.form.js"></script>
 
         <script type="text/javascript">
             function hideRedBorderForError(id, classError) {
@@ -247,7 +257,7 @@ if (!$user->isLoggedIn()) {
                     var currentPassword = $("#currentPassword").val();
                     var newPassword = $("#newPassword").val();
                     var checkPassword = $("#0password").val();
-                    let cin = $("#cin").val();
+                    let username = $("#username").val();
                     if (currentPassword != "" && newPassword != "" && checkPassword != "") {
                         if (newPassword === checkPassword) {
                             $.ajax({
@@ -256,7 +266,7 @@ if (!$user->isLoggedIn()) {
                                 data: {
                                     newPassword: newPassword,
                                     currentPassword: currentPassword,
-                                    cin: cin
+                                    username: username
                                 },
                                 dataType: "text",
                                 beforeSend: function() {
@@ -297,9 +307,14 @@ if (!$user->isLoggedIn()) {
                 showRedBorderForError("email", "errmail", "Email déja utilisé!");
                 $('#email').attr("readonly", "readonly");
                 $('.errmail').delay(3000).queue(function() {
-                    $('#email').val('<?php //echo $info->email ?>');
+                    $('#email').val('<?php echo $email; ?>');
                     hideRedBorderForError("email", "errmail");
                     $('#email').removeAttr("readonly");
+                    var url = window.location.toString();
+                    if (url.indexOf("?") > 0) {
+                        var clean_uri = uri.substring(0, url.indexOf("?"));
+                        window.history.replaceState({}, document.title, clean_url);
+                    }
                 });
             }
 

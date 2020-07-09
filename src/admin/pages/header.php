@@ -64,28 +64,28 @@ $db = DB::getInstance();
                         <div class="account-wrap ">
                             <div class="account-item clearfix js-item-menu ">
                                 <div class="image ">
-                                    <img src="../../../img/profiles/enseignant.svg " />
+                                    <img src="../../../img/profiles/<?php echo $imagepath ?>" />
                                 </div>
                                 <div class="content">
                                     <a class="js-acc-btn " href="">
-                                        <?php echo $username; ?>
+                                        <?php echo $nom.' '.$prenom; ?>
                                     </a>
                                 </div>
                                 <div class="account-dropdown js-dropdown ">
                                     <div class="info clearfix ">
                                         <div class="image ">
                                             <a href="# ">
-                                                <img src="../../../img/profiles/enseignant.svg " />
+                                                <img src="../../../img/profiles/<?php echo $imagepath ?> " />
                                             </a>
                                         </div>
                                         <div class="content ">
                                             <h5 class="name ">
                                                 <a href="# ">
-                                                    <?php echo $username; ?>
+                                                    <?php echo $nom.' '.$prenom; ?>
                                                 </a>
                                             </h5>
                                             <span class="email ">
-                                                admin@h2c.fsac
+                                            <?php echo $email; ?>
                                             </span>
                                         </div>
                                     </div>
