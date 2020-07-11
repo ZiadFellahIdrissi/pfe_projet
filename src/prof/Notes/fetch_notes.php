@@ -7,11 +7,11 @@ function fetch_Ratt_Students($module)
     $sql = "SELECT Utilisateur.nom, Utilisateur.prenom, Utilisateur.id, Etudiant.cne
                 FROM Utilisateur
                 join Etudiant ON Etudiant.id = Utilisateur.id
-                join passe on passe.id_etudiant=Etudiant.id
-                JOIN Controle on Controle.id_controle=passe.id_controle
-                where Controle.type=?
+                join passe on passe.id_etudiant = Etudiant.id
+                JOIN Controle on Controle.id_controle = passe.id_controle
+                where Controle.type = ?
                 and passe.note < ?
-                and Controle.id_module = ? ";
+                and Controle.id_module = ?";
     $results = $db->query($sql, ['exam_finale_normal', 12, $module]);
     return $results;
 }

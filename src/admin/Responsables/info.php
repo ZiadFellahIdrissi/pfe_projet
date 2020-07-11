@@ -1,6 +1,6 @@
 <?php
-include_once '../../../fonctions/tools.function.php';
 include_once '../../../core/init.php';
+include_once '../../../fonctions/tools.function.php';
 $id = $_GET["cin"];
 $allInfos = getResponsableInfos($id);
 ?>
@@ -53,7 +53,7 @@ $allInfos = getResponsableInfos($id);
                     </div>
                 </div>
                 <?php } ?>
-                
+
                 <div class="row">
                     <div class="col">
                         <div class="form-group">

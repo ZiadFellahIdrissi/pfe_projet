@@ -4,10 +4,11 @@ require_once '../../../fonctions/tools.function.php';
 function isTherefianleExam($filiere)
 {
     $db = DB::getInstance();
-    $sql = "SELECT id_controle from Controle 
-                join dispose_de on Controle.id_module=dispose_de.id_module 
-                where dispose_de.id_filiere=? 
-                and Controle.type=?";
+    $sql = "SELECT id_controle
+            FROM Controle
+            JOIN dispose_de ON Controle.id_module = dispose_de.id_module
+            WHERE dispose_de.id_filiere = ?
+            AND Controle.type = ?";
     $resultat = $db->query($sql, [$filiere, 'exam_finale_normal']);
     return $resultat;
 }
@@ -54,10 +55,10 @@ if (demandeCheck($id, 'releve', 1)) {
                 FROM Module
                 JOIN dispose_de ON Module.id_module = dispose_de.id_module
                 JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
-                WHERE Semestre.semestre='$semester'
+                WHERE Semestre.semestre = '$semester'
                 AND dispose_de.id_filiere = (SELECT id_filiere
-                                              FROM Etudiant
-                                              WHERE id = ?      )";
+                                             FROM Etudiant
+                                             WHERE id = ?     )";
         return $sql;
     }
     ?>

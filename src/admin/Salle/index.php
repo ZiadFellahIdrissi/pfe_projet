@@ -216,7 +216,7 @@ if (!$user->isLoggedIn()) {
                 $(document).on('click', '.supprimier_salle', function() {
                     let id_salle = $(this).attr("id");
                     $.ajax({
-                        url: "Supprimier_Salle.php",
+                        url: "Supprimer_Salle.php",
                         method: "GET",
                         data: {
                             id_salle: id_salle

@@ -1,4 +1,4 @@
-<?php 
+<?php
     include_once '../../../core/init.php';
     $db = DB::getInstance();
     $cin=$_POST["CIN"];
@@ -12,7 +12,7 @@
     $db->query($sql, [$cin, $id_controle]);
 
     $sql = "INSERT INTO passe
-                VALUES(?, ?, ?)";
+            VALUES(?, ?, ?)";
 
     $db->query($sql,[$cin, $id_controle, $moyenne]);
 

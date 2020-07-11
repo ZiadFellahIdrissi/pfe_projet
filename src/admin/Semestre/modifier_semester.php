@@ -9,7 +9,7 @@ $date_debut_dexieme_semestre = $_POST["date_debut_dexieme_semestre"];
 $date_fin_dexieme_semestre = $_POST["date_fin_dexieme_semestre"];
 function updateSemster($date_debut, $date_fin, $id_semester)
 {
-    $sql = "UPDATE semestre set date_debut=? , date_fin=? where id_semestre=?";
+    $sql = "UPDATE Semestre set date_debut=? , date_fin=? where id_semestre=?";
     DB::getInstance()->query($sql, [$date_debut, $date_fin, $id_semester]);
 }
 

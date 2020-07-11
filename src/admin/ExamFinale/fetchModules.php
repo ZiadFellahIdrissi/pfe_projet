@@ -8,11 +8,11 @@ $db = DB::getInstance();
 $id_filiere = $_GET["id_filiere"];
 
 $sql = "SELECT Module.id_module,Module.intitule
-            FROM Module
-            JOIN dispose_de ON Module.id_module = dispose_de.id_module
-            JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
-            WHERE dispose_de.id_filiere = ?
-            AND Module.etat = ? ";
+        FROM Module
+        JOIN dispose_de ON Module.id_module = dispose_de.id_module
+        JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
+        WHERE dispose_de.id_filiere = ?
+        AND Module.etat = ? ";
         // and (select sysdate()) BETWEEN  Semestre.date_debut and  Semestre.date_fin";
 
 

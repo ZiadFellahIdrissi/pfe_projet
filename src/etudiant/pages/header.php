@@ -30,7 +30,7 @@ require_once '../../../fonctions/tools.function.php';
                     </a>
                 </li>
                 <li>
-                    <a href="../Examens">
+                    <a href="../controles/">
                         <i class="fa fa-file"></i>Controles</a>
                     <?php
                     $resultat = controles($id);
@@ -41,12 +41,12 @@ require_once '../../../fonctions/tools.function.php';
                     ?>
                 </li>
                 <li class="">
-                    <a href="../Notes/">
+                    <a href="../notes/">
                         <i class="fas fa-copy"></i>Notes et resultats
                     </a>
                 </li>
                 <li class="">
-                    <a href="#">
+                    <a href="../inscription">
                         <i class="fas fa-copy"></i>Inscription
                     </a>
                 </li>
@@ -94,7 +94,7 @@ require_once '../../../fonctions/tools.function.php';
                         </a>
                     </li>
                     <li>
-                        <a href="../Examens/">
+                        <a href="../controles/">
                             <i class="fa fa-file-text"></i>Controles</a>
                         <?php
                         if ($count) {
@@ -103,12 +103,12 @@ require_once '../../../fonctions/tools.function.php';
                         ?>
                     </li>
                     <li class="">
-                        <a href="../Notes/">
+                        <a href="../notes/">
                             <i class="fas fa-copy"></i>Notes et resultats
                         </a>
                     </li>
                     <li class="">
-                        <a href="#">
+                        <a href="../inscription/">
                             <i class="fas fa-copy"></i>Inscription
                         </a>
                     </li>

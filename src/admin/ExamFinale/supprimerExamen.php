@@ -11,7 +11,7 @@ if (isset($_GET["id_examen"])) {
         exit();
     } else {
         $sql = "DELETE FROM Controle
-            WHERE id_controle = ?";
+                WHERE id_controle = ?";
         $db->query($sql, [$id_examen]);
         echo json_encode([]);
     }

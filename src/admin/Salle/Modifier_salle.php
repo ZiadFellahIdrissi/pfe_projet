@@ -15,14 +15,14 @@ if (DB::getInstance()->query("SELECT salle from Seance where salle = ?", [$id_sa
         location.replace("./?pas_autorise");
     </script>
 <?php
-} else if (DB::getInstance()->query("SELECT salle from Salle where salle= ?", [$salle])->count()) {
+} else if (DB::getInstance()->query("SELECT salle from salle where salle= ?", [$salle])->count()) {
 ?>
     <script>
         location.replace("./?dejeExist");
     </script>
 <?php
 } else {
-    DB::getInstance()->query("UPDATE Salle set salle = ? where id_salle = ? ", [$salle, $id_salle]);
+    DB::getInstance()->query("UPDATE salle set salle = ? where id_salle = ? ", [$salle, $id_salle]);
 ?>
     <script>
         location.replace("./?modifie_Avec_Succes");

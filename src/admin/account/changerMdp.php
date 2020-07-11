@@ -1,7 +1,6 @@
 <?php
 include_once '../../../core/init.php';
 include_once '../../../fonctions/tools.function.php';
-// hnaa zide if isset b roooooooooooooooojola, hh la
 
 $username = $_GET["username"];
 $currentPassword = $_GET["currentPassword"];

@@ -3,9 +3,9 @@ include_once '../../../core/init.php';
 include_once '../../../fonctions/tools.function.php';
 $db = DB::getInstance();
 
-$sql = "SELECT id_salle,salle
-        FROM Salle
-        order by id_salle";
+$sql = "SELECT id_salle, salle
+        FROM salle
+        ORDER BY id_salle";
 
 $resultats = $db->query($sql, []);
 ?>
