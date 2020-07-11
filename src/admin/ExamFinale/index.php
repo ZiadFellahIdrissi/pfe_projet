@@ -131,7 +131,7 @@ if (!$user->isLoggedIn()) {
                                     <select class="form-control" id="salle">
                                         <?php
                                         $sql = "SELECT *
-                                        FROM Salle";
+                                                FROM salle";
                                         $resultat = $db->query($sql, []);
                                         foreach ($resultat->results() as $row) {
                                         ?>

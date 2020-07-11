@@ -27,7 +27,7 @@ function fetchStudents($module)
 }
 function getMarks($type, $module, $etudiant)
 {
-    $db1 = DB::getInstance();
+    $db = DB::getInstance();
     $sql = "SELECT note
             FROM passe
             JOIN Controle ON Controle.id_controle = passe.id_controle
@@ -36,25 +36,25 @@ function getMarks($type, $module, $etudiant)
             AND Controle.id_module = ?
             ORDER BY Controle.date";
 
-    $resultats = $db1->query($sql, [$etudiant, $type, $module]);
+    $resultats = $db->query($sql, [$etudiant, $type, $module]);
     return $resultats->results();
 }
 function getCoiffissient($module)
 {
-    $db2 = DB::getInstance();
+    $db = DB::getInstance();
     $sql = "SELECT *
             FROM dispose_de
             WHERE id_module = ?";
-    $resultats = $db2->query($sql, [$module]);
+    $resultats = $db->query($sql, [$module]);
     return $resultats->first();
 }
 function getSemestre()
 {
-    $db3 = DB::getInstance();
+    $db = DB::getInstance();
     $sql = "SELECT date_fin,date_debut
             FROM Semestre
             ORDER BY id_semestre";
-    $resultats = $db3->query($sql, []);
+    $resultats = $db->query($sql, []);
     return $resultats->first();
 }
 function getMarksByControle($id_controle, $id_etudiant)
@@ -81,23 +81,30 @@ function getInfos($id)
 function getPersonInfo($id)
 {
     $db = DB::getInstance();
-    $sql = "SELECT * from Utilisateur where id=?";
+    $sql = "SELECT *
+            FROM Utilisateur
+            WHERE id = ?";
     $resultats = $db->query($sql, [$id]);
     return $resultats->first();
 }
 function getStudentsInfo($id)
 {
     $db = DB::getInstance();
-    $sql = "SELECT cne,Filiere.nom_filiere,Filiere.id_filiere  from Etudiant Join Filiere on Etudiant.id_filiere=Filiere.id_filiere where id=?";
+    $sql = "SELECT cne,Filiere.nom_filiere,Filiere.id_filiere
+            FROM Etudiant
+            JOIN Filiere ON Etudiant.id_filiere = Filiere.id_filiere
+            WHERE id = ?";
     $resultats = $db->query($sql, [$id]);
     return $resultats;
 }
 function getPersonnelInfo($id)
 {
-    $db1 = DB::getInstance();
-    $sql2 = "SELECT som,`role` from Personnel where id=?";
-    $resultats0 = $db1->query($sql2, [$id]);
-    return $resultats0;
+    $db = DB::getInstance();
+    $sql = "SELECT som,`role`
+            FROM Personnel
+            WHERE id = ?";
+    $resultats = $db->query($sql, [$id]);
+    return $resultats;
 }
 function getResponsableInfos($id_responsable)
 {
@@ -156,7 +163,10 @@ function countFiliereStudents($id_filiere)
 function getSeance($id_module)
 {
     $db = DB::getInstance();
-    $sql = 'SELECT id_seance, date_seance from Seance where id_module=? AND date_seance between ? and ?';
+    $sql = "SELECT id_seance, date_seance
+            FROM Seance
+            WHERE id_module = ?
+            AND date_seance BETWEEN ? AND ?";
     $startWeek =  date("Y-m-d", strtotime('monday this week'));
     $endWeek =  date("Y-m-d", strtotime('sunday this week'));
     $resultat = $db->query($sql, [$id_module, $startWeek, $endWeek]);
@@ -165,7 +175,12 @@ function getSeance($id_module)
 function getAbsence($id, $module)
 {
     $db = DB::getInstance();
-    $sql = 'SELECT assiste.id_seance from assiste join Seance on Seance.id_seance=assiste.id_seance where id_etudiant=? AND Seance.id_module=? AND Seance.date_seance between ? and ?';
+    $sql = 'SELECT assiste.id_seance
+            FROM assiste
+            JOIN Seance ON Seance.id_seance = assiste.id_seance
+            WHERE id_etudiant = ?
+            AND Seance.id_module = ?
+            AND Seance.date_seance BETWEEN ? AND ?';
     $startWeek =  date("Y-m-d", strtotime('monday this week'));
     $endWeek =  date("Y-m-d", strtotime('sunday this week'));
     $resultat = $db->query($sql, [$id, $module, $startWeek, $endWeek]);
@@ -199,7 +214,7 @@ function getDatesSemestre($id)
     $db3 = DB::getInstance();
     $sql = "SELECT date_fin,date_debut
             FROM Semestre
-            where id_semestre=?";
+            WHERE id_semestre = ?";
     $resultats = $db3->query($sql, [$id]);
     return $resultats;
 }
@@ -208,29 +223,31 @@ function getAdminInfo($username)
 {
     $db = DB::getInstance();
     $sql = "SELECT *
-               FROM Administrateur
-               WHERE username = ?";
+            FROM Administrateur
+            WHERE username = ?";
     $resultats = $db->query($sql, [$username]);
     return $resultats->first();
 }
 function is_there_ratt_mark_for_student($id, $id_module)
 {
-    $sql = "SELECT passe.id_etudiant from passe 
-               join Controle on Controle.id_controle=passe.id_controle
-               where passe.id_etudiant=?
-              and Controle.type=?
-              and Controle.id_module=?";
+    $sql = "SELECT passe.id_etudiant
+            FROM passe
+            JOIN Controle on Controle.id_controle = passe.id_controle
+            WHERE passe.id_etudiant = ?
+            AND Controle.type = ?
+            AND Controle.id_module = ?";
     return DB::getInstance()->query($sql, [$id, 'exam_finale_ratt', $id_module]);
 }
 
 function is_there_ratt_exam_for_student($id, $id_module)
 {
-    $sql = "SELECT passe.id_etudiant from passe 
-               join Controle on Controle.id_controle=passe.id_controle
-               where passe.id_etudiant=?
-               and Controle.type=?
-               and passe.note < ?
-               and Controle.id_module=?";
+    $sql = "SELECT passe.id_etudiant
+            FROM passe
+            JOIN Controle on Controle.id_controle = passe.id_controle
+            WHERE passe.id_etudiant = ?
+            AND Controle.type = ?
+            AND passe.note < ?
+            AND Controle.id_module = ?";
     return DB::getInstance()->query($sql, [$id, 'exam_finale_normal', 12, $id_module]);
 }
 

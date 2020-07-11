@@ -1,9 +1,9 @@
 <?php
 include_once '../../../core/init.php';
 $sql = "SELECT Demandes.id, Demandes.type, Demandes.date, Utilisateur.nom, Utilisateur.prenom
-            FROM Demandes
-            JOIN Utilisateur ON Demandes.id_etudiant = Utilisateur.id
-            WHERE etat = -1";
+        FROM Demandes
+        JOIN Utilisateur ON Demandes.id_etudiant = Utilisateur.id
+        WHERE etat = -1";
 $db->query($sql, []);
 ?>
 <div class="table-responsive-sm">

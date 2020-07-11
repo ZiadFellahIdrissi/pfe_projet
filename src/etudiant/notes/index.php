@@ -1,6 +1,8 @@
 <?php
 include_once '../../../core/init.php';
+require_once '../../../fonctions/tools.function.php';
 $user = new User_Etudiant();
+$db = DB::getInstance();
 if (!$user->isLoggedIn()) {
     header('Location: ../../login/');
 } else {
@@ -18,7 +20,7 @@ if (!$user->isLoggedIn()) {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Title Page-->
-        <title>Dashboard</title>
+        <title>Notes et resultats</title>
 
         <!-- Fontfaces CSS-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -49,62 +51,34 @@ if (!$user->isLoggedIn()) {
         <?php include '../pages/header.php' ?>
         <section class="au-breadcrumb m-t-75">
             <div class="section__content section__content--p30">
-                <nav aria-label="breadcrumb nov">
-                    <ol class="breadcrumb nov">
-                        <li class="breadcrumb-item"><a href="../pages">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Examens</li>
-                    </ol>
-                </nav>
-            </div>
-        </section><br>
-
-        <!-- les examens -->
-        <div class="section__content section__content--p30">
-            <div class="au-card notes shadow-lg bg-white rounded" style="padding: 0;">
-                <?php
-                include_once '../../../fonctions/tools.function.php';
-                $resultat = controles($id);
-                if (!$resultat->count()) {
-                    echo '<div class="alert alert-warning" role="alert">
-                            Acun controles pour le moment!
-                            </div>';
-                } else {
-                ?>
-                    <div class="table-responsive-sm">
-                        <table class="table table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Module</th>
-                                    <th>Date</th>
-                                    <th>Heure début</th>
-                                    <th>Dureé</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                foreach ($resultat->results() as $row) {
-                                ?>
-
-                                    <tr>
-                                        <td><?php echo $row->intitule; ?></td>
-                                        <td><?php echo $row->date; ?></td>
-                                        <td><?php echo $row->h_debut; ?></td>
-                                        <td><?php echo date_format(date_create($row->duree), "H\Hi"); ?></td>
-                                    </tr>
-
-                            <?php
-                                }
-                                echo '
-                                </tbody>
-                                </table>
-                            </div>';
-                            }
-                            ?>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                                <div class="au-breadcrumb-left">
+                                    <span class="au-breadcrumb-span">You are here:</span>
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                        <li class="list-inline-item active">
+                                            <a href="#">Home</a>
+                                        </li>
+                                        <li class="list-inline-item seprate">
+                                            <span>/</span>
+                                        </li>
+                                        <li class="list-inline-item">Notes et resultats</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
             </div>
-            <br><br>
-        </div>
+        </section>
 
+        <!-- relvé de notes -->
+        <div class="section__content section__content--p30">
+            <?php include 'notesResultat.php' ?>
+        </div>
+        <br><br>
 
         <!-- Jquery JS-->
         <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
@@ -120,7 +94,28 @@ if (!$user->isLoggedIn()) {
         <!-- Main JS-->
         <script src="../../../layout/js/main.js "></script>
         <script>
-
+            $(document).ready(function() {
+                $(".imprimer").click(function() {
+                    $('.notes').printThis({
+                        debug: false,
+                        importCSS: true,
+                        importStyle: true,
+                        printContainer: true,
+                        loadCSS: '',
+                        pageTitle: "Relvet des notes",
+                        removeInline: false,
+                        removeInlineSelector: "*",
+                        printDelay: 333,
+                        canvas: false,
+                        header: "<h1>Relvet des notes</h1>",
+                        footer: null, // postfix to html
+                        base: false, // preserve the BASE tag or accept a string for the
+                        doctypeString: '<!DOCTYPE html>',
+                        removeScripts: false,
+                        copyTagClasses: false
+                    });
+                });
+            });
         </script>
     </body>
 

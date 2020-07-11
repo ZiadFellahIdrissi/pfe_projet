@@ -10,7 +10,7 @@ if (isset($_GET["id_salle"])) {
         echo "pas_autorise";
         exit();
     } else {
-        DB::getInstance()->query("DELETE FROM Salle where id_salle = ? ", [$id_salle]);
+        DB::getInstance()->query("DELETE FROM salle where id_salle = ? ", [$id_salle]);
         echo "supprimie_Avec_Succes";
         exit();
     }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once '../../../core/init.php';
 $db = DB::getInstance();
 if(isset($_GET["id_Examen"])){
@@ -7,7 +7,7 @@ if(isset($_GET["id_Examen"])){
     $heur_fin=$_GET["heur_fin"];
     $id_Examen=$_GET["id_Examen"];
 
-    $sql="UPDATE Controle
+    $sql = "UPDATE Controle
             SET `date` = ?,
                 h_debut = ?,
                 h_fin = ?
