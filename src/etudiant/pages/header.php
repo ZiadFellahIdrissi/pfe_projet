@@ -40,6 +40,11 @@ require_once '../../../fonctions/tools.function.php';
                     }
                     ?>
                 </li>
+                <li>
+                    <a href="../examens">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>Calendrier des exams
+                    </a>
+                </li>
                 <li class="">
                     <a href="../notes/">
                         <i class="fas fa-copy"></i>Notes et resultats
@@ -101,6 +106,11 @@ require_once '../../../fonctions/tools.function.php';
                             echo '<span class="inbox-num">' . $count . '</span>';
                         }
                         ?>
+                    </li>
+                    <li>
+                        <a href="../examens">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>Calendrier des exams
+                        </a>
                     </li>
                     <li class="">
                         <a href="../notes/">

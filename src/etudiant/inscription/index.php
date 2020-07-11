@@ -1,5 +1,6 @@
 <?php
 include_once '../../../core/init.php';
+include_once '../../../fonctions/tools.function.php';
 $user = new User_Etudiant();
 if (!$user->isLoggedIn()) {
     header('Location: ../../login/');
@@ -62,7 +63,7 @@ if (!$user->isLoggedIn()) {
                                         <li class="list-inline-item seprate">
                                             <span>/</span>
                                         </li>
-                                        <li class="list-inline-item">Seances</li>
+                                        <li class="list-inline-item">Inscription</li>
                                     </ul>
                                 </div>
                             </div>
@@ -72,12 +73,97 @@ if (!$user->isLoggedIn()) {
             </div>
         </section>
 
+      <div class="mb-4">
         <div class="section__content section__content--p30">
-            <div class="container-fluid">
+            <div class="modal-content">
+              <div class="modal-header">
 
-
+                <b>
+                  <img src="https://i.imgur.com/BjPrzqZ.png" width=40>
+                  UNIVERSITE HASSAN II DE CASABLANCA
+                </b>
+                <p>
+                  Faculté des Sciences Aïn Chock
+                </p>
+              </div>
+              <div class="modal-body">
+              Vous êtes inscrit à:
+              <br>
+              Filiere: <b><?php echo getStudentFiliere($id)->nom_filiere ?></b>
+              <br>
+              <div class="float-right">
+              <?php
+                $tarif = getStudentFiliere($id)->prix_formation;
+                $somme = getStudentFiliere($id)->somme;
+                if($somme < $tarif){
+              ?>
+                  <b style="color: red">Vous devez payer <?php echo $tarif-$somme ?> MAD de plus.</b>
+              <?php
+                } else {
+                    if (!demandeCheck($id, 'attestation', -1) && !demandeCheck($id, 'attestation', 1)) {
+                        if (demandeCheck($id, 'attestation', 0)) {
+                        ?>
+                            <span style="color: red">Votre demande précédent a été refusé.</span>
+                        <?php
+                        }
+                        ?>
+                      <button type="button" class="btn btn-outline-dark" onclick="location.href='../demander.php?type=attestation&id=<?php echo $id ?>'">
+                          <i class="far fa-sticky-note" aria-hidden="true"></i> Demander l'attestation de scolarité
+                      </button>
+                    <?php
+                    }
+                    if (demandeCheck($id, 'attestation', -1) && !demandeCheck($id, 'attestation', 1)) {
+                    ?>
+                        <div>
+                            Demande envoyé.
+                        </div>
+                    <?php
+                    }
+                    if (demandeCheck($id, 'attestation', 1)) {
+                    ?>
+                        <div>
+                            <button type="button" class="btn btn-outline-dark" onclick="location.href=''">
+                                <span><i class="fa fa-download"></i></span> Télécharger l'attestation de scolarité
+                            </button>
+                        </div>
+                    <?php
+                    }
+                }
+              ?>
+              </div>
+              <br>
+              Modules:
+              <table class="table table-hover">
+                  <th style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">1ére semestre</th>
+                  <?php
+                      $results = getModulesByFiliere(getStudentFiliere($id)->id_filiere, 1);
+                      foreach($results->results() as $row){
+                  ?>
+                      <tr>
+                          <td><?php echo $row->intitule ?></td>
+                      </tr>
+                  <?php
+                      }
+                  ?>
+              </table>
+              <table class="table table-hover">
+                  <th style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">2ème semestre</th>
+                  <?php
+                      $results = getModulesByFiliere(getStudentFiliere($id)->id_filiere, 2);
+                      foreach($results->results() as $row){
+                  ?>
+                      <tr>
+                          <td><?php echo $row->intitule ?></td>
+                      </tr>
+                  <?php
+                      }
+                  ?>
+              </table>
             </div>
+          </div>
         </div>
+    </div>
+
 
         <!-- Jquery JS-->
         <script src="../../../layout/js/jquery-3.4.1.min.js "></script>

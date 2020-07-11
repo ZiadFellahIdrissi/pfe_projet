@@ -175,7 +175,7 @@ if (!$user->isLoggedIn()) {
                         let data0 = JSON.parse(data);
                         for (var i in data0) {
                             nbSeance.push(data0[i].nbAbsence);
-                            dataSeance.push(data0[i].date_seance);
+                            dataSeance.push('Mois '+data0[i].mois);
                         }
                         var ctx = $("#lesabsences-chart");
                         if (ctx) {

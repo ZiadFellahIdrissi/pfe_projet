@@ -48,7 +48,7 @@ if (!$user->isLoggedIn()) {
         }
     </style>
 
-    <body class="">
+    <body>
         <div class="page-wrapper">
             <?php
             include '../pages/header.php';

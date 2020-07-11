@@ -211,11 +211,11 @@ function demandeCheck($id_etudiant, $type_, $etat)
 }
 function getDatesSemestre($id)
 {
-    $db3 = DB::getInstance();
+    $db = DB::getInstance();
     $sql = "SELECT date_fin,date_debut
             FROM Semestre
             WHERE id_semestre = ?";
-    $resultats = $db3->query($sql, [$id]);
+    $resultats = $db->query($sql, [$id]);
     return $resultats;
 }
 
@@ -250,7 +250,25 @@ function is_there_ratt_exam_for_student($id, $id_module)
             AND Controle.id_module = ?";
     return DB::getInstance()->query($sql, [$id, 'exam_finale_normal', 12, $id_module]);
 }
-
+function getStudentFiliere($id_etudiant){
+    $db = DB::getInstance();
+    $sql = "SELECT Filiere.id_filiere, Filiere.nom_filiere, Etudiant.somme, Filiere.prix_formation
+            FROM Etudiant
+            JOIN Filiere ON Etudiant.id_filiere = Filiere.id_filiere
+            WHERE id = ?";
+    $resultats = $db->query($sql, [$id_etudiant]);
+    return $resultats->first();
+}
+function getModulesByFiliere($id_filiere, $id_semestre){
+    $db = DB::getInstance();
+    $sql = "SELECT intitule
+            FROM Module
+            JOIN dispose_de ON Module.id_module = dispose_de.id_module
+            WHERE dispose_de.id_filiere = ?
+            AND Module.id_semestre = ?";
+    $resultats = $db->query($sql, [$id_filiere, $id_semestre]);
+    return $resultats;
+}
 //=======================================================================
 $max_Exame_finale = "";
 $min_Exame_finale = "";

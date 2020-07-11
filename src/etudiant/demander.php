@@ -22,9 +22,9 @@ if (isset($_GET["id"]) && isset($_GET['type'])) {
     $db->query($sql, [$_GET['id'], $type, -1]);
   }
   switch($_GET['type']){
-    case 'releve'      : header("Location: ./Notes/"); break;
-    case 'attestation' : header("Location: ./Inscription/"); break;
-    case 'stage'       : header("Location: ./Stages"); break;
+    case 'releve'      : header("Location: ./notes/"); break;
+    case 'attestation' : header("Location: ./inscription/"); break;
+    case 'stage'       : header("Location: ./stages"); break;
   }
 
 }
