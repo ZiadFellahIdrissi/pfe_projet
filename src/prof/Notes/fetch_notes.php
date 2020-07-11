@@ -1,6 +1,20 @@
 <?php
 include_once '../../../core/init.php';
 include_once '../../../fonctions/tools.function.php';
+function fetch_Ratt_Students($module)
+{
+    $db = DB::getInstance();
+    $sql = "SELECT Utilisateur.nom, Utilisateur.prenom, Utilisateur.id, Etudiant.cne
+                FROM Utilisateur
+                join Etudiant ON Etudiant.id = Utilisateur.id
+                join passe on passe.id_etudiant=Etudiant.id
+                JOIN Controle on Controle.id_controle=passe.id_controle
+                where Controle.type=?
+                and passe.note < ?
+                and Controle.id_module = ? ";
+    $results = $db->query($sql, ['exam_finale_normal', 12, $module]);
+    return $results;
+}
 $module = $_GET['module'];
 $id_controle = $_GET['id_controle'];
 ?>
@@ -16,7 +30,12 @@ $id_controle = $_GET['id_controle'];
         </thead>
         <tbody>
             <?php
-            $results = fetchStudents($module);
+            $sql = "SELECT Controle.type from Controle where id_controle=?";
+            if (DB::getInstance()->query($sql, [$id_controle])->first()->type == 'exam_finale_ratt')
+                $results = fetch_Ratt_Students($module);
+            else
+                $results = fetchStudents($module);
+
             foreach ($results->results() as $myRow) {
             ?>
                 <tr>

@@ -7,6 +7,7 @@ $salle = $_GET["salle"];
 $datecontrole = $_GET["dateExames"];
 $heur_debut = $_GET["heur_debut"];
 $heur_fin = $_GET["heur_fin"];
+$type = $_GET["type"];
 
 $sql = "SELECT id_module
             FROM Controle
@@ -27,13 +28,13 @@ $sql = "SELECT id_module
                 AND h_debut = ?";
 
 if ($db->query($sql, [$module, $datecontrole, $heur_debut])->count()) {
-    $error = "impoo";
+    $error = "impossible";
     $r = array("error" => $error);
     echo json_encode($r);
 } else {
     $sql = "INSERT INTO `Controle`( `type`, `date`, `h_debut`, `h_fin`, `salle`, `id_module`)
                 VALUES (?,?,?,?,?,?)";
-    $db->query($sql, ['exam_finale_normal', $datecontrole, $heur_debut, $heur_fin, $salle, $module]);
+    $db->query($sql, [$type, $datecontrole, $heur_debut, $heur_fin, $salle, $module]);
 
     echo json_encode([]);
 }

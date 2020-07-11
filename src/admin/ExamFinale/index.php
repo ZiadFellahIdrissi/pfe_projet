@@ -80,13 +80,13 @@ if (!$user->isLoggedIn()) {
 
         <!-- un modal pout ajoute un Exame -->
         <div class="modal fade" id="addExame" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
 
                         <!-- Filiere -->
                         <div class="form-group">
-                            <label for="filiere" class="col-form-label">Module</label>
+                            <label for="filiere" class="col-form-label">Filiere</label>
                             <select class="form-control" id="filiere" name="filiere">
                                 <option value=''>Choisissez Filiere</option>
                                 <?php
@@ -116,27 +116,41 @@ if (!$user->isLoggedIn()) {
                                 </option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="type" class="col-form-label">Type d'examen</label>
+                                    <select class="form-control" id="type">
+                                        <option value="exam_finale_normal">Examen finale sesion normale</option>
+                                        <option value="exam_finale_ratt">Examen finale sesion Rattrapage</option>
+                                    </select>
+
+                                </div>
+                                <div class="col">
+                                    <label for="salle" class="col-form-label">Salle</label>
+                                    <select class="form-control" id="salle">
+                                        <?php
+                                        $sql = "SELECT *
+                                        FROM Salle";
+                                        $resultat = $db->query($sql, []);
+                                        foreach ($resultat->results() as $row) {
+                                        ?>
+                                            <option value="<?php echo $row->id_salle ?>"><?php echo $row->salle ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
 
                         <!-- date controle -->
                         <div class="form-group">
-                            <label for="date_controle" class="col-form-label">Date du Controle</label>
+                            <label for="date_controle" class="col-form-label">Date du Examen</label>
                             <input type="date" class="form-control" name="date_controle" id="date_controle" required>
                         </div>
-                        <div class="form-group">
-                            <label for="salle" class="col-form-label">Salle</label>
-                            <select class="form-control" id="salle">
-                                <?php
-                                $sql = "SELECT *
-                                        FROM Salle";
-                                $resultat = $db->query($sql, []);
-                                foreach ($resultat->results() as $row) {
-                                ?>
-                                    <option value="<?php echo $row->id_salle ?>"><?php echo $row->salle ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
+
 
                         <!-- heur debut / heur fin -->
                         <div class="row">
@@ -290,9 +304,15 @@ if (!$user->isLoggedIn()) {
                                 data: {
                                     id_examen: id
                                 },
-                                success: function() {
-                                    alert("le controle ete suprimer avec secu");
-                                    calendar.fullCalendar("refetchEvents");
+                                contentType: "application/json",
+                                dataType: 'json',
+                                success: function(data) {
+                                    if (data.error) {
+                                        alert(data.error);
+                                    } else {
+                                        alert("le controle ete suprimer avec succes");
+                                        calendar.fullCalendar("refetchEvents");
+                                    }
                                 }
                             })
                         }
@@ -305,6 +325,8 @@ if (!$user->isLoggedIn()) {
                     var heur_debut = $("#heur_debut").val();
                     var heur_fin = $("#heur_fin").val();
                     var salle = $("#salle").val();
+                    var type = $("#type").val();
+                    console.log(type);
 
                     var d1 = new Date(dateExames + ' ' + heur_debut);
                     var d2 = new Date(dateExames + ' ' + heur_fin);
@@ -320,7 +342,8 @@ if (!$user->isLoggedIn()) {
                                 dateExames: dateExames,
                                 heur_debut: heur_debut,
                                 heur_fin: heur_fin,
-                                salle: salle
+                                salle: salle,
+                                type: type
                             },
                             contentType: "application/json",
                             dataType: 'json',

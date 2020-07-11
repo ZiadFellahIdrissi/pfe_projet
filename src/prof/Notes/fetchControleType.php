@@ -17,7 +17,7 @@ foreach ($resultat->results() as $row) {
 ?>
     <option value="<?php echo $row->id_controle ?>"><?php if ($row->type == 'controle')
                                                         echo "Controle N°".$i++ . ' ' . $row->date;
-                                                    else if ($row->type == '')
+                                                    else if ($row->type == 'exam_finale_normal')
                                                         echo "Exame finale Session normal";
                                                     else
                                                         echo "Exame finale Session rattrapage";

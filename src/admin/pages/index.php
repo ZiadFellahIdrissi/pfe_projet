@@ -193,7 +193,7 @@ if (!$user->isLoggedIn()) {
                                         borderColor: 'rgba(0,103,255,0.5)',
                                         borderWidth: 3.5,
                                         pointStyle: 'circle',
-                                        pointRadius: 5,
+                                        pointRadius: 6,
                                         pointBorderColor: 'transparent',
                                         pointBackgroundColor: 'rgba(0,103,255,0.5)',
                                     }, ]
@@ -202,7 +202,7 @@ if (!$user->isLoggedIn()) {
                                     responsive: true,
                                     tooltips: {
                                         mode: 'index',
-                                        titleFontSize: 12,
+                                        titleFontSize: 13,
                                         titleFontColor: '#000',
                                         bodyFontColor: '#000',
                                         backgroundColor: '#fff',
@@ -228,7 +228,7 @@ if (!$user->isLoggedIn()) {
                                             },
                                             scaleLabel: {
                                                 display: false,
-                                                labelString: 'year'
+                                                labelString: 'month'
                                             },
                                             ticks: {
                                                 fontFamily: "Poppins"
@@ -251,7 +251,7 @@ if (!$user->isLoggedIn()) {
                                         }]
                                     },
                                     title: {
-                                        display: false,
+                                        display: true,
                                     }
                                 }
                             });

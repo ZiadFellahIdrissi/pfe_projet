@@ -88,7 +88,7 @@ function getPersonInfo($id)
 function getStudentsInfo($id)
 {
     $db = DB::getInstance();
-    $sql = "SELECT cne,nom_filiere from Etudiant Join Filiere on Etudiant.id_filiere=Filiere.id_filiere where id=?";
+    $sql = "SELECT cne,Filiere.nom_filiere,Filiere.id_filiere  from Etudiant Join Filiere on Etudiant.id_filiere=Filiere.id_filiere where id=?";
     $resultats = $db->query($sql, [$id]);
     return $resultats;
 }
@@ -204,20 +204,41 @@ function getDatesSemestre($id)
     return $resultats;
 }
 
-function getAdminInfo($username){
+function getAdminInfo($username)
+{
     $db = DB::getInstance();
-       $sql = "SELECT *
+    $sql = "SELECT *
                FROM Administrateur
                WHERE username = ?";
-       $resultats = $db->query($sql, [$username]);
-       return $resultats->first();
-   }
+    $resultats = $db->query($sql, [$username]);
+    return $resultats->first();
+}
+function is_there_ratt_mark_for_student($id, $id_module)
+{
+    $sql = "SELECT passe.id_etudiant from passe 
+               join Controle on Controle.id_controle=passe.id_controle
+               where passe.id_etudiant=?
+              and Controle.type=?
+              and Controle.id_module=?";
+    return DB::getInstance()->query($sql, [$id, 'exam_finale_ratt', $id_module]);
+}
+
+function is_there_ratt_exam_for_student($id, $id_module)
+{
+    $sql = "SELECT passe.id_etudiant from passe 
+               join Controle on Controle.id_controle=passe.id_controle
+               where passe.id_etudiant=?
+               and Controle.type=?
+               and passe.note < ?
+               and Controle.id_module=?";
+    return DB::getInstance()->query($sql, [$id, 'exam_finale_normal', 12, $id_module]);
+}
 
 //=======================================================================
 $max_Exame_finale = "";
 $min_Exame_finale = "";
 $date_Fin_Premier_Semester = getSemestre()->date_fin;
-if (date('yy/m/d', time()) > $date_Fin_Premier_Semester) {
+if (date('yy/m/d', time()) < $date_Fin_Premier_Semester) {
     $dateSemsetre = date_create(getDatesSemestre(2)->first()->date_fin);
     date_add($dateSemsetre, date_interval_create_from_date_string('30 days'));
 

@@ -12,8 +12,8 @@ $sql = "SELECT Module.id_module,Module.intitule
             JOIN dispose_de ON Module.id_module = dispose_de.id_module
             JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
             WHERE dispose_de.id_filiere = ?
-            AND Module.etat = ? 
-            and (select sysdate()) BETWEEN  Semestre.date_debut and  Semestre.date_fin";
+            AND Module.etat = ? ";
+        // and (select sysdate()) BETWEEN  Semestre.date_debut and  Semestre.date_fin";
 
 
 $resultat = $db->query($sql, [$id_filiere, 1]);

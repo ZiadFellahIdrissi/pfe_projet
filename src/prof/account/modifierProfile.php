@@ -63,9 +63,8 @@ if ($fileName != '') {
         echo "file not allowed";
     }
 } else {
-    if ($numrow){
+    if ($numrow) {
         header("Location: ./?errmail&email=$email");
-    }
-    else
+    } else
         header("Location: ./");
 }
