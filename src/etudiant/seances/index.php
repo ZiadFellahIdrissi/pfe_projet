@@ -68,9 +68,11 @@ if (!$user->isLoggedIn()) {
             </div>
         </section>
 
-        <div class="au-card">
-            <div id="calendar">
+        <div class="section__content section__content--p30">
+            <div class="bg-white rounded" style="padding: 0;">
+                <div id="calendar">
 
+                </div>
             </div>
         </div>
 
