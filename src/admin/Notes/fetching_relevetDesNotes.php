@@ -163,7 +163,7 @@ if (isset($_GET["cin"])) {
                                             if ($resultat_is_there_ratt_mark)
                                                 echo "V aprés RAT"; // 5asak test wache valida oula fl ratt
                                             else
-                                                echo "Ratt";
+                                                echo "Rattrapage";
                                         } else {
                                             echo "Validé";
                                         }
@@ -192,7 +192,7 @@ if (isset($_GET["cin"])) {
                         }
                     }
                     $se = getDatesSemestre(2)->first()->date_debut;
-                    if (date('yy/m/d', time()) > $se) {
+                    if (date('yy/m/d', time()) < $se) {
                         if ($examCount === $countModule) {
                         ?>
                             <tr>
@@ -271,15 +271,15 @@ if (isset($_GET["cin"])) {
                                                     $moyModule = ($noteExamen * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
                                                     $somme_moyenne_ratt += $moyModule;
                                                     $examCount++;
-                                                    echo $moyModule;
+                                                    echo $moyModule.' / 20';
                                                 } else
                                                     echo "";
                                             } else {
-                                                $noteExamen = $noteExamFinale > $noteExamFinaleratt ? $noteExamFinale : $noteExamFinaleratt;
+                                                $noteExamen = $noteExamFinale ;
                                                 $moyModule = ($noteExamen * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
                                                 $somme_moyenne_normal += $moyModule;
                                                 $examCount++;
-                                                echo $moyModule;
+                                                echo $moyModule.' / 20';
                                             }
                                         }
                                     }

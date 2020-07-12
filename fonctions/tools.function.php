@@ -269,11 +269,24 @@ function getModulesByFiliere($id_filiere, $id_semestre){
     $resultats = $db->query($sql, [$id_filiere, $id_semestre]);
     return $resultats;
 }
+function isTherefianleExam($filiere,$semester)
+{
+    $db = DB::getInstance();
+    $sql = "SELECT id_controle from Controle 
+    join dispose_de on Controle.id_module=dispose_de.id_module 
+    join module on module.id_module=dispose_de.id_module
+    JOIN semestre on semestre.id_semestre = module.id_semestre
+    where dispose_de.id_filiere=? 
+    and Controle.type=?
+    and semestre.id_semestre=?";
+    $resultat = $db->query($sql, [$filiere, 'exam_finale_normal',$semester]);
+    return $resultat;
+}
 //=======================================================================
 $max_Exame_finale = "";
 $min_Exame_finale = "";
-$date_Fin_Premier_Semester = getSemestre()->date_fin;
-if (date('yy/m/d', time()) < $date_Fin_Premier_Semester) {
+$date_debut_dexieme_Semester = getDatesSemestre(2)->first()->date_debut;
+if (date('yy/m/d', time()) < $date_debut_dexieme_Semester) {
     $dateSemsetre = date_create(getDatesSemestre(2)->first()->date_fin);
     date_add($dateSemsetre, date_interval_create_from_date_string('30 days'));
 

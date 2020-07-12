@@ -1,18 +1,6 @@
 <?php
 require_once '../../../fonctions/tools.function.php';
 
-function isTherefianleExam($filiere)
-{
-    $db = DB::getInstance();
-    $sql = "SELECT id_controle
-            FROM Controle
-            JOIN dispose_de ON Controle.id_module = dispose_de.id_module
-            WHERE dispose_de.id_filiere = ?
-            AND Controle.type = ?";
-    $resultat = $db->query($sql, [$filiere, 'exam_finale_normal']);
-    return $resultat;
-}
-
 if (!demandeCheck($id, 'releve', -1) && !demandeCheck($id, 'releve', 1)) {
 ?>
     <div style="text-align: right; margin-bottom: 1%">
@@ -39,7 +27,7 @@ if (demandeCheck($id, 'releve', -1) && !demandeCheck($id, 'releve', 1)) {
 if (demandeCheck($id, 'releve', 1)) {
 ?>
     <div style="text-align: right; margin-bottom: 1%">
-        <button type="button" class="btn btn-outline-dark" onclick="location.href=''">
+        <button type="button" class="btn btn-outline-dark" onclick="location.href='../relevtnotepdf/?id=<?php echo $id ?>'">
             <span><i class="fa fa-download"></i></span> Télécharger le relevé de notes.
         </button>
     </div>
@@ -61,122 +49,168 @@ if (demandeCheck($id, 'releve', 1)) {
                                              WHERE id = ?     )";
         return $sql;
     }
+
+    $is_there_finale_Exame_s1 = isTherefianleExam(getStudentsInfo($id)->first()->id_filiere, 1)->count();
+    $is_there_finale_Exame_s2 = isTherefianleExam(getStudentsInfo($id)->first()->id_filiere, 2)->count();
     ?>
     <div class="table-responsive-sm">
-        <?php
-        $se = getSemestre()->date_fin;
-        if (date('yy/m/d', time()) > $se) { ?>
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                    <tr style="text-align: center;">
-                        <th>Module</th>
-                        <th>Controles</th>
-                        <?php if (isTherefianleExam(getStudentsInfo($id)->first()->id_filiere)->count()) { ?>
-                            <th>Exame Finale S1</th>
-                            <th>resultat</th>
-                            <th>Exame Finale s2</th>
-                            <th>Moyenne Generale</th>
-                        <?php } ?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
-                        <td colspan=7>1ère Semestre</td>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr style="text-align: center;">
+                    <th>Module</th>
+                    <th>Controles</th>
+                    <?php if ($is_there_finale_Exame_s1) { ?>
+                        <th>Exame Finale S1</th>
+                        <th>resultat</th>
+                        <th>Exame Finale s2</th>
+                        <th>Moyenne Generale</th>
+                    <?php } ?>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
+                    <td colspan=7>1ère Semestre</td>
+                </tr>
+                <?php
+                $db->query(sqlStatment('1ere Semestre'), [$id]);
+                $examCount = 0;
+                $countModule = $resultat->count();
+                $somme_moyenne_normal = 0;
+                $somme_moyenne_ratt = 0;
+
+                foreach ($db->results() as $row) {
+                    //===========================================================================================
+                    //checking if there is `ratt`  _______________________  //checking if there is mark for `ratt`
+                    $resultat_is_there_ratt_mark = is_there_ratt_mark_for_student($id, $row->id_module)->count();
+                    $resultat_is_there_ratt_exam = is_there_ratt_exam_for_student($id, $row->id_module)->count();
+                    //===========================================================================================
+
+                    // coefficients
+                    $results_coeff = getCoiffissient($row->id_module);
+                    $coeff_controle = $results_coeff->coeff_controle;
+                    $coeff_examen = $results_coeff->coeff_examen;
+                ?>
+                    <tr>
+                        <td><?php echo $row->intitule ?></td>
+
+                        <!-- Controles -->
+                        <td id='bold'>
+                            <table class="table">
+                                <?php
+                                $markcontrole = getMarks('controle', $row->id_module, $id);
+                                $controleCount = count($markcontrole);
+                                $sommeControle = 0;
+                                if (!$is_there_finale_Exame_s1) {
+                                    echo '<tr>';
+                                    for ($i = 1; $i <= $controleCount; $i++) {
+                                        echo "<th>Controle $i</th>";
+                                    }
+                                    echo '</tr>';
+                                    echo '<tr>';
+                                    foreach ($markcontrole as $obj) {
+                                        echo "<td id='bold'>$obj->note /20 </td>";
+                                        $sommeControle += $obj->note;
+                                    }
+                                    echo '</tr>';
+                                } else {
+                                    foreach ($markcontrole as $obj) {
+                                        $sommeControle += $obj->note;
+                                    }
+                                    if ($sommeControle) {
+                                        $moyenne_Contorle = ($sommeControle / $controleCount) * $coeff_controle;
+                                        echo $moyenne_Contorle . ' / 20';
+                                    }
+                                }
+
+                                ?>
+                            </table>
+                        </td>
+                        <?php if ($is_there_finale_Exame_s1) { ?>
+                            <!-- Examen Final -->
+                            <td id='bold'>
+                                <?php
+                                if ($markcontrole) {
+                                    $noteExamFinale = -1;
+                                    $markFinale = getMarks('exam_finale_normal', $row->id_module, $id);
+                                    foreach ($markFinale as $roww) {
+                                        echo $roww->note . ' / 20';
+                                        $noteExamFinale = $roww->note;
+                                    }
+                                }
+                                ?>
+                            </td>
+                            <td id='bold'>
+                                <?php
+                                if ($markcontrole) {
+                                    if (getMarks('exam_finale_normal', $row->id_module, $id))
+                                        echo $noteExamFinale >= 12 ? 'Validé' : 'Rattrapage';
+                                }
+                                ?>
+
+                            </td>
+                            <td id='bold'>
+                                <?php
+                                if ($markcontrole) {
+                                    if ($markFinale) {
+                                        $noteExamFinaleratt = -1;
+                                        $markFinaleRatt = getMarks('exam_finale_ratt', $row->id_module, $id);
+                                        if ($markFinaleRatt) {
+                                            foreach ($markFinaleRatt as $roww) {
+                                                echo $roww->note . '/ 20';
+                                                $noteExamFinaleratt = $roww->note;
+                                            }
+                                        }
+                                    }
+                                }
+                                ?>
+                            </td>
+
+                            <!-- Moyenne Genrale -->
+                            <td id='bold'>
+                                <?php
+                                if ($markcontrole) {
+                                    if ($markFinale) {
+                                        if ($resultat_is_there_ratt_exam) {
+                                            if ($resultat_is_there_ratt_mark) {
+                                                $noteExamen = $noteExamFinale > $noteExamFinaleratt ? $noteExamFinale : $noteExamFinaleratt;
+                                                $moyModule = ($noteExamen * $coeff_examen + $moyenne_Contorle);
+                                                echo $moyModule . ' / 20';
+                                                $somme_moyenne_ratt += $moyModule;
+                                                $examCount++;
+                                            } else
+                                                echo "";
+                                        } else {
+                                            $noteExamen = $noteExamFinale;
+                                            $moyModule = ($noteExamen * $coeff_examen + $moyenne_Contorle);
+                                            echo $moyModule . ' / 20';
+                                            $somme_moyenne_normal += $moyModule;
+                                            $examCount++;
+                                        }
+                                    }
+                                }
+                                ?>
+                            </td>
+                        <?php }
+                        ?>
                     </tr>
                     <?php
-                    $db->query(sqlStatment('1ere Semestre'), [$id]);
-                    foreach ($db->results() as $row) {
+                }
+                $se = getDatesSemestre(2)->first()->date_debut;
+                // if (date('yy/m/d', time()) < $se) {
+                    if ($examCount === $countModule) {
+                        $moySem1 = ($somme_moyenne_normal + $somme_moyenne_ratt) / $countModule;
                     ?>
                         <tr>
-                            <td><?php echo $row->intitule ?></td>
-
-                            <!-- Controles -->
-                            <td id='bold'>
-                                <table class="table">
-                                    <?php
-                                    $markcontrole = getMarks('controle', $row->id_module, $id);
-                                    $controleCount = count($markcontrole);
-                                    $sommeControle = 0;
-                                    if (!isTherefianleExam(getStudentsInfo($id)->first()->id_filiere)->count()) {
-                                        echo '<tr>';
-                                        for ($i = 1; $i <= $controleCount; $i++) {
-                                            echo "<th>Controle $i</th>";
-                                        }
-                                        echo '</tr>';
-                                        echo '<tr>';
-                                        foreach ($markcontrole as $obj) {
-                                            echo "<td id='bold'>$obj->note</td>";
-                                            $sommeControle += $obj->note;
-                                        }
-                                        echo '</tr>';
-                                    } else {
-                                        foreach ($markcontrole as $obj) {
-                                            $sommeControle += $obj->note;
-                                        }
-                                        $results = getCoiffissient($row->id_module);
-                                        $coeff_controle = $results->coeff_controle;
-                                        if ($sommeControle)
-                                            echo ($sommeControle / $controleCount) * $coeff_controle;
-                                    }
-
-                                    ?>
-                                </table>
-                            </td>
-                            <?php if (isTherefianleExam(getStudentsInfo($id)->first()->id_filiere)->count()) { ?>
-                                <!-- Examen Final -->
-                                <td id='bold'>
-                                    <?php
-                                    if ($markcontrole) {
-                                        $noteExamFinale = -1;
-                                        $markFinale = getMarks('exam_finale_normal', $row->id_module, $id);
-                                        foreach ($markFinale as $roww) {
-                                            echo $roww->note;
-                                            $noteExamFinale = $roww->note;
-                                        }
-                                    }
-                                    ?>
-                                </td>
-                                <td id='bold'>
-                                    <?php
-                                    if ($markcontrole) {
-                                        if (getMarks('exam_finale_normal', $row->id_module, $id))
-                                            echo $noteExamFinale >= 12 ? 'Validé' : 'Rattrapage';
-                                    }
-                                    ?>
-
-                                </td>
-                                <td id='bold'>
-                                    <?php
-                                    if ($markcontrole) {
-                                        $noteExamFinaleRatt = -1;
-                                        $markFinale = getMarks('exam_finale_ratt', $row->id_module, $id);
-                                        foreach ($markFinale as $roww) {
-                                            echo $roww->note;
-                                            $noteExamFinaleRatt = $roww->note;
-                                        }
-                                    }
-                                    ?>
-                                </td>
-
-
-                                <!-- Moyenne Genrale -->
-                                <td id='bold'>
-
-                                    <?php
-                                    // $results = getCoiffissient($row->id_module);
-                                    // $coeff_controle = $results->coeff_controle;
-                                    // $coeff_examen = $results->coeff_examen;
-                                    // if ($noteExamFinaleRatt != -1) {
-                                    //     echo ($noteExamFinale * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
-                                    // }
-                                    ?>
-                                </td>
-                            <?php } ?>
+                            <td style="font-weight: bold;" colspan=5>Résultat d'admission Semestre 1 : </td>
+                            <td style="font-weight: bold; text-align: center; color: green;"><?php echo $moySem1 . ' / 20' ?></td>
                         </tr>
                     <?php
                     }
-                    echo '</tbody>';
-                    echo '</table>';
+                // }
+                echo '</tbody>';
+                echo '</table>';
+                if (date('yy/m/d', time()) < $se) {
+                    echo "";
                 } else {
                     ?>
                     <table class="table table-hover">
@@ -184,7 +218,7 @@ if (demandeCheck($id, 'releve', 1)) {
                             <tr style="text-align: center;">
                                 <th>Module</th>
                                 <th>Controles</th>
-                                <?php if (isTherefianleExam(getStudentsInfo($id)->first()->id_filiere)->count()) { ?>
+                                <?php if ($is_there_finale_Exame_s2) { ?>
                                     <th>Exame Finale S1</th>
                                     <th>resultat</th>
                                     <th>Exame Finale s2</th>
@@ -194,11 +228,26 @@ if (demandeCheck($id, 'releve', 1)) {
                         </thead>
                         <tbody>
                             <tr style="background: rgba(0, 0, 0, 0.16); font-weight: bold; font-size:large;">
-                                <td colspan=7>2ème Semestre</td>
+                                <td colspan=7>2ère Semestre</td>
                             </tr>
                             <?php
-                            $db->query(sqlStatment('2eme Semestre'), [$id]);
-                            foreach ($db->results() as $row0) {
+                            $resultat = $db->query(sqlStatment('2eme Semestre'), [$id]);
+                            $examCount = 0;
+                            $countModule = $resultat->count();
+                            $somme_moyenne_normal = 0;
+                            $somme_moyenne_ratt = 0;
+
+                            foreach ($resultat->results() as $row0) {
+                                //===========================================================================================
+                                //checking if there is `ratt`  _______________________  //checking if there is mark for `ratt`
+                                $resultat_is_there_ratt_mark = is_there_ratt_mark_for_student($id, $row0->id_module)->count();
+                                $resultat_is_there_ratt_exam = is_there_ratt_exam_for_student($id, $row0->id_module)->count();
+                                //===========================================================================================
+
+                                // coefficients
+                                $results_coeff = getCoiffissient($row0->id_module);
+                                $coeff_controle = $results_coeff->coeff_controle;
+                                $coeff_examen = $results_coeff->coeff_examen;
                             ?>
                                 <tr>
                                     <td><?php echo $row0->intitule ?></td>
@@ -210,7 +259,7 @@ if (demandeCheck($id, 'releve', 1)) {
                                             $markcontrole = getMarks('controle', $row0->id_module, $id);
                                             $controleCount = count($markcontrole);
                                             $sommeControle = 0;
-                                            if (!isTherefianleExam(getStudentsInfo($id)->first()->id_filiere)->count()) {
+                                            if (!$is_there_finale_Exame_s2) {
                                                 echo '<tr>';
                                                 for ($i = 1; $i <= $controleCount; $i++) {
                                                     echo "<th>Controle $i</th>";
@@ -218,7 +267,7 @@ if (demandeCheck($id, 'releve', 1)) {
                                                 echo '</tr>';
                                                 echo '<tr>';
                                                 foreach ($markcontrole as $obj) {
-                                                    echo "<td id='bold'>$obj->note</td>";
+                                                    echo "<td id='bold'>$obj->note /20 </td>";
                                                     $sommeControle += $obj->note;
                                                 }
                                                 echo '</tr>';
@@ -226,16 +275,16 @@ if (demandeCheck($id, 'releve', 1)) {
                                                 foreach ($markcontrole as $obj) {
                                                     $sommeControle += $obj->note;
                                                 }
-                                                $results = getCoiffissient($row0->id_module);
-                                                $coeff_controle = $results->coeff_controle;
-                                                if ($sommeControle)
-                                                    echo ($sommeControle / $controleCount) * $coeff_controle;
+                                                if ($sommeControle) {
+                                                    $moyenne_Contorle = ($sommeControle / $controleCount) * $coeff_controle;
+                                                    echo $moyenne_Contorle . ' / 20';
+                                                }
                                             }
 
                                             ?>
                                         </table>
                                     </td>
-                                    <?php if (isTherefianleExam(getStudentsInfo($id)->first()->id_filiere)->count()) { ?>
+                                    <?php if ($is_there_finale_Exame_s2) { ?>
                                         <!-- Examen Final -->
                                         <td id='bold'>
                                             <?php
@@ -243,7 +292,7 @@ if (demandeCheck($id, 'releve', 1)) {
                                                 $noteExamFinale = -1;
                                                 $markFinale = getMarks('exam_finale_normal', $row0->id_module, $id);
                                                 foreach ($markFinale as $roww) {
-                                                    echo $roww->note;
+                                                    echo $roww->note . ' / 20';
                                                     $noteExamFinale = $roww->note;
                                                 }
                                             }
@@ -256,40 +305,101 @@ if (demandeCheck($id, 'releve', 1)) {
                                                     echo $noteExamFinale >= 12 ? 'Validé' : 'Rattrapage';
                                             }
                                             ?>
+
                                         </td>
                                         <td id='bold'>
                                             <?php
                                             if ($markcontrole) {
-                                                $noteExamFinaleRatt = -1;
-                                                $markFinale = getMarks('exam_finale_ratt', $row0->id_module, $id);
-                                                foreach ($markFinale as $roww) {
-                                                    echo $roww->note;
-                                                    $noteExamFinaleRatt = $roww->note;
+                                                if ($markFinale) {
+                                                    $noteExamFinaleratt = -1;
+                                                    $markFinaleRatt = getMarks('exam_finale_ratt', $row0->id_module, $id);
+                                                    if ($markFinaleRatt) {
+                                                        foreach ($markFinaleRatt as $roww) {
+                                                            echo $roww->note . '/ 20';
+                                                            $noteExamFinaleratt = $roww->note;
+                                                        }
+                                                    }
                                                 }
                                             }
                                             ?>
                                         </td>
 
-
                                         <!-- Moyenne Genrale -->
                                         <td id='bold'>
-
                                             <?php
-                                            // $results = getCoiffissient($row0->id_module);
-                                            // $coeff_controle = $results->coeff_controle;
-                                            // $coeff_examen = $results->coeff_examen;
-                                            // if ($noteExamFinaleRatt != -1) {
-                                            //     echo ($noteExamFinale * $coeff_examen + ($sommeControle / $controleCount) * $coeff_controle);
-                                            // }
+                                            if ($markcontrole) {
+                                                if ($markFinale) {
+                                                    if ($resultat_is_there_ratt_exam) {
+                                                        if ($resultat_is_there_ratt_mark) {
+                                                            $noteExamen = $noteExamFinale > $noteExamFinaleratt ? $noteExamFinale : $noteExamFinaleratt;
+                                                            $moyModule = ($noteExamen * $coeff_examen + $moyenne_Contorle);
+                                                            echo $moyModule . ' / 20';
+                                                            $somme_moyenne_ratt += $moyModule;
+                                                            $examCount++;
+                                                        } else
+                                                            echo "";
+                                                    } else {
+                                                        $noteExamen = $noteExamFinale;
+                                                        $moyModule = ($noteExamen * $coeff_examen + $moyenne_Contorle);
+                                                        echo $moyModule . ' / 20';
+                                                        $somme_moyenne_normal += $moyModule;
+                                                        $examCount++;
+                                                    }
+                                                }
+                                            }
                                             ?>
                                         </td>
-                                    <?php } ?>
+                                    <?php }
+                                    ?>
                                 </tr>
-                        <?php
+                            <?php
                             }
-                        }
-                        ?>
+                            if ($examCount === $countModule) {
+                                $moySem2 = ($somme_moyenne_normal + $somme_moyenne_ratt) / $countModule;
+                            ?>
+                                <tr>
+                                    <td style="font-weight: bold;" colspan=5>Résultat d'admission Semestre 2 : </td>
+                                    <td style="font-weight: bold; text-align: center; color: green;"><?php echo $moySem2 . ' / 20' ?></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
+                <?php } ?>
     </div>
 </div>
+<br>
+<?php
+// $moySem2=15.2;
+if (isset($moySem1) && isset($moySem2)) {
+?>
+    <table class="table table-striped" style="width: 40%; float:right;">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Semster</th>
+                <th scope="col">Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1<sup>ere</sup>Semester</td>
+                <td style="font-weight: bold;"><?php echo $moySem1 . ' / 20' ?></td>
+            </tr>
+            <tr>
+                <td>2<sup>eme</sup>Semester</td>
+                <td style="font-weight: bold;"><?php echo $moySem2 . ' / 20' ?></td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">MOY. GENERALE</td>
+                <td style="font-weight: bold;"><?php echo ($moySem1 + $moySem2) / 2 . ' / 20' ?></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <br><br><br><br><br><br>
+    <br><br>
+<?php
+}
+?>
+</table>
