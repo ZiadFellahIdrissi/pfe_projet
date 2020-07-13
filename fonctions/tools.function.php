@@ -286,7 +286,7 @@ function isTherefianleExam($filiere,$semester)
 $max_Exame_finale = "";
 $min_Exame_finale = "";
 $date_debut_dexieme_Semester = getDatesSemestre(2)->first()->date_debut;
-if (date('yy/m/d', time()) < $date_debut_dexieme_Semester) {
+if (date('yy-m-d', time()) > $date_debut_dexieme_Semester) {
     $dateSemsetre = date_create(getDatesSemestre(2)->first()->date_fin);
     date_add($dateSemsetre, date_interval_create_from_date_string('30 days'));
 

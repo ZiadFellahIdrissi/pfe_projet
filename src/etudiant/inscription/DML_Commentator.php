@@ -2,8 +2,8 @@
 $fullurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 if (strpos($fullurl, "paysuccess")) {
 ?>
-    <div aria-live="polite" aria-atomic="false" style="position: absolute; top: 13%; right: 3%;  min-height: 200px; ">
-        <div class="toast" style=" width:700px; background-color:#55efc4;">
+    <div aria-live="polite" aria-atomic="false" style="position: absolute; top: 11.5%; right: 2%;  min-height: 200px; z-index: 2;">
+        <div class="toast" style=" width:700px; background-color:#55efc4; ">
             <div class="toast-header">
                 <strong class="mr-auto">Paiement</strong>
                 <small>Just now</small>
@@ -20,7 +20,7 @@ if (strpos($fullurl, "paysuccess")) {
 }
 if (strpos($fullurl, "payfailed")) {
 ?>
-    <div aria-live="polite" aria-atomic="false" style="position: absolute; top: 13%; right: 3%;  min-height: 200px; ">
+    <div aria-live="polite" aria-atomic="false" style="position: absolute; top: 11.5%; right: 2%;  min-height: 200px; z-index: 2;">
         <div class="toast" style=" width:700px; background-color:#55efc4;">
             <div class="toast-header">
                 <strong class="mr-auto">Paiement</strong>

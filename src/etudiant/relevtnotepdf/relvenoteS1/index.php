@@ -1,7 +1,7 @@
 <?php
-require_once '../../../core/init.php';
-require '../../../lib/fpdf/fpdf.php';
-include_once '../../../fonctions/tools.function.php';
+require_once '../../../../core/init.php';
+require '../../../../lib/fpdf/fpdf.php';
+include_once '../../../../fonctions/tools.function.php';
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $db = DB::getInstance();
@@ -25,11 +25,12 @@ if (isset($_GET["id"])) {
             function header()
             {
                 $this->SetFont('Arial', '8', 14);
-                $this->cell(276, 5, 'RELVE DE NOTES ET RESULTATS', 0, 0, 'C');
+                $this->cell(100, 10, 'Formation Continue du Casablanca', 0, 0, 'L'); 
+                $this->cell(90, 10, 'FCC', 0, 0, 'R');
                 $this->Ln();
-                $this->SetFont('Times', '', 12);
-                $this->cell(276, 10, 'Session 1', 0, 0, 'C');
-                $this->Ln(20);
+                $this->cell(190, 8, 'RELVE DE NOTES ET RESULTATS', 1, 1, 'C',true);
+                $this->cell(190, 8, 'SEMESTRE 1', 0, 0, 'C');
+                $this->Ln(10);
             }
             function Student_information($id)
             {
@@ -44,14 +45,16 @@ if (isset($_GET["id"])) {
                 $this->cell(80, 10, $nom_prenom, 0, 0, 'L');
                 $this->Ln();
                 $this->SetFont('Times', '', 12);
-                $this->cell(80, 10, 'CIN: ' . $cin, 0, 0, 'L');
-                $this->cell(100, 10, 'CIN: ' . $cne, 0, 0, 'L');
+                $this->cell(80, 7, 'CIN: ' . $cin, 0, 0, 'L');
+                $this->cell(100, 7, 'CIN: ' . $cne, 0, 0, 'L');
                 $this->Ln();
-                $this->cell(80, 10, 'Ne le: ' . $date_naissane, 0, 0, 'L');
-                $this->cell(100, 10, 'à: ' . 'CASABLANCA', 0, 0, 'L');
+                $this->cell(80, 7, 'Ne le: ' . $date_naissane, 0, 0, 'L');
+                $this->cell(100, 7, 'à: ' . 'CASABLANCA', 0, 0, 'L');
                 $this->Ln();
+                
+                $this->cell(20, 10, 'Inscrit en: ', 0, 0, 'L');
                 $this->SetFont('Arial', '8', 14);
-                $this->cell(100, 10, 'Inscrit en: '  . $filiere, 0, 0, 'L');
+                $this->cell(100, 10, $filiere, 0, 0, 'L');
                 $this->SetFont('Times', '', 13);
                 $this->Ln();
                 $this->cell(80, 10, 'a obtenu les notes suivants :', 0, 0, 'L');
@@ -59,22 +62,29 @@ if (isset($_GET["id"])) {
             }
             function footer()
             {
-                $this->SetY(-15);
+                $this->SetY(-50);
+                $this->SetFont('Times', '', 11);
+                $this->cell(95, 10, 'Fait a Casablanca, le '.date('d F Y', time()) , 0, 1, 'R');
+                $this->cell(100, 10, 'LE DOYEN DE LA FORMATION CONTINUE DU CASABLANCA  ' , 0, 1, 'L');
+                $this->SetY(-18);
                 $this->SetFont('Arial', '8', 14);
-                $this->cell(0, 10, 'Page' . $this->PageNo() . '/{nb}', 0, 0, 'C');
+                $this->cell(0, 10, 'Page : ' . $this->PageNo() . ' / {nb}', 0, 1, 'C');
+                $this->SetFont('Arial', '8', 10);
+                $this->cell(190, 5, "Avis important: Il ne peut etre delivre qu'un seul exemplaire du present releve de note. Acun duplcata ne sera fourni.", 0, 0, 'C');
+                $this->Ln(2);
             }
             function headerTable()
             {
-                $this->SetFont('Times', '', 12);
-                $this->cell(120, 10, 'Module', 1, 0, 'C');
-                $this->cell(50, 10, 'Moyenne Generale', 1, 0, 'C');
-                $this->cell(50, 10, 'Resultat', 1, 0, 'C');
-                $this->cell(55, 10, 'Session', 1, 0, 'C');
+                $this->SetFont('Times', '', 11);
+                $this->cell(100, 10, 'Module', 1, 0, 'C');
+                $this->cell(35, 10, 'Moyenne Generale', 1, 0, 'C');
+                $this->cell(25, 10, 'Resultat', 1, 0, 'C');
+                $this->cell(30, 10, 'Session', 1, 0, 'C');
                 $this->Ln();
             }
             function viewTable($db, $id)
             {
-                $this->SetFont('Times', '', 12);
+                $this->SetFont('Times', '', 11);
                 $resultat = $db->query(sqlStatment('1ere Semestre'), [$id]);
                 $countModule = $resultat->count();
                 $noteExamFinaleratt = -1;
@@ -135,25 +145,25 @@ if (isset($_GET["id"])) {
                     else
                         $SessionExamens = "S1";
 
-                    $moySem1 = ($somme_moyenne_normal + $somme_moyenne_ratt) / $countModule;
-
-
-                    $this->cell(120, 10, $row->intitule, 1, 0, 'L');
-                    $this->cell(50, 10, $moyModule . '15 / 20', 1, 0, 'C');
-                    $this->cell(50, 10, $resultatExamens, 1, 0, 'C');
-                    $this->cell(55, 10, $SessionExamens, 1, 0, 'C');
+                    $this->cell(100, 10, $row->intitule, 1, 0, 'L');
+                    $this->cell(35, 10, $moyModule . '15 / 20', 1, 0, 'C');
+                    $this->cell(25, 10, $resultatExamens, 1, 0, 'C');
+                    $this->cell(30, 10, $SessionExamens, 1, 0, 'C');
                     $this->Ln();
                 }
-                $this->cell(120, 10, "Resultat d'admission Semestre 1 :", 0, 0, 'L');
-                $this->cell(50, 10, $moySem1 . '15 / 20', 0, 0, 'C');
-                $this->cell(50, 10, 'Valide', 0, 0, 'C');
-                $this->cell(55, 10, '', 0, 0, 'C');
+                $moySem1 = ($somme_moyenne_normal + $somme_moyenne_ratt) / $countModule;
+                $this->SetFont('Arial', '8', 13);
+                $this->cell(100, 10, "Resultat d'admission Semestre 1 :", 0, 0, 'L');
+                $this->cell(35, 10, $moySem1 . '15 / 20', 0, 0, 'C');
+                $this->cell(25, 10, 'Valide', 0, 0, 'C');
+                $this->cell(30, 10, '', 0, 0, 'C');
             }
         }
 
         $pdf = new myPDF();
+        $pdf->SetFillColor(230,230,230);
         $pdf->AliasNbPages();
-        $pdf->AddPage('L', 'A4', 0);
+        $pdf->AddPage('P', 'A4', 0);
         $pdf->Student_information($id);
         $pdf->headerTable();
         $pdf->viewTable($db, $id);

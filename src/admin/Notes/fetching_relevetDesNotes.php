@@ -187,12 +187,12 @@ if (isset($_GET["cin"])) {
                             </td>
                         </tr>
                         <?php
-                        if ($examCount === $countModule) {
-                            $moySem1 = ($somme_moyenne_normal + $somme_moyenne_ratt) / $countModule ;
-                        }
+                    }
+                    if ($examCount === $countModule) {
+                        $moySem1 = ($somme_moyenne_normal + $somme_moyenne_ratt) / $countModule ;
                     }
                     $se = getDatesSemestre(2)->first()->date_debut;
-                    if (date('yy/m/d', time()) < $se) {
+                    if (date('yy-m-d', time()) < $se) {
                         if ($examCount === $countModule) {
                         ?>
                             <tr>

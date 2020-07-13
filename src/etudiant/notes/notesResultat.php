@@ -27,11 +27,21 @@ if (demandeCheck($id, 'releve', -1) && !demandeCheck($id, 'releve', 1)) {
 if (demandeCheck($id, 'releve', 1)) {
 ?>
     <div style="text-align: right; margin-bottom: 1%">
-        <button type="button" class="btn btn-outline-dark" onclick="location.href='../relevtnotepdf/?id=<?php echo $id ?>'">
-            <span><i class="fa fa-download"></i></span> Télécharger le relevé de notes.
+        <button type="button" class="btn btn-outline-dark" onclick="location.href='../relevtnotepdf/relvenoteS1/?id=<?php echo $id ?>'">
+            <span><i class="fa fa-download"></i></span> Télécharger le relevé de notes S1.
         </button>
     </div>
+    <?php
+    $se = getDatesSemestre(2)->first()->date_debut;
+    if (date('yy-m-d', time()) > $se) {
+    ?>
+        <div style="text-align: right; margin-bottom: 1%">
+            <button type="button" class="btn btn-outline-dark" onclick="location.href='../relevtnotepdf/relvenoteS2/?id=<?php echo $id ?>'">
+                <span><i class="fa fa-download"></i></span> Télécharger le relevé de notes S2.
+            </button>
+        </div>
 <?php
+    }
 }
 ?>
 
@@ -193,26 +203,26 @@ if (demandeCheck($id, 'releve', 1)) {
                         <?php }
                         ?>
                     </tr>
-                    <?php
+                <?php
                 }
                 $se = getDatesSemestre(2)->first()->date_debut;
                 // if (date('yy/m/d', time()) < $se) {
-                    if ($examCount === $countModule) {
-                        $moySem1 = ($somme_moyenne_normal + $somme_moyenne_ratt) / $countModule;
-                    ?>
-                        <tr>
-                            <td style="font-weight: bold;" colspan=5>Résultat d'admission Semestre 1 : </td>
-                            <td style="font-weight: bold; text-align: center; color: green;"><?php echo $moySem1 . ' / 20' ?></td>
-                        </tr>
-                    <?php
-                    }
+                if ($examCount === $countModule) {
+                    $moySem1 = ($somme_moyenne_normal + $somme_moyenne_ratt) / $countModule;
+                ?>
+                    <tr>
+                        <td style="font-weight: bold;" colspan=5>Résultat d'admission Semestre 1 : </td>
+                        <td style="font-weight: bold; text-align: center; color: green;"><?php echo $moySem1 . ' / 20' ?></td>
+                    </tr>
+                <?php
+                }
                 // }
                 echo '</tbody>';
                 echo '</table>';
-                if (date('yy/m/d', time()) < $se) {
+                if (date('yy-m-d', time()) < $se) {
                     echo "";
                 } else {
-                    ?>
+                ?>
                     <table class="table table-hover">
                         <thead class="thead-dark">
                             <tr style="text-align: center;">

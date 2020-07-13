@@ -115,6 +115,7 @@ if (!$user->isLoggedIn()) {
                                     </div>
                                 </option>
                             </select>
+
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -171,6 +172,17 @@ if (!$user->isLoggedIn()) {
 
                     <!-- modal footer -->
                     <div class="modal-footer">
+                        <?php $se = getDatesSemestre(2)->first()->date_debut;
+                        if (date('yy-m-d', time()) > $se) {
+                        ?>
+                            <input type="hidden" value=2 id="semster">
+                        <?php
+                        } else {
+                        ?>
+                            <input type="hidden" value=1 id="semster">
+                        <?php
+                        }
+                        ?>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                         <button type="button" class="btn btn-primary" id="ajouterExame" name="ajouter">Ajouter</button>
                     </div>
@@ -203,12 +215,14 @@ if (!$user->isLoggedIn()) {
 
                 function affiche() {
                     var id_filiere = $("#filiere").val();
+                    var semster = $("#semster").val();
                     if (id_filiere) {
                         $.ajax({
                             url: "fetchModules.php",
                             method: "GET",
                             data: {
-                                id_filiere: id_filiere
+                                id_filiere: id_filiere,
+                                semster: semster
                             },
                             beforeSend: function() {
                                 $("#spinner").show();

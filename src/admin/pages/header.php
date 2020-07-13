@@ -33,7 +33,7 @@ $db = DB::getInstance();
                                     <?php
                                     foreach ($db->results() as $row) {
                                     ?>
-                                        <div class="notifi__item ">
+                                        <div class="notifi__item" onclick="location.href='../Demandes'">
                                             <div class="bg-c2 img-cir img-40 ">
                                                 <i class="zmdi zmdi-account-box "></i>
                                             </div>

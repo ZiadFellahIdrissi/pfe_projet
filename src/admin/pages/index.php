@@ -140,7 +140,7 @@ if (!$user->isLoggedIn()) {
                             <div class="au-card m-b-30">
                                 <div class="au-card-inner">
                                     <h3 class="title-2 m-b-40">Les notes</h3>
-                                    <canvas id="lesNOtes-chart"></canvas>
+                                    <canvas id="notes_Normal_Ratt-chart"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -175,7 +175,7 @@ if (!$user->isLoggedIn()) {
                         let data0 = JSON.parse(data);
                         for (var i in data0) {
                             nbSeance.push(data0[i].nbAbsence);
-                            dataSeance.push('Mois '+data0[i].mois);
+                            dataSeance.push('Mois ' + data0[i].mois);
                         }
                         var ctx = $("#lesabsences-chart");
                         if (ctx) {
@@ -264,6 +264,82 @@ if (!$user->isLoggedIn()) {
 
 
                 });
+            });
+
+            $.ajax({
+                url: "./fetch_Exame_ratt_normal_data.php",
+                method: "GET",
+                contentType: "application/json",
+                dataType: 'json',
+                success: function(data11) {
+                    let nbetudiantNormal = [];
+                    let nbetudiantRatt = [];
+                    // let data11 = JSON.parse(data);
+                    for (var i in data11) {
+                        console.log(data11.t);
+                        if (data11[i].t == 'exam_finale_normal')
+                            nbetudiantNormal.push(data11[i].nb);
+                        else
+                            nbetudiantRatt.push(data11[i].nb);
+                    }
+                    var ctx = document.getElementById("notes_Normal_Ratt-chart");
+                    if (ctx) {
+                        ctx.height = 200;
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            defaultFontFamily: 'Poppins',
+                            data: {
+                                labels: ["1ere semestre", "2ere semestre"],
+                                datasets: [{
+                                        label: "Examens Finale Normal",
+                                        data: nbetudiantNormal,
+                                        borderColor: "rgba(0, 123, 255, 0.9)",
+                                        borderWidth: "0",
+                                        backgroundColor: "rgba(0, 123, 255, 0.5)",
+                                        fontFamily: "Poppins"
+                                    },
+                                    {
+                                        label: "Examens Finale Rattrapage",
+                                        data: nbetudiantRatt,
+                                        borderColor: "rgba(0,0,0,0.09)",
+                                        borderWidth: "0",
+                                        backgroundColor: "rgba(0,0,0,0.07)",
+                                        fontFamily: "Poppins"
+                                    }
+                                ]
+                            },
+                            options: {
+                                legend: {
+                                    position: 'top',
+                                    labels: {
+                                        fontFamily: 'Poppins'
+                                    }
+
+                                },
+                                scales: {
+                                    xAxes: [{
+                                        ticks: {
+                                            fontFamily: "Poppins"
+
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true,
+                                            fontFamily: "Poppins"
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    }
+
+                },
+                error: function() {
+                    alert("something is wrong");
+                }
+
+
             });
         </script>
     </body>

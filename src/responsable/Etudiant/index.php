@@ -2,6 +2,7 @@
 include_once '../../../core/init.php';
 $user = new User_Prof();
 $db = DB::getInstance();
+include_once '../../../fonctions/tools.function.php';
 if (!$user->isLoggedIn()) {
     header('Location: ../../login');
 } else {

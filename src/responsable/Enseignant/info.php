@@ -1,6 +1,7 @@
 <?php
-include_once '../../../fonctions/tools.function.php';
 include_once '../../../core/init.php';
+include_once '../../../fonctions/tools.function.php';
+$db=DB::getInstance();
 $id = $_GET["cin"];
 
 $allInfos = getPersonInfo($id);
