@@ -37,7 +37,7 @@ $resultats = $db->query($sql, []);
             }
             ?>
             <?php
-            if(date('Y-m-d' ,time()) > getDatesSemestre(2)->first()->date_fin){
+            if(date('YY-m-d' ,time()) > getDatesSemestre(2)->first()->date_fin){
             ?>
             <hr>
             <div class="float-right" style="padding-bottom:1.4%; padding-right:1%;">

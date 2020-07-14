@@ -383,7 +383,40 @@ if (demandeCheck($id, 'releve', 1)) {
 <?php
 // $moySem2=15.2;
 if (isset($moySem1) && isset($moySem2)) {
-?>
+
+    if (!demandeCheck($id, 'attestationR', -1) && !demandeCheck($id, 'attestationR', 1)) {
+    ?>
+        <div style="text-align: right; margin-bottom: 1%">
+            <?php
+            if (demandeCheck($id, 'attestationR', 0)) {
+            ?>
+                <span style="color: red">Votre demande précédent a été refusé.</span>
+            <?php
+            }
+            ?>
+            <button type="button" class="btn btn-outline-dark" onclick="location.href='../demander.php?type=attestationR&id=<?php echo $id ?>'">
+                <span><i class="fa fa-print"></i></span> Demander l'attestation de resussite au diplome
+            </button>
+        </div>
+    <?php
+    }
+    if (demandeCheck($id, 'attestationR', -1) && !demandeCheck($id, 'attestationR', 1)) {
+    ?>
+        <div style="text-align: right; margin-bottom: 1%">
+            Demande envoyé.
+        </div>
+    <?php
+    }
+    if (demandeCheck($id, 'attestationR', 1)) {
+    ?>
+        <div style="text-align: right; margin-bottom: 1%">
+            <button type="button" class="btn btn-outline-dark" onclick="location.href='../AttestationReussite/?id=<?php echo $id ?>'">
+                <span><i class="fa fa-download"></i></span> Télécharger l'attistation .
+            </button>
+        </div>
+        <?php
+    }
+    ?>
     <table class="table table-striped" style="width: 40%; float:right;">
         <thead class="thead-dark">
             <tr>

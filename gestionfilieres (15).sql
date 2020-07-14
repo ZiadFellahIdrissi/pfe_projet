@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 12, 2020 at 02:35 PM
+-- Generation Time: Jul 14, 2020 at 06:25 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `demandes` (
   `etat` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_id_etudiant` (`id_etudiant`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -147,6 +147,39 @@ CREATE TABLE IF NOT EXISTS `filiere` (
   UNIQUE KEY `Filiere_Idx` (`nom_filiere`),
   KEY `Filiere_Personnel_FK` (`id_responsable`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE IF NOT EXISTS `messages` (
+  `id_message` int(5) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(40) DEFAULT NULL,
+  `body` text NOT NULL,
+  `date` datetime NOT NULL,
+  `sender_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`id_message`),
+  KEY `message_ibfk_1` (`sender_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message_list`
+--
+
+DROP TABLE IF EXISTS `message_list`;
+CREATE TABLE IF NOT EXISTS `message_list` (
+  `id_message` int(5) NOT NULL,
+  `user_id` varchar(8) NOT NULL,
+  `isread` int(2) NOT NULL,
+  UNIQUE KEY `id_message` (`id_message`,`user_id`),
+  KEY `message_list_ibfk_1` (`id_message`),
+  KEY `message_list_ibfk_2` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -328,6 +361,19 @@ ALTER TABLE `etudiant`
 --
 ALTER TABLE `filiere`
   ADD CONSTRAINT `Filiere_Personnel_FK` FOREIGN KEY (`id_responsable`) REFERENCES `personnel` (`id`);
+
+--
+-- Constraints for table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `utilisateur` (`id`);
+
+--
+-- Constraints for table `message_list`
+--
+ALTER TABLE `message_list`
+  ADD CONSTRAINT `message_list_ibfk_1` FOREIGN KEY (`id_message`) REFERENCES `messages` (`id_message`),
+  ADD CONSTRAINT `message_list_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `utilisateur` (`id`);
 
 --
 -- Constraints for table `module`

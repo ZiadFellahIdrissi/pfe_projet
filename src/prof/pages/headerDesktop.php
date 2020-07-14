@@ -49,38 +49,42 @@
                 <div class="header-button-item has-noti js-item-menu">
                     <i class="zmdi zmdi-notifications"></i>
                     <div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown">
+                        <?php
+                        include_once '../../../fonctions/tools.function.php';
+                        $nbMessages = do_i_have_massages($id);
+                        ?>
                         <div class="notifi__title">
-                            <p>You have 3 Notifications</p>
+                            <p>You have <?php echo $nbMessages ?> Messages</p>
                         </div>
-                        <div class="notifi__item">
-                            <div class="bg-c1 img-cir img-40">
-                                <i class="zmdi zmdi-email-open"></i>
-                            </div>
-                            <div class="content">
-                                <p>You got a email notification</p>
-                                <span class="date">April 12, 2018 06:50</span>
-                            </div>
-                        </div>
-                        <div class="notifi__item">
-                            <div class="bg-c2 img-cir img-40">
-                                <i class="zmdi zmdi-account-box"></i>
-                            </div>
-                            <div class="content">
-                                <p>Your account has been blocked</p>
-                                <span class="date">April 12, 2018 06:50</span>
-                            </div>
-                        </div>
-                        <div class="notifi__item">
-                            <div class="bg-c3 img-cir img-40">
-                                <i class="zmdi zmdi-file-text"></i>
-                            </div>
-                            <div class="content">
-                                <p>You got a new file</p>
-                                <span class="date">April 12, 2018 06:50</span>
-                            </div>
-                        </div>
+                        <?php
+                        if ($nbMessages) {
+                            $newnbMessages = $nbMessages > 3 ? 3 : $nbMessages;
+                            $sql = "SELECT message_list.id_message,messages.date,messages.body,
+                            Utilisateur.id ,Utilisateur.nom , Utilisateur.prenom,Utilisateur.imagepath
+                           FROM `message_list` 
+                           join Messages on message_list.id_message = Messages.id_message 
+                           join Utilisateur on Utilisateur.id = Messages.sender_id 
+                           where message_list.user_id = ? 
+                           and message_list.isread=?
+                           GROUP BY Utilisateur.id order by messages.date desc limit $newnbMessages";
+                            $resultat = DB::getInstance()->query($sql, [$id,0]);
+
+                            foreach ($resultat->results() as $row) {
+                        ?>
+                                <div class="mess__item">
+                                    <div class="image img-cir img-40">
+                                        <img src="../../../img/profiles/<?php echo $row->imagepath ?>" alt="<?php echo strtoupper($row->nom . ' ' . $row->prenom); ?>">
+                                    </div>
+                                    <div class="content unread">
+                                        <h6><?php echo strtoupper($row->nom . ' ' . $row->prenom); ?></h6>
+                                        <p><?php echo substr($row->body, 0, 40) . '....'; ?></p>
+                                        <span class="time"><?php $row->date ?></span>
+                                    </div>
+                                </div>
+                        <?php }
+                        } ?>
                         <div class="notifi__footer">
-                            <a href="#">All notifications</a>
+                            <a href="#">Tout les messages</a>
                         </div>
                     </div>
                 </div>

@@ -36,9 +36,9 @@ if (isset($_GET["id"])) {
                 $this->SetFont('Times', '', 12);
                 $resultsInfo = getPersonInfo($id);
                 $resultStudentInfo = getStudentsInfo($id);
-                $nom_prenom = strtoupper($resultsInfo->nom) . ' ' . $resultsInfo->prenom;
+                $nom_prenom = strtoupper($resultsInfo->nom . ' ' . $resultsInfo->prenom);
                 $filiere = $resultStudentInfo->first()->nom_filiere;
-
+                $annee= getDatesSemestre(2)->first()->date_fin;
                 $this->cell(190, 7, 'LE DOYEN DE LA FORMATION CONTINUE DU CASABLANCA (FCC) atteste que', 0, 0, 'C');
                 $this->Ln();
 
@@ -58,7 +58,7 @@ if (isset($_GET["id"])) {
                 $this->cell(190, 7, 'ne le 16 juin 1999 a CASABLANCA' , 0, 0, 'C');
                 $this->Ln();$this->Ln();
 
-                $this->cell(190, 7, "au titre de l'annee 2018/2019 avec la mention " , 0, 0, 'C');
+                $this->cell(190, 7, "au titre de l'annee $annee avec la mention " , 0, 0, 'C');
                 $this->Ln();
                 $this->Line(160,100,50,100);
 

@@ -95,7 +95,7 @@ if ($userAdmin->isLoggedIn()) {
                                 <!-- <i class="icon big rounded color9 fa-desktop"></i> -->
                                 <h3>Bienvenu</h3>
                                 <p>
-                                    L'ENT est un espace numérique de travail conçu pour répondre aux besoins spécifiques des membres de la communauté de l'Université Hassan II de Casablanca. C'est un espace sécurisé accessible depuis tout ordinateur connecté à Internet (chez soi, dans une
+                                    L'FCC est un espace numérique de travail conçu pour répondre aux besoins spécifiques des membres de la communauté de l'Université Hassan II de Casablanca. C'est un espace sécurisé accessible depuis tout ordinateur connecté à Internet (chez soi, dans une
                                     salle équipée de l'Université, etc.). Chaque utilisateur dispose d'un compte qui, à partir d'une seule identification, ouvre sur un ensemble d'applications et services adaptés au profil et aux fonctions de chacun.
                                 </p>
                             </section>
@@ -105,7 +105,7 @@ if ($userAdmin->isLoggedIn()) {
                         <div>
                             <section class="box">
                                 <h3>Connexion</h3>
-                                <p>La connexion s'effectue à l'aide de comptesENT Pour se connecter, utiliser le bouton "Connexion", en haut à droite de l'écran. Pour des questions de sécurité, il est conseillé de se déconnecter en fin de séance de travail en cliquant
+                                <p>La connexion s'effectue à l'aide de comptesFCC Pour se connecter, utiliser le bouton "Connexion", en haut à droite de l'écran. Pour des questions de sécurité, il est conseillé de se déconnecter en fin de séance de travail en cliquant
                                     sur le bouton "Déconnexion" (situé également en haut à droite dans l'environnement de travail) puis de fermer toutes ses fenêtres de navigateur.</p>
                             </section>
                         </div>
@@ -115,7 +115,7 @@ if ($userAdmin->isLoggedIn()) {
                             <section class="box">
                                 <!-- <i class="icon big rounded color6 fa-rocket"></i> -->
                                 <h3>Attention</h3>
-                                <p>Pour les nouveaux personnels et étudiants, la connexion est possible uniquement après avoir suivi la procédure d'activation de son compte : comptesENT. Cette procédure s'effectue :</p>
+                                <p>Pour les nouveaux personnels et étudiants, la connexion est possible uniquement après avoir suivi la procédure d'activation de son compte : comptesFCC. Cette procédure s'effectue :</p>
                                 <p style="text-align: left;"><b>Après</b> inscription administrative pour les étudiants, qui doivent être en possession de leur carte d'étudiant.
                                     <br><b>Après</b> obtention de leurs codes d'accès pour les personnels selon la procédure administrative.</p>
                             </section>
@@ -126,18 +126,75 @@ if ($userAdmin->isLoggedIn()) {
         </section>
         <!-- Three -->
         <section id="three" class="wrapper style3 special">
-            <div class="container">
-                <header class="major">
-                    <h2>connecte nous</h2>
-                </header>
-            </div>
-            <div class="container">
-                <form>
-                    <!-- 7ydti hadchi li kan hna xD lmohim hta l mn be3d
-                          khess dk tkhrbi9, sf mzyan
-                        lbutton ki zebi -->
-                </form>
-            </div>
+            <section class="mb-3 container">
+
+                <!--Section heading-->
+                <h2 class="h1-responsive font-weight-bold text-center my-4">Contactez nous</h2>
+                <!--Section description-->
+                <p class="text-center w-responsive mx-auto mb-5">Avez-vous des questions? N'hésitez pas à nous contacter directement. Notre équipe reviendra vers vous en quelques heures pour vous aider.</p>
+
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-8 mb-md-0 mb-1 ">
+                        <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="md-form mb-4">
+                                        <input type="text" id="name" name="name" placeholder="Votre nom" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="md-form mb-4">
+                                        <input type="text" id="email" name="email" placeholder="Votre  email" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="md-form mb-4">
+                                        <input type="text" id="subject" name="subject" placeholder="Subject" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="md-form">
+                                        <textarea type="text" id="message" name="message" rows="5" placeholder="Your message" class="form-control md-textarea"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <div class="text-center text-md-left">
+                            <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+                        </div>
+                        <div class="status"></div>
+                    </div>
+
+                    <div class="col-md-3 text-center">
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="fas fa-map-marker-alt fa-2x"></i>
+                                <p>Casablanca route el jadida </p>
+                            </li>
+
+                            <li><i class="fas fa-phone mt-4 fa-2x"></i>
+                                <p>+212693986210</p>
+                            </li>
+
+                            <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+                                <p>contact@FCC.MA</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
         </section>
 
         <!-- Footer -->

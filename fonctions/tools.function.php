@@ -200,6 +200,9 @@ function demandeCheck($id_etudiant, $type_, $etat)
         case 'stage':
             $type = "une autorisation de stage";
             break;
+        case 'attestationR':
+            $type = "une attestation de réussite";
+            break;
     }
     $sql = "SELECT id
             FROM Demandes
@@ -250,7 +253,8 @@ function is_there_ratt_exam_for_student($id, $id_module)
             AND Controle.id_module = ?";
     return DB::getInstance()->query($sql, [$id, 'exam_finale_normal', 12, $id_module]);
 }
-function getStudentFiliere($id_etudiant){
+function getStudentFiliere($id_etudiant)
+{
     $db = DB::getInstance();
     $sql = "SELECT Filiere.id_filiere, Filiere.nom_filiere, Etudiant.somme, Filiere.prix_formation
             FROM Etudiant
@@ -259,7 +263,8 @@ function getStudentFiliere($id_etudiant){
     $resultats = $db->query($sql, [$id_etudiant]);
     return $resultats->first();
 }
-function getModulesByFiliere($id_filiere, $id_semestre){
+function getModulesByFiliere($id_filiere, $id_semestre)
+{
     $db = DB::getInstance();
     $sql = "SELECT intitule
             FROM Module
@@ -269,18 +274,60 @@ function getModulesByFiliere($id_filiere, $id_semestre){
     $resultats = $db->query($sql, [$id_filiere, $id_semestre]);
     return $resultats;
 }
-function isTherefianleExam($filiere,$semester)
+function isTherefianleExam($filiere, $semester)
 {
     $db = DB::getInstance();
     $sql = "SELECT id_controle from Controle 
     join dispose_de on Controle.id_module=dispose_de.id_module 
-    join module on module.id_module=dispose_de.id_module
-    JOIN semestre on semestre.id_semestre = module.id_semestre
+    join Module on Module.id_module=dispose_de.id_module
+    JOIN Semestre on Semestre.id_semestre = Module.id_semestre
     where dispose_de.id_filiere=? 
     and Controle.type=?
-    and semestre.id_semestre=?";
-    $resultat = $db->query($sql, [$filiere, 'exam_finale_normal',$semester]);
+    and Semestre.id_semestre=?";
+    $resultat = $db->query($sql, [$filiere, 'exam_finale_normal', $semester]);
     return $resultat;
+}
+function do_i_have_massages($id){
+    $sql = "SELECT message_list.id_message,messages.date, Utilisateur.id 
+    FROM `message_list` 
+    join Messages on message_list.id_message = Messages.id_message 
+    join Utilisateur on Utilisateur.id = Messages.sender_id 
+    where message_list.user_id = ? 
+    and message_list.isread=?
+    GROUP BY Utilisateur.id order by messages.date";
+    return DB::getInstance()->query($sql,[$id,0])->count();
+}
+function getConversation($id_prof,$my_id){
+    $sql = "SELECT message_list.id_message, messages.body, 
+            messages.date, Utilisateur.id, Utilisateur.nom, 
+            Utilisateur.imagepath, Utilisateur.prenom 
+            FROM `message_list` 
+            join messages on message_list.id_message = messages.id_message 
+            join Utilisateur on Utilisateur.id = messages.sender_id 
+            where message_list.user_id = ? and messages.sender_id=?
+            or messages.sender_id = ? and message_list.user_id=?
+            order by messages.date";
+
+$resultat = DB::getInstance()->query($sql, [$id_prof,$my_id,$id_prof,$my_id]);
+return $resultat;
+}
+
+function make_conversation_readed($id_prof,$my_id){
+    $sql = "UPDATE `message_list` 
+    join messages on message_list.id_message = messages.id_message 
+    SET `isread`=?
+    WHERE messages.sender_id=? and message_list.user_id=? ";
+    DB::getInstance()->query($sql,[1,$id_prof,$my_id]);
+}
+
+function isRead($id_prof,$my_id){
+    $sql="SELECT messages.`id_message` from messages 
+    join message_list on message_list.id_message = messages.id_message
+    where message_list.user_id=? and messages.sender_id=?
+    and message_list.isread=?
+    ORDER by messages.date DESC LIMIT 1";
+    return DB::getInstance()->query($sql, [$my_id,$id_prof,0])->count();
+
 }
 //=======================================================================
 $max_Exame_finale = "";

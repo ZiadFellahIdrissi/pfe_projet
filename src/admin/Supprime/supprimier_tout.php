@@ -6,15 +6,17 @@ function deleteTables($table){
     DB::getInstance()->query($sql,[]);
 }
 deleteTables("dispose_de");
+deleteTables("passe");
 deleteTables("Controle");
-deleteTables("Seance");
 deleteTables("assiste");
-deleteTables("Module");
+deleteTables("Seance");
 deleteTables("Module");
 deleteTables("Demandes");
 deleteTables("Etudiant");
 deleteTables("Filiere");
 deleteTables("Personnel");
+deleteTables("messag_list;");
+deleteTables("messages;");
 deleteTables("Utilisateur");
 
 ?>
