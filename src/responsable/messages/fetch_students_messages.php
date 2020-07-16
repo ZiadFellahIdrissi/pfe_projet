@@ -1,6 +1,17 @@
 <?php
 include_once '../../../core/init.php';
 include_once '../../../fonctions/tools.function.php';
+function getLastMessage($id_prof,$my_id){
+    $sql = "SELECT messages.body
+            FROM `message_list` 
+            join messages on message_list.id_message = messages.id_message 
+            where message_list.user_id = ? and messages.sender_id=?
+            or messages.sender_id = ? and message_list.user_id=?
+            order by messages.date desc";
+
+$resultat = DB::getInstance()->query($sql, [$id_prof,$my_id,$id_prof,$my_id]);
+return $resultat;
+}
 
 $id_filiere  = $_GET["id_filiere"];
 $my_id = $_GET["my_id"];

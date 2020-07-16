@@ -19,47 +19,56 @@
                             </form>
                         </div>
                     </div>
-                    <div class="header-button-item has-noti js-item-menu">
-                        <i class="zmdi zmdi-notifications"></i>
+                    <?php 
+                        include_once '../../../fonctions/tools.function.php';
+                        include_once '../../connection.php';
+                        $nbMessages = do_i_have_massages($id); 
+                    ?>
+                    <div class="header-button-item <?php if ($nbMessages) echo 'has-noti'; ?> js-item-menu">
+                        <i class="zmdi zmdi-email"></i>
                         <div class="notifi-dropdown js-dropdown">
-                            <?php
-                            include_once '../../../fonctions/tools.function.php';
-                            $nbMessages = do_i_have_massages($id);
-                            ?>
                             <div class="notifi__title">
                                 <p>You have <?php echo $nbMessages ?> Messages</p>
                             </div>
                             <?php
                             if ($nbMessages) {
-                                $newnbMessages=$nbMessages>3 ? 3 : $nbMessages; 
-                                $sql = "SELECT message_list.id_message,messages.date,messages.body,
-                                 Utilisateur.id ,Utilisateur.nom , Utilisateur.prenom,Utilisateur.imagepath
-                                FROM `message_list` 
-                                join Messages on message_list.id_message = Messages.id_message 
-                                join Utilisateur on Utilisateur.id = Messages.sender_id 
-                                where message_list.user_id = ? 
-                                and message_list.isread=?
-                                GROUP BY Utilisateur.id order by messages.date desc limit $newnbMessages";
-                                $resultat = DB::getInstance()->query($sql, [$id,0]);
-
-                                foreach ($resultat->results() as $row) {
+                                $newnbMessages = $nbMessages > 3 ? 3 : $nbMessages;
+                                $query = "SELECT messages.sender_id,messages.body,messages.date
+                                            FROM `message_list` 
+                                            join messages on message_list.id_message = messages.id_message
+                                            where message_list.user_id =  '$id'
+                                            and message_list.isread= 0
+                                            and message_list.id_message in (
+                                                    SELECT max(messages.id_message)
+                                                    FROM `message_list` 
+                                                    join Messages on message_list.id_message = Messages.id_message 
+                                                    join Utilisateur on Utilisateur.id = Messages.sender_id 
+                                    				where message_list.user_id =  '$id'
+                                    				GROUP by Utilisateur.id )
+                                            ORDER by messages.date desc limit $newnbMessages";
+                                $resultat = mysqli_query($conn, $query);
+                                // echo DB::getInstance()->query($query, [$id, $id, 0])->error();
+                                if ($resultat) {
+                                    while ($row = mysqli_fetch_assoc($resultat)) {
+                                        $info = getPersonInfo($row["sender_id"]);
                             ?>
-                                    <div class="notifi__item">
-                                        <div class="image img-cir img-40">
-                                        <img src="../../../img/profiles/<?php echo $row->imagepath ?>" alt="<?php echo strtoupper($row->nom . ' ' . $row->prenom); ?>">
+                                        <div class="notifi__item" onclick="location.href='../messages/'">
+                                            <div class="image img-cir img-40">
+                                                <img src="../../../img/profiles/<?php echo $info->imagepath ?>" alt="<?php echo strtoupper($info->nom . ' ' . $info->prenom); ?>">
+                                            </div>
+                                            <div class="content">
+                                                <p><?php echo strtoupper($info->nom . ' ' . $info->prenom); ?></p>
+                                                <p><?php echo substr($row['body'], 0, 40) . '....'; ?></p>
+                                                <span class="date"><?php echo $row['date']; ?></span>
+                                            </div>
                                         </div>
-                                        <div class="content">
-                                            <p><?php echo strtoupper($row->nom . ' ' . $row->prenom); ?></p>
-                                            <p><?php echo substr($row->body, 0, 40) . '....'; ?></p>
-                                            <span class="date"><?php echo $row->date; ?></span>
-                                        </div>
-                                    </div>
                             <?php
+                                    }
                                 }
                             }
                             ?>
                             <div class="notifi__footer">
-                                <a href="#">All massages</a>
+                                <a href="../messages/">All massages</a>
                             </div>
                         </div>
                     </div>

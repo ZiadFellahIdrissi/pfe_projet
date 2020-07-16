@@ -51,6 +51,11 @@ require_once '../../../fonctions/tools.function.php';
                     </a>
                 </li>
                 <li class="">
+                    <a href="../support/">
+                        <i class="fas fa-copy"></i>Support de cours
+                    </a>
+                </li>
+                <li class="">
                     <a href="../inscription">
                         <i class="fas fa-copy"></i>Inscription
                     </a>
@@ -80,7 +85,7 @@ require_once '../../../fonctions/tools.function.php';
         <div class="menu-sidebar2__content js-scrollbar2">
             <div class="account2">
                 <div class="image img-cir img-120">
-                    <img src="../../../img/profiles/<?php echo $imagepath ?>" alt="ziad" />
+                    <img src="../../../img/profiles/<?php echo $imagepath ?>" alt="<?php echo $nom . ' ' . $prenom ?>" />
                 </div>
                 <h4 class="name"><?php echo $nom . ' ' . $prenom ?></h4>
                 <a href="../pages/logout.php">Sign out</a>

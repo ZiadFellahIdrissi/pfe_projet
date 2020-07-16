@@ -154,6 +154,7 @@ if (!$user->isLoggedIn()) {
             </div>
         </div>
         <br><br>
+        <input type="hidden" id="my_id" value="<?php echo $id; ?>">
 
 
         <!-- Jquery JS-->
@@ -175,6 +176,7 @@ if (!$user->isLoggedIn()) {
         <script src="../../../layout/js/main.js "></script>
         <script>
             $(document).ready(function() {
+                var my_id = $("#my_id").val();
                 var calendar = $('#calendar').fullCalendar({
                     validRange: {
                         start: '<?php echo $min_Exame_finale;  ?>',
@@ -187,7 +189,7 @@ if (!$user->isLoggedIn()) {
                         center: 'title',
                         right: ''
                     },
-                    events: 'loadExames.php',
+                    events: 'loadExames.php/?id='+my_id,
                     theme: true,
                     themeSystem: 'bootstrap4',
                     eventClick: function(event) {

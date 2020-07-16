@@ -2,42 +2,46 @@
 include_once '../../../core/init.php';
 include_once '../../../fonctions/tools.function.php';
 $user = new User_Prof();
+$db = DB::getInstance();
 if (!$user->isLoggedIn()) {
     header('Location: ../../login');
 } else {
-    $nom    = $user->data()->nom;
-    $prenom = $user->data()->prenom;
-    $email  = $user->data()->email;
-    $id     = $user->data()->id;
-    $imagepath = $user->data()->imagepath;
+    if ($user->data()->role != 'responsable') {
+        header('Location: ../../login');
+    } else {
+        $nom    = $user->data()->nom;
+        $prenom = $user->data()->prenom;
+        $email  = $user->data()->email;
+        $id     = $user->data()->id;
+        $imagepath = $user->data()->imagepath;
 ?>
-    <html lang="en">
+        <html lang="en">
 
+        <head>
+            <!-- Required meta tags-->
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <head>
-        <!-- Required meta tags-->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <!-- Title Page-->
+            <title>Enseignants</title>
 
-        <!-- Title Page-->
-        <title>Modules</title>
+            <!-- Fontfaces CSS-->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+            <link href="../../../lib/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+            <link href="../../../lib/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-        <!-- Fontfaces CSS-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-        <link href="../../../lib/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-        <link href="../../../lib/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+            <!-- Bootstrap CSS-->
+            <link href="../../../layout/css/bootstrap.min.css" rel="stylesheet" media="all">
 
-        <!-- Bootstrap CSS-->
-        <link href="../../../layout/css/bootstrap.min.css" rel="stylesheet" media="all">
+            <!-- lib CSS-->
+            <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
+            <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+            <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+            <link href="../../../layout/css/datatables.min.css" rel="stylesheet" type="text/css" media="all" />
 
-        <!-- lib CSS-->
-        <link href="../../../lib/animsition/animsition.min.css" rel="stylesheet" media="all">
-        <link href="../../../lib/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-        <link href="../../../lib/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-        <!-- Main CSS-->
-        <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
-
-    </head>
+            <!-- Main CSS-->
+            <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
+        </head>
 
     <body>
 
@@ -64,7 +68,7 @@ if (!$user->isLoggedIn()) {
                                         <li class="list-inline-item seprate">
                                             <a href="../">Dashboard</a> <span>/</span>
                                         </li>
-                                        <li class="list-inline-item">Modules</li>
+                                        <li class="list-inline-item">Messages</li>
                                     </ul>
                                 </div>
                                 <form class="au-form-icon--sm" action="" method="post">
@@ -98,7 +102,7 @@ if (!$user->isLoggedIn()) {
                                     <div class="au-message js-list-load">
                                         <div class="au-message__noti">
                                             <div class="row">
-                                                <div class="col">
+                                                <!-- <div class="col">
                                                     <select id="filiere" class="form-control" style="width: 100%;">
                                                         <option value=''>Choisissez un Module</option>
                                                         <?php
@@ -117,7 +121,7 @@ if (!$user->isLoggedIn()) {
                                                         }
                                                         ?>
                                                     </select>
-                                                </div>
+                                                </div> -->
                                                 <div class="col">
                                                     <button type="button" class="btn btn-outline-dark allstudents">send msg to all students</button>
                                                 </div>
@@ -125,17 +129,17 @@ if (!$user->isLoggedIn()) {
                                         </div>
                                         <div class="au-message-list">
                                             <?php
-                                            $sql = "SELECT filiere.nom_filiere,Filiere.id_responsable,utilisateur.id,
-                                            utilisateur.nom,utilisateur.prenom,utilisateur.imagepath
-                                            from filiere
-                                            join utilisateur on filiere.id_responsable = utilisateur.id
-                                            join dispose_de on Filiere.id_filiere = dispose_de.id_filiere
-                                            join module on Module.id_module = dispose_de.id_module
-                                            where Module.id_enseignant = ?
-                                            and Filiere.etat= ?
-                                            and Filiere.id_responsable!=?
-                                            GROUP by Filiere.id_filiere";
-                                            $resultat = DB::getInstance()->query($sql, [$id,1,$id]);
+                                            $sql = "SELECT module.id_enseignant,module.intitule, utilisateur.nom,
+                                                    utilisateur.prenom,utilisateur.id  ,utilisateur.imagepath  
+                                                    from module
+                                                    join utilisateur on utilisateur.id = module.id_enseignant
+                                                    join dispose_de on dispose_de.id_module = module.id_module
+                                                    join filiere on dispose_de.id_filiere = filiere.id_filiere
+                                                    where filiere.id_responsable = ?
+                                                    and module.id_enseignant != ?
+                                                    and module.etat = ?
+                                                    GROUP by module.id_enseignant";
+                                            $resultat = DB::getInstance()->query($sql, array($id,$id, 1));
                                             foreach ($resultat->results() as $row) {
                                             ?>
                                                 <div class="au-message__item <?php if (isRead($row->id, $id)) echo 'unread'; ?> " id="<?php echo $row->id ?>">
@@ -148,7 +152,7 @@ if (!$user->isLoggedIn()) {
                                                             </div>
                                                             <div class="text">
                                                                 <h5 class="name"><?php echo strtoupper($row->nom . ' ' . $row->prenom);  ?></h5>
-                                                                <p><?php echo $row->nom_filiere ?></p>
+                                                                <p><?php echo $row->intitule ?></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -374,4 +378,4 @@ if (!$user->isLoggedIn()) {
 
     </html>
     <!-- end document-->
-<?php } ?>
+<?php } }?>
