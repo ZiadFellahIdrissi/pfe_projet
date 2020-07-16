@@ -1,10 +1,12 @@
 <?php
 include_once '../../../core/init.php';
 include_once '../../../fonctions/tools.function.php';
-if (isset($_GET["my_id"])) {
+if (isset($_GET["id_prof"])) {
     $id_prof = $_GET["id_prof"];
     $my_id=$_GET["my_id"];
     $info = getPersonInfo($id_prof);
+
+    make_conversation_readed($id_prof,$my_id);
 
 ?>
  

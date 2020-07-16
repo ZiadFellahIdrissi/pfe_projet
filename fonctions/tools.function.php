@@ -266,7 +266,7 @@ function getStudentFiliere($id_etudiant)
 function getModulesByFiliere($id_filiere, $id_semestre)
 {
     $db = DB::getInstance();
-    $sql = "SELECT intitule
+    $sql = "SELECT Module.intitule,Module.id_module
             FROM Module
             JOIN dispose_de ON Module.id_module = dispose_de.id_module
             WHERE dispose_de.id_filiere = ?
@@ -328,6 +328,17 @@ function isRead($id_prof,$my_id){
     ORDER by messages.date DESC LIMIT 1";
     return DB::getInstance()->query($sql, [$my_id,$id_prof,0])->count();
 
+}
+function getLastMessage($id_prof,$my_id){
+    $sql = "SELECT messages.body
+            FROM `message_list` 
+            join messages on message_list.id_message = messages.id_message 
+            where message_list.user_id = ? and messages.sender_id=?
+            or messages.sender_id = ? and message_list.user_id=?
+            order by messages.date desc";
+
+$resultat = DB::getInstance()->query($sql, [$id_prof,$my_id,$id_prof,$my_id]);
+return $resultat;
 }
 //=======================================================================
 $max_Exame_finale = "";

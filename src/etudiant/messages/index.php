@@ -80,9 +80,10 @@ if (!$user->isLoggedIn()) {
                                                         join dispose_de on dispose_de.id_module = Module.id_module
                                                         join Utilisateur on module.id_enseignant = Utilisateur.id
                                                         join Semestre on Semestre.id_semestre = Module.id_semestre
-                                                        where dispose_de.id_filiere= ? and Semestre.id_semestre=?
+                                                        where dispose_de.id_filiere= ? 
                                                         order by Utilisateur.nom ";
-                                                $resultat = DB::getInstance()->query($sql, [getStudentsInfo($id)->first()->id_filiere, 2]);
+                                                        // and Semestre.id_semestre=?
+                                                $resultat = DB::getInstance()->query($sql, [getStudentsInfo($id)->first()->id_filiere]);
                                                 foreach ($resultat->results() as $row) {
                                                 ?>
                                                     <div class="au-message__item <?php if (isRead($row->id, $id)) echo 'unread'; ?> " id="<?php echo $row->id ?>">
@@ -105,6 +106,13 @@ if (!$user->isLoggedIn()) {
                                                 }
                                                 ?>
                                             </div>
+                                            <!-- <div class="au-message__noti">
+                                                    <p>Vous avez
+                                                        
+                                                        nouveaux messages
+                                                        autres prof
+                                                    </p>
+                                                </div> -->
                                         </div>
                                         <div class="au-chat fetchChat">
                                             <div class="d-flex justify-content-center">
