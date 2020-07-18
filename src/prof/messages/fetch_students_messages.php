@@ -7,6 +7,7 @@ $my_id = $_GET["my_id"];
 $sql = "SELECT * 
         from etudiant 
         join utilisateur on etudiant.id = utilisateur.id
+        
         where etudiant.id_filiere =  ?";
 $resultat = DB::getInstance()->query($sql, [$id_filiere]);
 foreach ($resultat->results() as $row) {

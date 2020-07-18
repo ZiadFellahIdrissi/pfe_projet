@@ -189,6 +189,8 @@ if (!$user->isLoggedIn()) {
                         center: 'title',
                         right: ''
                     },
+                    // defaultView: 'listWeek',
+                    // aspectRatio: 1.5,
                     events: 'loadExames.php/?id='+my_id,
                     theme: true,
                     themeSystem: 'bootstrap4',

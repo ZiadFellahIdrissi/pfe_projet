@@ -5,20 +5,13 @@ include_once '../../../fonctions/tools.function.php';
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $db = DB::getInstance();
-    // if (demandeCheck($id, 'releve', 1)) {
-
-        function sqlStatment($semester)
-        {
-            $sql = "SELECT Module.id_module,intitule
-        FROM Module
-        JOIN dispose_de ON Module.id_module = dispose_de.id_module
-        JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
-        WHERE Semestre.semestre='$semester'
-        AND dispose_de.id_filiere = (SELECT id_filiere 
-                                      FROM Etudiant 
-                                      WHERE id = ?      )";
-            return $sql;
-        }
+    if (demandeCheck($id, 'attestationR', 1)) {
+        $type = 'une attestation de réussite';
+        $sql = "UPDATE Demandes
+        SET etat = ?
+        WHERE id_etudiant = ?
+        AND type = ?";
+        $db->query($sql, [2,$id, $type]);
 
         class myPDF extends FPDF
         {
@@ -28,7 +21,9 @@ if (isset($_GET["id"])) {
                 $this->cell(100, 10, 'Formation Continue du Casablanca', 0, 0, 'L'); 
                 $this->cell(90, 10, 'FCC', 0, 0, 'R');
                 $this->Ln();
-                $this->cell(190, 8, 'ATTESTATION DE REUSSITE AU DIPLOME', 1, 1, 'C',true);
+                $this->cell(30, 8, '', 0, 0, 'C');
+                $this->cell(130, 8, 'ATTESTATION DE REUSSITE AU DIPLOME', 1, 1, 'C',true);
+                $this->cell(30, 8, '', 0, 0, 'C');
                 $this->Ln(10);
             }
             function Student_information($id)
@@ -38,6 +33,7 @@ if (isset($_GET["id"])) {
                 $resultStudentInfo = getStudentsInfo($id);
                 $nom_prenom = strtoupper($resultsInfo->nom . ' ' . $resultsInfo->prenom);
                 $filiere = $resultStudentInfo->first()->nom_filiere;
+                $date_naissance = $resultsInfo->date_naissance;
                 $annee= getDatesSemestre(2)->first()->date_fin;
                 $this->cell(190, 7, 'LE DOYEN DE LA FORMATION CONTINUE DU CASABLANCA (FCC) atteste que', 0, 0, 'C');
                 $this->Ln();
@@ -55,7 +51,7 @@ if (isset($_GET["id"])) {
                 $this->Ln();
 
                 $this->SetFont('Times', '', 12);
-                $this->cell(190, 7, 'ne le 16 juin 1999 a CASABLANCA' , 0, 0, 'C');
+                $this->cell(190, 7, 'ne le '.$date_naissance.' a CASABLANCA' , 0, 0, 'C');
                 $this->Ln();$this->Ln();
 
                 $this->cell(190, 7, "au titre de l'annee $annee avec la mention " , 0, 0, 'C');
@@ -83,7 +79,7 @@ if (isset($_GET["id"])) {
         $pdf->AddPage('P', 'A4', 0);
         $pdf->Student_information($id);
         $pdf->Output();
-    // } else
-    //     header("Location: ../404/");
+    } else
+        header("Location: ../404/");
 } else
     header("Location: ../404/");

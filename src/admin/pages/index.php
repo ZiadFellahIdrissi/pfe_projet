@@ -138,24 +138,23 @@ if (!$user->isLoggedIn()) {
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="au-card m-b-30">
-                                <div class="au-card-inner">
-                                    <h3 class="title-2 m-b-40">Les notes</h3>
+                                <div class="au-card-inner" >
+                                    <h3 class="title-2 m-b-5">Les notes</h3>
                                     <canvas id="notes_Normal_Ratt-chart"></canvas>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="au-card m-b-30">
+                            <div class="au-card m-b-10">
                                 <div class="au-card-inner">
-                                    <h3 class="title-2 m-b-40">Les absences</h3>
-                                    <canvas id="lesabsences-chart"></canvas>
+                                    <h3 class="title-2 m-b-5">Les absences</h3>
+                                    <canvas id="lesabsences-chart" ></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <script src="../../../layout/js/jquery-3.4.1.min.js"></script>
         <!-- lib JS   -->
@@ -179,7 +178,7 @@ if (!$user->isLoggedIn()) {
                         }
                         var ctx = $("#lesabsences-chart");
                         if (ctx) {
-                            ctx.height = 150;
+                            ctx.height = 200;
                             var myChart = new Chart(ctx, {
                                 type: 'line',
                                 data: {
@@ -284,7 +283,7 @@ if (!$user->isLoggedIn()) {
                     }
                     var ctx = document.getElementById("notes_Normal_Ratt-chart");
                     if (ctx) {
-                        ctx.height = 200;
+                        ctx.height = 150;
                         var myChart = new Chart(ctx, {
                             type: 'bar',
                             defaultFontFamily: 'Poppins',

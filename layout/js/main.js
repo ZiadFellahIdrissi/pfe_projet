@@ -1152,21 +1152,24 @@
                 type: 'polarArea',
                 data: {
                     datasets: [{
-                        data: [15, 18, 9, 6, 19],
+                        data: [15, 18, 9, 6, 19, 15],
                         backgroundColor: [
                             "rgba(0, 123, 255,0.9)",
                             "rgba(0, 123, 255,0.8)",
                             "rgba(0, 123, 255,0.7)",
                             "rgba(0,0,0,0.2)",
-                            "rgba(0, 123, 255,0.5)"
+                            "rgba(0, 123, 255,0.5)",
+                            "rgba(0, 123, 255,0.1)"
                         ]
 
                     }],
                     labels: [
-                        "Green",
-                        "Green",
-                        "Green",
-                        "Green"
+                        "ziad",
+                        "fellah",
+                        "idrissi",
+                        "hamza",
+                        "cha3bi",
+                        "karim"
                     ]
                 },
                 options: {

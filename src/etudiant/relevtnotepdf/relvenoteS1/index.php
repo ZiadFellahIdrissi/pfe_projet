@@ -6,6 +6,13 @@ if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $db = DB::getInstance();
     if (demandeCheck($id, 'releve', 1)) {
+        $type = 'un relevé de notes';
+        $sql = "UPDATE Demandes
+        SET etat = ?
+        WHERE id_etudiant = ?
+        AND type = ?";
+        $db->query($sql, [2,$id, $type]);
+
 
         function sqlStatment($semester)
         {

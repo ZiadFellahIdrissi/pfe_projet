@@ -22,13 +22,13 @@
                     </li>
                     <li>
                         <a href="../Notes/">
-                            <i class="fas fa-copy"></i>
+                            <i class="zmdi zmdi-bookmark-outline"></i>
                             <span class="bot-line"></span>Notes
                         </a>
                     </li>
                     <li>
                         <a href="../absences/">
-                            <i class="far fa-clock"></i>
+                            <i class="zmdi zmdi-assignment-o"></i>
                             <span class="bot-line"></span>Absences</a>
                     </li>
                     <li>

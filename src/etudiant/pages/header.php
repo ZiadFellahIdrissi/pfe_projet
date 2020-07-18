@@ -47,22 +47,22 @@ require_once '../../../fonctions/tools.function.php';
                 </li>
                 <li class="">
                     <a href="../notes/">
-                        <i class="fas fa-copy"></i>Notes et resultats
+                        <i class="zmdi zmdi-bookmark"></i>Notes et resultats
                     </a>
                 </li>
                 <li class="">
                     <a href="../support/">
-                        <i class="fas fa-copy"></i>Support de cours
+                        <i class="fab fa-stack-overflow"></i>Support de cours
                     </a>
                 </li>
                 <li class="">
                     <a href="../inscription">
-                        <i class="fas fa-copy"></i>Inscription
+                        <i class="zmdi zmdi-turning-sign"></i>Inscription
                     </a>
                 </li>
                 <li class="">
                     <a href="#">
-                        <i class="fas fa-copy"></i>Stages
+                        <i class="zmdi zmdi-laptop"></i>Stages
                     </a>
                 </li>
             </ul>
@@ -119,17 +119,22 @@ require_once '../../../fonctions/tools.function.php';
                     </li>
                     <li class="">
                         <a href="../notes/">
-                            <i class="fas fa-copy"></i>Notes et resultats
+                            <i class="zmdi zmdi-bookmark"></i>Notes et resultats
                         </a>
                     </li>
                     <li class="">
-                        <a href="../inscription/">
-                            <i class="fas fa-copy"></i>Inscription
+                        <a href="../support/">
+                            <i class="fab fa-stack-overflow"></i>Support de cours
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="../inscription">
+                            <i class="zmdi zmdi-turning-sign"></i>Inscription
                         </a>
                     </li>
                     <li class="">
                         <a href="#">
-                            <i class="fas fa-copy"></i>Stages
+                            <i class="zmdi zmdi-laptop"></i>Stages
                         </a>
                     </li>
                 </ul>

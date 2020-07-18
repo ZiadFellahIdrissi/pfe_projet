@@ -92,16 +92,12 @@
                         </div>
                         <div class="account-dropdown__body">
                             <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-email"></i>Email</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-notifications"></i>Notifications</a>
+                                <a href="../messages/">
+                                    <i class="zmdi zmdi-email"></i>Messages</a>
                             </div>
                             <div class="account-dropdown__item">
                                 <a href="../pages/logout.php">
-                                    <i class="zmdi zmdi-pin"></i>Log out</a>
+                                    <i class="zmdi zmdi-power"></i>Log out</a>
                             </div>
                         </div>
                     </div>

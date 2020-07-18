@@ -74,16 +74,21 @@ if (!$user->isLoggedIn()) {
                                             <?php } ?>
                                             <div class="au-message-list">
                                                 <?php
+                                                $date_debut_dexieme_Semester = getDatesSemestre(2)->first()->date_debut;
+                                                if (date('yy-m-d', time()) > $date_debut_dexieme_Semester)
+                                                    $semster = 2;
+                                                else
+                                                    $semster = 1;
 
                                                 $sql = "SELECT Module.intitule,Utilisateur.id,Utilisateur.nom , Utilisateur.prenom , Utilisateur.imagepath, Utilisateur.email
                                                         from Module 
                                                         join dispose_de on dispose_de.id_module = Module.id_module
                                                         join Utilisateur on module.id_enseignant = Utilisateur.id
                                                         join Semestre on Semestre.id_semestre = Module.id_semestre
-                                                        where dispose_de.id_filiere= ? 
+                                                        where dispose_de.id_filiere= ? and Semestre.id_semestre=?
                                                         order by Utilisateur.nom ";
-                                                        // and Semestre.id_semestre=?
-                                                $resultat = DB::getInstance()->query($sql, [getStudentsInfo($id)->first()->id_filiere]);
+
+                                                $resultat = DB::getInstance()->query($sql, [getStudentsInfo($id)->first()->id_filiere, $semster]);
                                                 foreach ($resultat->results() as $row) {
                                                 ?>
                                                     <div class="au-message__item <?php if (isRead($row->id, $id)) echo 'unread'; ?> " id="<?php echo $row->id ?>">

@@ -5,7 +5,12 @@ $my_id = $_GET["my_id"];
 ?>
 <div class="table-responsive-sm">
     <?php
-    $results = getModulesByFiliere(getStudentFiliere($my_id)->id_filiere, 2);
+    $date_debut_dexieme_Semester = getDatesSemestre(2)->first()->date_debut;
+    if (date('yy-m-d', time()) > $date_debut_dexieme_Semester)
+        $semster = 2;
+    else
+        $semster = 1;
+    $results = getModulesByFiliere(getStudentFiliere($my_id)->id_filiere, $semster);
     ?>
     <table class="table  table-bordered mydatatable">
         <thead class="thead-dark">

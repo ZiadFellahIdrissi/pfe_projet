@@ -3,9 +3,9 @@
     <div class="header-mobile__bar">
         <div class="container-fluid">
             <div class="header-mobile-inner">
-                <!-- <a class="log0o" href="index.html">
-                            <img src="mylogo.png" alt="" width="200px" height="100px" />
-                        </a> -->
+                <a class="logo" href="">
+                <img src="../../../img/logo/fcc0.png" style="width: 50px;" alt="FCC"  />
+                        </a>
                 <button class="hamburger hamburger--slider" type="button">
                     <span class="hamburger-box">
                         <span class="hamburger-inner"></span>

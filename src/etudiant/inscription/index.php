@@ -126,7 +126,7 @@ if (!$user->isLoggedIn()) {
                     if (demandeCheck($id, 'attestation', 1)) {
                     ?>
                         <div>
-                            <button type="button" class="btn btn-outline-dark" onclick="location.href=''">
+                            <button type="button" class="btn btn-outline-dark" onclick="location.href='../AttestationInscription/?id=<?php echo $id; ?>'">
                                 <span><i class="fa fa-download"></i></span> Télécharger l'attestation de scolarité
                             </button>
                         </div>
