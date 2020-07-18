@@ -6,6 +6,13 @@ if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $db = DB::getInstance();
     if (demandeCheck($id, 'releve', 1)) {
+        $type = 'un relevé de notes';
+        $sql = "UPDATE Demandes
+        SET etat = ?
+        WHERE id_etudiant = ?
+        AND type = ?";
+        $db->query($sql, [2, $id, $type]);
+
 
         function sqlStatment($semester)
         {
@@ -25,10 +32,10 @@ if (isset($_GET["id"])) {
             function header()
             {
                 $this->SetFont('Arial', '8', 14);
-                $this->cell(100, 10, 'Formation Continue du Casablanca', 0, 0, 'L'); 
+                $this->cell(100, 10, 'Formation Continue du Casablanca', 0, 0, 'L');
                 $this->cell(90, 10, 'FCC', 0, 0, 'R');
                 $this->Ln();
-                $this->cell(190, 8, 'RELVE DE NOTES ET RESULTATS', 1, 1, 'C',true);
+                $this->cell(190, 8, 'RELVE DE NOTES ET RESULTATS', 1, 1, 'C', true);
                 $this->cell(190, 8, 'SEMESTRE 2', 0, 0, 'C');
                 $this->Ln(10);
             }
@@ -51,7 +58,7 @@ if (isset($_GET["id"])) {
                 $this->cell(80, 7, 'Ne le: ' . $date_naissane, 0, 0, 'L');
                 $this->cell(100, 7, 'à: ' . 'CASABLANCA', 0, 0, 'L');
                 $this->Ln();
-                
+
                 $this->cell(20, 10, 'Inscrit en: ', 0, 0, 'L');
                 $this->SetFont('Arial', '8', 14);
                 $this->cell(100, 10, $filiere, 0, 0, 'L');
@@ -64,8 +71,8 @@ if (isset($_GET["id"])) {
             {
                 $this->SetY(-50);
                 $this->SetFont('Times', '', 11);
-                $this->cell(95, 10, 'Fait a Casablanca, le '.date('d F Y', time()) , 0, 1, 'R');
-                $this->cell(100, 10, 'LE DOYEN DE LA FORMATION CONTINUE DU CASABLANCA  ' , 0, 1, 'L');
+                $this->cell(95, 10, 'Fait a Casablanca, le ' . date('d F Y', time()), 0, 1, 'R');
+                $this->cell(100, 10, 'LE DOYEN DE LA FORMATION CONTINUE DU CASABLANCA  ', 0, 1, 'L');
                 $this->SetY(-18);
                 $this->SetFont('Arial', '8', 14);
                 $this->cell(0, 10, 'Page : ' . $this->PageNo() . ' / {nb}', 0, 1, 'C');
@@ -161,7 +168,7 @@ if (isset($_GET["id"])) {
         }
 
         $pdf = new myPDF();
-        $pdf->SetFillColor(230,230,230);
+        $pdf->SetFillColor(230, 230, 230);
         $pdf->AliasNbPages();
         $pdf->AddPage('P', 'A4', 0);
         $pdf->Student_information($id);

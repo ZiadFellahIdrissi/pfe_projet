@@ -71,6 +71,29 @@ if (!$user->isLoggedIn()) {
                 </div>
             </div>
         </div>
+        <!-- Modal pour avoir le relvet et deja utilise ou pas  -->
+        <div class="modal fade" id="is_download" tabindex="-1" role="dialog" aria-hidden="true" style="margin-top: 10%;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border m-5" role="status" id="spinner0">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="modal-body my_modal-body">
+
+
+                    </div>
+                    <div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="set_id_module">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script type="text/javascript" src="../../../layout/js/jquery-3.4.1.min.js"></script>
         <!-- Bootstrap JS-->
@@ -82,6 +105,38 @@ if (!$user->isLoggedIn()) {
         <!-- <script type="text/javascript" src="../../../layout/js/animation.js"></script> -->
         <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
         <script>
+            $(document).ready(function() {
+                $("#spinner0").hide();
+                $(".openModalInformation").click(function() {
+                    $('#is_download').modal('show');
+                    var type = $(this).data('id');
+                    var cin = $(this).attr("id");
+                    $.ajax({
+                        url: 'is_download.php',
+                        method: 'GET',
+                        data: {
+                            type: type,
+                            cin: cin
+                        },
+                        dataType: 'text',
+                        beforeSend: function() {
+                            $("#spinner0").show();
+                        },
+                        complete: function() {
+                            $("#spinner0").hide();
+
+                        },
+                        success: function(data) {
+                            $('.my_modal-body').html(data);
+                        },
+                        error: function() {
+                            alert("there is some problem ");
+                        }
+
+                    })
+
+                });
+            });
             $('.mydatatable').DataTable();
         </script>
         <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>

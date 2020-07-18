@@ -84,7 +84,7 @@ if (demandeCheck($id, 'releve', 1)) {
                 <?php
                 $db->query(sqlStatment('1ere Semestre'), [$id]);
                 $examCount = 0;
-                $countModule = $resultat->count();
+                $countModule = $db->count();
                 $somme_moyenne_normal = 0;
                 $somme_moyenne_ratt = 0;
 

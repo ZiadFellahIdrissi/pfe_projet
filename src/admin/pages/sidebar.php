@@ -1,8 +1,8 @@
 <!-- MENU SIDEBAR-->
 <aside class="menu-sidebar d-none d-lg-block" id="Mysidebar" >
-    <div class="logo ">
-        <a href="# ">
-            <img src="../../../img/Dashboard/mylogo1.png " alt=" " />
+    <div class="logo" style="text-align: center;">
+        <a href="../pages/">
+            <img src="../../../img/logo/fcc0.png" style="width: 160px;" alt="FCC"  />
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">

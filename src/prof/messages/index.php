@@ -102,14 +102,21 @@ if (!$user->isLoggedIn()) {
                                                     <select id="filiere" class="form-control" style="width: 100%;">
                                                         <option value=''>Choisissez un Module</option>
                                                         <?php
+                                                        $date_debut_dexieme_Semester = getDatesSemestre(2)->first()->date_debut;
+                                                        if (date('yy-m-d', time()) > $date_debut_dexieme_Semester)
+                                                            $semster = 2;
+                                                        else
+                                                            $semster = 1;
+
                                                         $sql = "SELECT Filiere.nom_filiere,Filiere.id_filiere
                                                                 from Module
                                                                 join dispose_de on Module.id_module = dispose_de.id_module
                                                                 join Filiere on Filiere.id_filiere = dispose_de.id_filiere
                                                                 where Module.id_enseignant = ? 
                                                                 and Filiere.etat=?
+                                                                and module.id_semestre=?
                                                                 GROUP by Filiere.id_filiere";
-                                                        $query = DB::getInstance()->query($sql, array($id, 1));
+                                                        $query = DB::getInstance()->query($sql, array($id, 1, $semster));
                                                         foreach ($query->results() as $row) {
                                                         ?>
                                                             <option value=<?php echo $row->id_filiere  ?>><?php echo "les etudinats de " . $row->nom_filiere ?></option>
@@ -135,7 +142,7 @@ if (!$user->isLoggedIn()) {
                                             and Filiere.etat= ?
                                             and Filiere.id_responsable!=?
                                             GROUP by Filiere.id_filiere";
-                                            $resultat = DB::getInstance()->query($sql, [$id,1,$id]);
+                                            $resultat = DB::getInstance()->query($sql, [$id, 1, $id]);
                                             foreach ($resultat->results() as $row) {
                                             ?>
                                                 <div class="au-message__item <?php if (isRead($row->id, $id)) echo 'unread'; ?> " id="<?php echo $row->id ?>">
@@ -317,7 +324,7 @@ if (!$user->isLoggedIn()) {
                                 success: function(data) {
                                     $('.fetchChat').html(data);
                                     $(".closeconve").show();
-                                    
+
                                 },
                                 error: function() {
                                     alert('failure');
@@ -361,7 +368,7 @@ if (!$user->isLoggedIn()) {
                 });
                 $(document).on('click', '.closeconve', function() {
                     $(".au-inbox-wrap").removeClass('show-chat-box');
-                    $(".closeconve").hide();
+                    // $(".closeconve").hide();
                 });
 
 

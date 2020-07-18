@@ -1,6 +1,6 @@
 <?php
 include_once '../../../core/init.php';
-$sql = "SELECT Demandes.id, Demandes.type, Demandes.date, Utilisateur.nom, Utilisateur.prenom
+$sql = "SELECT Demandes.id, Demandes.type, Demandes.date,Utilisateur.id cin, Utilisateur.nom, Utilisateur.prenom
         FROM Demandes
         JOIN Utilisateur ON Demandes.id_etudiant = Utilisateur.id
         WHERE etat = -1";
@@ -31,7 +31,7 @@ $db->query($sql, []);
                 <button class="item" name="etat" onclick="location.href='gestion_demandes.php?id=<?php echo $row->id; ?>&uncheck'" title="Refuser">
                   <i class="zmdi zmdi-close"></i>
                 </button>
-                <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="" title="Review">
+                <button class="item openModalInformation" data-toggle="tooltip" data-placement="top" id="<?php echo $row->cin; ?>" data-id="<?php echo $row->type; ?>" title="Review">
                   <i class="zmdi zmdi-chevron-up"></i>
                 </button>
               </div>

@@ -15,8 +15,8 @@ deleteTables("Demandes");
 deleteTables("Etudiant");
 deleteTables("Filiere");
 deleteTables("Personnel");
-deleteTables("messag_list;");
-deleteTables("messages;");
+deleteTables("messag_list");
+deleteTables("messages");
 deleteTables("Utilisateur");
 
 ?>

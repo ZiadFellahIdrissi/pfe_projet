@@ -1,16 +1,23 @@
 <?php
 include_once '../../../core/init.php';
+include_once '../../../fonctions/tools.function.php';
 $my_id = $_GET["my_id"];
 ?>
 <div class="table-responsive-sm">
     <?php
+    $date_debut_dexieme_Semester = getDatesSemestre(2)->first()->date_debut;
+    if (date('yy-m-d', time()) > $date_debut_dexieme_Semester)
+        $semster = 2;
+    else
+        $semster = 1;
+
     $sql = "SELECT *
                 FROM Module
                 JOIN Semestre ON Module.id_semestre = Semestre.id_semestre
                 JOIN dispose_de ON Module.id_module = dispose_de.id_module
                 JOIN Filiere ON dispose_de.id_filiere = Filiere.id_filiere
-                WHERE id_enseignant = ?";
-    $query = DB::getInstance()->query($sql, array($my_id));
+                WHERE id_enseignant = ? and Semestre.id_semestre = ?";
+    $query = DB::getInstance()->query($sql, array($my_id, $semster));
     ?>
     <table class="table table-hover table-bordered mydatatable">
         <thead class="thead-dark">

@@ -31,6 +31,15 @@ if ($userAdmin->isLoggedIn()) {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <title>Welcome</title>
     </head>
+    <style>
+        .btn-primary {
+            border-radius: 30px !important;
+            padding: 2% !important;
+            padding-left: 10% !important;
+            padding-right: 10% !important;
+            font-size: 19px!important;
+        }
+    </style>
 
     <body>
         <header id="banner">
@@ -43,7 +52,7 @@ if ($userAdmin->isLoggedIn()) {
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <!-- <li class="nav-item active">
                             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
@@ -51,9 +60,9 @@ if ($userAdmin->isLoggedIn()) {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item text-nowrap ">
-                            <a class="Mybutton special " href="./src/admin/pages/login.php">Admin</a>
+                            <a class="Mybutton special mb-3" href="./src/admin/pages/login.php">Admin</a>
                         </li>
                         <li class="nav-item text-nowrap ">
                             <a class=" Mybutton special" href="./src/login">Connexion</a>
@@ -66,14 +75,15 @@ if ($userAdmin->isLoggedIn()) {
                 <div class="header-content">
                     <div class="row">
                         <div class="col-lg-7" style="text-align: center;">
-                            <div style="margin-top: 140px;"></div>
+                            <div style="margin-top: 120px;"></div>
                             <h1>Nouveau ici?</h1>
                             <p id="font">Si vous êtes nouveau ici et vous faites partie de ce faculté,<br> veuillez activer votre compte via ce button ci-dessous</p>
-                            <p><a class="Mybutton" href="src/signup/whoAreYou.php" role="button" title="Activer votre compte">Activier Compte</a></p>
+                            <p>
+                                <a class="btn btn-primary  mb-3" href="src/signup/whoAreYou.php" role="button" aria-pressed="true">active le compte</a></p>
                             <div class="go-about"></div>
                         </div>
                         <div class="col-lg-5">
-                            <div style="margin-top: 180px;"></div>
+                            <div style="margin-top: 160px;"></div>
                             <?php
                             include './img/index/teacher.svg';
                             ?>
@@ -172,7 +182,7 @@ if ($userAdmin->isLoggedIn()) {
                         </form>
 
                         <div class="text-center text-md-left">
-                            <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+                            <a class="btn btn-info" onclick="document.getElementById('contact-form').submit();">Send</a>
                         </div>
                         <div class="status"></div>
                     </div>
