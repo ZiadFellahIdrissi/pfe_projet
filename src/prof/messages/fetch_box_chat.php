@@ -34,7 +34,7 @@ if (isset($_GET["id_prof"])) {
             ?>
                     <div class="recei-mess__inner">
                         <div class="avatar avatar--tiny">
-                            <img src="../../../img/profiles/<?php echo $info->imagepath ?>" alt="">
+                            <img src="../../../img/profiles/<?php echo $info->imagepath ?>" alt="<?php echo strtoupper($info->nom . ' ' . $info->prenom); ?>">
                         </div>
                         <div class="recei-mess-list">
                             <div class="recei-mess"><?php echo $row->body ?></div>

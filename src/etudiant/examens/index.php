@@ -63,7 +63,7 @@ if (!$user->isLoggedIn()) {
                         <div class="col-md-12">
                             <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-left">
-                                    <span class="au-breadcrumb-span">You are here:</span>
+                                    <span class="au-breadcrumb-span">Vous êtes là :</span>
                                     <ul class="list-unstyled list-inline au-breadcrumb__list">
                                         <li class="list-inline-item active">
                                             <a href="#">Home</a>
@@ -90,7 +90,7 @@ if (!$user->isLoggedIn()) {
 
             </div>
         </div>
-        <!-- un modal pout ajoute un Exame -->
+        <!-- un modal pour les information de l'exam -->
         <div class="modal fade" id="ExamInfos" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">

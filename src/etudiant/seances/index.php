@@ -50,7 +50,7 @@ if (!$user->isLoggedIn()) {
                         <div class="col-md-12">
                             <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-left">
-                                    <span class="au-breadcrumb-span">You are here:</span>
+                                    <span class="au-breadcrumb-span">Vous êtes là :</span>
                                     <ul class="list-unstyled list-inline au-breadcrumb__list">
                                         <li class="list-inline-item active">
                                             <a href="#">Home</a>
@@ -75,6 +75,64 @@ if (!$user->isLoggedIn()) {
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="SeanceInfos" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border m-5" role="status" id="spinner00">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+
+                        <!-- Module / Date du Seance  -->
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <label for="Module" class="col-form-label">Module</label>
+                                    <input type="text" class="form-control-plaintext" id="Module" readonly style="font-weight: bold;">
+                                </div>
+                                <div class="col">
+                                    <label for="date_seance" class="col-form-label">Date Seance</label>
+                                    <input type="date" class="form-control-plaintext" id="date_seance" readonly style="font-weight: bold;">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <!-- heur debut / heur fin -->
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label for="heur_debut" class="col-form-label">Heure Debut</label>
+                                <input type="time" class="form-control-plaintext" name="heur_debut" id="heur_debut" readonly style="font-weight: bold;">
+                            </div>
+                            <div class="col">
+                                <label for="heur_fin" class="col-form-label">Heure Fin </label>
+                                <input type="time" class="form-control-plaintext" name="heur_fin" id="heur_fin" readonly style="font-weight: bold;">
+                            </div>
+                        </div>
+                        <hr>
+
+                        <!-- Type / Salle -->
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="salle" class="col-form-label">Salle</label>
+                                    <input type="text" class="form-control-plaintext" id="salle" readonly style="font-weight: bold;">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fin modale information -->
+
+                    </div>
+
+                    <!-- modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Jquery JS-->
         <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
@@ -93,7 +151,7 @@ if (!$user->isLoggedIn()) {
         <script src="../../../layout/js/main.js "></script>
         <script>
             $(document).ready(function() {
-                // $('#spinner1').hide();
+                $('#spinner00').hide();
                 var calendar = $('#calendar').fullCalendar({
                     locale: 'fr-ch',
                     minTime: "07:00:00",
@@ -107,6 +165,35 @@ if (!$user->isLoggedIn()) {
                     theme: true,
                     themeSystem: 'bootstrap4',
                     events: 'loadSeances.php?id=<?php echo $id ?>',
+                    eventClick: function(event) {
+                        $("#SeanceInfos").modal("show");
+                        var id = event.id;
+                        $.ajax({
+                            url: 'fetch_seance_information.php',
+                            type: "GET",
+                            data: {
+                                id_seance: id
+                            },
+                            contentType: "application/json",
+                            dataType: 'json',
+                            beforeSend: function() {
+                                $("#spinner00").show();
+                                $(".modal-body").hide();
+                            },
+                            complete: function() {
+                                $("#spinner00").hide();
+                                $(".modal-body").show();
+                            },
+                            success: function(data) {
+                                $("#Module").val(data.intitule);
+                                $("#date_seance").val(data.date_seance);
+                                $("#heur_debut").val(data.h_debut);
+                                $("#heur_fin").val(data.h_fin);
+                                $("#salle").val(data.salle);
+                            }
+                        })
+
+                    }
                 });
                 $(".fc-next-button").attr("title", "Semaine suivante");
                 $(".fc-prev-button").attr("title", "Semaine précédente");

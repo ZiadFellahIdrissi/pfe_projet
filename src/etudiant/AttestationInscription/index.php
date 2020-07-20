@@ -62,16 +62,17 @@ if (isset($_GET["id"])) {
                 $this->Ln(10);
 
                 $this->cell(10, 5, '' , 0, 0, 'C');
-                $this->cell(50, 5, 'ne le '.$date_naissance.' a CASABLANCA (MAROC)', 0, 0, 'L');
+                $this->cell(50, 5, iconv('UTF-8', 'ISO-8859-2', 'Né ') .'le '.$date_naissance.' a CASABLANCA (MAROC)', 0, 0, 'L');
                 $this->Ln(10);
 
                 $this->cell(10, 5, '' , 0, 0, 'C');
-                $this->cell(160, 5, "est regilierement inscrit a la formation continue du casablanca (FCC):", 0, 1, 'L');
+                $this->cell(160, 5, iconv('UTF-8', 'ISO-8859-2', "est régulierement ") ."inscrit a la formation continue du casablanca (FCC):", 0, 1, 'L');
                 $this->Ln(6);
 
                 $this->SetFont('Arial', '8', 11);
                 $this->cell(10, 5, '' , 0, 0, 'C');
-                $this->cell(160, 5, "Diplome :", 0, 1, 'L');
+                $this->cell(17, 5, "Diplome :", 0, 0, 'L');
+                $this->cell(120, 5, 'Licence professionnelle en '.$filiere , 0, 0, 'C');
                 $this->Ln(10);
 
             }

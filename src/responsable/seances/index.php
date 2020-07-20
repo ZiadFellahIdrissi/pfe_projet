@@ -113,12 +113,18 @@ if (!$user->isLoggedIn()) {
                             <label for="module" class="col-form-label">Module</label>
                             <select class="form-control" id="module">
                                 <?php
+                                $date_debut_dexieme_Semester = getDatesSemestre(2)->first()->date_debut;
+                                if (date('yy-m-d', time()) > $date_debut_dexieme_Semester)
+                                    $semster = 2;
+                                else
+                                    $semster = 1;
                                 $sql = "SELECT Module.intitule, Module.id_module
                                         FROM Module
                                         JOIN dispose_de ON Module.id_module = dispose_de.id_module
                                         JOIN Filiere ON dispose_de.id_filiere = Filiere.id_filiere
-                                        WHERE Filiere.id_responsable = ?";
-                                $resultat = $db->query($sql, [$id]);
+                                        join Semestre on Semestre.id_semestre = Module.id_semestre
+                                        WHERE Filiere.id_responsable = ? and Semestre.id_semestre = ?";
+                                $resultat = $db->query($sql, [$id,$semster]);
                                 foreach ($resultat->results() as $row) {
                                 ?>
                                     <option value="<?php echo $row->id_module ?>"><?php echo $row->intitule ?></option>

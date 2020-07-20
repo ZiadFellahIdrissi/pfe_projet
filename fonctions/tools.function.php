@@ -290,7 +290,7 @@ function isTherefianleExam($filiere, $semester)
 function do_i_have_massages($id){
     $sql = "SELECT message_list.id_message,messages.date, Utilisateur.id 
     FROM `message_list` 
-    join Messages on message_list.id_message = Messages.id_message 
+    join Messages on message_list.id_message = messages.id_message 
     join Utilisateur on Utilisateur.id = Messages.sender_id 
     where message_list.user_id = ? 
     and message_list.isread=?

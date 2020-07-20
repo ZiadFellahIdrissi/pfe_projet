@@ -3,8 +3,8 @@ include_once '../../../../core/init.php';
 include_once '../../../../fonctions/tools.function.php';
 $id=$_GET["id"];
 
-$sql = "SELECT seance.date_seance,Module.intitule from assiste
-join seance on assiste.id_seance = Seance.id_seance
+$sql = "SELECT Seance.date_seance,Module.intitule from assiste
+join Seance on assiste.id_seance = Seance.id_seance
 join Module on Module.id_module = Seance.id_module
 join Semestre on Semestre.id_semestre = Module.id_semestre
 where assiste.id_etudiant=? and Semestre.id_semestre=?

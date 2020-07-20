@@ -5,7 +5,7 @@ $id=$_GET["id"];
 
 $sql = "SELECT COUNT(assiste.id_seance) nbabsence ,Module.intitule module
         FROM assiste 
-        JOIN seance ON assiste.id_seance = Seance.id_seance 
+        JOIN Seance ON assiste.id_seance = Seance.id_seance 
         JOIN Module ON Module.id_module = Seance.id_module 
         JOIN Semestre on Semestre.id_semestre = Module.id_semestre 
         WHERE assiste.id_etudiant= ? AND Semestre.id_semestre= ?

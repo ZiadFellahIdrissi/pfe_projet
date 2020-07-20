@@ -120,9 +120,9 @@ if (!$user->isLoggedIn()) {
 
                                     ?>
                                 </h2>
-                                <span class="desc">Enseignants dans cette filiere</span>
+                                <span class="desc">Enseignants</span>
                                 <div class="icon">
-                                    <i class="zmdi zmdi-account-o"></i>
+                                    <i class="fas fa-chalkboard-teacher"></i>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@ if (!$user->isLoggedIn()) {
                                 </h2>
                                 <span class="desc">Etudiants</span>
                                 <div class="icon">
-                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                    <i class="fas fa-user-graduate"></i>
                                 </div>
                             </div>
                         </div>
@@ -163,13 +163,13 @@ if (!$user->isLoggedIn()) {
                                 </h2>
                                 <span class="desc">Modules</span>
                                 <div class="icon">
-                                    <i class="zmdi zmdi-calendar-note"></i>
+                                    <i class="fab fa-stack-overflow"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item statistic__item--red">
-                                <h2 class="number">1,544</h2>
+                                <h2 class="number">17</h2>
                                 <span class="desc">test</span>
                                 <div class="icon">
                                     <i class="zmdi zmdi-money"></i>

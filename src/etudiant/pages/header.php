@@ -1,5 +1,9 @@
 <?php
 require_once '../../../fonctions/tools.function.php';
+
+$resultat = controles($id);
+$count = $resultat->count();
+
 ?>
 <!-- MENU SIDEBAR-->
 <aside class="menu-sidebar2">
@@ -16,25 +20,23 @@ require_once '../../../fonctions/tools.function.php';
             <h4 class="name"><?php echo strtoupper($nom) . ' ' . $prenom ?></h4>
             <a href="../pages/logout.php">Sign out</a>
         </div>
-        <nav class="navbar-sidebar">
+        <nav class="navbar-sidebar2">
             <ul class="list-unstyled navbar__list">
-                <li class="active">
-                    <a href="../pages/">
+                <li class="">
+                    <a href="../pages">
                         <i class="fas fa-tachometer-alt"></i>Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="../seances/">
+                    <a href="../seances">
                         <i class="fas fa-chalkboard-teacher"></i>
                         <span class="bot-line"></span>Emploi du temps
                     </a>
                 </li>
                 <li>
-                    <a href="../controles/">
+                    <a href="../controles">
                         <i class="fa fa-file"></i>Controles</a>
                     <?php
-                    $resultat = controles($id);
-                    $count = $resultat->count();
                     if ($count) {
                         echo '<span class="inbox-num">' . $count . '</span>';
                     }
@@ -46,12 +48,12 @@ require_once '../../../fonctions/tools.function.php';
                     </a>
                 </li>
                 <li class="">
-                    <a href="../notes/">
+                    <a href="../notes">
                         <i class="zmdi zmdi-bookmark"></i>Notes et resultats
                     </a>
                 </li>
                 <li class="">
-                    <a href="../support/">
+                    <a href="../support">
                         <i class="fab fa-stack-overflow"></i>Support de cours
                     </a>
                 </li>
@@ -93,18 +95,18 @@ require_once '../../../fonctions/tools.function.php';
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li class="active">
-                        <a href="../pages/">
+                        <a href="../pages">
                             <i class="fas fa-tachometer-alt"></i>Dashboard
                         </a>
                     </li>
                     <li>
-                        <a href="../seances/">
+                        <a href="../seances">
                             <i class="fas fa-chalkboard-teacher"></i>
                             <span class="bot-line"></span>Emploi du temps
                         </a>
                     </li>
                     <li>
-                        <a href="../controles/">
+                        <a href="../controles">
                             <i class="fa fa-file-text"></i>Controles</a>
                         <?php
                         if ($count) {
@@ -118,12 +120,12 @@ require_once '../../../fonctions/tools.function.php';
                         </a>
                     </li>
                     <li class="">
-                        <a href="../notes/">
+                        <a href="../notes">
                             <i class="zmdi zmdi-bookmark"></i>Notes et resultats
                         </a>
                     </li>
                     <li class="">
-                        <a href="../support/">
+                        <a href="../support">
                             <i class="fab fa-stack-overflow"></i>Support de cours
                         </a>
                     </li>
@@ -142,3 +144,14 @@ require_once '../../../fonctions/tools.function.php';
         </div>
     </aside>
     <!-- END HEADER DESKTOP-->
+    <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
+    <script>
+        $(function() {
+            let path = location.href;
+            let lien =path.split('/');
+            let finalpath =lien[lien.length-2];
+            console.log(finalpath);
+        
+            $("a[href='../" + finalpath + "']").parent().addClass('active');
+                })
+    </script>

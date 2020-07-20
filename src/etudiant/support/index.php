@@ -56,7 +56,7 @@ if (!$user->isLoggedIn()) {
                         <div class="col-md-12">
                             <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-left">
-                                    <span class="au-breadcrumb-span">You are here:</span>
+                                    <span class="au-breadcrumb-span">Vous êtes là :</span>
                                     <ul class="list-unstyled list-inline au-breadcrumb__list">
                                         <li class="list-inline-item active">
                                             <a href="#">Home</a>
@@ -64,7 +64,7 @@ if (!$user->isLoggedIn()) {
                                         <li class="list-inline-item seprate">
                                             <span>/</span>
                                         </li>
-                                        <li class="list-inline-item">Notes et resultats</li>
+                                        <li class="list-inline-item">Support de cours</li>
                                     </ul>
                                 </div>
                             </div>

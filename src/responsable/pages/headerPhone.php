@@ -17,25 +17,25 @@
         <div class="container-fluid">
             <ul class="navbar-mobile__list list-unstyled">
                 <li>
-                    <a href="../pages/">
+                    <a href="../pages">
                         <i class="fas fa-tachometer-alt"></i>Dashboard
                         <span class="bot-line"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="../Etudiant/">
+                    <a href="../Etudiant">
                         <i class="fas fa-user-graduate"></i>
                         <span class="bot-line"></span>Etudiants
                     </a>
                 </li>
                 <li>
-                    <a href="../Enseignant/">
+                    <a href="../Enseignant">
                         <i class="fas fa-chalkboard-teacher"></i>
                         <span class="bot-line"></span>Enseignants
                     </a>
                 </li>
                 <li>
-                    <a href="../Module/">
+                    <a href="../Module">
                         <i class="fab fa-stack-overflow"></i>
                         <span class="bot-line"></span>Modules
                     </a>
@@ -64,8 +64,8 @@
                                         and message_list.id_message in (
                                                 SELECT max(messages.id_message)
                                                 FROM `message_list` 
-                                                join Messages on message_list.id_message = Messages.id_message 
-                                                join Utilisateur on Utilisateur.id = Messages.sender_id 
+                                                join messages on message_list.id_message = messages.id_message 
+                                                join Utilisateur on Utilisateur.id = messages.sender_id 
                                                 where message_list.user_id =  '$id'
                                                 GROUP by Utilisateur.id )
                                         ORDER by messages.date desc limit $newnbMessages";
@@ -141,3 +141,14 @@
         </div>
     </div>
 </div>
+<script src="../../../layout/js/jquery-3.4.1.min.js "></script>
+<script>
+    $(function() {
+        let path = location.href;
+        let lien = path.split('/');
+        let finalpath = lien[lien.length - 2];
+        console.log(finalpath);
+
+        $("a[href='../" + finalpath + "']").parent().addClass('active');
+    })
+</script

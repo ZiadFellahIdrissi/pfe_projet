@@ -51,7 +51,7 @@ if (!$user->isLoggedIn()) {
                         <div class="col-md-12">
                             <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-left">
-                                    <span class="au-breadcrumb-span">You are here:</span>
+                                    <span class="au-breadcrumb-span">Vous êtes là :</span>
                                     <ul class="list-unstyled list-inline au-breadcrumb__list">
                                         <li class="list-inline-item active">
                                             <a href="#">Home</a>
@@ -70,23 +70,23 @@ if (!$user->isLoggedIn()) {
         </section>
 
         <div class="container-fluid">
-            <div class="alert alert-info" role="alert">
-                <strong>Yo sat !</strong> 5ouna rake ghaybe <b><span id="nbabsence"></span></b> lmarat, l7ade l2ane
-            </div>
+
             <div class="row">
                 <div class="col-lg-6">
                     <div class="au-card m-b-30">
                         <div class="au-card-inner">
-                            <h3 class="title-2 m-b-40">Statistice de votre absence</h3>
+                            <h3 class="title-2 m-b-40">Statistique de votre absence</h3>
                             <canvas id="absence-chart">
-                                <div class="au-card notes shadow-lg bg-white rounded modules_Table" style="padding: 0;">
-                                    <div class="d-flex justify-content-center">
-                                        <div class="spinner-border m-5" role="status" id="spinner0">
-                                            <span class="sr-only">Loading...</span>
-                                        </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border m-5" role="status" id="spinner0">
+                                        <span class="sr-only">Loading...</span>
                                     </div>
                                 </div>
-                            </canvas>
+                            </canvas><br>
+                            <div class="alert alert-info" role="alert" style="margin-bottom:0%; text-align:center; display:none">
+                                Vous avez en totale <b><span id="nbabsence"></span></b> abscences au moment
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -95,11 +95,9 @@ if (!$user->isLoggedIn()) {
                         <div class="au-card-inner">
                             <h3 class="title-2 m-b-40">les dates </h3>
                             <div id="absences-table">
-                                <div class="au-card notes shadow-lg bg-white rounded modules_Table" style="padding: 0;">
-                                    <div class="d-flex justify-content-center">
-                                        <div class="spinner-border m-5" role="status" id="spinner">
-                                            <span class="sr-only">Loading...</span>
-                                        </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border m-5" role="status" id="spinner">
+                                        <span class="sr-only">Loading...</span>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +127,7 @@ if (!$user->isLoggedIn()) {
                 var ctx = $('#absences-table');
                 ctx.height = 200;
                 $("#spinner").hide();
-               
+
                 $.ajax({
                     url: "absence/fetch_absence_table.php",
                     method: 'GET',
@@ -153,12 +151,14 @@ if (!$user->isLoggedIn()) {
         <script>
             $(document).ready(function() {
                 $("#spinner0").hide();
+                // $(".alert-info").hide();
                 var id = $("#my_id").val();
                 $.ajax({
                     url: "absence/count_absence.php",
                     method: "GET",
                     data: {
-                        id,id
+                        id,
+                        id
                     },
                     contentType: "application/json",
                     dataType: 'json',
@@ -179,6 +179,7 @@ if (!$user->isLoggedIn()) {
                             sumabsence += Number(data0[i].nbabsence);
                         }
                         $("#nbabsence").html(sumabsence);
+                        $(".alert-info").show();
 
 
 
@@ -195,7 +196,6 @@ if (!$user->isLoggedIn()) {
                                             "rgba(0,0,0,0.2)",
                                             "rgba(0, 123, 255,0.8)",
                                             "rgba(0, 123, 255,0.6)",
-
                                             "rgba(0, 123, 255,0.5)"
                                         ]
 

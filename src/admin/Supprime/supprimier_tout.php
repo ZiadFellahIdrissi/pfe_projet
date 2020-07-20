@@ -12,11 +12,11 @@ deleteTables("assiste");
 deleteTables("Seance");
 deleteTables("Module");
 deleteTables("Demandes");
+deleteTables("messag_list");
+deleteTables("messages");
 deleteTables("Etudiant");
 deleteTables("Filiere");
 deleteTables("Personnel");
-deleteTables("messag_list");
-deleteTables("messages");
 deleteTables("Utilisateur");
 
 ?>

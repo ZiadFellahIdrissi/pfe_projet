@@ -41,8 +41,8 @@
                                             and message_list.id_message in (
                                                     SELECT max(messages.id_message)
                                                     FROM `message_list` 
-                                                    join Messages on message_list.id_message = Messages.id_message 
-                                                    join Utilisateur on Utilisateur.id = Messages.sender_id 
+                                                    join messages on message_list.id_message = messages.id_message 
+                                                    join Utilisateur on Utilisateur.id = messages.sender_id 
                                     				where message_list.user_id =  '$id'
                                     				GROUP by Utilisateur.id )
                                             ORDER by messages.date desc limit $newnbMessages";

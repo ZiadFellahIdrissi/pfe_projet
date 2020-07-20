@@ -16,7 +16,7 @@ else
 
 //================================================================
 $newLien = $lien . '$' . $code;
-DB::getInstance()->query("UPDATE module set Module.support_cour = ? where id_module=?", [$newLien, $id_module]);
+DB::getInstance()->query("UPDATE Module set Module.support_cour = ? where id_module=?", [$newLien, $id_module]);
 
 //=============get all student in one `filiere`====================================================
 $sql0 = "SELECT Etudiant.id 
