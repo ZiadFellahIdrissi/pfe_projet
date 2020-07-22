@@ -8,7 +8,7 @@
     <div class="menu-sidebar__content js-scrollbar1">
         <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
-                <li class="active ">
+                <li >
                     <a href="../pages">
                         <i class="fas fa-tachometer-alt" aria-hidden="true"></i>Dashboard</a>
                 </li>
@@ -72,3 +72,14 @@
     </div>
 </aside>
 <!-- END MENU SIDEBAR-->
+<script src="../../../layout/js/jquery-3.4.1.min.js "></script>
+    <script>
+        $(function() {
+            let path = location.href;
+            let lien =path.split('/');
+            let finalpath =lien[lien.length-2];
+            console.log(finalpath);
+        
+            $("a[href='../" + finalpath + "']").parent().addClass('active');
+                })
+    </script>

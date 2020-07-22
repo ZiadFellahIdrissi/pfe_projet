@@ -114,7 +114,7 @@ if (!$user->isLoggedIn()) {
                                                                 join Filiere on Filiere.id_filiere = dispose_de.id_filiere
                                                                 where Module.id_enseignant = ? 
                                                                 and Filiere.etat=?
-                                                                and module.id_semestre=?
+                                                                and Module.id_semestre=?
                                                                 GROUP by Filiere.id_filiere";
                                                         $query = DB::getInstance()->query($sql, array($id, 1, $semster));
                                                         foreach ($query->results() as $row) {
@@ -132,12 +132,12 @@ if (!$user->isLoggedIn()) {
                                         </div>
                                         <div class="au-message-list">
                                             <?php
-                                            $sql = "SELECT filiere.nom_filiere,Filiere.id_responsable,utilisateur.id,
-                                            utilisateur.nom,utilisateur.prenom,utilisateur.imagepath
-                                            from filiere
-                                            join utilisateur on filiere.id_responsable = utilisateur.id
+                                            $sql = "SELECT Filiere.nom_filiere,Filiere.id_responsable,Utilisateur.id,
+                                            Utilisateur.nom,Utilisateur.prenom,Utilisateur.imagepath
+                                            from Filiere
+                                            join Utilisateur on Filiere.id_responsable = Utilisateur.id
                                             join dispose_de on Filiere.id_filiere = dispose_de.id_filiere
-                                            join module on Module.id_module = dispose_de.id_module
+                                            join Module on Module.id_module = dispose_de.id_module
                                             where Module.id_enseignant = ?
                                             and Filiere.etat= ?
                                             and Filiere.id_responsable!=?

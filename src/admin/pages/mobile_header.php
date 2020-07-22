@@ -71,3 +71,14 @@
     </nav>
 </header>
 <!-- END HEADER MOBILE-->
+<script src="../../../layout/js/jquery-3.4.1.min.js "></script>
+    <script>
+        $(function() {
+            let path = location.href;
+            let lien =path.split('/');
+            let finalpath =lien[lien.length-2];
+            console.log(finalpath);
+        
+            $("a[href='../" + finalpath + "']").parent().addClass('active');
+                })
+    </script>

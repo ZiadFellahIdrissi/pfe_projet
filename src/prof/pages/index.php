@@ -93,9 +93,9 @@ if (!$user->isLoggedIn()) {
                                     </h1>
                                 <?php
                                 } else
-                                    echo '<h1 class="title-4">
-                                            <span>Vous êtes maintenant dans lespace ensenginant</span>
-                                          </h1>';
+                                    echo "<h1 class='title-4'>
+                                            <span>Vous êtes maintenant dans l'espace ensenginant</span>
+                                          </h1>";
                                 ?>
 
                                 <hr class="line-seprate">
@@ -115,7 +115,7 @@ if (!$user->isLoggedIn()) {
                         <div class="statistic__item statistic__item--green">
                             <h2 class="number">
                                 <?php
-                                echo $db->query("SELECT id_module from module where id_enseignant=?", [$id])->count();
+                                echo $db->query("SELECT id_module from Module where id_enseignant=?", [$id])->count();
                                 ?>
                             </h2>
                             <span class="desc">Modules</span>
@@ -126,16 +126,22 @@ if (!$user->isLoggedIn()) {
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--orange">
-                            <h2 class="number">388,688</h2>
-                            <span class="desc">test</span>
+                            <h2 class="number"><?php
+                                                echo $db->query("SELECT Module.intitule 
+                                                from Controle 
+                                                join Module on Controle.id_module = Module.id_module
+                                                join Semestre on Semestre.id_semestre = Module.id_semestre
+                                                where Module.id_enseignant=? and Controle.type=? and Semestre.id_semestre=?", [$id, 'controle',2])->count();
+                                                ?></h2>
+                            <span class="desc">Controle</span>
                             <div class="icon">
-                                <i class="zmdi zmdi-shopping-cart"></i>
+                                <i class="zmdi zmdi-collection-text"></i>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--blue">
-                            <h2 class="number">1,086</h2>
+                            <h2 class="number">18</h2>
                             <span class="desc">test</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-calendar-note"></i>
@@ -144,7 +150,7 @@ if (!$user->isLoggedIn()) {
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--red">
-                            <h2 class="number">1,060</h2>
+                            <h2 class="number">60</h2>
                             <span class="desc">test</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-money"></i>

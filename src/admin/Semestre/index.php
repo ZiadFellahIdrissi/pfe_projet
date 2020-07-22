@@ -82,6 +82,9 @@ if (!$user->isLoggedIn()) {
                                 <span class="sr-only">Loading...</span>
                             </div>
                         </div>
+                        <div class="alert alert-warning" role="alert" style="text-align: center;">
+                            <strong>Attesntion !</strong> Les examens finaux ne sont pas inclus au niveau des semestres
+                        </div>
 
                         <form action="modifier_semester.php" method="POST" id="myform">
                             <div class="form-group">

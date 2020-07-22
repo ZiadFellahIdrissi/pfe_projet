@@ -129,16 +129,16 @@ if (!$user->isLoggedIn()) {
                                         </div>
                                         <div class="au-message-list">
                                             <?php
-                                            $sql = "SELECT module.id_enseignant,module.intitule, utilisateur.nom,
-                                                    utilisateur.prenom,utilisateur.id  ,utilisateur.imagepath  
-                                                    from module
-                                                    join utilisateur on utilisateur.id = module.id_enseignant
-                                                    join dispose_de on dispose_de.id_module = module.id_module
-                                                    join filiere on dispose_de.id_filiere = filiere.id_filiere
-                                                    where filiere.id_responsable = ?
-                                                    and module.id_enseignant != ?
-                                                    and module.etat = ?
-                                                    GROUP by module.id_enseignant";
+                                            $sql = "SELECT Module.id_enseignant,Module.intitule, Utilisateur.nom,
+                                                    Utilisateur.prenom,Utilisateur.id  ,Utilisateur.imagepath  
+                                                    from Module
+                                                    join Utilisateur on Utilisateur.id = Module.id_enseignant
+                                                    join dispose_de on dispose_de.id_module = Module.id_module
+                                                    join Filiere on dispose_de.id_filiere = Filiere.id_filiere
+                                                    where Filiere.id_responsable = ?
+                                                    and Module.id_enseignant != ?
+                                                    and Module.etat = ?
+                                                    GROUP by Module.id_enseignant";
                                             $resultat = DB::getInstance()->query($sql, array($id,$id, 1));
                                             foreach ($resultat->results() as $row) {
                                             ?>

@@ -3,33 +3,37 @@ body {
     padding: 0;
     font-family: "montserrat", sans-serif;
     min-height: 100vh;
-    background-image: linear-gradient(125deg, #6a89cc, #b8e994);
+    background-image: linear-gradient(125deg, #1881f2, #18bbed);
 }
 
 .container {
     width: 100%;
-    position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    overflow-y: hidden;
     text-align: center;
     color: #343434
 }
 
-.container h1 {
-    font-size: 160px;
-    margin: 0;
-    font-weight: 900;
-    letter-spacing: 20px;
-    background: url('/pfe_projet/Errors/wbg.jpg') center no-repeat;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+.display-4 {
+    font-size: 2.3rem;
+    font-weight: 300;
+    line-height: 1.2
+}
+
+h2 {
+    font-family: 'Indie Flower', cursive;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container a {
     text-decoration: none;
-    background: #e55039aa;
     color: #fff;
     padding: 12px 24px;
+    background-image: linear-gradient(to right, #1376bd, #1881f2, #18a6f2);
+    background-size: 200%;
     display: inline-block;
     border-radius: 25px;
     font-size: 14px;
@@ -38,5 +42,5 @@ body {
 }
 
 .container a:hover {
-    background: #e55039;
+    background-position: right;
 }

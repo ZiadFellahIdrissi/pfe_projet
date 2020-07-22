@@ -5,10 +5,9 @@ include_once '../../../fonctions/tools.function.php';
 $id_filiere  = $_GET["id_filiere"];
 $my_id = $_GET["my_id"];
 $sql = "SELECT * 
-        from etudiant 
-        join utilisateur on etudiant.id = utilisateur.id
-        
-        where etudiant.id_filiere =  ?";
+        from Etudiant 
+        join Utilisateur on Etudiant.id = Utilisateur.id
+        where Etudiant.id_filiere =  ?";
 $resultat = DB::getInstance()->query($sql, [$id_filiere]);
 foreach ($resultat->results() as $row) {
 ?>

@@ -9,9 +9,9 @@ $subject = $_GET["subject"];
 $id_filiere = $_GET["id_filiere"];
 
 //=============get all student in one `filiere`====================================================
-$sql0 = "SELECT etudiant.id
-        from etudiant 
-        where etudiant.id_filiere =  ?";
+$sql0 = "SELECT Etudiant.id
+        from Etudiant 
+        where Etudiant.id_filiere =  ?";
 $resultat = DB::getInstance()->query($sql0, [$id_filiere]);
 
 //=============sending messages=====================================================================

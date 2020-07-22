@@ -95,16 +95,16 @@ if (!$user->isLoggedIn()) {
                                     <div class="semester ">
                                         <select name="semester" id="semester" class="form-control">
                                             <?php
-                                            $se = getSemestre()->date_fin;
-                                            if (date('yy/m/d', time()) <= $se) {
+                                            $date_debut_dexieme_Semester = getDatesSemestre(2)->first()->date_debut;
+                                            if (date('yy-m-d', time()) < $date_debut_dexieme_Semester) {
                                             ?>
-                                                <option value='1'>1er Semestre</option>
+                                                <option value='1'>1ére Semestre</option>
                                                 <option value='2'>2ème Semestre</option>
                                             <?php
                                             } else {
                                             ?>
                                                 <option value='2'>2ème Semestre</option>
-                                                <option value='1'>1er Semestre</option>
+                                                <option value='1'>1ére Semestre</option>
                                             <?php
                                             }
                                             ?>
@@ -140,7 +140,7 @@ if (!$user->isLoggedIn()) {
                     </div>
                 </div>
             </section>
-            
+
             <!-- Jquery JS-->
             <script src="../../../layout/js/jquery-3.4.1.min.js "></script>
 
@@ -158,6 +158,7 @@ if (!$user->isLoggedIn()) {
                 $(document).ready(function() {
                     $('#semester').prop("selectedIndex", $("#semester").val(affiche));
                     $("#semester").change(affiche);
+
                     function affiche() {
                         var semester = $("#semester").val();
                         var idResponsable = $("#idResponsable").val();

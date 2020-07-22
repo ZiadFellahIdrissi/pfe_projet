@@ -77,10 +77,9 @@ if ($User_Etudiant->isLoggedIn()) {
                             </div>
                         </div>
                         <div>
-                            <label style="float: left;">
-                                <input type="checkbox" id="isChecked"> Show password
+                            <label style="float: right; color: #555">
+                                <input type="checkbox" id="isChecked"> Afficher le mot de passe
                             </label>
-                            <!-- <a style="float: right;">forget password</a> -->
                         </div>
 
                         <br>
@@ -160,7 +159,7 @@ if ($User_Etudiant->isLoggedIn()) {
                         <?php
                         }
                         ?>
-                        <input type="submit" class="btn" name="submit" value="ok?">
+                        <input type="submit" class="btn" name="submit" value="Soumettre">
                         <input type="hidden" name="<?php
                                                     if ($_GET['role'] == 'etudiant')
                                                         echo 'som';

@@ -1,6 +1,6 @@
 INSERT INTO `Utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `password`, `telephone`, `email`, `username`, `imagepath`) VALUES
 ('AA555555', 'Fellah-Idrissi', 'Ziad', '1999-06-18', 'ziad1999', '0610111000', 'ziad.fe1999@gmail.com', 'ziad.fellah-idrissi-etu', '5ef158e67c7408.29165174.jpg'),
-('AB629501', 'Khalid', 'Yhaya', '1999-03-03', NULL, '0610012301', '', NULL, ''),
+('AB629501', 'Khalid', 'Yahya', '1999-03-03', NULL, '0610012301', '', NULL, ''),
 ('AC639502', 'Gouchgache', 'Hajar', '1999-08-09', NULL, '0610985002', '', NULL, ''),
 ('AD649503', 'Reda', 'Ahmed', '1999-03-03', NULL, '0610452003', '', NULL, ''),
 ('AE659504', 'Bouanane', 'Oussama', '1999-03-19', NULL, '0610741004', '', NULL, ''),
