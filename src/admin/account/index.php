@@ -16,7 +16,7 @@ if (!$user->isLoggedIn()) {
     <html lang="en">
 
     <head>
-        <title>Paramètre</title>
+        <title>Compte</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="../../../layout/css/animation.css" rel="stylesheet" type="text/css" />
@@ -69,20 +69,16 @@ if (!$user->isLoggedIn()) {
             include '../pages/header.php';
             ?>
             <div class="main-content ">
-                <?php //include 'DML_Commentator.php'; 
-                ?>
                 <div class="container mb-3">
                     <nav aria-label="breadcrumb nov">
                         <ol class="breadcrumb nov">
                             <li class="breadcrumb-item"><a href="../pages">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Paramètre</li>
+                            <li class="breadcrumb-item active" aria-current="page">Compte</li>
                         </ol>
                     </nav>
                     <div class="col-md-14">
                         <div class="container">
-
-                            <div class="container rounded text-white parametre">
-
+                            <div class="container rounded text-white bg-dark">
                                 <form id="myform" method="POST" action="modifierProfile.php" enctype="multipart/form-data">
                                     <div class="progress" style="display:none">
                                         <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -95,9 +91,6 @@ if (!$user->isLoggedIn()) {
                                         </div>
                                     </div>
                                     <br>
-                                    <?php
-                                    // $info = getInfos($id);
-                                    ?>
                                     <div class="">
                                         <div class=" form-group row">
                                             <div class="col">
@@ -150,7 +143,6 @@ if (!$user->isLoggedIn()) {
             </div>
         </div>
 
-
         <!-- Modal changer le mot de passe -->
         <div class="modal fade changermdp" id="changermdp" tabindex="-1" role="dialog" aria-labelledby="changermdpLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -165,15 +157,6 @@ if (!$user->isLoggedIn()) {
                                 <input type="password" class="form-control" id="newPassword" placeholder="Nouveau mot de passe">
                                 <div class="pass"></div>
                             </div>
-
-                            <!-- <div class="input-group-prepend" id="icon-click">
-                                    <div class="input-group-text">
-                                        <a class="text-dark">
-                                            <i class="fa fa-eye" id="icon"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div> -->
                             <br>
                             <div class="form-group">
                                 <input type="password" class="form-control" id="0password" placeholder="Répéter le mot de passe">
@@ -235,21 +218,6 @@ if (!$user->isLoggedIn()) {
                 $('.' + classError).html(msg);
                 $('.' + classError).show();
             }
-
-            // $(document).ready(function() {
-            //     $("#icon-click").click(function() {
-            //         $("#icon").toggleClass('fa-eye-slash');
-            //         let input0 = $("#newPassword");
-            //         // let input1 = $("#0password");
-            //         if (input0.attr("type") === "password") {
-            //             input0.attr("type", "text");
-            //             // input1.attr("type", "text");
-            //         } else
-            //             input0.attr("type", "password");
-            //         // input1.attr("type", "password");
-
-            //     });
-            // });
 
             $(document).ready(function() {
                 $("#spinner").hide();

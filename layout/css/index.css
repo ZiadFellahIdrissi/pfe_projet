@@ -81,17 +81,6 @@ body {
     color: black;
 }
 
-a {
-    text-decoration: none;
-    color: #2d3436;
-    font-size: 0.9rem;
-    transition: .3s;
-}
-
-a:hover {
-    color: #1881f2;
-}
-
 .btn {
     width: 100%;
     border-radius: 25px;

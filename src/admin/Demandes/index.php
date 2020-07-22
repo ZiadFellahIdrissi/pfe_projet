@@ -61,10 +61,10 @@ if (!$user->isLoggedIn()) {
                             <li class="breadcrumb-item active" aria-current="page">Demandes</li>
                         </ol>
                     </nav>
-                    <div class="modal-content ">
+                    <div class="modal-content">
                         <div class="modal-body">
                             <?php
-                            include "afficheTableauDemandes.php";
+                                include "afficheTableauDemandes.php";
                             ?>
                         </div>
                     </div>
@@ -102,8 +102,11 @@ if (!$user->isLoggedIn()) {
         <script type="text/javascript" src="../../../lib/animsition/animsition.min.js"></script>
         <!-- Main JS-->
         <script type="text/javascript" src="../../../layout/js/main.js"></script>
-        <!-- <script type="text/javascript" src="../../../layout/js/animation.js"></script> -->
         <script type="text/javascript" src="../../../layout/js/jquery.dataTables.min.js"></script>
+        <script>
+            $('.mydatatable').DataTable();
+        </script>
+        <script type="text/javascript" src="../../../layout/js/DataTableCustomiser.js"></script>
         <script>
             $(document).ready(function() {
                 $("#spinner0").hide();

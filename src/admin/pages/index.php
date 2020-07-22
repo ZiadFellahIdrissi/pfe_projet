@@ -111,25 +111,6 @@ if (!$user->isLoggedIn()) {
                                     </div>
                                 </div>
                             </div>
-
-
-
-                            <!-- <div class="col-md-6 col-lg-3" onclick="location.href='../Modules'" title="Modules">
-                            <div class="statistic__item" style="border-radius: 10px; cursor:pointer;">
-                                <h2>
-                                <?php
-                                $sql = "SELECT *
-                                                    FROM Personnel
-                                                    WHERE role = 'responsable'";
-                                echo mysqli_num_rows(mysqli_query($conn, $sql));
-                                ?>
-                                </h2>
-                                <span class="desc">Modules</span>
-                                <div class="icon">
-                                    <i class="fab fa-stack-overflow"></i>
-                                </div>
-                            </div>
-                        </div> -->
                         </div>
                     </div>
                 </section>

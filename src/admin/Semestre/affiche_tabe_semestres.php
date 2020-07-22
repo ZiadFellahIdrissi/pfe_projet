@@ -40,9 +40,9 @@ $resultats = $db->query($sql, []);
             if(date('YY-m-d' ,time()) > getDatesSemestre(2)->first()->date_fin){
             ?>
             <hr>
-            <div class="float-right" style="padding-bottom:1.4%; padding-right:1%;">
-                <button type="button" class="btn btn-outline-dark" id="ModifierButton">
-                    <span><i class="fa fa-edit"></i></span> Modifier
+            <div class="float-right table-data-feature" style="padding-bottom:1.4%; padding-right:1%;">
+                <button type="button" class="item" id="ModifierButton">
+                    <span><i class="zmdi zmdi-edit"></i></span>
                 </button>
             </div>
             <?php

@@ -11,8 +11,8 @@ $resultats = $db->query($sql, []);
 ?>
 
 <div class="float-left" style="padding:1.5%;">
-    <button type="button" class="btn btn-outline-dark" id="ajouteSalleButton">
-        <span><i class="fa fa-plus"></i></span> Ajoute Salle
+    <button type="button" class="btn btn-primary" id="ajouteSalleButton">
+        + Ajouter
     </button>
 </div>
 
@@ -35,12 +35,14 @@ $resultats = $db->query($sql, []);
                         <td><?php echo $row->id_salle ?></td>
                         <td><b><?php echo $row->salle ?></b></td>
                         <td>
-                            <button class="item supprimier_salle" data-toggle="tooltip" id="<?php echo $row->id_salle ?>" data-placement="top" title="Supprimer">
-                                <i class="zmdi zmdi-delete"></i>
-                            </button>
-                            <button class="item Open_modifierSalle" data-toggle="tooltip" id="<?php echo $row->id_salle ?>" data-placement="top" title="Modifier">
-                                <i class="fa fa-edit"></i>
-                            </button>
+                            <div class="table-data-feature">
+                                <button class="item supprimier_salle" data-toggle="tooltip" id="<?php echo $row->id_salle ?>" data-placement="top" title="Supprimer">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                                <button class="item Open_modifierSalle" data-toggle="tooltip" id="<?php echo $row->id_salle ?>" data-placement="top" title="Modifier">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
             <?php

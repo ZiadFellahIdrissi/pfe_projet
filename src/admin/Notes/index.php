@@ -85,8 +85,10 @@ if (!$user->isLoggedIn()) {
                                     <div class="col"></div>
                                 </div>
                             </div>
-                            <div class="card-body etudiants" style="display: none">
-
+                            <div class="card-body etudiants">
+                                <div class="infosWait" style="text-align: center;">
+                                    <img src="../../../img/Dashboard/infoNote.svg">
+                                </div>
                             </div>
                         </div>
                     </div>

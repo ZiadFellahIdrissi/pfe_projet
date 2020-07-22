@@ -98,7 +98,7 @@ if (!$user->isLoggedIn()) {
                         </div>
 
                         <div class="card-body modules">
-                            <div class="containar infosWait" style="text-align: center;">
+                            <div class="infosWait" style="text-align: center;">
                                 <img src="../../../img/Dashboard/infoFiliere.svg">
                             </div>
                         </div>

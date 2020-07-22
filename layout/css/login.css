@@ -176,7 +176,6 @@ form {
 }
 
 a {
-    text-decoration: none;
     color: #2d3436;
     font-size: 0.9rem;
     transition: .3s;
@@ -184,6 +183,7 @@ a {
 
 a:hover {
     color: #1881f2;
+    text-decoration: none;
 }
 
 span {
@@ -201,12 +201,16 @@ span {
     border: none;
     background-image: linear-gradient(to right, #1376bd, #1881f2, #18a6f2);
     background-size: 200%;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
     cursor: pointer;
+    text-transform: uppercase;
     transition: .5s;
 }
 
 .btn:hover {
     background-position: right;
+    color: #fff;
 }
 
 @media screen and (max-width: 1050px) {

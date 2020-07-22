@@ -1,20 +1,32 @@
 <?php
     include_once '../../core/init.php';
     if (isset($_POST["login"])) {
-        $userProf = new User_Prof();
-        $loginProf = $userProf->login($_POST["username"], $_POST["password"]);
-        if ($loginProf) {
+        $user = new User_Admin();
+        $login = $user->login($_POST["username"], $_POST["password"]);
+        if ($login){
+            header("Location: ../admin/");
+            exit();
+        }
+
+        $user = new User_Prof();
+        $login = $user->login($_POST["username"], $_POST["password"]);
+        if ($login) {
             if ($userProf->data()->role == 'responsable')
                 header("Location: ../responsable/");
             else
                 header("Location: ../prof/");
+            exit();
         }
-        $User_Etudiant = new User_Etudiant();
-        $loginEtudiant = $User_Etudiant->login($_POST["username"], $_POST["password"]);
-        if ($loginEtudiant) 
+
+        $user = new User_Etudiant();
+        $login = $user->login($_POST["username"], $_POST["password"]);
+        if ($login) {
             header("Location: ../etudiant/");
+            exit();
+        }
 
         header("Location: ../login?err");
+        exit();
     }
 ?>
     

@@ -58,9 +58,9 @@ if (!$user->isLoggedIn()) {
                             <li class="breadcrumb-item active" aria-current="page">Notes</li>
                         </ol>
                     </nav>
-                    <div class="col-md-14">
-                        <div class="card">
-                            <div class="card-body semestre" style="padding: 0;">
+                    <div class="container mb-3" style="padding-top: 0;">
+                        <div class="modal-content">
+                            <div class="modal-body semestre" style="padding: 0;">
                                 <div class="d-flex justify-content-center">
                                     <div class="spinner-border m-5" role="status" id="spinner">
                                         <span class="sr-only">Loading...</span>
@@ -72,7 +72,6 @@ if (!$user->isLoggedIn()) {
                 </div>
             </div>
         </div>
-        </div>
         <div class="modal fade" id="modifierSemester" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
                 <div class="modal-content">
@@ -83,7 +82,7 @@ if (!$user->isLoggedIn()) {
                             </div>
                         </div>
                         <div class="alert alert-warning" role="alert" style="text-align: center;">
-                            <strong>Attesntion !</strong> Les examens finaux ne sont pas inclus au niveau des semestres
+                            <strong>Attention!</strong> Les examens finales ne sont pas inclut aux semestres.
                         </div>
 
                         <form action="modifier_semester.php" method="POST" id="myform">

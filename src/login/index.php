@@ -2,25 +2,33 @@
 ob_start();
 include "../connection.php"; //binma m7ina hdchi o rej3nah PDO
 include_once '../../core/init.php';
-$User_Prof = new User_Prof();
-if ($User_Prof->isLoggedIn()) {
-    if ($User_Prof->data()->role == "responsable")
-        header("Location: ../responsable/");
-    else
-        header("Location: ../prof/");
-} else
-    $User_Etudiant = new User_Etudiant();
-if ($User_Etudiant->isLoggedIn()) {
-    header("Location: ../etudiant/");
+$user = new User_Admin();
+if ($user->isLoggedIn()) {
+    header("Location: ../admin/");
 } else {
+    $user = new User_Prof();
+    if ($user->isLoggedIn()) {
+        if ($user->data()->role == "responsable")
+            header("Location: ../responsable/");
+        else
+            header("Location: ../prof/");
+    } else {
+        $user = new User_Etudiant();
+        if ($user->isLoggedIn()) {
+            header("Location: ../etudiant/");
+        }
+    }
+}
 ?>
     <html>
 
     <head>
-        <title>Login</title>
+        <title>Authentification</title>
+        <link href="../../layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="../../layout/css/login.css">
         <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
@@ -86,11 +94,11 @@ if ($User_Etudiant->isLoggedIn()) {
                         <?php
                         if (isset($_GET["err"])) {
                         ?>
-                            <strong style="color:#d63031;">Échec de l'authentification.</strong>
+                            <p style="color:#d63031;">Échec de l'authentification.</p>
                         <?php
                         }
                         ?>
-                        <input type="submit" class="btn" name="login" value="Connexion">
+                        <input type="submit" class="btn font-weight-bold" name="login" value="Connexion">
                         <a href="whoAreYou.php" class="formShower">Informations de compte oubliées?</a>
                     </form>
                 </div>
@@ -159,12 +167,12 @@ if ($User_Etudiant->isLoggedIn()) {
                         <?php
                         }
                         ?>
-                        <input type="submit" class="btn" name="submit" value="Soumettre">
+                        <input type="submit" class="btn font-weight-bold" name="submit" value="Soumettre">
                         <input type="hidden" name="<?php
                                                     if ($_GET['role'] == 'etudiant')
                                                         echo 'som';
                                                     else
-                                                        echo 'cne'
+                                                        echo 'cne';
                                                     ?>">
                     </form>
                 </div>
@@ -176,7 +184,7 @@ if ($User_Etudiant->isLoggedIn()) {
                 <div class="login-content">
                     <form action="reset_password.php" method="POST">
                         <img src="../../img/login/avatar.svg" draggable="false">
-                        <h2 class="title">S'identifier</h2>
+                        <h2 class="title">Réinitialisation</h2>
                         <br>
                         <div class="input-div one">
                             <div class="i">
@@ -215,7 +223,7 @@ if ($User_Etudiant->isLoggedIn()) {
                         <div class="errorCheckPass" style="color:#d63031;"></div>
                         <input type="input" name="cin" value="<?php echo  $cin__FromSession;
                                                                 Session::delete($_sessionCin); ?>" hidden>
-                        <input type="submit" class="btn resetPassword" name="reset" value="Réinitialiser">
+                        <input type="submit" class="btn font-weight-bold resetPassword" name="reset" value="Réinitialiser">
                     </form>
                 </div>
 
@@ -266,6 +274,5 @@ if ($User_Etudiant->isLoggedIn()) {
 
     </html>
 <?php
-}
 ob_end_flush();
 ?>

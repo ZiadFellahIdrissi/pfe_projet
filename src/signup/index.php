@@ -5,7 +5,8 @@ include_once '../../fonctions/tools.function.php';
 <html>
 
 <head>
-    <title>Signup</title>
+    <title>Activation du compte</title>
+    <link href="../../layout/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../layout/css/login.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
