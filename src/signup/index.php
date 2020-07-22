@@ -45,7 +45,7 @@ include_once '../../fonctions/tools.function.php';
                 <form action="signup_verification.php" method="POST">
                     <br>
                     <img src="../../img/login/avatar.svg" draggable="false">
-                    <h2 class="title" style="color: #06b4c8;">Phase 1</h2>
+                    <h2 class="title" style="color: #1376bd;">Phase 1</h2>
                     <span class="title">Verification de l'existence du compte</span>
                     <br>
                     <div class="input-div one">
@@ -116,7 +116,7 @@ include_once '../../fonctions/tools.function.php';
                 <form action="signup.php" method="POST" id="myform">
                     <br>
                     <img src="../../img/login/avatar.svg" draggable="false">
-                    <h2 class="title" style="color: #06b4c8;">Phase 2</h2>
+                    <h2 class="title" style="color: #1376bd;">Phase 2</h2>
                     <span class="title"><i class="fa fa-cog fa-spin"></i> Finalisation de la procédure</span>
                     <br>
                     <div class="input-div one">
