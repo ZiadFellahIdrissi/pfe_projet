@@ -49,15 +49,6 @@ $db = DB::getInstance();
                                     <?php
                                     }
                                     ?>
-                                    <!-- <div class="notifi__item ">
-                                        <div class="bg-c1 img-cir img-40 ">
-                                            <i class="zmdi zmdi-email-open "></i>
-                                        </div>
-                                        <div class="content ">
-                                            <p>You got a email notification</p>
-                                            <span class="date ">April 12, 2018 06:50</span>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -92,16 +83,11 @@ $db = DB::getInstance();
                                     <div class="account-dropdown__body">
                                         <div class="account-dropdown__item">
                                             <a href="../account">
-                                                <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                <i class="zmdi zmdi-account"></i>Compte</a>
                                         </div>
                                         <div class="account-dropdown__item">
                                             <a href="../Supprime">
-                                                <i class="fa fa-times-circle"></i>Supprimer Tout
-                                            </a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="fa fa-cloud"></i>Sauvegarde
+                                                <i class="fa fa-times-circle"></i>Réinitialiser la base
                                             </a>
                                         </div>
                                     </div>

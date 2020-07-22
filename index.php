@@ -89,7 +89,7 @@ if ($userAdmin->isLoggedIn()) {
                 <div class="header-content">
                     <div class="row">
                         <div class="col-lg-7" style="text-align: left;">
-                            <div style="margin-top: 120px;"></div>
+                            <div style="margin-top: 180px;"></div>
                             <h1 class="h1-responsive font-weight-bold text-white my-4" style="font-family: 'Righteous', cursive;">Nouveau ici?</h1>
                             <span id="font" class="font-weight-bold">Si vous êtes nouveau ici et vous faites partie de ce faculté,
                             <br>
