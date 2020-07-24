@@ -15,6 +15,7 @@ if (isset($_GET["cin"])) {
         <link href="../../../layout/css/bootstrap.min.css" rel="stylesheet" media="all">
         <!-- Main CSS-->
         <link href="../../../layout/css/theme.css" rel="stylesheet" media="all">
+        <script src="https://kit.fontawesome.com/a81368914c.js"></script>
         <link rel="stylesheet" type="text/css" href="../../../layout/css/welcome.css">
     </head>
 
@@ -44,11 +45,11 @@ if (isset($_GET["cin"])) {
                         <input id="user" class="form-control" type="text" value="<?php if (isset($_GET["cin"])) echo $info->username; ?>" name="user" placeholder="Username" readonly="redonly">
                     </div>
                     <div class="form-group input-group">
-                        <input name="pass" class="form-control " id="pass" type="password" value="<?php if (isset($_GET["cin"])) echo $info->password; ?>" placeholder="Password" readonly="redonly">
+                        <input name="pass" class="form-control " id="pass" type="password" value="<?php if (isset($_GET["cin"])) echo $info->password; ?>" value="123456789" placeholder="Password" readonly="redonly">
                         <div class="input-group-prepend" id="icon-click">
                             <div class="input-group-text">
                                 <a class="text-dark">
-                                    <i class="fa fa-eye" id="icon"></i>
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>

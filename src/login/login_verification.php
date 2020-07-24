@@ -18,14 +18,12 @@
         $user = new User_Prof();
         $login = $user->login($_POST["username"], $_POST["password"]);
         if ($login) {
-            if ($userProf->data()->role == 'responsable')
+            if ($user->data()->role == 'responsable')
                 header("Location: ../responsable/");
             else
                 header("Location: ../prof/");
             exit();
         }
-
-        
 
         header("Location: ../login?err");
         exit();

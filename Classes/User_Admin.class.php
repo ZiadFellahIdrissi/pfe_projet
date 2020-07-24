@@ -79,6 +79,7 @@ class User_Admin
     {
         return $this->_isLoggedIn;
     }
+    
     public static function setAdminPassword($username, $password)
     {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);

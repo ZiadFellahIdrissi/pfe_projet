@@ -86,6 +86,7 @@ if (!$user->isLoggedIn()) {
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="md-form mb-3">
+                                    Code d'accès
                                     <input type="text" id="set_code" class="form-control" readonly>
                                 </div>
                             </div>

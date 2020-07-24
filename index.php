@@ -246,7 +246,7 @@ if ($userAdmin->isLoggedIn()) {
                 <div class="row">
                     <div>
                         <ul class="copyright font-weight-bold">
-                            <li style="font-family: 'Montserrat', sans-serif;">&copy; All rights reserved.</li>
+                            <li style="font-family: 'Montserrat', sans-serif;">&copy; SMI6 BDD Groupe 9, 2020.</li>
                         </ul>
                     </div>
                 </div>

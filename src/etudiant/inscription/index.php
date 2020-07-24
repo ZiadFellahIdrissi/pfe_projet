@@ -221,7 +221,7 @@ if (!$user->isLoggedIn()) {
                 </div>
                 <div class="modal-footer">
                   <input type="hidden" name="id" value="<?php echo $id ?>">
-                  <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                  <button id="payment-button" type="submit" class="btn btn-lg btn-dark btn-block">
                     <i class="fa fa-lock fa-lg"></i>&nbsp;
                     <span id="payment-button-amount"></span>
                   </button>

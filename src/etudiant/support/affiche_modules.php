@@ -16,7 +16,7 @@ $my_id = $_GET["my_id"];
         <thead class="thead-dark">
             <tr>
                 <th>Module</th>
-                <th>support</th>
+                <th>Support du cours</th>
             </tr>
         </thead>
         <?php
@@ -34,7 +34,7 @@ $my_id = $_GET["my_id"];
                             $resultat = DB::getInstance()->query("SELECT support_cour from Module where id_module = ? ", [$row->id_module])->first();
                             if ($resultat->support_cour == null) {
                             ?>
-                                <a href="#" class="btn btn-outline-secondary disabled" role="button" aria-disabled="true">pas encore</a>
+                                <b>Non disponible.</b>
                                 <?php
                             } else {
                                 $support = explode("$", $resultat->support_cour);
@@ -42,7 +42,7 @@ $my_id = $_GET["my_id"];
                                 $code = $support[1];
                                 if ($code != "") {
                                 ?>
-                                    <button type="button" class="btn btn-outline-warning open_give_code">get Code</button>
+                                    <button type="button" class="btn btn-outline-warning open_give_code">Obtenir le cours avec le code d'accès</button>
                                     <input type="hidden" id="lien" value="<?php echo $lien; ?>">
                                     <input type="hidden" id="code" value="<?php echo $code; ?>">
                                 <?php
