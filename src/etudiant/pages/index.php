@@ -90,9 +90,9 @@ if (!$user->isLoggedIn()) {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" >
                     <div class="au-card m-b-30">
-                        <div class="au-card-inner">
+                        <div class="au-card-inner" style="height: 355px">
                             <h3 class="title-2 m-b-40">les dates </h3>
                             <div id="absences-table">
                                 <div class="d-flex justify-content-center">

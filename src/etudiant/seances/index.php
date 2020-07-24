@@ -157,11 +157,11 @@ if (!$user->isLoggedIn()) {
                     minTime: "07:00:00",
                     maxTime: "23:00:00",
                     header: {
-                        left: 'prev,next,today',
+                        left: '',
                         center: 'title',
-                        right: ''
+                        right: 'today,next'
                     },
-                    defaultView: 'agendaWeek',
+                    defaultView: 'listWeek',
                     theme: true,
                     themeSystem: 'bootstrap4',
                     events: 'loadSeances.php?id=<?php echo $id ?>',
@@ -195,9 +195,7 @@ if (!$user->isLoggedIn()) {
 
                     }
                 });
-                $(".fc-next-button").attr("title", "Semaine suivante");
-                $(".fc-prev-button").attr("title", "Semaine précédente");
-                $(".fc-today-button").attr("title", "Aujourd'hui");
+                $(".fc-next-button").text("Semaine suivante");
                 $(".fc-today-button").text("Semaine courante");
                 $(".fc-prev-button").hide();
 
