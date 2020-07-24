@@ -36,23 +36,27 @@ if ($userAdmin->isLoggedIn()) {
     </head>
     <style>
         #myBtn {
-          display: none;
-          position: fixed;
-          bottom: 20px;
-          right: 30px;
-          z-index: 99;
-          font-size: 18px;
-          border: none;
-          outline: none;
-          background-color: #1881f2;
-          color: white;
-          cursor: pointer;
-          padding: 15px;
-          border-radius: 20px;
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #1881f2;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 20px;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         #myBtn:hover {
-          background-color: #18a6f2;
+            background-color: #18a6f2;
         }
     </style>
 
@@ -63,8 +67,10 @@ if ($userAdmin->isLoggedIn()) {
                     <span class="font-weight-bold my-4" style="font-size: 40px;">FCC</span>
                 </a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button style="color:white;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                        <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
+                    </span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -79,7 +85,7 @@ if ($userAdmin->isLoggedIn()) {
                             <a class="nav-link" href="#three">Contactez nous</a>
                         </li>
                         <li class="nav-item text-nowrap ">
-                            <a class="font-weight-bold btn" style="width: 110%" aria-pressed="true" href="./src/login">CONNEXION</a>
+                            <a class="font-weight-bold btn" style="width: 100%" aria-pressed="true" href="./src/login">CONNEXION</a>
                         </li>
 
                     </ul>
@@ -92,8 +98,8 @@ if ($userAdmin->isLoggedIn()) {
                             <div style="margin-top: 180px;"></div>
                             <h1 class="h1-responsive font-weight-bold text-white my-4" style="font-family: 'Righteous', cursive;">Nouveau ici?</h1>
                             <span id="font" class="font-weight-bold">Si vous êtes nouveau ici et vous faites partie de ce faculté,
-                            <br>
-                            Veuillez activer votre compte via ce button ci-dessous.</p>
+                                <br>
+                                Veuillez activer votre compte via ce button ci-dessous.</p>
                             </span>
                             <br>
                             <a class="btn font-weight-bold" href="src/signup/whoAreYou.php" role="button" aria-pressed="true" style="width: 50%">ACTIVER VOTRE COMPTE</a>
@@ -105,7 +111,7 @@ if ($userAdmin->isLoggedIn()) {
                             include './img/index/teacher.svg';
                             ?>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -140,7 +146,7 @@ if ($userAdmin->isLoggedIn()) {
                                     Pour se connecter, utiliser le bouton "Connexion", en haut à droite de la page.
                                     <br>
                                     Pour maximiser la sécurité de soi, il est conseillé de se déconnecter en fin de session de travail en cliquant sur le bouton "Déconnexion" (situé également en haut à droite dans l'espace de travail) puis de fermer toutes ses fenêtres de navigateur.
-                            </p>
+                                </p>
                             </section>
                         </div>
                     </div>
@@ -210,7 +216,7 @@ if ($userAdmin->isLoggedIn()) {
                         </form>
 
                         <div class="text-center text-md-left">
-                            <button class="btn text-white" role="button" aria-pressed="true">ENVOYER</button>
+                            <button class="btn text-white mb-4" onclick="location.reload()" role="button" aria-pressed="true">ENVOYER</button>
                         </div>
                     </div>
 
@@ -254,19 +260,21 @@ if ($userAdmin->isLoggedIn()) {
         <script>
             var mybutton = document.getElementById("myBtn");
 
-            window.onscroll = function() {scrollFunction()};
+            window.onscroll = function() {
+                scrollFunction()
+            };
 
             function scrollFunction() {
-              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                mybutton.style.display = "block";
-              } else {
-                mybutton.style.display = "none";
-              }
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
+                }
             }
 
             function topFunction() {
-              document.body.scrollTop = 0;
-              document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
             }
         </script>
 

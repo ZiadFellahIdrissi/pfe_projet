@@ -79,12 +79,13 @@ class ActiveCompte
 
     public function signup($cin, $email, $username, $password)
     {
+        $hashed_password=password_hash($password,PASSWORD_DEFAULT);
         if ($cin && $email && $username && $password) {
             $data = $this->_db->query("UPDATE Utilisateur
                                             SET username = ?,
                                                 `password` = ?,
                                                 email = ?
-                                            WHERE id = ?", array($username, $password, $email, $cin));
+                                            WHERE id = ?", array($username, $hashed_password, $email, $cin));
 
             return ($data->error());
         }
@@ -93,10 +94,11 @@ class ActiveCompte
 
     public static function setPassword($cin, $password)
     {
+        $hashed_password=password_hash($password,PASSWORD_DEFAULT);
         if ($cin && $password) {
             $data = DB::getInstance()->query("UPDATE Utilisateur
                                             SET `password` = ?
-                                            WHERE id = ?", array($password, $cin));
+                                            WHERE id = ?", array($hashed_password, $cin));
             return ($data->error());
         }
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 14, 2020 at 06:25 PM
+-- Generation Time: Jul 24, 2020 at 01:48 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
   `email` varchar(50) NOT NULL,
   `imagepath` varchar(50) NOT NULL,
   `username` varchar(40) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`username`,`password`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 --
 
 INSERT INTO `administrateur` (`nom`, `prenom`, `email`, `imagepath`, `username`, `password`) VALUES
-('abghoure', 'mohamed', 'abghoure.mohamed@fsac.ma', '5f088ee8d838f6.61955024.jpg', 'admin', 'admin');
+('abghoure', 'mohamed', 'abghoure.mohamed.f@fsac.ma', 'enseignant.svg', 'admin', '$2y$10$ooEfFKNlrdAaVcwZYfV0YuY/hcEiHnhchswDR9IyToEYASJdueby.');
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `controle` (
   PRIMARY KEY (`id_controle`),
   KEY `id_module` (`id_module`),
   KEY `Controle_ibfk_2` (`salle`)
-) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `demandes` (
   `etat` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_id_etudiant` (`id_etudiant`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `sender_id` varchar(8) NOT NULL,
   PRIMARY KEY (`id_message`),
   KEY `message_ibfk_1` (`sender_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -193,6 +193,7 @@ CREATE TABLE IF NOT EXISTS `module` (
   `heures_sem` int(11) NOT NULL,
   `intitule` varchar(100) NOT NULL,
   `id_enseignant` varchar(8) NOT NULL,
+  `support_cour` varchar(500) DEFAULT NULL,
   `id_semestre` int(11) NOT NULL,
   `etat` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_module`),
@@ -272,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `seance` (
   PRIMARY KEY (`id_seance`),
   KEY `id_module` (`id_module`),
   KEY `Seance_ibfk_2` (`salle`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -309,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `nom` varchar(32) NOT NULL,
   `prenom` varchar(32) NOT NULL,
   `date_naissance` date NOT NULL,
-  `password` varchar(40) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `telephone` char(10) NOT NULL,
   `email` varchar(40) DEFAULT NULL,
   `username` varchar(40) DEFAULT NULL,
@@ -317,6 +318,40 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `Utilisateur_Idx` (`telephone`,`email`,`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `password`, `telephone`, `email`, `username`, `imagepath`) VALUES
+('AA555555', 'Kamale', 'Mohammed', '1999-06-18', '$2y$10$6S4nUI4ciTa9tlNzaCl2K.r..PuiNIHBRazSThLWm0e4GhcOqd40a', '0610111000', 'kammal_mohammed@gmail.com', 'mohammed.kamal-etu', 'avatar.svg'),
+('AB629501', 'Khalid', 'Yhaya', '1999-03-03', NULL, '0610012301', '', NULL, 'avatar.svg'),
+('AC639502', 'Gouchgache', 'Hajar', '1999-08-09', NULL, '0610985002', '', NULL, 'avatar.svg'),
+('AD649503', 'Reda', 'Ahmed', '1999-03-03', NULL, '0610452003', '', NULL, 'avatar.svg'),
+('AE659504', 'Bouanane', 'Oussama', '1999-03-19', NULL, '0610741004', '', NULL, 'avatar.svg'),
+('AF669505', 'Narine', 'Soukaina', '1999-05-05', NULL, '0610195005', '', NULL, 'avatar.svg'),
+('AG679566', 'Azhar', 'Asmaa', '1999-07-07', NULL, '0617740006', '', NULL, 'avatar.svg'),
+('AH689567', 'Ait Fakir', 'Soufian', '1999-12-12', NULL, '0617740007', '', NULL, 'avatar.svg'),
+('AI121218', 'Essaadi', 'Yassin', '1999-01-01', NULL, '0617740008', '', NULL, 'avatar.svg'),
+('AJ111519', 'Tiane', 'Rajaa', '1999-02-02', NULL, '0617107009', '', NULL, 'avatar.svg'),
+('AK111510', 'Draidar', 'Nouhaila', '1999-03-01', NULL, '0717788001', '', NULL, 'avatar.svg'),
+('AL156511', 'Bhaita', 'Soukiana', '1999-04-05', NULL, '0717745502', '', NULL, 'avatar.svg'),
+('BA699512', 'Khayoussef', 'Mohamed', '1968-05-17', 'ens1234', '0717749903', 'mohamed.khayoussef@fsac.ma', 'mohamed.khayoussef-ens', 'avatar.svg'),
+('BB699513', 'Sahel', 'Hassna', '1970-05-18', NULL, '0717741114', '', NULL, 'avatar.svg'),
+('BC699514', 'Lamnoir', 'Imane', '1985-05-20', NULL, '0707000105', '', NULL, 'avatar.svg'),
+('BD699515', 'Chabbi', 'Abderrahmane', '1978-05-17', 'chabbi', '0717741236', '', 'chabbi', 'avatar.svg'),
+('BE699516', 'Abouamrane', 'Mouad', '1990-05-17', NULL, '0710105167', '', NULL, 'avatar.svg'),
+('BF699517', 'Aboulkhair', 'Zineb', '1992-05-17', NULL, '0711475168', '', NULL, 'avatar.svg'),
+('BG009518', 'Abidi', 'Sanaa', '1989-12-03', NULL, '0711475169', '', NULL, 'avatar.svg'),
+('BH019519', 'Amhil', 'Younes', '1968-09-17', NULL, '0514445161', '', NULL, 'avatar.svg'),
+('BI079520', 'Kouam', 'Issa', '1968-05-17', NULL, '0511235162', '', NULL, 'avatar.svg'),
+('BJ121221', 'Elkhettabi', 'Yassin', '1980-05-17', NULL, '0514565163', '', NULL, 'avatar.svg'),
+('BK121212', 'Chakouri', 'Safaa', '1968-05-07', 'ens1234', '0600154199', 'safaa.chakouri@fsac.ma', 'safaa.chakouri-ens', 'avatar.svg'),
+('CA108522', 'Tallal', 'Adnane', '1999-05-17', NULL, '0517895164', '', NULL, 'avatar.svg'),
+('CB111523', 'Bourich', 'Ikrame', '1999-05-17', NULL, '0511475165', '', NULL, 'avatar.svg'),
+('CC101524', 'Jemmi', 'Muhsin', '1985-05-17', 'res1234', '0512585166', 'muhsin.jemmi@fsac.ma', 'muhsin.jemmi-res', 'avatar.svg'),
+('CD699525', 'Rehmi', 'Youssef', '1968-05-17', NULL, '0513695167', '', NULL, 'avatar.svg'),
+('WA111588', 'Azize', 'Raiss', '1976-05-11', 'res1234', '0154899710', 'raiss.azize@fsac.ma', 'raiss.azize-res', 'avatar.svg');
 
 --
 -- Constraints for dumped tables

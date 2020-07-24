@@ -7,8 +7,7 @@ $currentPassword = $_GET["currentPassword"];
 $newPassword = $_GET["newPassword"];
 
 $passfromdatabase = getPersonInfo($cin)->password;
-
-if ($currentPassword === $passfromdatabase) {
+if (password_verify($currentPassword,$passfromdatabase)) {
     if (!ActiveCompte::setPassword($cin, $newPassword))
         echo '<div class="alert alert-success" style="text-align: center;" role="alert">
                 Mot de passe à étè bien changé.

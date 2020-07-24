@@ -41,12 +41,14 @@ class User_Admin
     public function find($username = null)
     {
         if ($username) {
-            $data = $this->_db->getPDO()->query("SELECT *
-                                                   FROM Administrateur
-                                                   WHERE username = '$username'");
-
-            if (!empty($this->_data = $data->fetch(PDO::FETCH_OBJ)))
+            $sql = "SELECT *
+                    FROM Administrateur
+                    WHERE username =  ?";
+            $resultat = $this->_db->query($sql, [$username]);
+            if($resultat->count()){
+                $this->_data = $resultat->first();
                 return true;
+            }
         }
         return false;
     }
@@ -63,9 +65,8 @@ class User_Admin
     public function login($username = null, $password = null)
     {
         $user = $this->find($username);
-        $userPas = $this->checkPassword($username, $password);
         if ($user) {
-            if ($userPas) {
+            if (password_verify($password, $this->data()->password)) {
                 Session::put($this->_sessionName, $this->data()->username);
                 return true;
             }
@@ -73,16 +74,18 @@ class User_Admin
         return false;
     }
 
+
     public function isLoggedIn()
     {
         return $this->_isLoggedIn;
     }
     public static function setAdminPassword($username, $password)
     {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         if ($username && $password) {
             $data = DB::getInstance()->query("UPDATE Administrateur
                                             SET `password` = ?
-                                            WHERE username = ?", array($password, $username));
+                                            WHERE username = ?", array($hashed_password, $username));
             return ($data->error());
         }
     }

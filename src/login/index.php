@@ -85,7 +85,7 @@ if ($user->isLoggedIn()) {
                             </div>
                         </div>
                         <div>
-                            <label style="float: right; color: #555">
+                            <label style="float: left; color: #555">
                                 <input type="checkbox" id="isChecked"> Afficher le mot de passe
                             </label>
                         </div>

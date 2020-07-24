@@ -8,7 +8,7 @@ $newPassword = $_GET["newPassword"];
 
 $passfromdatabase = getAdminInfo($username)->password;
 
-if ($currentPassword === $passfromdatabase) {
+if (password_verify($currentPassword,$passfromdatabase)) {
     if (!User_Admin::setAdminPassword($username, $newPassword))
         echo '<div class="alert alert-success" style="text-align: center;" role="alert">
                 Mot de passe à étè bien changé.
