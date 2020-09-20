@@ -38,7 +38,7 @@ if (isset($_POST["oldSem"]) && isset($_POST["Filiere"]) && isset($_POST["id_modu
 				SET `coeff_examen` = ?,
 					`coeff_controle` = ?
 				WHERE `dispose_de`.`id_module` = ?";
-	$db->query($sql, [$coeffE, $id_filiere, $coeffC, $id_module]);
+	$db->query($sql, [$coeffE, $coeffC, $id_module]);
 
 	header("location: ./?updated");
 }

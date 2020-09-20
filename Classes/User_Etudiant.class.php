@@ -63,7 +63,6 @@ class User_Etudiant
         Session::delete($this->_sessionName);
     }
 
-
     public function isLoggedIn()
     {
         return $this->_isLoggedIn;

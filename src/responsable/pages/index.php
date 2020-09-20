@@ -169,8 +169,8 @@ if (!$user->isLoggedIn()) {
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item statistic__item--red">
-                                <h2 class="number">17</h2>
-                                <span class="desc">test</span>
+                                <h2 class="number">12</h2>
+                                <span class="desc">Seances</span>
                                 <div class="icon">
                                     <i class="zmdi zmdi-money"></i>
                                 </div>

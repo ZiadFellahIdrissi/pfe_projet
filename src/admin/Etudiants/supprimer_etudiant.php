@@ -7,8 +7,8 @@ if (isset($_GET["id"])) {
 													 WHERE id = '$cin'"));
 	$filiere = $row["id_filiere"];
 	mysqli_query($conn, "DELETE FROM Etudiant
-							 WHERE id = '$cin'        ");
+							 WHERE id = '$cin'");
 	mysqli_query($conn, "DELETE FROM Utilisateur
-							 WHERE id = '$cin'		 ");
+							 WHERE id = '$cin");
 	header("location: ./?deleted&idUrlFiliere=$filiere");
 }

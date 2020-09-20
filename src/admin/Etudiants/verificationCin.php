@@ -1,6 +1,6 @@
 <?php
 $sqltest2 = "SELECT id
-    			 FROM Etudiant
+    			 FROM Utilisateur
                  WHERE id = '$cin'
                  AND id != '$oldCin'";
 

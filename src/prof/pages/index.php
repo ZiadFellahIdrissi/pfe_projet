@@ -141,8 +141,8 @@ if (!$user->isLoggedIn()) {
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--blue">
-                            <h2 class="number">18</h2>
-                            <span class="desc">test</span>
+                            <h2 class="number">8</h2>
+                            <span class="desc">Absences</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-calendar-note"></i>
                             </div>
@@ -150,8 +150,8 @@ if (!$user->isLoggedIn()) {
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--red">
-                            <h2 class="number">60</h2>
-                            <span class="desc">test</span>
+                            <h2 class="number">1</h2>
+                            <span class="desc">Seances</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-money"></i>
                             </div>

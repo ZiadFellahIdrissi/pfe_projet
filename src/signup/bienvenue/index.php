@@ -45,7 +45,7 @@ if (isset($_GET["cin"])) {
                         <input id="user" class="form-control" type="text" value="<?php if (isset($_GET["cin"])) echo $info->username; ?>" name="user" placeholder="Username" readonly="redonly">
                     </div>
                     <div class="form-group input-group">
-                        <input name="pass" class="form-control " id="pass" type="password" value="<?php if (isset($_GET["cin"])) echo $info->password; ?>" value="123456789" placeholder="Password" readonly="redonly">
+                        <input name="pass" class="form-control " id="pass" type="password" value="ziad" placeholder="Password" readonly="redonly">
                         <div class="input-group-prepend" id="icon-click">
                             <div class="input-group-text">
                                 <a class="text-dark">
@@ -55,7 +55,7 @@ if (isset($_GET["cin"])) {
                         </div>
                     </div>
                     <input type="hidden" name="cin" value="<?php if (isset($_GET["cin"])) echo $_GET["cin"]; ?>">
-                    <input type="submit" name="logindirect" class="btn login" id="submit" value="changer photo" style="display:none;">
+                    <input type="submit" name="logindirect" class="btn login" id="submit" value="Changer photo" style="display:none;">
                     <input type="button" class="btn login" id="login" value="Connexion">
 
             </form>
@@ -104,9 +104,9 @@ if (isset($_GET["cin"])) {
                                 login.style.display = "block";
                                 submit.style.display = "none";
                                 $(".progress").hide();
-                                if(data != 'good'){
+                                if (data != 'good') {
                                     alert(data);
-                                    $("#profileDisplay").attr('src','../../../img/login/avatar.svg');
+                                    $("#profileDisplay").attr('src', '../../../img/login/avatar.svg');
                                 }
 
                             },
@@ -145,18 +145,18 @@ if (isset($_GET["cin"])) {
                 $personnel = getPersonnelInfo($cin);
                 if ($personnel->count()) {
                     $user_Personnel = new User_Prof();
-                    $login_Personnel = $user_Personnel->login($info->username, $info->password);
+                    $user_Personnel->login($info->username, $info->password);
                 } else {
-                    $User_Etudiant = new User_Etudiant();
-                    $loginEtudiant = $User_Etudiant->login($info->username, $info->password);
+                    $user = new User_Etudiant();
+                    $login = $user->login($info->username, $info->password);
                 }
                 ?>
                 if (profileImagee.src.includes('avatar')) {
                     if (confirm("Voulez-vous vraiment garder l'image par défaut !!!!")) {
-                        location.replace("../../login/");
+                        location.href = "../../../";
                     }
                 } else {
-                    location.replace("../../login/");
+                    location.href = "../../../";
                 }
 
             });

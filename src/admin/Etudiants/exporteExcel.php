@@ -1,6 +1,7 @@
 <?php
-include_once '../../../fonctions/tools.function.php';
+
 include_once '../../../core/init.php';
+include_once '../../../fonctions/tools.function.php';
 $db = DB::getInstance();
 if (isset($_GET["print-excel"]) && isset($_GET["id_filiere"])) {
     $id_filiere = $_GET['id_filiere'];
